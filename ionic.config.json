@@ -1,0 +1,8 @@
+{
+  "name": "sapoto.net",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "8c73a89c"
+}
