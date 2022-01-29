@@ -1,13 +1,43 @@
+  ion-img {
+    width: 44px;
+    padding: 4px;
+  }
+
+  .Children {
+    --ion-item-background: orange;
+  }
+
+  .Siblings_n_Kin {
+    --ion-item-background: skyblue;
+  }
+
+  .Parents {
+    --ion-item-background: yellow;
+  }
+
+  .Partners {
+    --ion-item-background: pink;
+  }
+
+  .Extended {
+    --ion-item-background:plum;
+  }
+
+  .Friends {
+    --ion-item-background: palegreen;
+  }
+
 ion-menu ion-content {
     --background: var(--ion-item-background, var(--ion-background-color, #fff));
   }
-  
+
   ion-menu.md ion-content {
     --padding-start: 8px;
     --padding-end: 8px;
     --padding-top: 20px;
     --padding-bottom: 20px;
   }
+  
   
   ion-menu.md ion-list {
     padding: 20px 0;
@@ -22,11 +52,11 @@ ion-menu ion-content {
     padding-left: 10px;
   }
   
-  ion-menu.md ion-list#inbox-list {
+  ion-menu.md ion-list#category-list {
     border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
   }
   
-  ion-menu.md ion-list#inbox-list ion-list-header {
+  ion-menu.md ion-list#category-list ion-list-header {
     font-size: 22px;
     font-weight: 600;
   
