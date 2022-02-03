@@ -1,19 +1,60 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" menuId="main" type="overlay">
+      <ion-header>
+        <ion-toolbar color="secondary">
+          <ion-title>sapoto.net</ion-title>
+          <div class="sub-title">family matters</div>
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-accordion-group>
           <ion-accordion value="{{metaCategory.title}}" *ngFor="let metaCategory of metaCategories; let i = index">
-            <ion-item slot="header" class="{{metaCategory.image}}">
-              <ion-img class="menu-image" src="assets/menu/{{metaCategory.image}}.png"></ion-img>
+            <ion-item slot="header">
+              <!-- <span class="{{metaCategory.image}}"> -->
+              <span>
+                <ion-img src="assets/menu/{{metaCategory.image}}.png  ">
+                </ion-img>
+                <!--
+                <ion-avatar class="menu-image">
+                  <img src="assets/menu/{{metaCategory.image}}.png">
+                </ion-avatar>
+                -->
+              </span>
               <ion-label>{{ metaCategory.title }}</ion-label>
             </ion-item>
 
             <ion-list slot="content">
-
               <ion-menu-toggle auto-hide="false">
-                <ion-item *ngFor="let category of metaCategory.categories; let y = index">
-                  <ion-label>{{ category }}</ion-label>
+                <ion-item [routerLink]="['/situations/' + category.label]"
+                  *ngFor="let category of metaCategory.categories; let y = index">
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <ion-img src="assets/{{category.icon}}"></ion-img>
+                  &nbsp;&nbsp;
+                  <ion-label>{{ category.label }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </ion-accordion>
+          <ion-accordion value="Topics">
+            <ion-item slot="header">
+              <span>
+                <ion-img src="assets/menu/Topics.png">
+                </ion-img>
+                <!--
+                <ion-avatar class="menu-image">
+                  <img src="assets/menu/Topics.png">
+                </ion-avatar>
+              -->
+              </span>
+              <ion-label>Topics</ion-label>
+            </ion-item>
+
+            <ion-list slot="content">
+              <ion-menu-toggle auto-hide="false">
+                <ion-item *ngFor="let label of labels; let y = index">
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <ion-label>{{ label }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>
             </ion-list>

@@ -8,78 +8,98 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public metaCategories = [
     {
+      categories: [{
+        label: 'Baby Time',
+        icon: 'child_toy_icons/baby-toy.png'
+      },
+      {
+        label: 'Toddler Years',
+        icon: 'child_toy_icons/toddler-toy.png'
+      },
+      {
+        label: 'Early Childhood',
+        icon: 'child_toy_icons/early-childhood-toy.png'
+      },
+      {
+        label: 'Middle Childhood',
+        icon: 'child_toy_icons/middle-childhood-toy.png'
+      },
+      {
+        label: 'Late Childhood',
+        icon: 'child_toy_icons/late-childhood-toy.png'
+      },
+      {
+        label: 'Teenage Years',
+        icon: 'child_toy_icons/teenage-toy.png'
+      },
+      {
+        label: 'Adults',
+        icon: 'child_toy_icons/adult-toy.png'
+      }
+      ],
+      image: 'Children',
+      title: 'Age groups'
+    },
+  ];
+  /*
+  public metaCategories = [
+    {
       categories: [
-        'Baby',
-        'Toddler',
-        'Young Childhood',
-        'Middle Childhood',
-        'Late Childhood',
+        'Babies',
+        'Toddlers',
+        'Children',
         'Teens',
         'Adults'
       ],
       image: 'Children',
-      title: 'Children',
-      url: '/folder/Children',
+      title: 'Children'
     },
     {
       categories: [
         'Siblings',
-        'Cousins',
-        '2nd Cousins',
-        '3rd Cousins'
+        'Cousins'
       ],
       image: 'Siblings_n_Kin',
-      title: 'Sibligs & Kin',
-      url: '/folder/Children',
+      title: 'Sibligs & Kin'
     },
     {
       categories: [
-        'Young',
-        'Working',
-        'Retired',
-        'Grandparents',
-        'Great Grandparents'
+        'Working Parents',
+        'Retired Parents',
+        'Grandparents'
       ],
       image: 'Parents',
-      title: 'Parents',
-      url: '/folder/Parents',
+      title: 'Parents'
     },
     {
       categories: [
-        'Dating',
-        'Engaged',
-        'Married > 5 years',
-        'Married 5 to 10 years',
+        'Dating Pairs',
+        'Engaged Pairs',
+        'Married > 10 years',
         'Married 10+ years'
       ],
       image: 'Partners',
-      title: 'Partners',
-      url: '/folder/Partners',
+      title: 'Partners'
     },
     { 
       categories: [
         'Nephews & Nieces',
-        'Aunts & Uncles',
-        'Grand Auns & Uncles',
-        'Grand nephews & nieces'   
+        'Aunts & Uncles'
       ],
       image: 'Extended',
       title: 'Extended',
-      url: '/folder/Extended',
     },
     { 
       categories: [
-        'Best friends',
-        'Close friends',
-        'Good friends',
-        'New friends',
-        'Acquaintances'
+        'Best Friends',
+        'Close Friends',
+        'Good Friends'
       ],
       image: 'Friends',
-      title: 'Friends',
-      url: '/folder/Friends',
+      title: 'Friends'
      },
   ];
+  */
   public labels = ['Bed Time', 'Homework', 'Chores', 'Cleaning', 'Hygene'];
   constructor() { }
 

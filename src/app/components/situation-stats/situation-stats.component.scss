@@ -1,0 +1,28 @@
+.situation-stats {
+    color: gray;
+    font-size: 13px;
+    margin: 5px;
+    padding: 3px;
+  }
+  
+  .situation-stats img {
+    display: inline-block;
+    width: 18px;
+  }
+  
+  .situation-stats .situations-stats-count {
+    display: inline-block;
+    padding-left: 8px;
+    vertical-align: sub;
+    width: 60px;
+  }
+  
+  .situation-stats .num-testimonials {
+    padding-left: 13px;
+    width: 65px;
+  }
+  
+  .situation-stats .num-tasks {
+    padding-left: 10px;
+    width: 62px;
+  }

@@ -4,13 +4,22 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Children',
+    redirectTo: 'situations/Children',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'situations/:id',
+    loadChildren: () => import('./situation-list/situation-list.module').then( m => m.SituationListPageModule)
+  },  {
+    path: 'post-situation',
+    loadChildren: () => import('./post-situation/post-situation.module').then( m => m.PostSituationPageModule)
+  },
+  {
+    path: 'situation',
+    loadChildren: () => import('./situation/situation.module').then( m => m.SituationPageModule)
   }
+
+
 ];
 
 @NgModule({

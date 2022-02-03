@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- navigation button-->
+      <ion-menu-button></ion-menu-button>
+      <!-- optional back button-->
+      <ion-back-button></ion-back-button>
+    </ion-buttons>  
+    <ion-title>{{ topic }} Situations</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-template #noResults let-attrs="attrs">
+  <div class="situation-suggestions-empty">
+    <ion-text>No situations found.</ion-text>
+
+    <ion-button [size]="'full'" (click)="add()">
+      Enter New
+    </ion-button>
+  </div>
+</ng-template>
+<ion-content>
+  <ion-auto-complete [clearInvalidInput]="false" [dataProvider]="situationSearchService" [emptyTemplate]="noResults"
+    [options]="{ placeholder : 'Describe the situation' }"></ion-auto-complete>
+</ion-content>

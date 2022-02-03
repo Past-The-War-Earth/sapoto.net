@@ -1,30 +1,45 @@
+  .sub-title {
+    padding-left: 20px;
+    font-size: 15px;
+  }
+
+  ion-avatar {
+    height: 40px;
+    width: 40px;
+  }
+
   ion-img {
-    width: 44px;
+    height: 44px;
     padding: 4px;
   }
 
+  span {
+    margin: 4px;
+    border-radius: 20px;
+  }
+
   .Children {
-    --ion-item-background: orange;
+    background: #FFD580;
   }
 
   .Siblings_n_Kin {
-    --ion-item-background: skyblue;
+    background: skyblue;
   }
 
   .Parents {
-    --ion-item-background: yellow;
+    background: yellow;
   }
 
   .Partners {
-    --ion-item-background: pink;
+    background: pink;
   }
 
   .Extended {
-    --ion-item-background:plum;
+    background:plum;
   }
 
   .Friends {
-    --ion-item-background: palegreen;
+    background: palegreen;
   }
 
 ion-menu ion-content {

@@ -1,0 +1,171 @@
+.top-menu-icon {
+  height: 35px;
+  padding: 4px;
+}
+
+.child-menu-icon {
+  height: 35px;
+  padding: 4px;
+}
+
+.situation-header {
+  width: 100%;
+  margin: 5px;
+  margin-top: 15px;
+}
+
+.situation-by {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.situation-age {
+  color: gray;
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.situation-summary {
+  font-size: 20px;
+  font-weight: 430;
+  margin: 5px;
+}
+
+.situation-description {
+  margin: 5px;
+}
+
+ion-item.reply {
+  --inner-padding-end: 0px;
+  --padding-start: 7px;
+}
+
+.reply-contents {
+  width: 100%;
+  margin-top: 5px;
+}
+
+ion-row {
+  margin-bottom: 7px;
+  margin-left: 27px;
+  width: 100%;
+}
+
+ion-item.reply tr {
+  vertical-align: top;
+}
+
+.reply-main {
+  margin-left: -5px;
+  margin-right: -5px;
+  width: 100%;
+}
+
+.stats {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.reply-column {
+  text-align: center;
+}
+
+.type-column {
+  width: 40px;
+}
+
+.reply-header {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.reply-by {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.reply-age {
+  display: inline-block;
+  color: gray;
+  font-size: 14px;
+}
+
+.action-column {
+  width: 40px;
+}
+
+.reply-type {
+  margin-top: 5px;
+  width: 30px;
+}
+
+.reply-action {
+  margin-top: 5px;
+}
+
+.reply-bottom {
+
+}
+
+.reply-ranking {
+  font-size: 13px;
+  display: inline-block;
+}
+
+.reply-up-down-ranking {
+  height: 24px;
+  width: 100px;
+}
+
+.reply-rank {
+  display: inline-block;
+  width: 20px;
+}
+
+.reply-count-up {
+  display: inline-block;
+  padding-left: 8px;
+  vertical-align: sub;
+  width: 65px;
+}
+
+.task-stats {
+  height: 24px;
+}
+
+.task-stats-icon {
+  width: 20px;
+}
+
+.task-stats-count {
+  display: inline-block;
+  padding-left: 8px;
+  vertical-align: sub;
+  width: 65px;
+}
+
+.task-assent {
+  height: 24px;
+  padding-top: 7px;
+  width: 100%;
+}
+
+.situation-views-by-label {
+  font-size: 12px;
+  margin: 3px;
+}
+
+.reply-in-thread {
+  display: inline-block;
+}
+
+.reply-action {
+  color: rgb(23, 191, 95);
+}
+
+a {
+  text-decoration-line: none;
+}
