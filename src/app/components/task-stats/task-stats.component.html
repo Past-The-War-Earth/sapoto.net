@@ -1,0 +1,22 @@
+<table class="task-stats">
+  <tr>
+    <td>
+      <img src="assets/task/reasons.png">
+    </td>
+    <td class="task-stats-count">
+      {{getNumberAcronym(task.numReasons)}}
+    </td>
+    <td>
+      <img src="assets/task/assent.png">
+    </td>
+    <td class="task-stats-count accent-percentage">
+      {{accentPercentage(task.votes.totalPoints, task.votes.users)}}%
+    </td>
+    <td>
+      <img src="assets/task/subtasks.png">
+    </td>
+    <td class="task-stats-count num-subtasks">
+      {{getNumberAcronym(task.numTasks)}}
+    </td>
+  </tr>
+</table>

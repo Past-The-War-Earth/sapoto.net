@@ -1,0 +1,35 @@
+<app-tools-menu
+(onFilterChange)="filter($event)"
+></app-tools-menu>
+
+<app-page-header></app-page-header>
+
+<ion-content id="page-content">
+  <div class="situation-header">
+    <div class="situation-by">
+      {{situation.createdBy}}
+    </div>
+    <div class="situation-age">
+      {{ageOf(situation.createdAt)}}
+    </div>
+  </div>
+  <div class="situation-summary">
+    {{situation.summary}}
+  </div>
+
+  <app-situation-stats [situation]="situation"></app-situation-stats>
+  <!--
+  <div class="stats">
+    {{situation.createdBy}}
+  </div>
+  <div class="stats">
+    {{situation.views.total}} views &nbsp; &#x2022; &nbsp;
+    by {{situation.views.users}} users &nbsp; &#x2022; &nbsp;
+    {{ageOf(situation.createdAt)}}
+  </div>
+  -->
+  <div class="situation-description">
+    {{situation.description}}
+  </div>
+  <app-reply-listing [replies]="replies"></app-reply-listing>
+</ion-content>

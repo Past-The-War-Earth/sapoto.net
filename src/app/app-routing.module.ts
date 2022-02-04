@@ -9,16 +9,24 @@ const routes: Routes = [
   },
   {
     path: 'situations/:id',
-    loadChildren: () => import('./situation-list/situation-list.module').then( m => m.SituationListPageModule)
-  },  {
+    loadChildren: () => import('./situations/situation-list/situation-list.module').then( m => m.SituationListPageModule)
+  },
+  {
     path: 'post-situation',
-    loadChildren: () => import('./post-situation/post-situation.module').then( m => m.PostSituationPageModule)
+    loadChildren: () => import('./situations/post-situation/post-situation.module').then( m => m.PostSituationPageModule)
   },
   {
     path: 'situation',
-    loadChildren: () => import('./situation/situation.module').then( m => m.SituationPageModule)
+    loadChildren: () => import('./situations/situation/situation.module').then( m => m.SituationPageModule)
+  },
+  {
+    path: 'post-task',
+    loadChildren: () => import('./tasks/post-task/post-task.module').then( m => m.PostTaskPageModule)
+  },
+  {
+    path: 'task',
+    loadChildren: () => import('./tasks/task/task.module').then( m => m.TaskPageModule)
   }
-
 
 ];
 

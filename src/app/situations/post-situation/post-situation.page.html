@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!-- navigation button-->
+      <ion-menu-button></ion-menu-button>
+      <!-- optional back button-->
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Enter New Situation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Summary</ion-label>
+      <ion-input [(ngModel)]="summary" placeholder="Enter Situation Summary..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-img src="assets/icon/record-audio.png"></ion-img>
+      <ion-label>Record Audio</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-img src="assets/icon/record-video.png"></ion-img>
+      <ion-label>Record Video</ion-label>
+    </ion-item>
+  </ion-list>
+  <quill-editor [(ngModel)]="description" [modules]="quillModules" [sanitize]="true"></quill-editor>
+  <ion-button [size]="'full'" (click)="enterSituation()">Enter Situation</ion-button>
+</ion-content>

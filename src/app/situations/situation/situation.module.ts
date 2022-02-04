@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SituationPageRoutingModule } from './situation-routing.module';
 
 import { SituationPage } from './situation.page';
-import { SituationStatsComponent } from '../components/situation-stats/situation-stats.component';
-import { ComponentsModule } from '../components/components.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [

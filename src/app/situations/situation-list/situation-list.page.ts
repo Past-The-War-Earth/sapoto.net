@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { SituationSearchService } from '../services/situation-search.service';
+import { SituationSearchService } from '../../services/situation-search.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 

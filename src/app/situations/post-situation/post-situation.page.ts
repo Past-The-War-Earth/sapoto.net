@@ -11,6 +11,7 @@ import 'quill-emoji/dist/quill-emoji.js'
 })
 export class PostSituationPage implements OnInit {
 
+  summary: string
   description: string
 
   quillModules = {

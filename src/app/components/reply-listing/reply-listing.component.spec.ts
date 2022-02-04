@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { FolderPage } from './folder.page';
 
-describe('FolderPage', () => {
-  let component: FolderPage;
-  let fixture: ComponentFixture<FolderPage>;
+import { ReplyListingComponent } from './reply-listing.component';
+
+describe('ReplyListingComponent', () => {
+  let component: ReplyListingComponent;
+  let fixture: ComponentFixture<ReplyListingComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FolderPage ],
-      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
+      declarations: [ ReplyListingComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FolderPage);
+    fixture = TestBed.createComponent(ReplyListingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
