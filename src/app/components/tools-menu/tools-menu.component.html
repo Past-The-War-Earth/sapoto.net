@@ -1,6 +1,6 @@
 <ion-menu contentId="page-content" menuId="tools" side="end" type="overlay">
   <ion-header>
-    <ion-toolbar color="secondary">
+    <ion-toolbar class="top-toolbar" color="secondary">
       <ion-title>Situation Tools</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -24,12 +24,20 @@
         </ion-item>
         <ion-list slot="content">
           <ion-menu-toggle auto-hide="false" menu="tools">
+            <ion-item (click)="goToAll()">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <ion-img class="child-menu-icon" src="assets/tools_menu/all.png"></ion-img>
+              &nbsp;&nbsp;
+              <ion-label>All</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" menu="tools">
             <ion-item (click)="goToQuestions()">
               &nbsp;&nbsp;&nbsp;&nbsp;
               <ion-img class="child-menu-icon" src="assets/reply_type/questions.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Questions</ion-label>
-              <ion-img class="child-menu-icon" src="assets/tools_menu/add.png" (click)="addQuestion()"></ion-img>
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addQuestion()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -38,16 +46,7 @@
               <ion-img class="child-menu-icon" src="assets/reply_type/testimonials.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Testimonials</ion-label>
-              <ion-img class="child-menu-icon" src="assets/tools_menu/add.png" (click)="addTestimonial()"></ion-img>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false" menu="tools">
-            <ion-item (click)="goToComments()">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <ion-img class="child-menu-icon" src="assets/reply_type/comments.png"></ion-img>
-              &nbsp;&nbsp;
-              <ion-label>Comments</ion-label>
-              <ion-img class="child-menu-icon" src="assets/tools_menu/add.png" (click)="addComment()"></ion-img>
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addTestimonial()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -56,7 +55,16 @@
               <ion-img class="child-menu-icon" src="assets/reply_type/tasks.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Tasks</ion-label>
-              <ion-img class="child-menu-icon" src="assets/tools_menu/add.png" (click)="addTask()"></ion-img>
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addTask()"></ion-img>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" menu="tools">
+            <ion-item (click)="goToComments()">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <ion-img class="child-menu-icon" src="assets/reply_type/comments.png"></ion-img>
+              &nbsp;&nbsp;
+              <ion-label>Comments</ion-label>
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addComment()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -65,16 +73,8 @@
               <ion-img class="child-menu-icon" src="assets/reply_type/situation.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Related Situations</ion-label>
-              <ion-img class="child-menu-icon" src="assets/tools_menu/add.png" (click)="addRelatedSituation()">
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addRelatedSituation()">
               </ion-img>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false" menu="tools">
-            <ion-item (click)="goToAll()">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <ion-img class="child-menu-icon" src="assets/tools_menu/all.png"></ion-img>
-              &nbsp;&nbsp;
-              <ion-label>All</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

@@ -1,9 +1,66 @@
-.top-menu-icon {
-    height: 35px;
-    padding: 4px;
+@media only screen and (max-width: 320px) {
+  .top-toolbar {
+      --min-height: 40px !important;
   }
   
+  ion-img.top-menu-icon {
+    height: 25px;
+    padding: 2px;
+  }
+  
+  ion-img.child-menu-icon {
+    height: 25px;
+    padding: 2px;
+  }
+  
+  ion-img.child-menu-icon.add-icon {
+      height: 30px;
+      padding: 4px;
+  }
+
+  ion-toolbar ion-title {
+      font-size: 16px;
+  }
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+  .top-toolbar {
+    --min-height: 44px !important;
+  }
+
+ion-img.top-menu-icon {
+    height: 27px;
+    padding: 3px;
+  }
+  
+  ion-img.child-menu-icon {
+    height: 27px;
+    padding: 3px;
+  }
+  
+  ion-img.child-menu-icon.add-icon {
+      height: 32px;
+      padding: 4px;
+  }
+
+  ion-toolbar ion-title {
+      font-size: 18px;
+  }
+
+}
+
+.top-menu-icon {
+    height: 30px;
+    padding: 4px;
+}
+  
 .child-menu-icon {
+    height: 30px;
+    padding: 4px;
+}
+  
+.child-menu-icon.add-icon {
     height: 35px;
     padding: 4px;
-  }
+}

@@ -1,3 +1,133 @@
+@media only screen and (max-width: 320px) {
+
+  ion-segment-button img {
+  width: 18px;
+}
+  ion-col.section-name {
+    font-size: 14px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  ion-col.section-button img {
+    float: right;
+    padding-bottom: 0px;
+    padding-top: 7px;
+    width: 20px;
+  }
+
+  ion-item {
+    font-size: 13px;
+  }
+
+  img.reply-type {
+    width: 20px;
+  }
+
+  img.reply-rank {
+    width: 16px;
+  }
+
+  img.reply-ranking {
+    font-size: 12px;
+  }
+
+  td.reply-count-up {
+    padding-left: 4px;
+    padding-top: 2px;
+    width: 46px;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+
+  ion-segment-button img {
+    width: 19px;
+  }
+
+  ion-col.section-name {
+    font-size: 15px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-top: 11px;
+  }
+
+  ion-col.section-button img {
+    float: right;
+    padding-bottom: 0px;
+    padding-top: 7px;
+    width: 22px;
+  }
+
+  ion-item {
+    font-size: 14px;
+  }
+
+  img.reply-type {
+    width: 22px;
+  }
+
+  img.reply-rank {
+    width: 18px;
+  }
+
+  img.reply-ranking {
+    font-size: 13px;
+  }
+
+  td.reply-count-up {
+    padding-left: 4px;
+    padding-top: 4px;
+    width: 50px;
+  }
+
+}
+
+ion-segment-button {
+  min-width: 40px;
+  --padding-end: 0px;
+  --padding-start: 0px;
+}
+
+.toolbar-icon {
+  width: 23px;
+}
+
+.section-title {
+  height: 40px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-right: 5px;
+  width: 100%;
+}
+
+.section-name {
+  font-size: 18px;
+  padding-bottom: 0px;
+  padding-left: 14px;
+  padding-top: 13px;
+}
+
+.section-count {
+  color: gray;
+  display: inline-block;
+  font-size: 15px;
+  padding-left: 7px;
+}
+
+.section-button {
+  padding: 0px;
+}
+
+.section-button img {
+  float: right;
+  padding-bottom: 0px;
+  padding-top: 7px;
+  width: 30px;
+}
+
+
 ion-item.reply {
     --inner-padding-end: 0px;
     --padding-start: 7px;
@@ -74,8 +204,8 @@ ion-item.reply {
   }
   
   .reply-up-down-ranking {
+    color: gray;
     height: 24px;
-    width: 100px;
   }
   
   .reply-rank {
@@ -86,8 +216,9 @@ ion-item.reply {
   .reply-count-up {
     display: inline-block;
     padding-left: 8px;
-    vertical-align: sub;
+    // vertical-align: sub;
     width: 65px;
+    padding-top: 4px;
   }
   
   .situation-views-by-label {

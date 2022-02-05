@@ -1,4 +1,32 @@
-  .sub-title {
+@media only screen and (max-width: 320px) {
+  .top-toolbar {
+      --min-height: 40px !important;
+  }
+
+  .top-toolbar ion-title {
+    font-size: 17px;
+  }
+
+  .top-toolbar .sub-title {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+  .top-toolbar {
+    --min-height: 44px !important;
+  }
+
+  .top-toolbar ion-title {
+    font-size: 18px;
+  }
+
+  .top-toolbar .sub-title {
+    font-size: 14px;
+  }
+}
+
+.sub-title {
     padding-left: 20px;
     font-size: 15px;
   }

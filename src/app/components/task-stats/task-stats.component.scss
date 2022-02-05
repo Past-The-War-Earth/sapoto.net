@@ -1,3 +1,61 @@
+@media only screen and (max-width: 320px) {
+
+  table.task-stats {
+      font-size: 12px;
+      margin: 2px;
+      padding: 1px;
+    }
+
+  td.task-stats-icon img {
+      display: inline-block;
+      width: 18px;
+    }
+    
+  td.task-stats-count {
+      padding-left: 4px;
+      width: 40px;
+    }
+    
+  td.accent-percentage {
+      padding-left: 4px;
+      width: 42px;
+    }
+    
+  td.num-subtasks {
+      padding-left: 4px;
+      width: 40px;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+
+  table.task-stats {
+    font-size: 13px;
+    margin: 2px;
+    padding: 1px;
+  }
+
+td.task-stats-icon img {
+    display: inline-block;
+    width: 20px;
+  }
+  
+td.task-stats-count {
+    padding-left: 4px;
+    width: 43px;
+  }
+  
+td.accent-percentage {
+    padding-left: 4px;
+    width: 47px;
+  }
+  
+td.num-subtasks {
+    padding-left: 4px;
+    width: 40px;
+}
+}
+
 .task-stats {
     color: gray;
     font-size: 13px;

@@ -1,78 +1,150 @@
-
-  <ion-list>
-    <ion-item class="reply" *ngFor="let reply of replies; trackBy: trackByReplies">
-      <div class="reply-contents">
-        <table class="reply-main">
-          <tr>
-            <td class="reply-column type-column">
-              <img *ngIf="reply.type === 'comment'" class="reply-type" src="assets/reply_type/comments.png" />
-              <img *ngIf="reply.type === 'question'" class="reply-type" src="assets/reply_type/questions.png" />
-              <img *ngIf="reply.type === 'testimonial'" class="reply-type" src="assets/reply_type/testimonials.png" />
-              <img *ngIf="reply.type === 'task'" class="reply-type" src="assets/reply_type/tasks.png" />
-              <img *ngIf="reply.type === 'situation'" class="reply-type" src="assets/reply_type/situation.png" />
-            </td>
-            <td>
-              <div class="reply-header">
-                <div class="reply-by">{{reply.createdBy}}</div>
-                <div class="reply-age">{{ageOf(reply.createdAt)}}</div>
-              </div>
-              <div *ngIf="reply.type === 'task' || reply.type === 'situation'">
-                {{reply.summary}}
-              </div>
-              <div *ngIf="reply.type !== 'task' && reply.type !== 'situation'">
-                {{reply.text}}
-              </div>
-            </td>
-          </tr>
-        </table>
-        <ion-row>
-          <ion-col size="8" *ngIf="reply.type === 'comment' || reply.type==='question' || reply.type === 'testimonial'"
-            class="reply-ranking">
-            <table class="reply-up-down-ranking">
-              <tr>
-                <td class="reply-rank-up">
-                  <img *ngIf="reply.ranking.user === 1" (click)="unrankUp(reply)" class="reply-rank"
-                    src="assets/rank/ranked_up.png">
-                  <img *ngIf="reply.ranking.user < 1" (click)="rankUp(reply)" class="reply-rank"
-                    src="assets/rank/rank_up.png">
-                </td>
-                <td class="reply-count-up">
-                  {{getNumberAcronym(reply.ranking.up)}}
-                </td>
-                <td class="reply-rank-down">
-                  <img *ngIf="reply.ranking.user > -1" (click)="rankDown(reply)" class="reply-rank"
-                    src="assets/rank/rank_down.png">
-                  <img *ngIf="reply.ranking.user === -1" (click)="unrankDown(reply)" class="reply-rank"
-                    src="assets/rank/ranked_down.png">
-                </td>
-              </tr>
-            </table>
-          </ion-col>
-          <ion-col size="8" *ngIf="reply.type ==='task'" class="reply-ranking">
-            <app-task-stats [task]="reply"></app-task-stats>
-          </ion-col>
-          <ion-col size="8" *ngIf="reply.type ==='situation'" class="reply-ranking">
-            <app-situation-stats [situation]="reply"></app-situation-stats>
-          </ion-col>
-          <ion-col size="4" class="reply-in-thread">
-            <div *ngIf="reply.type === 'task'
+<ion-segment (ionChange)="filterListing($event)" value="all">
+  <ion-segment-button value="all">
+    <!--
+      <img class="toolbar-icon" src="assets/tools_menu/all_inactive.png">
+    -->
+    <img class="toolbar-icon" src="assets/tools_menu/all.png">
+  </ion-segment-button>
+  <!--
+  <ion-segment-button value="reasons">
+      <img class="toolbar-icon" src="assets/task/reasons.png">
+      <img class="toolbar-icon" src="assets/task/reasons_inactive.png">
+    </ion-segment-button>
+  -->
+  <ion-segment-button value="questions">
+    <!--
+      <img class="toolbar-icon" src="assets/reply_type/questions.png">
+    -->
+    <img class="toolbar-icon" src="assets/reply_type/questions_inactive.png">
+  </ion-segment-button>
+  <ion-segment-button value="testimonials">
+    <!--
+      <img class="toolbar-icon" src="assets/reply_type/testimonials.png">
+    -->
+    <img class="toolbar-icon" src="assets/reply_type/testimonials_inactive.png">
+  </ion-segment-button>
+  <ion-segment-button value="tasks">
+    <!--
+      <img class="toolbar-icon" src="assets/reply_type/tasks.png">
+    -->
+    <img class="toolbar-icon" src="assets/reply_type/tasks_inactive.png">
+  </ion-segment-button>
+  <ion-segment-button value="comments">
+    <!--
+      <img class="toolbar-icon" src="assets/reply_type/comments.png">
+    -->
+    <img class="toolbar-icon" src="assets/reply_type/comments_inactive.png">
+  </ion-segment-button>
+  <ion-segment-button value="related-situations">
+    <!--
+      <img class="toolbar-icon" src="assets/reply_type/situation.png">
+    -->
+    <img class="toolbar-icon" src="assets/reply_type/situation_inactive.png">
+  </ion-segment-button>
+</ion-segment>
+<ion-row class="section-title">
+  <ion-col class="section-name" size="7 ">
+    Opinions
+    <div class="section-count">
+      3
+    </div>
+  </ion-col>
+  <ion-col class="section-button" size="1">
+    <!--
+      <img class="add-icon" src="assets/filter_by/chronological_inactive.png">
+    -->
+    <img class="sort-icon" src="assets/filter_by/chronological.png">
+  </ion-col>
+  <ion-col class="section-button" size="1">
+    <!--
+      <img class="add-icon" src="assets/filter_by/user_rating.png">
+    -->
+    <img class="sort-icon" src="assets/filter_by/user_rating_inactive.png">
+  </ion-col>
+  <ion-col class="section-button" size="1">
+    <!--
+      <img class="add-icon" src="assets/filter_by/post_ranking.png">
+    -->
+    <img class="sort-icon" src="assets/filter_by/post_ranking_inactive.png">
+  </ion-col>
+  <ion-col class="section-button" offset="1" size="1">
+    <img class="add-icon" src="assets/tools_menu/add.png">
+  </ion-col>
+</ion-row>
+<ion-list>
+  <ion-item class="reply" *ngFor="let reply of replies; trackBy: trackByReplies">
+    <div class="reply-contents">
+      <table class="reply-main">
+        <tr>
+          <td class="reply-column type-column">
+            <img *ngIf="reply.type === 'comment'" class="reply-type" src="assets/reply_type/comments_inactive.png" />
+            <img *ngIf="reply.type === 'question'" class="reply-type" src="assets/reply_type/questions_inactive.png" />
+            <img *ngIf="reply.type === 'testimonial'" class="reply-type" src="assets/reply_type/testimonials_inactive.png" />
+            <img *ngIf="reply.type === 'task'" class="reply-type" src="assets/reply_type/tasks_inactive.png" />
+            <img *ngIf="reply.type === 'situation'" class="reply-type" src="assets/reply_type/situation_inactive.png" />
+          </td>
+          <td>
+            <div class="reply-header">
+              <div class="reply-by">{{reply.createdBy}}</div>
+              <div class="reply-age">{{ageOf(reply.createdAt)}}</div>
+            </div>
+            <div *ngIf="reply.type === 'task' || reply.type === 'situation'">
+              {{reply.summary}}
+            </div>
+            <div *ngIf="reply.type !== 'task' && reply.type !== 'situation'">
+              {{reply.text}}
+            </div>
+          </td>
+        </tr>
+      </table>
+      <ion-row>
+        <ion-col size="8" *ngIf="reply.type === 'comment' || reply.type==='question' || reply.type === 'testimonial'"
+          class="reply-ranking">
+          <table class="reply-up-down-ranking">
+            <tr>
+              <td class="reply-rank-up">
+                <img *ngIf="reply.ranking.user === 1" (click)="unrankUp(reply)" class="reply-rank"
+                  src="assets/rank/ranked_up.png">
+                <img *ngIf="reply.ranking.user < 1" (click)="rankUp(reply)" class="reply-rank"
+                  src="assets/rank/rank_up.png">
+              </td>
+              <td class="reply-count-up">
+                {{getNumberAcronym(reply.ranking.up)}}
+              </td>
+              <td class="reply-rank-down">
+                <img *ngIf="reply.ranking.user > -1" (click)="rankDown(reply)" class="reply-rank"
+                  src="assets/rank/rank_down.png">
+                <img *ngIf="reply.ranking.user === -1" (click)="unrankDown(reply)" class="reply-rank"
+                  src="assets/rank/ranked_down.png">
+              </td>
+            </tr>
+          </table>
+        </ion-col>
+        <ion-col size="8" *ngIf="reply.type ==='task'" class="reply-ranking">
+          <app-task-stats [task]="reply"></app-task-stats>
+        </ion-col>
+        <ion-col size="8" *ngIf="reply.type ==='situation'" class="reply-ranking">
+          <app-situation-stats [situation]="reply"></app-situation-stats>
+        </ion-col>
+        <ion-col size="4" class="reply-in-thread">
+          <div *ngIf="reply.type === 'task'
             || reply.type === 'situation'" class="reply-action">
-              <a *ngIf="reply.numReplies === 0" href="#">View</a>
-              <a *ngIf="reply.numReplies > 0" href="#">View ({{getNumberAcronym(reply.numReplies)}})</a>
-            </div>
-            <div *ngIf="reply.type === 'comment'
+            <a *ngIf="reply.numReplies === 0" href="#">View</a>
+            <a *ngIf="reply.numReplies > 0" href="#">View ({{getNumberAcronym(reply.numReplies)}})</a>
+          </div>
+          <div *ngIf="reply.type === 'comment'
             || reply.type === 'testimonial'" class="reply-action">
-              <div class="reply-action" *ngIf="reply.numReplies === 0" (click)="addReply(reply)">Reply</div>
-              <a *ngIf="reply.numReplies === 1" href="#">1 reply</a>
-              <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} replies</a>
-            </div>
-            <div *ngIf="reply.type === 'question'" class="reply-action">
-              <div *ngIf="reply.numReplies === 0" (click)="addAnswer(reply)">Answer</div>
-              <a *ngIf="reply.numReplies === 1" href="#">1 answer</a>
-              <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} answers</a>
-            </div>
-          </ion-col>
-        </ion-row>
-      </div>
-    </ion-item>
-  </ion-list>
+            <div class="reply-action" *ngIf="reply.numReplies === 0" (click)="addReply(reply)">Reply</div>
+            <a *ngIf="reply.numReplies === 1" href="#">1 reply</a>
+            <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} replies</a>
+          </div>
+          <div *ngIf="reply.type === 'question'" class="reply-action">
+            <div *ngIf="reply.numReplies === 0" (click)="addAnswer(reply)">Answer</div>
+            <a *ngIf="reply.numReplies === 1" href="#">1 answer</a>
+            <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} answers</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-item>
+</ion-list>

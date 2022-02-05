@@ -13,6 +13,8 @@ export class PostTaskPage implements OnInit {
 
   summary: string
   description: string
+  priority: number = 20
+  urgency: number = 20
 
   quillModules = {
     'emoji-shortname': true,
@@ -37,6 +39,36 @@ export class PostTaskPage implements OnInit {
 
   enterTask() {
     this.router.navigate(['/task'])
+  }
+
+  getUrgencyClass() {
+    switch (this.urgency) {
+      case 20:
+        return "very-low-urgency"
+      case 40:
+        return "low-urgency"
+      case 60:
+        return "average-urgency"
+      case 80:
+        return "high-urgency"
+      case 100:
+        return "very-high-urgency"
+    }
+  }
+
+  getPriorityClass() {
+    switch (this.priority) {
+      case 20:
+        return "very-low-priority"
+      case 40:
+        return "low-priority"
+      case 60:
+        return "average-priority"
+      case 80:
+        return "high-priority"
+      case 100:
+        return "very-high-priority"
+    }
   }
 
 }

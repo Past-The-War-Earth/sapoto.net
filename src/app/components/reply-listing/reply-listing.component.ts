@@ -22,6 +22,10 @@ export class ReplyListingComponent implements OnInit {
 
   ngOnInit() { }
 
+  filterListing($event) {
+
+  }
+
   trackByReplies(index, reply) {
     return reply.id
   }
@@ -31,7 +35,7 @@ export class ReplyListingComponent implements OnInit {
   }
 
   addReply(commentOrTestimonial) {
-      console.log('Adding a Reply...')
+    console.log('Adding a Reply...')
   }
 
   rankUp(
