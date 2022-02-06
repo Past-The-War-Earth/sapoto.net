@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
+import { SituationService } from 'src/app/services/situation.service';
 
 @Component({
   selector: 'app-post-situation',
@@ -11,6 +12,7 @@ import 'quill-emoji/dist/quill-emoji.js'
 })
 export class PostSituationPage implements OnInit {
 
+  importance = 20
   summary: string
   description: string
 
@@ -30,9 +32,23 @@ export class PostSituationPage implements OnInit {
 
   constructor(
     private router: Router,
+    private situationService: SituationService
   ) { }
 
   ngOnInit() {
+  }
+
+  getPriorityLevelActive(
+    importance,
+    level
+  ) {
+    return this.situationService.getPriorityLevelActive(importance, level)
+  }
+
+  getUrgencyImageName(
+    importance
+  ) {
+    return this.situationService.getUrgencyImageName(importance)
   }
 
   enterSituation() {

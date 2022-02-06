@@ -11,20 +11,49 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">Summary</ion-label>
-      <ion-input [(ngModel)]="summary" placeholder="Enter Situation Summary..."></ion-input>
-    </ion-item>
-    <ion-item>
+  <ion-label position="floating">Situation Summary</ion-label>
+  <ion-input [(ngModel)]="summary" placeholder="Enter Situation Summary..."></ion-input>
+
+  <ion-row>
+    <ion-col>
       <ion-img src="assets/icon/record-audio.png"></ion-img>
+    </ion-col>
+    <ion-col class="record-description" size="11">
       <ion-label>Record Audio</ion-label>
-    </ion-item>
-    <ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
       <ion-img src="assets/icon/record-video.png"></ion-img>
+    </ion-col>
+    <ion-col class="record-description" size="11">
       <ion-label>Record Video</ion-label>
-    </ion-item>
-  </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="3">
+    </ion-col>
+    <ion-col size="6">
+      <div class="very-high importance {{getPriorityLevelActive(importance, 5)}}">
+        <div class="high importance {{getPriorityLevelActive(importance, 4)}}">
+          <div class="average importance {{getPriorityLevelActive(importance, 3)}}">
+            <div class="low importance {{getPriorityLevelActive(importance, 2)}}">
+              <div class="very-low importance active">
+                <img class="importance-image" src="assets/urgency/{{getUrgencyImageName(importance)}}.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+    <ion-col size="3">
+    </ion-col>
+  </ion-row>
+  <ion-range [(ngModel)]="importance" min="20" max="100" step="20" name="urgency" snaps="true">
+    <ion-label slot="start">Low<br>Importance</ion-label>
+    <ion-label slot="end">High<br>Importance</ion-label>
+  </ion-range>
+
   <quill-editor [(ngModel)]="description" [modules]="quillModules" [sanitize]="true"></quill-editor>
   <ion-button [size]="'full'" (click)="enterSituation()">Enter Situation</ion-button>
 </ion-content>

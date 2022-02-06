@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-post-task',
@@ -32,6 +33,7 @@ export class PostTaskPage implements OnInit {
 
   constructor(
     private router: Router,
+    private taskService: TaskService
   ) { }
 
   ngOnInit() {
@@ -41,34 +43,16 @@ export class PostTaskPage implements OnInit {
     this.router.navigate(['/task'])
   }
 
-  getUrgencyClass() {
-    switch (this.urgency) {
-      case 20:
-        return "very-low-urgency"
-      case 40:
-        return "low-urgency"
-      case 60:
-        return "average-urgency"
-      case 80:
-        return "high-urgency"
-      case 100:
-        return "very-high-urgency"
-    }
+  getUrgencyClass(
+    urgency
+  ) {
+    return this.taskService.getUrgencyClass(urgency)
   }
 
-  getPriorityClass() {
-    switch (this.priority) {
-      case 20:
-        return "very-low-priority"
-      case 40:
-        return "low-priority"
-      case 60:
-        return "average-priority"
-      case 80:
-        return "high-priority"
-      case 100:
-        return "very-high-priority"
-    }
+  getPriorityClass(
+    priority
+  ) {
+    return this.taskService.getPriorityClass(priority)
   }
 
 }

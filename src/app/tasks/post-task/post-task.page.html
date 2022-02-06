@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-label position="floating">Summary</ion-label>
+  <ion-label position="floating">Task Summary</ion-label>
   <ion-input [(ngModel)]="summary" placeholder="Enter Task Summary..."></ion-input>
 
   <ion-row>
@@ -39,7 +39,7 @@
     </ion-col>
     <ion-col size="4">
       <div class="task-figure-container">
-        <figure class="{{getPriorityClass()}} {{getUrgencyClass()}}"></figure>
+        <figure class="{{getPriorityClass(priority)}} {{getUrgencyClass(urgency)}}"></figure>
       </div>
     </ion-col>
     <ion-col size="4">

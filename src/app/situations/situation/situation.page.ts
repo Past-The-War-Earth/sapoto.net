@@ -15,14 +15,11 @@ export class SituationPage
     createdAt: new Date().getTime() - 90000000,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
     enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
+    importance: 65,
     numQuestions: 1,
     numTestimonials: 1,
     numTasks: 1,
-    summary: `This is a rather long summary of the Situation at hand`,
-    views: {
-      total: 500,
-      users: 49
-    },
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     type: 'situation'
   };
 
@@ -106,24 +103,6 @@ export class SituationPage
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     type: 'task'
-  }, {
-    createdBy: 'Chill Grandpa',
-    createdAt: new Date().getTime() - 300000000000,
-    id: 7,
-    numReplies: 25,
-    numQuestions: 1,
-    numTestimonials: 1,
-    numTasks: 1,
-    views: {
-      total: 50,
-      users: 5
-    },
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
   }];
 
   constructor(
