@@ -1,0 +1,92 @@
+@media only screen and (max-width: 320px) {
+
+  table.situation-stats {
+      font-size: 11px;
+      margin: 2px;
+      padding: 1px;
+    }
+
+  td.situation-stats-icon img {
+      display: inline-block;
+      max-width: 15px;
+    }
+    
+  td.situation-stats-count {
+      padding-left: 4px;
+      width: 46px;
+    }
+    
+    td.num-suggestions {
+      padding-left: 7px;
+      width: 42px;
+    }
+    td.num-questions {
+      padding-left: 5px;
+      width: 42px;
+    }
+    
+  td.num-testimonials {
+      padding-left: 4px;
+      width: 42px;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+  table.situation-stats {
+      font-size: 13px;
+      margin: 2px;
+      padding: 1px;
+  }
+
+  td.situation-stats-icon img {
+      display: inline-block;
+      max-width: 20px;
+  }
+    
+  td.situation-stats-count {
+      padding-left: 4px;
+      width: 46px;
+  }
+    
+  td.num-suggestions {
+      padding-left: 7px;
+      width: 49px;
+  }
+
+  td.num-questions {
+      padding-left: 5px;
+      width: 48px;
+  }
+    
+  td.num-testimonials {
+      padding-left: 4px;
+  }
+}
+
+.situation-stats {
+    color: gray;
+    font-size: 13px;
+    margin: 5px;
+    margin-left: 10px !important;
+    padding: 3px;
+}
+  
+img {
+    display: inline-block;
+    width: 18px;
+}
+
+.situation-stats-count {
+    padding-left: 7px;
+    width: 62px;
+}
+  
+.num-testimonials {
+    padding-left: 13px;
+    width: 65px;
+}
+  
+.num-suggestions {
+    padding-left: 10px;
+    width: 63px;
+}

@@ -20,12 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./situations/situation/situation.module').then( m => m.SituationPageModule)
   },
   {
-    path: 'post-task',
-    loadChildren: () => import('./tasks/post-task/post-task.module').then( m => m.PostTaskPageModule)
+    path: 'post-reply',
+    loadChildren: () => import('./replies/post-reply/post-reply.module').then( m => m.PostReplyPageModule)
   },
   {
-    path: 'task',
-    loadChildren: () => import('./tasks/task/task.module').then( m => m.TaskPageModule)
+    path: 'reply',
+    loadChildren: () => import('./replies/reply/reply.module').then( m => m.ReplyPageModule)
   }
 
 ];

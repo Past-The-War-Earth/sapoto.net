@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { SituationSearchService } from '../../services/situation-search.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
-import { SituationService } from 'src/app/services/situation.service';
-import { DateUtilsService } from 'src/app/services/date-utils.service';
+import { SituationSearchService } from '../../services/situation-search.service';
+import { SituationService } from '../../services/situation.service';
+import { DateUtilsService } from '../../services/date-utils.service';
+import { NumberUtilsService } from '../../services/number-utils.service';
 
 @Component({
   selector: 'app-situation-list',
@@ -23,13 +24,14 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 90
   }, {
     createdBy: 'Some Dad',
     createdAt: new Date().getTime() - 20000000000,
@@ -38,13 +40,14 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 70
   }, {
     createdBy: 'Some Mom',
     createdAt: new Date().getTime() - 50000000000,
@@ -53,13 +56,14 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 25
   }, {
     createdBy: 'Super Cool Dad',
     createdAt: new Date().getTime() - 100000000000,
@@ -68,13 +72,14 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 45
   }, {
     createdBy: 'Super Cool Mom',
     createdAt: new Date().getTime() - 200000000000,
@@ -83,13 +88,14 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 40
   }, {
     createdBy: 'Fuzzy Mommy',
     createdAt: new Date().getTime() - 300000000000,
@@ -98,19 +104,21 @@ export class SituationListPage implements OnInit {
     numReplies: 25,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet.`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 60
   }]
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private dateUtils: DateUtilsService,
     public navCtrl: NavController,
+    private numberUtils: NumberUtilsService,
     private router: Router,
     public situationSearchService: SituationSearchService,
     private situationService: SituationService
@@ -129,6 +137,12 @@ export class SituationListPage implements OnInit {
     importance
   ) {
     return this.situationService.getUrgencyImageName(importance)
+  }
+
+  getNumberAcronym(
+    ranking: number
+  ): string {
+    return this.numberUtils.getNumberAcronym(ranking)
   }
 
   add(): void {

@@ -1,0 +1,45 @@
+.priority.active {
+    border-color: rgb(255, 128, 0);
+}
+
+.priority.very-high {
+    border-style: dotted;
+    height: 25px;
+    width: 25px;
+}
+
+.priority {
+    border-color: rgb(192, 192, 192);
+    border-style: none;
+    margin: auto;
+    position: relative;
+    border-radius: 13px;
+    border-width: 2px;
+    height: calc(100% - 1px);
+    top: 0.35px;
+    width: calc(100% - 1px);
+}
+
+.high {
+    max-height: 21px;
+    max-width: 21px;
+    border-style: dotted;
+}
+
+.average {
+    border-style: dashed;
+    max-height: 17px;
+    max-width: 17px;
+}
+
+.low {
+    border-style: double;
+    max-height: 13px;
+    max-width: 13px;
+}
+
+.very-low {
+    border-style: solid;
+    max-height: 9px;
+    max-width: 9px;
+}

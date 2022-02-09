@@ -8,10 +8,12 @@ import { QuillModule } from 'ngx-quill'
 import { PostSituationPageRoutingModule } from './post-situation-routing.module';
 
 import { PostSituationPage } from './post-situation.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ComponentsModule,
     FormsModule,
     IonicModule,
     PostSituationPageRoutingModule,

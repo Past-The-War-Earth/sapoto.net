@@ -1,0 +1,70 @@
+@media only screen and (max-width: 320px) {
+   
+    ion-row ion-col {
+        font-size: 11px;
+        line-height: 11px;
+    }
+
+    ion-row ion-col div {
+        padding-top: 2.5px;
+    }
+
+    ion-row ion-radio {
+        margin-left: 10px;
+        margin-right: 2px;
+    }
+
+    ion-row ion-label {
+        padding-top: 6px;
+    }
+
+}
+  
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+
+    ion-row ion-col {
+        font-size: 12px;
+        line-height: 12px;
+    }
+
+    ion-row ion-col div {
+        padding-top: 3px;
+    }
+
+    ion-row ion-radio {
+        margin-left: 15px;
+        margin-right: 3px;
+    }
+
+    ion-row ion-label {
+        padding-top: 6.5px;
+    }
+  
+}
+
+ion-radio-group {
+    display: flex;
+}
+
+
+ion-col {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    line-height: 14px;
+}
+
+ion-col div {
+    display: inline-block;
+    padding-top: 2px;
+}
+
+ion-radio {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+ion-label {
+    padding-top: 5px;
+}

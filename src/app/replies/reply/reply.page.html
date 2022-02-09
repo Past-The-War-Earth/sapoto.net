@@ -1,0 +1,25 @@
+<app-tools-menu
+(onFilterChange)="filter($event)"
+></app-tools-menu>
+
+<app-page-header></app-page-header>
+
+<ion-content id="page-content">
+  <div class="reply-header">
+    <div class="reply-by">
+      {{reply.createdBy}}
+    </div>
+    <div class="reply-age">
+      {{ageOf(reply.createdAt)}}
+    </div>
+  </div>
+  <div class="reply-summary">
+    {{reply.summary}}
+  </div>
+
+  <app-suggestion-stats [suggestion]="reply"></app-suggestion-stats>
+  <div class="reply-description">
+    {{reply.description}}
+  </div>
+  <app-reply-listing [replies]="replies"></app-reply-listing>
+</ion-content>

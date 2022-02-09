@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td class="situation-icon">
+      <app-situation-icon [situation]="situation" [type]="type"></app-situation-icon>
+    </td>
+    <td>
+      <div>Urgency</div>
+      <ion-range [(ngModel)]="situation.urgency" min="20" max="100" step="20" name="urgency" snaps="true">
+        <ion-label slot="start">Low</ion-label>
+        <ion-label slot="end">High</ion-label>
+      </ion-range>
+      <div>Importance</div>
+      <ion-range [(ngModel)]="situation.importance" min="20" max="100" step="20" name="importance" snaps="true">
+        <ion-label slot="start">Low</ion-label>
+        <ion-label slot="end">High</ion-label>
+      </ion-range>
+    </td>
+  </tr>
+</table>

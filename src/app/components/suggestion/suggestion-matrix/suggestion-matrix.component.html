@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td class="suggestion-icon">
+      <app-suggestion-icon [suggestion]="suggestion" [type]="type"></app-suggestion-icon>
+    </td>
+    <td>
+      <div>Urgency</div>
+      <ion-range [(ngModel)]="suggestion.urgency" min="20" max="100" step="20" name="urgency" snaps="true">
+        <ion-label slot="start">Low</ion-label>
+        <ion-label slot="end">High</ion-label>
+      </ion-range>
+      <div>Priority</div>
+      <ion-range [(ngModel)]="suggestion.priority" min="20" max="100" step="20" name="priority" snaps="true">
+        <ion-label slot="start">Low</ion-label>
+        <ion-label slot="end">High</ion-label>
+      </ion-range>
+    </td>
+  </tr>
+</table>

@@ -8,7 +8,7 @@
     ion-img {
         height: 38px;
     }
-}  
+}
 
 ion-img {
     height: 42px;
@@ -18,72 +18,6 @@ ion-img {
     display: inline-block;
     height: 25px;
     margin-top: 10px;
-}
-
-.importance.very-high {
-    width: 150px;
-    height: 150px;
-}
-
-.importance {
-    border-radius: 75px;
-    border-width: 4px;
-    border-style: none;
-    margin: auto;
-    position: relative;
-    top: 5px;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-}
-
-.very-high {
-    max-height: 150px;
-    max-width: 150px;
-}
-
-.very-high.active {
-    border-style: solid;
-}
-
-.high {
-    max-height: 130px;
-    max-width: 130px;
-}
-
-.high.active {
-    border-style: double;
-}
-
-.average {
-    max-height: 110px;
-    max-width: 110px;
-}
-
-.average.active {
-    border-style: dashed;
-}
-
-.low {
-    max-height: 90px;
-    max-width: 90px;
-}
-
-.very-low {
-    max-height: 70px;
-    max-width: 70px;
-}
-
-.low.active, .very-low.active {
-    border-style: dotted;
-}
-
-.importance-image {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-height: 55px;
-    max-width: 55px;
 }
 
 ion-range {

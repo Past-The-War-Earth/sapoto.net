@@ -8,15 +8,17 @@ import { SituationListPageRoutingModule } from './situation-list-routing.module'
 
 import { SituationListPage } from './situation-list.page';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     AutoCompleteModule,
     CommonModule,
+    ComponentsModule,
     FormsModule,
     IonicModule,
     SituationListPageRoutingModule
   ],
   declarations: [SituationListPage]
 })
-export class SituationListPageModule {}
+export class SituationListPageModule { }

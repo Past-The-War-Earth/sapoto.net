@@ -1,0 +1,190 @@
+.active.very-low-urgency {
+    border-color: blue;
+}
+
+.active.low-urgency {
+    border-color: green;
+}
+
+.active.average-urgency {
+    border-color: rgb(236, 236, 2);
+}
+
+.active.high-urgency {
+    border-color: rgb(233, 151, 0);
+}
+
+.active.very-high-urgency {
+    border-color: red;
+}
+
+div.listing:not(.active) {
+    padding-top: 3.5px;
+}
+
+div.entry.very-high {
+    width: 150px;
+    height: 150px;
+}
+
+div.listing.very-high {
+    width: 54px;
+    height: 54px;
+}
+
+.priority {
+    border-style: none;
+    margin: auto;
+    position: relative;
+}
+
+.priority.entry {
+    border-radius: 75px;
+    border-width: 4px;
+    height: calc(100% - 10px);
+    top: 5px;
+    width: calc(100% - 10px);
+}
+
+.priority.listing {
+    border-radius: 27px;
+    border-width: 3px;
+    top: 0.6px;
+}
+
+.very-high.priority.listing, .high.priority.listing, .average.priority.listing {
+    border-width: 2px;
+    top: 1px;
+}
+
+.low.priority.listing {
+    top: 1.2px;
+}
+
+.very-high.active {
+    border-style: dotted;
+}
+
+.entry.high {
+    max-height: 130px;
+    max-width: 130px;
+}
+
+.listing.high {
+    height: 47px;
+    width: 47px;
+}
+
+.high.active {
+    border-style: dotted;
+}
+
+.entry.average {
+    max-height: 110px;
+    max-width: 110px;
+}
+
+.listing.average {
+    height: 40px;
+    width: 40px;
+}
+
+.average.active {
+    border-style: dashed;
+}
+
+.entry.low {
+    max-height: 90px;
+    max-width: 90px;
+}
+
+.listing.low {
+    height: 33px;
+    width: 33px;
+}
+
+.low.active {
+    border-style: double;
+}
+
+.entry.very-low {
+    max-height: 70px;
+    max-width: 70px;
+}
+
+.listing.very-low {
+    height: 26px;
+    width: 26px;
+}
+
+.very-low.active {
+    border-style: solid;
+}
+
+.urgency-image {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.entry.urgency-image {
+    max-height: 55px;
+    max-width: 55px;
+}
+
+.listing.urgency-image {
+    max-height: 19px;
+    max-width: 19px;
+}
+
+.dimension-label {
+    font-size: 11px;
+    text-align: center;
+}
+
+.dimension-value {
+    font-size: 13px;
+    text-align: center;
+}
+
+figure {
+    border-style: none;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+figure.icon.entry {
+    height: 53px;
+}
+
+figure.icon.post {
+    height: 53px;
+}
+
+.very-high-priority, figure.very-high-priority {
+    height: 53px;
+    width: 53px;
+}
+
+.high-priority, figure.high-priority {
+    height: 43px;
+    width: 43px;
+}
+
+.average-priority, figure.average-priority {
+    height: 33px;
+    width: 33px;
+}
+
+.low-priority, figure.low-priority {
+    height: 23px;
+    width: 23px;
+}
+
+.very-low-priority, figure.very-low-priority {
+    height: 13px;
+    width: 13px;
+}

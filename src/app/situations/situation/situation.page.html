@@ -1,6 +1,4 @@
-<app-tools-menu
-(onFilterChange)="filter($event)"
-></app-tools-menu>
+<app-tools-menu (onFilterChange)="filter($event)"></app-tools-menu>
 
 <app-page-header></app-page-header>
 
@@ -31,5 +29,6 @@
   <div class="situation-description">
     {{situation.description}}
   </div>
+  <app-situation-matrix [situation]="situation" type="entry"></app-situation-matrix>
   <app-reply-listing [replies]="replies"></app-reply-listing>
 </ion-content>

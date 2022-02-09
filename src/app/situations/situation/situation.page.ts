@@ -18,9 +18,11 @@ export class SituationPage
     importance: 65,
     numQuestions: 1,
     numTestimonials: 1,
-    numTasks: 1,
+    numReplies: 4,
+    numSuggestions: 1,
     summary: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    type: 'situation'
+    type: 'situation',
+    urgency: 32
   };
 
   replies = [{
@@ -98,11 +100,149 @@ export class SituationPage
       users: 3,
     },
     numReasons: 3,
-    numTasks: 1,
+    numSuggestions: 1,
+    priority: 49,
     summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'task'
+    type: 'suggestion',
+    urgency: 99
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 7,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 95,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 75
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 8,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 35,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 55
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 9,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 95,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 35
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 10,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 95,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 25
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 11,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 75,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 25
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 12,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 55,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 25
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 13,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 35,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 25
+  }, {
+    createdBy: 'Fuzzy Mommy',
+    createdAt: new Date().getTime() - 15000000000,
+    id: 14,
+    numReplies: 25,
+    votes: {
+      totalPoints: 250,
+      users: 3,
+    },
+    numReasons: 3,
+    numSuggestions: 1,
+    priority: 15,
+    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae.`,
+    type: 'suggestion',
+    urgency: 25
   }];
 
   constructor(

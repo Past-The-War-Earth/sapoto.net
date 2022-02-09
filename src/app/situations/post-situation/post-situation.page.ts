@@ -12,9 +12,12 @@ import { SituationService } from 'src/app/services/situation.service';
 })
 export class PostSituationPage implements OnInit {
 
-  importance = 20
-  summary: string
-  description: string
+  situation = {
+    description: '',
+    importance: 20,
+    summary: '',
+    urgency: 40
+  }
 
   quillModules = {
     'emoji-shortname': true,
@@ -36,19 +39,6 @@ export class PostSituationPage implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  getPriorityLevelActive(
-    importance,
-    level
-  ) {
-    return this.situationService.getPriorityLevelActive(importance, level)
-  }
-
-  getUrgencyImageName(
-    importance
-  ) {
-    return this.situationService.getUrgencyImageName(importance)
   }
 
   enterSituation() {
