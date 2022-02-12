@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-reply-sort-order',
@@ -7,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReplySortOrderComponent implements OnInit {
 
+  @Output() onSelection = new EventEmitter()
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  sortBy(
+    sortType
+  ) {
+    this.onSelection.emit(sortType)
+  }
 
 }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
-import { SuggestionService } from '../../services/suggestion.service';
+import { ReplyService } from '../../services/reply.service';
 
 @Component({
   selector: 'app-post-reply',
@@ -11,13 +11,15 @@ import { SuggestionService } from '../../services/suggestion.service';
   styleUrls: ['./post-reply.page.scss'],
 })
 export class PostReplyPage implements OnInit {
-  
+
   reply = {
-    description: '',
+    designations: [],
     priority: 20,
-    summary: '',
+    questions: [],
+    text: '',
     urgency: 20
   }
+
   quillModules = {
     'emoji-shortname': true,
     'emoji-toolbar': true,
@@ -34,7 +36,7 @@ export class PostReplyPage implements OnInit {
 
   constructor(
     private router: Router,
-    private suggestionService: SuggestionService
+    private ideaService: ReplyService
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,10 @@ export class PostReplyPage implements OnInit {
 
   enterReply() {
     this.router.navigate(['/reply'])
+  }
+
+  setReplyTypes(replyTypes) {
+    this.reply.designations = replyTypes
   }
 
 }

@@ -18,8 +18,8 @@ export class ToolsMenuComponent implements OnInit {
   addingAQuestion = false
   addingAReason = false
   addingARelatedSituation = false
-  addingASuggestion = false
-  addingATestimonial = false
+  addingAIdea = false
+  addingAExperience = false
 
   constructor(
     protected menu: MenuController,
@@ -64,14 +64,14 @@ export class ToolsMenuComponent implements OnInit {
     console.log('Going to Related Situations...')
   }
 
-  addTestimonial() {
-    console.log('Adding a Testimonial...')
-    this.addingATestimonial = true
+  addExperience() {
+    console.log('Adding a Experience...')
+    this.addingAExperience = true
   }
 
-  addSuggestion() {
-    this.addingASuggestion = true
-    this.router.navigate(['/post-suggestion'])
+  addIdea() {
+    this.addingAIdea = true
+    this.router.navigate(['/post-idea'])
   }
 
   addComment() {
@@ -88,12 +88,12 @@ export class ToolsMenuComponent implements OnInit {
     console.log('Going to All...')
   }
 
-  goToTestimonials() {
-    if (this.addingATestimonial) {
-      this.addingATestimonial = false
+  goToExperiences() {
+    if (this.addingAExperience) {
+      this.addingAExperience = false
       return
     }
-    console.log('Going to Testimonials...')
+    console.log('Going to Experiences...')
   }
 
   goToComments() {
@@ -112,12 +112,12 @@ export class ToolsMenuComponent implements OnInit {
     console.log('Going to Reasons...')
   }
 
-  goToSuggestions() {
-    if (this.addingASuggestion) {
-      this.addingASuggestion = false
+  goToIdeas() {
+    if (this.addingAIdea) {
+      this.addingAIdea = false
       return
     }
-    console.log('Going to Suggestions...')
+    console.log('Going to Ideas...')
   }
 
   sortChronologically() {

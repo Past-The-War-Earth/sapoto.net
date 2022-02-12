@@ -1,0 +1,86 @@
+@media only screen and (max-width: 320px) {
+  table.idea-stats {
+      font-size: 12px;
+      margin: 2px;
+      padding: 1px;
+  }
+
+  td.idea-stats-icon img {
+      display: inline-block;
+      width: 18px;
+  }
+    
+  td.idea-stats-count {
+      padding-left: 4px;
+      width: 35px;
+  }
+    
+  td.accent-percentage {
+      padding-left: 4px;
+      width: 38px;
+  }
+    
+  td.num-experiences {
+      padding-left: 4px;
+      width: 30px;
+  }
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+  table.idea-stats {
+    font-size: 13px;
+    margin: 2px;
+    padding: 1px;
+  }
+
+  td.idea-stats-icon img {
+    display: inline-block;
+    width: 20px;
+  }
+  
+  td.idea-stats-count {
+    padding-left: 4px;
+    width: 43px;
+  }
+  
+  td.accent-percentage {
+    padding-left: 4px;
+    width: 47px;
+  }
+  
+  td.num-experiences {
+    padding-left: 4px;
+    width: 40px;
+  }
+}
+
+.idea-stats {
+    color: gray;
+    font-size: 13px;
+    margin: 5px;
+    padding: 3px;
+}
+  
+img {
+    display: inline-block;
+    width: 18px;
+    max-width: inherit;
+}
+  
+.idea-stats-count {
+    display: inline-block;
+    padding-left: 8px;
+    vertical-align: sub;
+    width: 51px;
+}
+  
+.accent-percentage {
+    padding-left: 8px;
+    width: 52px;
+}
+  
+.num-experiences {
+    padding-left: 8px;
+    width: 60px;
+}

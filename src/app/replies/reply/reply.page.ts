@@ -9,21 +9,36 @@ import { DateUtilsService } from '../../services/date-utils.service';
 export class ReplyPage
   implements OnInit {
 
+  activeReply
+  replyAction
+  showReplyActions = false
+
   reply = {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Sister',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 6,
     numReplies: 25,
-    numSuggestions: 1,
+    numIdeas: 1,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
       totalPoints: 250,
       users: 3,
     },
     numReasons: 3,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
     enim volutpat vitae.`,
-    type: 'suggestion'
+    designations: ['idea'],
+    priority: 20,
+    urgency: 20,
   };
 
   reasons = [{
@@ -33,210 +48,335 @@ export class ReplyPage
   }]
 
   replies = [{
-    createdBy: 'Some Dad',
+    createdBy: {
+      username: 'Some Cousin',
+      ranking: 3000
+    },
     createdAt: new Date().getTime() - 100000000,
     id: 1,
     numReplies: 12,
-    ranking: {
+    numExperiences: 1,
+    questions: [],
+    ratings: {
       down: 0,
       user: 1,
       up: 234,
     },
+    votes: {
+      totalPoints: 0,
+      users: 0,
+    },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
         enim volutpat vitae.`,
     userRanking: 1,
-    type: 'comment'
+    designations: [],
+    priority: 20,
+    urgency: 20
   }, {
-    createdBy: 'Super Cool Dad',
+    createdBy: {
+      username: 'Super Cool Uncle',
+      ranking: 4000
+    },
     createdAt: new Date().getTime() - 2000000000,
     id: 3,
     numReplies: 15,
-    ranking: {
+    numExperiences: 1,
+    questions: [],
+    ratings: {
       down: -1110,
       up: 10,
       user: -1
+    },
+    votes: {
+      totalPoints: 0,
+      users: 0,
     },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
       enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
       enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
       enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    type: 'testimonial'
+    designations: ['experience'],
+    priority: 20,
+    urgency: 20
   }, {
-    createdBy: 'Super Cool Mom',
+    createdBy: {
+      username: 'Super Cool Aunt',
+      ranking: 5000
+    },
     createdAt: new Date().getTime() - 4000000000,
     id: 4,
     numReplies: 0,
-    ranking: {
+    numExperiences: 1,
+    questions: [],
+    ratings: {
       down: -105,
       up: 5,
       user: 1
     },
+    votes: {
+      totalPoints: 0,
+      users: 0,
+    },
     text: `Lorem ipsum dolor sit amet.`,
-    type: 'comment'
+    designations: [],
+    priority: 20,
+    urgency: 20
   }, {
-    createdBy: 'Fuzzy Dady',
+    createdBy: {
+      username: 'Fuzzy Neighbor',
+      ranking: 5000
+    },
     createdAt: new Date().getTime() - 9000000000,
+    designations: [],
     id: 5,
     numReplies: 1,
-    ranking: {
+    numExperiences: 1,
+    questions: [],
+    ratings: {
       down: 9,
       up: 0,
       user: 0
     },
+    votes: {
+      totalPoints: 0,
+      users: 0,
+    },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    type: 'comment'
+    priority: 20,
+    urgency: 20
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Dady',
+      ranking: 5000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 6,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
       totalPoints: 250,
-      users: 3,
+      users: 4,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 95,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 95
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Co-Worker',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 7,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 350,
+      users: 4,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 95,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 75
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Teacher',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 8,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 450,
+      users: 5,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 95,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 55
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Aunt',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 9,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 550,
+      users: 6,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 95,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 35
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Uncle',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 10,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 450,
+      users: 6,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 95,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 25
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Aunt',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 11,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
+      totalPoints: 240,
       users: 3,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 75,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 25
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Uncle',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 12,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 320,
+      users: 4,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 55,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 25
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Dad',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 13,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 950,
+      users: 12,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 35,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 25
   }, {
-    createdBy: 'Fuzzy Mommy',
+    createdBy: {
+      username: 'Fuzzy Mommy',
+      ranking: 2000
+    },
     createdAt: new Date().getTime() - 15000000000,
     id: 14,
     numReplies: 25,
+    numExperiences: 1,
+    questions: [],
+    ratings: {
+      down: 0,
+      user: 1,
+      up: 234,
+    },
     votes: {
-      totalPoints: 250,
-      users: 3,
+      totalPoints: 1250,
+      users: 16,
     },
     numReasons: 3,
-    numSuggestions: 1,
+    numIdeas: 1,
     priority: 15,
-    summary: `Lorem ipsum dolor sit amet, consectetur adipiscing`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
-    type: 'suggestion',
+    designations: ['idea'],
     urgency: 25
   }];
 
@@ -254,10 +394,47 @@ export class ReplyPage
     console.log('Filter Value: ' + filterValue)
   }
 
+  onActionsClose() {
+    this.showReplyActions = false
+  }
+
+  onShowReplyActions(
+    reply
+  ) {
+    this.replyAction = null
+    this.activeReply = reply
+    this.showReplyActions = true
+  }
+
+  onReplyAction(
+    action
+  ) {
+    this.replyAction = action
+  }
+
   ageOf(
     createdAt: number
   ) {
     return this.dateUtils.ageOf(createdAt)
+  }
+
+  areDesignationsOpen() {
+    return this.activeReply && this.reply.id === this.activeReply.id
+  }
+
+  getActiveActionsReplyId() {
+    if (!this.activeReply) {
+      return null
+    }
+
+    return this.activeReply.id
+  }
+
+  getReplyAction() {
+    if (!this.replyAction || this.getActiveActionsReplyId() !== this.reply.id) {
+      return null
+    }
+    return this.replyAction
   }
 
 }

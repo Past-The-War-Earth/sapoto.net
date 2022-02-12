@@ -1,0 +1,48 @@
+<div *ngIf="showDoneOption()" (click)="doneDesignating()" class="done-designating">Done</div>
+<app-reply-type-labels [reply]="reply" [type]="type" (onSelection)="setDesignations($event)"></app-reply-type-labels>
+<table>
+  <tr>
+    <td class="idea-icon">
+      <app-reply-designation-icon [reply]="reply" [type]="type"></app-reply-designation-icon>
+    </td>
+    <td>
+      <div *ngIf="isIdea()">
+        <div>Urgency</div>
+        <ion-range [(ngModel)]="reply.urgency" min="20" max="100" step="20" name="urgency" snaps="true">
+          <ion-label slot="start">Low</ion-label>
+          <ion-label slot="end">High</ion-label>
+        </ion-range>
+        <div>Priority</div>
+        <ion-range [(ngModel)]="reply.priority" min="20" max="100" step="20" name="priority" snaps="true">
+          <ion-label slot="start">Low</ion-label>
+          <ion-label slot="end">High</ion-label>
+        </ion-range>
+      </div>
+      <div *ngIf="isExperience()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-img src="assets/icon/record-audio.png"></ion-img>
+          </ion-col>
+          <ion-col class="record-description" size="4">
+            <ion-label>Speak</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-img src="assets/icon/record-video.png"></ion-img>
+          </ion-col>
+          <ion-col class="record-description" size="4">
+            <ion-label>Show</ion-label>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="isQuestion()">
+        <ion-chip *ngFor="let questionType of getQuestionTypes()" [ngClass]="{'selected': hasQuestionType(questionType)}"
+          (click)="onQuestionTypeClick(questionType)" [outline]="!hasQuestionType(questionType)">
+          <div>{{questionType}}?</div>
+        </ion-chip>
+      </div>
+      <div class="comment-label" *ngIf="isComment()">
+        A general comment
+      </div>
+    </td>
+  </tr>
+</table>

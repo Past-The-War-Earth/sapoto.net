@@ -1,0 +1,139 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReplyService {
+
+  constructor() {
+  }
+
+  getQuestionTypes() {
+    return [
+      'What',
+      'Which',
+      'Who',
+      'Where',
+      'Why',
+      'When',
+      'How',
+      'Whose'
+    ]
+  }
+
+  isComment(
+    reply
+  ) {
+    return reply && !reply.designations.length
+  }
+
+  isQuestion(
+    reply
+  ) {
+    return this.hasADesignation('question', reply)
+  }
+
+  isIdea(
+    reply
+  ) {
+    return this.hasADesignation('idea', reply)
+  }
+
+  isExperience(
+    reply
+  ) {
+    return this.hasADesignation('experience', reply)
+  }
+
+  getAccentPercentage(
+    idea
+  ) {
+    let votes = idea.votes
+    let numUsers = votes.users
+    return numUsers ? Math.ceil(votes.totalPoints / numUsers) : 0
+  }
+
+  sortBy(
+    sortType: 'time' | 'postRating' | 'userRanking',
+    replies
+  ) {
+    replies.sort((
+      reply1,
+      reply2
+    ) => {
+      let value1
+      let value2
+
+
+      switch (sortType) {
+        case 'postRating':
+          value1 = reply2.ratings.up - reply2.ratings.down
+          value2 = reply1.ratings.up - reply1.ratings.down
+          break;
+        case 'time':
+          return this.getValueSortComparison(reply2.createdAt, reply1.createdAt)
+        case 'userRanking':
+          return this.getValueSortComparison(reply2.createdBy.ranking, reply1.createdBy.ranking)
+      }
+
+      const reply1IsIdea = reply1.designations.indexOf('idea') > -1
+      const reply2IsIdea = reply2.designations.indexOf('idea') > -1
+
+      if (!reply1IsIdea && !reply2IsIdea) {
+        return this.getValueSortComparison(value1, value2)
+      }
+      if (reply1IsIdea && reply2IsIdea) {
+        let value1 = reply2.votes.users ? reply2.votes.totalPoints / reply2.votes.users : 0
+        let value2 = reply1.votes.users ? reply1.votes.totalPoints / reply1.votes.users : 0
+        let result = this.getValueSortComparison(value1, value2)
+        if (result == 0) {
+          return this.getValueSortComparison(reply2.votes.users, reply1.votes.users)
+        }
+        return result
+      }
+      if (reply1IsIdea) {
+        return -1
+      }
+      return 1
+    })
+  }
+
+  getValueSortComparison(
+    value1,
+    value2
+  ) {
+    if (value1 < value2) {
+      return -1;
+    }
+    if (value1 > value2) {
+      return 1;
+    }
+    return 0;
+  }
+
+  hasAnyOfDesignations(
+    designations,
+    reply
+  ) {
+    for (let i = 0; i < designations.length; i++) {
+      if (this.hasADesignation(designations[i], reply)) {
+        return true
+      }
+    }
+    return false
+  }
+
+  hasADesignation(
+    designation,
+    reply
+  ) {
+    if (!reply) {
+      return false
+    }
+    if (!reply.designations.length) {
+      return false
+    }
+    return reply.designations.indexOf(designation) > -1
+  }
+
+}

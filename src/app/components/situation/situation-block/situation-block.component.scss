@@ -1,0 +1,91 @@
+@media only screen and (max-width: 320px) {
+
+    div.situation-contents {
+      font-size: 13px;
+    }
+  
+    img.situation-ranking {
+      font-size: 12px;
+    }
+}
+  
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+  
+    div.situation-contents {
+      font-size: 14px;
+    }
+  
+    img.situation-ranking {
+      font-size: 13px;
+    }
+}
+    
+.situation-contents {
+      width: 100%;
+      margin-top: 5px;
+}
+    
+    ion-row {
+      margin-bottom: 7px;
+      margin-left: 45px;
+      width: 100%;
+    }
+    
+    .situation-main {
+      vertical-align: top;
+    }
+    
+    .situation-main-container {
+      margin-left: -5px;
+      margin-right: -5px;
+      width: 100%;
+    }
+    
+    .situation-column {
+        padding-left: 5px;
+      text-align: center;
+      width: 65px;
+    }
+    
+    .situation-header {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    
+    .situation-by {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    
+    .situation-age {
+      color: gray;
+      display: inline-block;
+      font-size: 13px;
+      padding-left: 5px;
+    }
+
+.situation-actions-button {
+    color: rgb(23, 191, 95);
+    float: right;
+    font-size: 14px;
+}
+    
+    .situation-ranking {
+      font-size: 13px;
+      display: inline-block;
+    }
+    
+    .situation-in-thread {
+      display: inline-block;
+    }
+    
+.situation-action {
+    color: rgb(23, 191, 95);
+    cursor: pointer;
+    margin-top: 5px;
+}
+    
+    a {
+      text-decoration-line: none;
+    }

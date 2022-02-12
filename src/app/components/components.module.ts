@@ -3,34 +3,44 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SituationStatsComponent } from './situation/situation-stats/situation-stats.component';
-import { SuggestionStatsComponent } from './suggestion/suggestion-stats/suggestion-stats.component';
+import { IdeaStatsComponent } from './idea/idea-stats/idea-stats.component';
 import { ReplyListingComponent } from './reply/reply-listing/reply-listing.component';
 import { ToolsMenuComponent } from './common/tools-menu/tools-menu.component';
 import { PageHeaderComponent } from './common/page-header/page-header.component';
-import { SuggestionIconComponent } from './suggestion/suggestion-icon/suggestion-icon.component';
+import { ReplyDesignationIconComponent } from './reply/reply-designation-icon/reply-designation-icon.component';
 import { SituationIconComponent } from './situation/situation-icon/situation-icon.component';
-import { SuggestionTabIconComponent } from './suggestion/suggestion-tab-icon/suggestion-tab-icon.component';
-import { SuggestionStatsIconComponent } from './suggestion/suggestion-stats-icon/suggestion-stats-icon.component';
-import { ReplyTypeLabelsComponent } from './reply-type-labels/reply-type-labels.component';
+import { IdeaTabIconComponent } from './idea/idea-tab-icon/idea-tab-icon.component';
+import { IdeaStatsIconComponent } from './idea/idea-stats-icon/idea-stats-icon.component';
+import { ReplyTypeLabelsComponent } from './reply/reply-type-labels/reply-type-labels.component';
 import { ReplySortOrderComponent } from './reply/reply-sort-order/reply-sort-order.component';
 import { SituationMatrixComponent } from './situation/situation-matrix/situation-matrix.component';
-import { SuggestionMatrixComponent } from './suggestion/suggestion-matrix/suggestion-matrix.component';
+import { ReplyTypeOptionsComponent } from './reply/reply-type-options/reply-type-options.component';
+import { SituationBlockComponent } from './situation/situation-block/situation-block.component';
+import { SituationActionsComponent } from './situation/situation-actions/situation-actions.component';
+import { ReplyActionsComponent } from './reply/reply-actions/reply-actions.component';
+import { PopoverComponent } from './common/popover/popover.component';
+import { ReplyBlockComponent } from './situation/reply-block/reply-block.component';
 
 @NgModule({
   declarations: [
     PageHeaderComponent,
+    ReplyActionsComponent,
+    ReplyBlockComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
+    SituationActionsComponent,
+    SituationBlockComponent,
     SituationIconComponent,
     SituationMatrixComponent,
     SituationStatsComponent,
-    SuggestionIconComponent,
-    SuggestionMatrixComponent,
-    SuggestionStatsComponent,
-    SuggestionStatsIconComponent,
+    PopoverComponent,
+    ReplyDesignationIconComponent,
+    ReplyTypeOptionsComponent,
+    IdeaStatsComponent,
+    IdeaStatsIconComponent,
     ToolsMenuComponent,
-    SuggestionTabIconComponent,
+    IdeaTabIconComponent,
   ],
   imports: [
     CommonModule,
@@ -39,18 +49,23 @@ import { SuggestionMatrixComponent } from './suggestion/suggestion-matrix/sugges
   ],
   exports: [
     PageHeaderComponent,
+    ReplyActionsComponent,
+    ReplyBlockComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
+    SituationActionsComponent,
+    SituationBlockComponent,
     SituationIconComponent,
     SituationMatrixComponent,
     SituationStatsComponent,
-    SuggestionIconComponent,
-    SuggestionMatrixComponent,
-    SuggestionStatsIconComponent,
-    SuggestionStatsComponent,
+    PopoverComponent,
+    ReplyDesignationIconComponent,
+    ReplyTypeOptionsComponent,
+    IdeaStatsIconComponent,
+    IdeaStatsComponent,
     ToolsMenuComponent,
-    SuggestionTabIconComponent,
+    IdeaTabIconComponent,
   ]
 })
 export class ComponentsModule { }

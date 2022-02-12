@@ -4,12 +4,12 @@
       Sort By
     </div>
     <ion-radio-group value="sortOrder">
-      <ion-radio value="time"></ion-radio>
-      <ion-label>Time</ion-label>
-      <ion-radio value="postRating"></ion-radio>
-      <ion-label>Post Rating</ion-label>
-      <ion-radio value="userRanking"></ion-radio>
-      <ion-label>User Ranking</ion-label>
+      <ion-radio (click)="sortBy('time')" value="time"></ion-radio>
+      <ion-label (click)="sortBy('time')">Time</ion-label>
+      <ion-radio (click)="sortBy('postRating')" value="postRating"></ion-radio>
+      <ion-label (click)="sortBy('postRating')">Post Rating</ion-label>
+      <ion-radio (click)="sortBy('userRanking')" value="userRanking"></ion-radio>
+      <ion-label (click)="sortBy('userRanking')">User Ranking</ion-label>
     </ion-radio-group>
   </ion-col>
 </ion-row>

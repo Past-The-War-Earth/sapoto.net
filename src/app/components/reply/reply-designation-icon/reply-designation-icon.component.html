@@ -1,0 +1,49 @@
+<div *ngIf="isIdea()" class="idea">
+  <div *ngIf="type === 'entry'" class="dimension-label">
+    Average
+  </div>
+  <div class="dimension-label">
+    Urgency
+  </div>
+  <div class="dimension-value">
+    {{reply.urgency}}%
+  </div>
+  <figure class="idea {{type}} {{getPriorityClassName(reply.priority)}}">
+    <!--
+<div class="very-high priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 5)}}">
+  <div class="high priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 4)}}">
+    <div class="average priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 3)}}">
+      <div class="low priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 2)}}">
+        <div class="very-low priority {{type}} {{getUrgencyClassName(idea.urgency)}} active">
+          <img class="urgency-image {{type}}" src="assets/urgency/{{getUrgencyImageName(idea.urgency, type === 'listing')}}.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+    <img class="urgency-image {{getPriorityClassName(reply.priority)}}"
+      src="assets/urgency/listing/{{getUrgencyImageName(reply.urgency, false)}}.png">
+  </figure>
+  <div *ngIf="type === 'entry'" class="dimension-label">
+    Average
+  </div>
+  <div class="dimension-label">
+    Priority
+  </div>
+  <div class="dimension-value">
+    {{reply.priority}}%
+  </div>
+</div>
+<figure class="designation-container">
+  <img *ngIf="isComment()" class="designation-icon" src="assets/reply_type/comments_active.png" />
+  <img *ngIf="isExperience()" class="designation-icon" src="assets/reply_type/experiences_active.png">
+  <img *ngIf="isQuestion()" class="designation-icon" src="assets/reply_type/questions_active.png" />
+</figure>
+<!--
+  <div class="question-types" *ngIf="isAQuestion()">
+    <div class="question-type" *ngFor="let question of reply.questions">
+      {{question}}
+    </div>
+  </div>
+-->

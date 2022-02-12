@@ -8,21 +8,21 @@ export class NumberUtilsService {
   constructor() { }
 
   getNumberAcronym(
-    ranking: number
+    aNumber: number
   ): string {
-    if (ranking < 1000) {
-      return '' + ranking
+    if (aNumber < 1000) {
+      return '' + aNumber
     }
-    if (ranking < 1000000) {
-      return this.getReplyRankingShort(ranking, 1000, 'K')
+    if (aNumber < 1000000) {
+      return this.getReplyRankingShort(aNumber, 1000, 'K')
     }
-    if (ranking < 1000000000) {
-      return this.getReplyRankingShort(ranking, 1000000, 'M')
+    if (aNumber < 1000000000) {
+      return this.getReplyRankingShort(aNumber, 1000000, 'M')
     }
-    if (ranking < 1000000000000) {
-      return this.getReplyRankingShort(ranking, 1000000000, 'B')
+    if (aNumber < 1000000000000) {
+      return this.getReplyRankingShort(aNumber, 1000000000, 'B')
     }
-    return Math.floor(ranking / 1000000000000) + 'T'
+    return Math.floor(aNumber / 1000000000000) + 'T'
   }
 
   private getReplyRankingShort(

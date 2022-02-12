@@ -1,8 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
-import { DateUtilsService } from 'src/app/services/date-utils.service';
-import { NumberUtilsService } from 'src/app/services/number-utils.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
   selector: 'app-reply-listing',
@@ -11,126 +8,88 @@ import { NumberUtilsService } from 'src/app/services/number-utils.service';
 })
 export class ReplyListingComponent implements OnInit {
 
+  @Input() action;
+  @Input() activeActionsReplyId;
   @Input() replies;
+  @Input() actionsTriggerElementId;
 
-  filteredReplies
+  @Output() onActionsClick = new EventEmitter()
 
-  filter = 'all'
+  filteredReplies = []
 
   constructor(
-    private dateUtils: DateUtilsService,
-    private menu: MenuController,
-    private numberUtils: NumberUtilsService,
-    private router: Router
+    private replyService: ReplyService
   ) { }
 
   ngOnInit() {
     this.filteredReplies = this.replies
   }
 
+  setReplyTypeFilters(
+    replyTypeDesignations
+  ) {
+    if (!replyTypeDesignations.length) {
+      this.filteredReplies = this.replies
+    } else {
+      this.filteredReplies = this.replies.filter(reply => {
+        return !!reply.designations.filter(designation => {
+          return replyTypeDesignations.indexOf(designation) > -1
+        }).length
+      })
+    }
+  }
+
+  sortBy(
+    sortType: 'time' | 'postRating' | 'userRanking'
+  ) {
+    this.replyService.sortBy(sortType, this.filteredReplies)
+  }
+
+  /*
   showAll() {
     this.filteredReplies = this.replies;
     this.filter = 'all'
   }
-
+  
   showQuestions() {
     this.filteredReplies = this.replies.filter(reply => reply.type === 'question');
     this.filter = 'question'
   }
-
+  
   showComments() {
     this.filteredReplies = this.replies.filter(reply => reply.type === 'comment');
     this.filter = 'comment'
   }
-
-  showTestimonials() {
-    this.filteredReplies = this.replies.filter(reply => reply.type === 'testimonial');
-    this.filter = 'testimonial'
+  
+  showExperiences() {
+    this.filteredReplies = this.replies.filter(reply => reply.type === 'experience');
+    this.filter = 'experience'
   }
-
+  
   showReplies() {
-    this.filteredReplies = this.replies.filter(reply => reply.type === 'suggestion');
-    this.filter = 'suggestion'
+    this.filteredReplies = this.replies.filter(reply => reply.type === 'idea');
+    this.filter = 'idea'
   }
-
-  filterListing($event) {
-
-  }
+  */
 
   trackByReplies(index, reply) {
     return reply.id
   }
 
-  addAnswer(question) {
-    console.log('Adding an Answer...')
-  }
-
-  addReply(commentOrTestimonial) {
-    console.log('Adding a Reply...')
-  }
-
-  rankUp(
+  setDesignatedReply(
     reply
   ) {
-    if (reply.ranking.user >= 1) {
-      return;
-    }
-    if (reply.ranking.user === -1) {
-      reply.ranking.user++
-      reply.ranking.down--
-    }
-    reply.ranking.up++
-    reply.ranking.user++
+    this.activeActionsReplyId = reply.id
+    this.onActionsClick.emit(reply)
   }
 
-  unrankUp(
+  getReplyAction(
     reply
   ) {
-    if (reply.ranking.user !== 1) {
-      return;
+    if (!this.action || this.activeActionsReplyId !== reply.id) {
+      return null
     }
-    reply.ranking.up--
-    reply.ranking.user--
-  }
-
-  rankDown(
-    reply
-  ) {
-    if (reply.ranking.user <= -1) {
-      return;
-    }
-    if (reply.ranking.user === 1) {
-      reply.ranking.user--
-      reply.ranking.up--
-    }
-    reply.ranking.down++
-    reply.ranking.user--
-  }
-
-  unrankDown(
-    reply
-  ) {
-    if (reply.ranking.user !== -1) {
-      return;
-    }
-    reply.ranking.down--
-    reply.ranking.user++
-  }
-
-  ageOf(
-    createdAt: number
-  ) {
-    return this.dateUtils.ageOf(createdAt)
-  }
-
-  getNumberAcronym(
-    ranking: number
-  ): string {
-    return this.numberUtils.getNumberAcronym(ranking)
-  }
-
-  add() {
-    this.router.navigate(['post-suggestion']);
+    return this.action
   }
 
 }

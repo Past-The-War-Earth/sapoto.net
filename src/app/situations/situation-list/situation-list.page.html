@@ -1,57 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!-- navigation button-->
-      <ion-menu-button></ion-menu-button>
-      <!-- optional back button-->
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{ topic }} Situations</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-page-header title="Situation List" [showToolsIcon]="false"></app-page-header>
 <ng-template #noResults let-attrs="attrs">
-  <div class="situation-suggestions-empty">
+  <div class="situation-ideas-empty">
     <ion-text>No situations found.</ion-text>
-
     <ion-button [size]="'full'" (click)="add()">
       Enter New
     </ion-button>
   </div>
 </ng-template>
+<app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions" triggerElementId="reply-actions-button">
+  <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)"
+    [situation]="activeSituation">
+  </app-situation-actions>
+</app-popover>
 <ion-content>
   <ion-auto-complete [clearInvalidInput]="false" [dataProvider]="situationSearchService" [emptyTemplate]="noResults"
     [options]="{ placeholder : 'Describe the situation' }"></ion-auto-complete>
   <ion-list>
     <ion-item class="situation" *ngFor="let situation of situations; trackBy: trackBySituations">
-      <div class="situation-contents">
-        <table class="situation-main">
-          <tr>
-            <td class="situation-column type-column">
-              <app-situation-icon [situation]="situation" type="listing"></app-situation-icon>
-            </td>
-            <td>
-              <div class="situation-header">
-                <div class="situation-by">{{situation.createdBy}}</div>
-                <div class="situation-age">{{ageOf(situation.createdAt)}}</div>
-              </div>
-              <div>
-                {{situation.summary}}
-              </div>
-            </td>
-          </tr>
-        </table>
-        <ion-row>
-          <ion-col size="7" class="situation-ranking">
-            <app-situation-stats [situation]="situation"></app-situation-stats>
-          </ion-col>
-          <ion-col size="5" class="situation-in-thread">
-            <div class="situation-action">
-              <a *ngIf="situation.numReplies === 0" href="situation">View</a>
-              <a *ngIf="situation.numReplies > 0" href="situation">View ({{getNumberAcronym(situation.numReplies)}})</a>
-            </div>
-          </ion-col>
-        </ion-row>
-      </div>
+      <app-situation-block (onActionsClick)="onShowSituationActions($event)" [action]="getSituationAction(situation)"
+        [situation]="situation"></app-situation-block>
     </ion-item>
   </ion-list>
 </ion-content>

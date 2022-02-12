@@ -1,25 +1,13 @@
-<app-tools-menu
-(onFilterChange)="filter($event)"
-></app-tools-menu>
-
-<app-page-header></app-page-header>
-
+<app-tools-menu (onFilterChange)="filter($event)"></app-tools-menu>
+<app-page-header title="Reply Thread" [showToolsIcon]="true"></app-page-header>
+<app-popover (onDismiss)="onActionsClose()" [isOpen]="showReplyActions" triggerElementId="reply-actions-button">
+  <app-reply-actions *ngIf="showReplyActions" (onSelection)="onReplyAction($event)" [reply]="activeReply">
+  </app-reply-actions>
+</app-popover>
 <ion-content id="page-content">
-  <div class="reply-header">
-    <div class="reply-by">
-      {{reply.createdBy}}
-    </div>
-    <div class="reply-age">
-      {{ageOf(reply.createdAt)}}
-    </div>
-  </div>
-  <div class="reply-summary">
-    {{reply.summary}}
-  </div>
+  <app-reply-block (onActionsClick)="onShowReplyActions(reply)" [action]="getReplyAction()" [reply]="reply"
+    actionsTriggerElementId="reply-actions-button"></app-reply-block>
 
-  <app-suggestion-stats [suggestion]="reply"></app-suggestion-stats>
-  <div class="reply-description">
-    {{reply.description}}
-  </div>
-  <app-reply-listing [replies]="replies"></app-reply-listing>
+  <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [activeActionsReplyId]="getActiveActionsReplyId()"
+    [action]="replyAction" [replies]="replies" actionsTriggerElementId="reply-actions-button"></app-reply-listing>
 </ion-content>

@@ -1,0 +1,34 @@
+<app-situation-matrix *ngIf="showMatrix()" [situation]="situation" (onDone)="matrixClosed()" type="entry">
+</app-situation-matrix>
+<div class="situation-contents">
+  <table class="situation-main-container">
+    <tr class="situation-main">
+      <td class="situation-column">
+        <app-situation-icon *ngIf="!showMatrix()" [situation]="situation" type="listing"></app-situation-icon>
+      </td>
+      <td>
+        <div class="situation-header">
+          <div class="situation-by">{{situation.createdBy.username}}</div>
+          <div class="situation-age">{{ageOf(situation.createdAt)}}</div>
+          <ion-icon *ngIf="!showMatrix()" (click)="actionsClicked(situation)" [id]="actionsTriggerElementId"
+            class="situation-actions-button" name="ellipsis-vertical-outline">
+          </ion-icon>
+        </div>
+        <div>
+          {{situation.text}}
+        </div>
+      </td>
+    </tr>
+  </table>
+  <ion-row class="situation-footer">
+    <ion-col size="7" class="situation-ranking">
+      <app-situation-stats [situation]="situation"></app-situation-stats>
+    </ion-col>
+    <ion-col size="5" class="situation-in-thread">
+      <div *ngIf="showMainAction()" class="situation-action">
+        <a *ngIf="situation.numReplies === 0" href="situation">View</a>
+        <a *ngIf="situation.numReplies > 0" href="situation">View ({{getNumberAcronym(situation.numReplies)}})</a>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

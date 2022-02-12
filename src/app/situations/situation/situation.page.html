@@ -1,34 +1,16 @@
 <app-tools-menu (onFilterChange)="filter($event)"></app-tools-menu>
-
-<app-page-header></app-page-header>
-
+<app-page-header title="Situation Thread" [showToolsIcon]="true"></app-page-header>
+<app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions || showReplyActions"
+  triggerElementId="reply-actions-button">
+  <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)" [situation]="situation">
+  </app-situation-actions>
+  <app-reply-actions *ngIf="showReplyActions" (onSelection)="onReplyAction($event)" [reply]="activeReply">
+  </app-reply-actions>
+</app-popover>
 <ion-content id="page-content">
-  <div class="situation-header">
-    <div class="situation-by">
-      {{situation.createdBy}}
-    </div>
-    <div class="situation-age">
-      {{ageOf(situation.createdAt)}}
-    </div>
-  </div>
-  <div class="situation-summary">
-    {{situation.summary}}
-  </div>
-
-  <app-situation-stats [situation]="situation"></app-situation-stats>
-  <!--
-  <div class="stats">
-    {{situation.createdBy}}
-  </div>
-  <div class="stats">
-    {{situation.views.total}} views &nbsp; &#x2022; &nbsp;
-    by {{situation.views.users}} users &nbsp; &#x2022; &nbsp;
-    {{ageOf(situation.createdAt)}}
-  </div>
-  -->
-  <div class="situation-description">
-    {{situation.description}}
-  </div>
-  <app-situation-matrix [situation]="situation" type="entry"></app-situation-matrix>
-  <app-reply-listing [replies]="replies"></app-reply-listing>
+  <app-situation-block (onActionsClick)="onShowSituationActions()" [action]="getSituationAction()"
+    [situation]="situation" actionsTriggerElementId="reply-actions-button">
+  </app-situation-block>
+  <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [activeActionsReplyId]="getActiveActionsReplyId()"
+    [action]="replyAction" actionsTriggerElementId="reply-actions-button" [replies]="replies"></app-reply-listing>
 </ion-content>

@@ -16,7 +16,7 @@
       width: 46px;
     }
     
-    td.num-suggestions {
+    td.num-ideas {
       padding-left: 7px;
       width: 42px;
     }
@@ -25,7 +25,7 @@
       width: 42px;
     }
     
-  td.num-testimonials {
+  td.num-experiences {
       padding-left: 4px;
       width: 42px;
     }
@@ -48,7 +48,7 @@
       width: 46px;
   }
     
-  td.num-suggestions {
+  td.num-ideas {
       padding-left: 7px;
       width: 49px;
   }
@@ -58,7 +58,7 @@
       width: 48px;
   }
     
-  td.num-testimonials {
+  td.num-experiences {
       padding-left: 4px;
   }
 }
@@ -73,6 +73,7 @@
   
 img {
     display: inline-block;
+    max-width: inherit;
     width: 18px;
 }
 
@@ -81,12 +82,12 @@ img {
     width: 62px;
 }
   
-.num-testimonials {
+.num-experiences {
     padding-left: 13px;
     width: 65px;
 }
   
-.num-suggestions {
+.num-ideas {
     padding-left: 10px;
     width: 63px;
 }

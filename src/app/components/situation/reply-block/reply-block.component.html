@@ -1,0 +1,57 @@
+<app-reply-type-options *ngIf="showReplyTypeOptions()" [action]="action" [reply]="reply"
+  (onDone)="replyTypeOptionsDone()" type="listing">
+</app-reply-type-options>
+<div class="reply-contents">
+  <table class="reply-main">
+    <tr>
+      <td class="reply-column type-column">
+        <app-reply-designation-icon *ngIf="!showReplyTypeOptions()" [reply]="reply" [type]="'listing'">
+        </app-reply-designation-icon>
+      </td>
+      <td>
+        <div class="reply-header">
+          <div class="reply-by">{{reply.createdBy.username}}</div>
+          <div class="reply-age">{{ageOf(reply.createdAt)}}</div>
+          <ion-icon *ngIf="!showReplyTypeOptions()" (click)="setAsBeingDesignated()"
+            [id]="actionsTriggerElementId" class="reply-actions-button" name="ellipsis-vertical-outline">
+          </ion-icon>
+        </div>
+        <div>
+          {{reply.text}}
+        </div>
+      </td>
+    </tr>
+  </table>
+  <ion-row>
+    <ion-col size="7" class="reply-ranking">
+      <app-idea-stats *ngIf="hasADesignation('idea', reply)" [idea]="reply">
+      </app-idea-stats>
+      <table *ngIf="!hasADesignation('idea', reply)" class="reply-up-down-ranking">
+        <tr>
+          <td class="reply-rank-up">
+            <img *ngIf="reply.ratings.user === 1" (click)="unrankUp()" class="reply-rank"
+              src="assets/rank/ranked_up.png">
+            <img *ngIf="reply.ratings.user < 1" (click)="rankUp()" class="reply-rank"
+              src="assets/rank/rank_up.png">
+          </td>
+          <td class="reply-count-up">
+            {{getNumberAcronym(reply.ratings.up)}}
+          </td>
+          <td class="reply-rank-down">
+            <img *ngIf="reply.ratings.user > -1" (click)="rankDown()" class="reply-rank"
+              src="assets/rank/rank_down.png">
+            <img *ngIf="reply.ratings.user === -1" (click)="unrankDown()" class="reply-rank"
+              src="assets/rank/ranked_down.png">
+          </td>
+        </tr>
+      </table>
+    </ion-col>
+    <ion-col size="5" class="reply-in-thread">
+      <div *ngIf="showMainAction()" class="reply-action">
+        <div class="reply-action" *ngIf="reply.numReplies === 0" (click)="addReply(reply)">Reply</div>
+        <a *ngIf="reply.numReplies === 1" href="#">1 reply</a>
+        <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} replies</a>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

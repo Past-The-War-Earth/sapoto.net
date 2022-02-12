@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-situation-matrix',
@@ -11,8 +11,18 @@ export class SituationMatrixComponent implements OnInit {
 
   @Input() type
 
+  @Output() onDone = new EventEmitter()
+
   constructor() { }
 
   ngOnInit() { }
+
+  showDoneOption() {
+    return this.type === 'entry'
+  }
+
+  doneSizing() {
+    this.onDone.emit()
+  }
 
 }
