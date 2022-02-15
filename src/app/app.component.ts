@@ -16,12 +16,14 @@ export class AppComponent {
         label: 'Toddler Years',
         icon: 'child_toy_icons/toddler-toy.png'
       },
+      /*
       {
         label: 'Early Childhood',
         icon: 'child_toy_icons/early-childhood-toy.png'
       },
+      */
       {
-        label: 'Middle Childhood',
+        label: 'Early Childhood',
         icon: 'child_toy_icons/middle-childhood-toy.png'
       },
       {
