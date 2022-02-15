@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DateUtilsService } from '../../services/date-utils.service';
 
+import Quill from 'quill'
+import 'quill-emoji/dist/quill-emoji.js'
+
 @Component({
   selector: 'app-reply',
   templateUrl: './reply.page.html',
@@ -14,49 +17,68 @@ export class ReplyPage
   showReplyActions = false
 
   reply = {
+    counts: {
+      experiences: 8,
+      ideas: 0,
+      questions: 2,
+      reasons: 9,
+      replies: 38
+    },
+    createdAt: new Date().getTime() - 10000000000,
     createdBy: {
       username: 'Fuzzy Sister',
-      ranking: 2000
+      ranking: 7000
     },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 6,
-    numReplies: 25,
-    numIdeas: 1,
-    numExperiences: 1,
-    questions: [],
+    designations: ['idea', 'question', 'experience'],
+    eisenhowerMatrix: {
+      priority: 4.7,
+      urgency: 25,
+      votes: 10,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
+    id: 11,
+    questionTypes: ['When'],
     ratings: {
       down: 0,
       user: 1,
       up: 234,
     },
-    votes: {
-      totalPoints: 250,
-      users: 3,
-    },
-    numReasons: 3,
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-    enim volutpat vitae.`,
-    designations: ['idea'],
-    priority: 20,
-    urgency: 20,
+  enim volutpat vitae.`,
+    votes: {
+      totalPoints: 2500,
+      users: 30,
+    }
   };
 
-  reasons = [{
-
-  }, {
-
-  }]
-
   replies = [{
-    createdBy: {
-      username: 'Some Cousin',
-      ranking: 3000
+    counts: {
+      experiences: 1,
+      ideas: 0,
+      questions: 1,
+      reasons: 0,
+      replies: 12
     },
     createdAt: new Date().getTime() - 100000000,
+    createdBy: {
+      username: 'Some Cousin',
+      ranking: 5000
+    },
+    designations: [],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
     id: 1,
-    numReplies: 12,
-    numExperiences: 1,
-    questions: [],
+    questionTypes: [],
     ratings: {
       down: 0,
       user: 1,
@@ -67,317 +89,188 @@ export class ReplyPage
       users: 0,
     },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-        enim volutpat vitae.`,
-    userRanking: 1,
-    designations: [],
-    priority: 20,
-    urgency: 20
+    enim volutpat vitae.`
   }, {
+    counts: {
+      experiences: 2,
+      ideas: 0,
+      questions: 0,
+      reasons: 0,
+      replies: 5
+    },
+    createdAt: new Date().getTime() - 1000000000,
     createdBy: {
-      username: 'Super Cool Uncle',
+      username: 'Some Aunt',
       ranking: 4000
     },
+    designations: ['question'],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
+    id: 2,
+    questionTypes: ['Where'],
+    ratings: {
+      down: 5,
+      up: 1995,
+      user: 1
+    },
+    text: `Why lorem ipsum dolor sit amet?`,
+    votes: {
+      totalPoints: 0,
+      users: 0,
+    }
+  }, {
+    counts: {
+      experiences: 3,
+      ideas: 0,
+      questions: 0,
+      reasons: 0,
+      replies: 15
+    },
     createdAt: new Date().getTime() - 2000000000,
+    createdBy: {
+      username: 'Super Cool Brother',
+      ranking: 3000
+    },
+    designations: ['experience'],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
     id: 3,
-    numReplies: 15,
-    numExperiences: 1,
-    questions: [],
+    questionTypes: [],
     ratings: {
       down: -1110,
       up: 10,
       user: -1
     },
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
     votes: {
       totalPoints: 0,
       users: 0,
+    }
+  }, {
+    counts: {
+      experiences: 3,
+      ideas: 0,
+      questions: 0,
+      reasons: 0,
+      replies: 12
+    },
+    createdAt: new Date().getTime() - 2000000000,
+    createdBy: {
+      username: 'Super Cool Sister',
+      ranking: 3000
+    },
+    designations: ['question', 'experience'],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
+    id: 4,
+    questionTypes: ['What'],
+    ratings: {
+      down: -1110,
+      up: 10,
+      user: -1
     },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-      enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-      enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-      enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-    designations: ['experience'],
-    priority: 20,
-    urgency: 20
+  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
+    votes: {
+      totalPoints: 0,
+      users: 0,
+    }
   }, {
-    createdBy: {
-      username: 'Super Cool Aunt',
-      ranking: 5000
+    counts: {
+      experiences: 1,
+      ideas: 0,
+      questions: 0,
+      reasons: 0,
+      replies: 1
     },
     createdAt: new Date().getTime() - 4000000000,
-    id: 4,
-    numReplies: 0,
-    numExperiences: 1,
-    questions: [],
+    createdBy: {
+      username: 'Super Cool Uncle',
+      ranking: 9000
+    },
+    designations: [],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
+    id: 5,
+    questionTypes: [],
     ratings: {
       down: -105,
       up: 5,
       user: 1
     },
+    text: `Lorem ipsum dolor sit amet.`,
     votes: {
       totalPoints: 0,
       users: 0,
-    },
-    text: `Lorem ipsum dolor sit amet.`,
-    designations: [],
-    priority: 20,
-    urgency: 20
+    }
   }, {
-    createdBy: {
-      username: 'Fuzzy Neighbor',
-      ranking: 5000
+    counts: {
+      experiences: 1,
+      ideas: 0,
+      questions: 0,
+      reasons: 0,
+      replies: 1
     },
     createdAt: new Date().getTime() - 9000000000,
+    createdBy: {
+      username: 'Fuzzy Best Friend',
+      ranking: 8000
+    },
     designations: [],
-    id: 5,
-    numReplies: 1,
-    numExperiences: 1,
-    questions: [],
+    eisenhowerMatrix: {
+      priority: 0,
+      urgency: 0,
+      votes: 0,
+      user: {
+        importance: 0,
+        urgency: 0
+      }
+    },
+    id: 6,
+    questionTypes: [],
     ratings: {
       down: 9,
       up: 0,
       user: 0
     },
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     votes: {
       totalPoints: 0,
       users: 0,
-    },
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    priority: 20,
-    urgency: 20
-  }, {
-    createdBy: {
-      username: 'Fuzzy Dady',
-      ranking: 5000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 6,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 250,
-      users: 4,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 95,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 95
-  }, {
-    createdBy: {
-      username: 'Fuzzy Co-Worker',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 7,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 350,
-      users: 4,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 95,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 75
-  }, {
-    createdBy: {
-      username: 'Fuzzy Teacher',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 8,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 450,
-      users: 5,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 95,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 55
-  }, {
-    createdBy: {
-      username: 'Fuzzy Aunt',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 9,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 550,
-      users: 6,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 95,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 35
-  }, {
-    createdBy: {
-      username: 'Fuzzy Uncle',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 10,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 450,
-      users: 6,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 95,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 25
-  }, {
-    createdBy: {
-      username: 'Fuzzy Aunt',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 11,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 240,
-      users: 3,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 75,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 25
-  }, {
-    createdBy: {
-      username: 'Fuzzy Uncle',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 12,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 320,
-      users: 4,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 55,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 25
-  }, {
-    createdBy: {
-      username: 'Fuzzy Dad',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 13,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 950,
-      users: 12,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 35,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 25
-  }, {
-    createdBy: {
-      username: 'Fuzzy Mommy',
-      ranking: 2000
-    },
-    createdAt: new Date().getTime() - 15000000000,
-    id: 14,
-    numReplies: 25,
-    numExperiences: 1,
-    questions: [],
-    ratings: {
-      down: 0,
-      user: 1,
-      up: 234,
-    },
-    votes: {
-      totalPoints: 1250,
-      users: 16,
-    },
-    numReasons: 3,
-    numIdeas: 1,
-    priority: 15,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae.`,
-    designations: ['idea'],
-    urgency: 25
+    }
   }];
 
   constructor(

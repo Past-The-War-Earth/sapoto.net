@@ -1,0 +1,43 @@
+@media only screen and (max-width: 320px) {  
+    ion-col img {
+        height: 23px;
+    }
+
+    ion-col.record-description ion-label{
+        font-size: 12px;
+        height: 23px;
+        margin-top: 3px;
+    }
+}
+  
+@media only screen and (min-width: 321px) and (max-width: 428px) {  
+    ion-col img {
+        height: 24px;
+    }
+
+    ion-col.record-description ion-label{
+        font-size: 13px;
+        height: 24px;
+        margin-top: 4px;
+    }
+}
+
+ion-row {
+    margin: 5px;
+    padding-left: 5vw;
+}
+
+.image-column {
+    text-align: right;
+}
+
+img {
+    height: 25px;
+}
+
+.record-description ion-label{
+    display: inline-block;
+    font-size: 14px;
+    height: 25px;
+    margin-top: 5px;
+}

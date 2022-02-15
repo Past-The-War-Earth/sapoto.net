@@ -1,24 +1,16 @@
 <app-page-header title="Situation List" [showToolsIcon]="false"></app-page-header>
-<ng-template #noResults let-attrs="attrs">
-  <div class="situation-ideas-empty">
-    <ion-text>No situations found.</ion-text>
-    <ion-button [size]="'full'" (click)="add()">
-      Enter New
-    </ion-button>
-  </div>
-</ng-template>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions" triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)"
     [situation]="activeSituation">
   </app-situation-actions>
 </app-popover>
 <ion-content>
-  <ion-auto-complete [clearInvalidInput]="false" [dataProvider]="situationSearchService" [emptyTemplate]="noResults"
-    [options]="{ placeholder : 'Describe the situation' }"></ion-auto-complete>
+  <app-situation-auto-complete (onAdd)="add()" type="labels-n-situations" placeholder="Find a Situation">
+  </app-situation-auto-complete>
   <ion-list>
     <ion-item class="situation" *ngFor="let situation of situations; trackBy: trackBySituations">
       <app-situation-block (onActionsClick)="onShowSituationActions($event)" [action]="getSituationAction(situation)"
-        [situation]="situation"></app-situation-block>
+        [situation]="situation" type="listing"></app-situation-block>
     </ion-item>
   </ion-list>
 </ion-content>

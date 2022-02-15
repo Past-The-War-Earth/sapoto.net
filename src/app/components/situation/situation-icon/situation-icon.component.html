@@ -5,24 +5,11 @@
   Urgency
 </div>
 <div class="dimension-value">
-  {{situation.urgency}}%
+  {{getUrgencyDisplayValue()}}
 </div>
-<figure class="icon {{type}} {{getImportanceClassName(situation.importance)}}">
-  <!--
-<div class="very-high importance {{type}} {{getUrgencyClassName(situation.urgency)}} {{getImportanceLevelActive(situation.importance, 5)}}">
-  <div class="high importance {{type}} {{getUrgencyClassName(situation.urgency)}} {{getImportanceLevelActive(situation.importance, 4)}}">
-    <div class="average importance {{type}} {{getUrgencyClassName(situation.urgency)}} {{getImportanceLevelActive(situation.importance, 3)}}">
-      <div class="low importance {{type}} {{getUrgencyClassName(situation.urgency)}} {{getImportanceLevelActive(situation.importance, 2)}}">
-        <div class="very-low importance {{type}} {{getUrgencyClassName(situation.urgency)}} active">
-          <img class="urgency-image {{type}}" src="assets/urgency/{{getUrgencyImageName(situation.urgency, type === 'listing')}}.png">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-  <img class="urgency-image {{getImportanceClassName(situation.importance)}}"
-    src="assets/urgency/listing/{{getUrgencyImageName(situation.urgency, false)}}.png">
+<figure class="icon {{type}} {{getImportanceClassName()}}">
+  <img class="urgency-image {{getImportanceClassName()}}"
+    src="assets/urgency/listing/{{getUrgencyImageName(false)}}.png">
 </figure>
 
 <div *ngIf="type === 'entry'" class="dimension-label">
@@ -32,5 +19,5 @@
   Importance
 </div>
 <div class="dimension-value">
-  {{situation.importance}}%
+  {{getImportanceDisplayValue()}}
 </div>

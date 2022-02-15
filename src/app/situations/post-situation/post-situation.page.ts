@@ -12,12 +12,7 @@ import { SituationService } from 'src/app/services/situation.service';
 })
 export class PostSituationPage implements OnInit {
 
-  situation = {
-    description: '',
-    importance: 20,
-    summary: '',
-    urgency: 40
-  }
+  situation;
 
   quillModules = {
     'emoji-shortname': true,
@@ -35,8 +30,10 @@ export class PostSituationPage implements OnInit {
 
   constructor(
     private router: Router,
-    private situationService: SituationService
-  ) { }
+    situationService: SituationService
+  ) {
+    this.situation = situationService.getNewSituation();
+  }
 
   ngOnInit() {
   }

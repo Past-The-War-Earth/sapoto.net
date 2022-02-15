@@ -7,12 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { SituationListPageRoutingModule } from './situation-list-routing.module';
 
 import { SituationListPage } from './situation-list.page';
-import { AutoCompleteModule } from 'ionic4-auto-complete';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
-    AutoCompleteModule,
     CommonModule,
     ComponentsModule,
     FormsModule,

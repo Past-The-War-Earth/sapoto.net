@@ -17,7 +17,7 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     PostSituationPageRoutingModule,
-    QuillModule.forRoot()
+    QuillModule
   ],
   declarations: [PostSituationPage]
 })

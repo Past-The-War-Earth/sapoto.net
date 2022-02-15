@@ -5,7 +5,49 @@ import { Injectable } from '@angular/core';
 })
 export class ReplyService {
 
+  newReplyId = 1000
+  
   constructor() {
+  }
+
+
+  getNewReply() {
+    return {
+      counts: {
+        experiences: 0,
+        ideas: 0,
+        questions: 0,
+        reasons: 0,
+        replies: 0
+      },
+      createdAt: new Date().getTime(),
+      createdBy: {
+        username: 'You',
+        ranking: 100
+      },
+      designations: [],
+      eisenhowerMatrix: {
+        importance: 0,
+        urgency: 0,
+        votes: 0,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: ++this.newReplyId,
+      questionTypes: [],
+      ratings: {
+        down: 0,
+        user: 0,
+        up: 0,
+      },
+      text: '',
+      votes: {
+        totalPoints: 0,
+        users: 0,
+      },
+    }
   }
 
   getQuestionTypes() {
@@ -63,7 +105,6 @@ export class ReplyService {
     ) => {
       let value1
       let value2
-
 
       switch (sortType) {
         case 'postRating':

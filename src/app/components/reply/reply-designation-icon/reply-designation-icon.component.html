@@ -6,24 +6,11 @@
     Urgency
   </div>
   <div class="dimension-value">
-    {{reply.urgency}}%
+    {{getUrgencyDisplayValue()}}
   </div>
-  <figure class="idea {{type}} {{getPriorityClassName(reply.priority)}}">
-    <!--
-<div class="very-high priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 5)}}">
-  <div class="high priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 4)}}">
-    <div class="average priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 3)}}">
-      <div class="low priority {{type}} {{getUrgencyClassName(idea.urgency)}} {{getPriorityLevelActive(idea.priority, 2)}}">
-        <div class="very-low priority {{type}} {{getUrgencyClassName(idea.urgency)}} active">
-          <img class="urgency-image {{type}}" src="assets/urgency/{{getUrgencyImageName(idea.urgency, type === 'listing')}}.png">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-    <img class="urgency-image {{getPriorityClassName(reply.priority)}}"
-      src="assets/urgency/listing/{{getUrgencyImageName(reply.urgency, false)}}.png">
+  <figure class="idea {{type}} {{getPriorityClassName()}}">
+    <img class="urgency-image {{getPriorityClassName()}}"
+      src="assets/urgency/listing/{{getUrgencyImageName(false)}}.png">
   </figure>
   <div *ngIf="type === 'entry'" class="dimension-label">
     Average
@@ -32,7 +19,7 @@
     Priority
   </div>
   <div class="dimension-value">
-    {{reply.priority}}%
+    {{getPriorityDisplayValue()}}
   </div>
 </div>
 <figure class="designation-container">
@@ -42,8 +29,8 @@
 </figure>
 <!--
   <div class="question-types" *ngIf="isAQuestion()">
-    <div class="question-type" *ngFor="let question of reply.questions">
-      {{question}}
+    <div class="question-type" *ngFor="let questionType of reply.questionTypes">
+      {{questionType}}
     </div>
   </div>
 -->

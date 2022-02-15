@@ -17,7 +17,7 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     PostReplyPageRoutingModule,
-    QuillModule.forRoot()
+    QuillModule
   ],
   declarations: [PostReplyPage]
 })

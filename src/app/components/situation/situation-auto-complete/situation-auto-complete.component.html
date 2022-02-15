@@ -1,0 +1,38 @@
+<ion-auto-complete class="{{type}}" [clearInvalidInput]="false" [dataProvider]="searchService"
+  [emptyTemplate]="noResults" [multi]="isLabelsOnly()" [options]="{ placeholder : placeholder }"
+  [selectionTemplate]="labelSelection" [styles]="autoCompleteStyles" [template]="withLabels">
+</ion-auto-complete>
+<ng-template #labelSelection let-attrs="attrs">
+</ng-template>
+<ng-template #withLabels let-attrs="attrs">
+  <div *ngIf="isLabel(attrs.data)" class="label-result {{type}}">
+    <div class="label-icon">
+      <div class="label-icon-dot"></div>
+    </div>
+    <div class="label-description">{{getLabelText(attrs.data)}}</div>
+  </div>
+  <div *ngIf="isSituation(attrs.data)" class="situation-result">
+    <img class="situation-icon" src="assets/situation/situations.png">
+    <div class="situation-description">
+      {{getSituationText(attrs.data)}}
+    </div>
+  </div>
+  <!--
+    <img src="assets/image/flags/{{attrs.data.name}}.png" class="flag" />
+    <span [innerHTML]="attrs.data.name | boldprefix:attrs.keyword"></span>
+  -->
+  <!--
+    {{attrs.data.common}}
+  -->
+</ng-template>
+<ng-template #noResults let-attrs="attrs">
+  <div *ngIf="isLabelsOnly()" class="situation-labels-empty">
+    <ion-text>No labels found.</ion-text>
+  </div>
+  <div *ngIf="!isLabelsOnly()" class="situation-ideas-empty">
+    <ion-text>No situations found.</ion-text>
+    <ion-button [size]="'full'" (click)="add()">
+      Enter New Situation
+    </ion-button>
+  </div>
+</ng-template>

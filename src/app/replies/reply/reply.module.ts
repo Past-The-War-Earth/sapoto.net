@@ -8,6 +8,7 @@ import { ReplyPageRoutingModule } from './reply-routing.module';
 
 import { ReplyPage } from './reply.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule,
     FormsModule,
     IonicModule,
-    ReplyPageRoutingModule
+    ReplyPageRoutingModule,
+    QuillModule
   ],
   declarations: [ReplyPage]
 })

@@ -4,19 +4,19 @@
       <app-idea-stats-icon></app-idea-stats-icon>
     </td>
     <td class="situation-stats-count num-ideas">
-      {{getNumberAcronym(situation.numReplies)}}
+      {{getNumberAcronym(situation.counts.replies)}}
     </td>
     <td class="situation-stats-icon">
       <img src="assets/situation/experiences.png">
     </td>
     <td class="situation-stats-count num-experiences">
-      {{getNumberAcronym(situation.numExperiences)}}
+      {{getNumberAcronym(situation.counts.experiences)}}
     </td>
     <td class="situation-stats-icon">
       <img src="assets/situation/questions.png">
     </td>
     <td class="situation-stats-count num-questions">
-      {{getNumberAcronym(situation.numQuestions)}}
+      {{getNumberAcronym(situation.counts.questions)}}
     </td>
   </tr>
 </table>

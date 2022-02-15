@@ -1,56 +1,8 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <!-- navigation button-->
-      <ion-menu-button></ion-menu-button>
-      <!-- optional back button-->
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Enter New Situation</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-page-header title="Enter New Situation"></app-page-header>
 <ion-content>
-  <ion-label position="floating">Situation Summary</ion-label>
-  <ion-input [(ngModel)]="situation.summary" placeholder="Enter Situation Summary..."></ion-input>
-
-  <ion-row>
-    <ion-col>
-      <ion-img src="assets/icon/record-audio.png"></ion-img>
-    </ion-col>
-    <ion-col class="record-description" size="11">
-      <ion-label>Record Audio</ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-img src="assets/icon/record-video.png"></ion-img>
-    </ion-col>
-    <ion-col class="record-description" size="11">
-      <ion-label>Record Video</ion-label>
-    </ion-col>
-  </ion-row>
-  <!--
-  <ion-range [(ngModel)]="situation.urgency" min="20" max="100" step="20" name="urgency" snaps="true">
-    <ion-label slot="start">Not<br>Urgent</ion-label>
-    <ion-label slot="end">Very<br>Urgent</ion-label>
-  </ion-range>
-  <ion-row>
-    <ion-col size="3">
-    </ion-col>
-    <ion-col size="6">
-      <app-situation-icon [situation]="situation" [type]="'entry'"></app-situation-icon>
-    </ion-col>
-    <ion-col size="3">
-    </ion-col>
-  </ion-row>
-  <ion-range [(ngModel)]="situation.importance" min="20" max="100" step="20" name="importance" snaps="true">
-    <ion-label slot="start">Low<br>Importance</ion-label>
-    <ion-label slot="end">High<br>Importance</ion-label>
-  </ion-range>
--->
-  <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>
-  
-  <quill-editor [(ngModel)]="situation.description" [modules]="quillModules" [sanitize]="true"></quill-editor>
+  <app-media-recorder></app-media-recorder>
+    <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>
+  <app-situation-labels [situation]="situation"></app-situation-labels>
+  <quill-editor [(ngModel)]="situation.text" [modules]="quillModules" [sanitize]="true"></quill-editor>
   <ion-button [size]="'full'" (click)="enterSituation()">Enter Situation</ion-button>
 </ion-content>

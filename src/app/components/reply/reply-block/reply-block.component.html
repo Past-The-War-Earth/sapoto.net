@@ -5,7 +5,7 @@
   <table class="reply-main">
     <tr>
       <td class="reply-column type-column">
-        <app-reply-designation-icon *ngIf="!showReplyTypeOptions()" [reply]="reply" [type]="'listing'">
+        <app-reply-designation-icon *ngIf="!showReplyTypeOptions()" mode="show" [reply]="reply" [type]="'listing'">
         </app-reply-designation-icon>
       </td>
       <td>
@@ -48,9 +48,9 @@
     </ion-col>
     <ion-col size="5" class="reply-in-thread">
       <div *ngIf="showMainAction()" class="reply-action">
-        <div class="reply-action" *ngIf="reply.numReplies === 0" (click)="addReply(reply)">Reply</div>
-        <a *ngIf="reply.numReplies === 1" href="#">1 reply</a>
-        <a *ngIf="reply.numReplies > 1" href="#">{{getNumberAcronym(reply.numReplies)}} replies</a>
+        <div class="reply-action" *ngIf="reply.counts.replies === 0" (click)="addReply(reply)">Reply</div>
+        <a *ngIf="reply.counts.replies === 1" href="reply">1 reply</a>
+        <a *ngIf="reply.counts.replies > 1" href="reply">{{getNumberAcronym(reply.counts.replies)}} replies</a>
       </div>
     </ion-col>
   </ion-row>

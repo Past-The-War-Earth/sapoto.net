@@ -30,76 +30,70 @@ export class AppComponent {
       },
       {
         label: 'Teenage Years',
-        icon: 'child_toy_icons/teenage-toy.png'
+        icon: 'child_toy_icons/teenage-game.png'
       },
       {
         label: 'Adults',
-        icon: 'child_toy_icons/adult-toy.png'
+        icon: 'child_toy_icons/adult-game.png'
       }
-      ],
-      image: 'Children',
-      title: 'Age groups'
-    },
-  ];
-  /*
-  public metaCategories = [
-    {
-      categories: [
-        'Babies',
-        'Toddlers',
-        'Children',
-        'Teens',
-        'Adults'
       ],
       image: 'Children',
       title: 'Children'
     },
     {
-      categories: [
-        'Siblings',
-        'Cousins'
-      ],
+      categories: [{
+        label: 'Siblings'
+      }, {
+        label: 'Cousins'
+      }],
       image: 'Siblings_n_Kin',
       title: 'Sibligs & Kin'
     },
     {
-      categories: [
-        'Working Parents',
-        'Retired Parents',
-        'Grandparents'
-      ],
+      categories: [{
+        label: 'Working Parents'
+      }, {
+        label: 'Retired Parents'
+      }, {
+        label: 'Grandparents'
+      }],
       image: 'Parents',
       title: 'Parents'
     },
     {
-      categories: [
-        'Dating Pairs',
-        'Engaged Pairs',
-        'Married > 10 years',
-        'Married 10+ years'
-      ],
+      categories: [{
+        label: 'Dating Pairs'
+      }, {
+        label: 'Engaged Pairs'
+      }, {
+        label: 'Married < 10 years'
+      }, {
+        label: 'Married 10+ years'
+      }],
       image: 'Partners',
       title: 'Partners'
     },
-    { 
-      categories: [
-        'Nephews & Nieces',
-        'Aunts & Uncles'
-      ],
+    {
+      categories: [{
+        label: 'Nephews & Nieces'
+      }, {
+        label: 'Aunts & Uncles'
+      }],
       image: 'Extended',
-      title: 'Extended',
+      title: 'Extended'
     },
-    { 
-      categories: [
-        'Best Friends',
-        'Close Friends',
-        'Good Friends'
-      ],
+    {
+      categories: [{
+        label: 'Best Friends'
+      }, {
+        label: 'Close Friends'
+      }, {
+        label: 'Good Friends'
+      }],
       image: 'Friends',
       title: 'Friends'
-     },
+    }
   ];
-  */
   public labels = ['Bed Time', 'Homework', 'Chores', 'Cleaning', 'Hygene'];
   constructor() { }
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EisenhowerMatrixService } from 'src/app/services/eisenhower-matrix.service';
 import { SituationService } from '../../../services/situation.service';
 
 @Component({
@@ -8,40 +9,47 @@ import { SituationService } from '../../../services/situation.service';
 })
 export class SituationIconComponent implements OnInit {
 
+  @Input() mode: 'edit' | 'show'
+
   @Input() situation;
 
   @Input() type: 'entry' | 'listing';
 
   constructor(
-    private situationService: SituationService
+    private situationService: SituationService,
+    private eisenhowerMatrixService: EisenhowerMatrixService
   ) { }
 
   ngOnInit() { }
 
-  getImportanceClassName(
-    importance
-  ) {
-    return this.situationService.getImportanceClassName(importance)
+  getImportanceClassName() {
+    return this.eisenhowerMatrixService.getImportanceClassName(
+      this.situation.eisenhowerMatrix, this.mode
+    )
   }
 
-  getImportanceLevelActive(
-    importance,
-    level
-  ) {
-    return this.situationService.getPriorityLevelActive(importance, level)
+  getUrgencyClassName() {
+    return this.eisenhowerMatrixService.getUrgencyClassName(
+      this.situation.eisenhowerMatrix, this.mode)
   }
 
-  getUrgencyClassName(
-    urgency
-  ) {
-    return this.situationService.getUrgencyClassName(urgency)
-  }
 
   getUrgencyImageName(
-    urgency,
     listing
   ) {
-    return this.situationService.getUrgencyImageName(urgency, listing)
+    return this.eisenhowerMatrixService.getUrgencyImageName(
+      this.situation.eisenhowerMatrix, this.mode, listing
+    )
+  }
+
+  getImportanceDisplayValue() {
+    return this.eisenhowerMatrixService.getImportanceDisplayValue(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  getUrgencyDisplayValue() {
+    return this.eisenhowerMatrixService.getUrgencyDisplayValue(
+      this.situation.eisenhowerMatrix, this.mode)
   }
 
 }

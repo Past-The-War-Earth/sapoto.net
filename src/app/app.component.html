@@ -13,8 +13,7 @@
             <ion-item slot="header">
               <!-- <span class="{{metaCategory.image}}"> -->
               <span>
-                <ion-img src="assets/menu/{{metaCategory.image}}.png  ">
-                </ion-img>
+                <img src="assets/menu/simple/{{metaCategory.image}}.png  ">
                 <!--
                 <ion-avatar class="menu-image">
                   <img src="assets/menu/{{metaCategory.image}}.png">
@@ -29,25 +28,30 @@
                 <ion-item [routerLink]="['/situations/' + category.label]"
                   *ngFor="let category of metaCategory.categories; let y = index">
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <ion-img src="assets/{{category.icon}}"></ion-img>
+                  <ion-img *ngIf="category.icon" src="assets/{{category.icon}}"></ion-img>
                   &nbsp;&nbsp;
-                  <ion-label>{{ category.label }}</ion-label>
+                  <ion-label [ngClass]="{'no-icon': !category.icon}">{{ category.label }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>
             </ion-list>
           </ion-accordion>
-          <ion-accordion value="Topics">
+          <ion-accordion value="Labels">
             <ion-item slot="header">
               <span>
-                <ion-img src="assets/menu/Topics.png">
-                </ion-img>
+                <div class="label-icon">
+                  <div class="label-icon-dot"></div>
+                </div>
                 <!--
+                  <ion-img src="assets/menu/Topics.png">
+                  </ion-img>
+                -->
+                  <!--
                 <ion-avatar class="menu-image">
                   <img src="assets/menu/Topics.png">
                 </ion-avatar>
               -->
               </span>
-              <ion-label>Topics</ion-label>
+              <ion-label>Recent Labels</ion-label>
             </ion-item>
 
             <ion-list slot="content">

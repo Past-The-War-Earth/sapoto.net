@@ -38,11 +38,6 @@ export class ToolsMenuComponent implements OnInit {
     }, 100)
   }
 
-  addQuestion() {
-    console.log('Adding a Question...')
-    this.addingAQuestion = true
-  }
-
   goToQuestions() {
     if (this.addingAQuestion) {
       this.addingAQuestion = false
@@ -65,23 +60,28 @@ export class ToolsMenuComponent implements OnInit {
   }
 
   addExperience() {
-    console.log('Adding a Experience...')
     this.addingAExperience = true
+    this.router.navigate(['/post-reply'])
   }
 
   addIdea() {
     this.addingAIdea = true
-    this.router.navigate(['/post-idea'])
+    this.router.navigate(['/post-reply'])
   }
 
   addComment() {
-    console.log('Adding a Comment...')
     this.addingAComment = true
+    this.router.navigate(['/post-reply'])
+  }
+
+  addQuestion() {
+    this.addingAQuestion = true
+    this.router.navigate(['/post-reply'])
   }
 
   addReason() {
-    console.log('Adding a Reason...')
     this.addingAReason = true
+    this.router.navigate(['/post-reply'])
   }
 
   goToAll() {

@@ -19,53 +19,69 @@ import { SituationBlockComponent } from './situation/situation-block/situation-b
 import { SituationActionsComponent } from './situation/situation-actions/situation-actions.component';
 import { ReplyActionsComponent } from './reply/reply-actions/reply-actions.component';
 import { PopoverComponent } from './common/popover/popover.component';
-import { ReplyBlockComponent } from './situation/reply-block/reply-block.component';
+import { ReplyBlockComponent } from './reply/reply-block/reply-block.component';
+import { ReplyEntryBarComponent } from './reply/reply-entry-bar/reply-entry-bar.component';
+import { QuillModule } from 'ngx-quill';
+import { SituationAutoCompleteComponent } from './situation/situation-auto-complete/situation-auto-complete.component';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
+import { SituationLabelsComponent } from './situation/situation-labels/situation-labels.component';
+import { MediaRecorderComponent } from './common/media-recorder/media-recorder.component';
 
 @NgModule({
   declarations: [
-    PageHeaderComponent,
-    ReplyActionsComponent,
-    ReplyBlockComponent,
-    ReplyListingComponent,
-    ReplySortOrderComponent,
-    ReplyTypeLabelsComponent,
-    SituationActionsComponent,
-    SituationBlockComponent,
-    SituationIconComponent,
-    SituationMatrixComponent,
-    SituationStatsComponent,
-    PopoverComponent,
-    ReplyDesignationIconComponent,
-    ReplyTypeOptionsComponent,
     IdeaStatsComponent,
     IdeaStatsIconComponent,
-    ToolsMenuComponent,
     IdeaTabIconComponent,
+    MediaRecorderComponent,
+    PageHeaderComponent,
+    PopoverComponent,
+    ReplyActionsComponent,
+    ReplyBlockComponent,
+    ReplyDesignationIconComponent,
+    ReplyEntryBarComponent,
+    ReplyListingComponent,
+    ReplySortOrderComponent,
+    ReplyTypeOptionsComponent,
+    ReplyTypeLabelsComponent,
+    SituationActionsComponent,
+    SituationAutoCompleteComponent,
+    SituationBlockComponent,
+    SituationIconComponent,
+    SituationLabelsComponent,
+    SituationMatrixComponent,
+    SituationStatsComponent,
+    ToolsMenuComponent,
   ],
   imports: [
+    AutoCompleteModule,
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    QuillModule
   ],
   exports: [
+    IdeaStatsIconComponent,
+    IdeaStatsComponent,
+    IdeaTabIconComponent,
+    MediaRecorderComponent,
     PageHeaderComponent,
+    PopoverComponent,
     ReplyActionsComponent,
     ReplyBlockComponent,
+    ReplyDesignationIconComponent,
+    ReplyEntryBarComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
+    ReplyTypeOptionsComponent,
     SituationActionsComponent,
+    SituationAutoCompleteComponent,
     SituationBlockComponent,
     SituationIconComponent,
+    SituationLabelsComponent,
     SituationMatrixComponent,
     SituationStatsComponent,
-    PopoverComponent,
-    ReplyDesignationIconComponent,
-    ReplyTypeOptionsComponent,
-    IdeaStatsIconComponent,
-    IdeaStatsComponent,
     ToolsMenuComponent,
-    IdeaTabIconComponent,
   ]
 })
 export class ComponentsModule { }

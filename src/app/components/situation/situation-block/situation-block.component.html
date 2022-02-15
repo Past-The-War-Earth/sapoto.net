@@ -4,7 +4,7 @@
   <table class="situation-main-container">
     <tr class="situation-main">
       <td class="situation-column">
-        <app-situation-icon *ngIf="!showMatrix()" [situation]="situation" type="listing"></app-situation-icon>
+        <app-situation-icon *ngIf="!showMatrix()" [situation]="situation" mode="show" type="listing"></app-situation-icon>
       </td>
       <td>
         <div class="situation-header">
@@ -17,6 +17,7 @@
         <div>
           {{situation.text}}
         </div>
+        <app-situation-labels [situation]="situation"></app-situation-labels>
       </td>
     </tr>
   </table>
@@ -26,8 +27,8 @@
     </ion-col>
     <ion-col size="5" class="situation-in-thread">
       <div *ngIf="showMainAction()" class="situation-action">
-        <a *ngIf="situation.numReplies === 0" href="situation">View</a>
-        <a *ngIf="situation.numReplies > 0" href="situation">View ({{getNumberAcronym(situation.numReplies)}})</a>
+        <a *ngIf="situation.counts.replies === 0" href="situation">View</a>
+        <a *ngIf="situation.counts.replies > 0" href="situation">View ({{getNumberAcronym(situation.counts.replies)}})</a>
       </div>
     </ion-col>
   </ion-row>

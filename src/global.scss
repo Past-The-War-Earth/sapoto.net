@@ -35,8 +35,25 @@
     width: 0px !important;
 }
 
+app-reply-entry-bar #emoji-palette {
+    top: -298px !important;
+}
+
+app-reply-entry-bar .emoji_completions {
+    top: -298px !important;
+}
+
+app-reply-entry-bar .ql-container {
+    height: 50px !important;
+}
+
+div.ql-toolbar.ql-snow {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .ql-container {
-    height: 200px !important;
+    height: 100px !important;
 }
 
 .ql-tooltip {

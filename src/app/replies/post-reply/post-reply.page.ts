@@ -12,13 +12,7 @@ import { ReplyService } from '../../services/reply.service';
 })
 export class PostReplyPage implements OnInit {
 
-  reply = {
-    designations: [],
-    priority: 20,
-    questions: [],
-    text: '',
-    urgency: 20
-  }
+  reply
 
   quillModules = {
     'emoji-shortname': true,
@@ -36,8 +30,10 @@ export class PostReplyPage implements OnInit {
 
   constructor(
     private router: Router,
-    private ideaService: ReplyService
-  ) { }
+    private replyService: ReplyService
+  ) { 
+    this.reply = replyService.getNewReply()
+  }
 
   ngOnInit() {
   }

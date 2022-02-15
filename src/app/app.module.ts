@@ -20,7 +20,8 @@ import { SituationStatsComponent } from './components/situation/situation-stats/
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    QuillModule.forRoot()
   ],
   providers: [{
     provide: RouteReuseStrategy,

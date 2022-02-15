@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReplyService } from 'src/app/services/reply.service';
-import { SituationService } from '../../../services/situation.service';
+import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.service';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-reply-designation-icon',
@@ -9,44 +9,41 @@ import { SituationService } from '../../../services/situation.service';
 })
 export class ReplyDesignationIconComponent implements OnInit {
 
+  @Input() mode: 'edit' | 'show'
+
   @Input() reply
 
   @Input() type: 'entry' | 'listing'
 
   constructor(
-    private replyService: ReplyService,
-    private situationService: SituationService,
+    private eisenhowerMatrixService: EisenhowerMatrixService,
+    private replyService: ReplyService
   ) { }
 
   ngOnInit() {
   }
 
-  getPriorityClassName(
-    priority
-  ) {
-    return this.situationService.getPriorityClassName(priority)
+  getPriorityClassName() {
+    return this.eisenhowerMatrixService.getPriorityClassName(
+      this.reply.eisenhowerMatrix, this.mode)
   }
 
-  /*
-    getPriorityLevelActive(
-      priority,
-      level
-    ) {
-      return this.situationService.getPriorityLevelActive(priority, level)
-    }
-  
-    getUrgencyClassName(
-      urgency
-    ) {
-      return this.situationService.getUrgencyClassName(urgency)
-    }
-  */
-
   getUrgencyImageName(
-    urgency,
     listing
   ) {
-    return this.situationService.getUrgencyImageName(urgency, listing)
+    return this.eisenhowerMatrixService.getUrgencyImageName(
+      this.reply.eisenhowerMatrix, this.mode, listing
+    )
+  }
+
+  getPriorityDisplayValue() {
+    return this.eisenhowerMatrixService.getPriorityDisplayValue(
+      this.reply.eisenhowerMatrix, this.mode)
+  }
+
+  getUrgencyDisplayValue() {
+    return this.eisenhowerMatrixService.getUrgencyDisplayValue(
+      this.reply.eisenhowerMatrix, this.mode)
   }
 
   isComment() {

@@ -57,7 +57,7 @@ export class ReplyTypeOptionsComponent implements OnInit {
   hasQuestionType(
     questionType
   ) {
-    return this.reply.questions.filter(
+    return this.reply.questionTypes.filter(
       assignedQuestionType => assignedQuestionType === questionType
     ).length === 1
   }
@@ -66,11 +66,11 @@ export class ReplyTypeOptionsComponent implements OnInit {
     questionType
   ) {
     if (this.hasQuestionType(questionType)) {
-      this.reply.questions = this.reply.questions.filter(
+      this.reply.questionTypes = this.reply.questionTypes.filter(
         assignedQuestionType => assignedQuestionType !== questionType
       )
     } else {
-      this.reply.questions.push(questionType)
+      this.reply.questionTypes.push(questionType)
     }
   }
 
