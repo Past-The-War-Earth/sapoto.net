@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EisenhowerMatrixService {
 
-  constructor() { }
+  constructor(
+    private numberUtilsService: NumberUtilsService
+  ) { }
 
   getImportanceClassName(
     eisenhowerMatrix,
@@ -31,7 +34,7 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getImportanceValue(eisenhowerMatrix, mode)
 
-    return this.getDisplayValue(value)
+    return this.numberUtilsService.get5ScaleDisplayValue(value)
   }
 
   getImportanceValue(
@@ -70,7 +73,7 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getPriorityValue(eisenhowerMatrix, mode)
 
-    return this.getDisplayValue(value)
+    return this.numberUtilsService.get5ScaleDisplayValue(value)
   }
 
   getPriorityValue(
@@ -128,7 +131,7 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getUrgencyValue(eisenhowerMatrix, mode)
 
-    return this.getDisplayValue(value)
+    return this.numberUtilsService.get5ScaleDisplayValue(value)
   }
 
   getUrgencyValue(
@@ -140,30 +143,6 @@ export class EisenhowerMatrixService {
         return eisenhowerMatrix.user.urgency
       case 'show':
         return eisenhowerMatrix.urgency / eisenhowerMatrix.votes
-    }
-  }
-
-  private getDisplayValue(
-    value
-  ) {
-    if (value < 1.25) {
-      return "1"
-    } else if (value < 1.75) {
-      return "1.5"
-    } else if (value < 2.25) {
-      return "2"
-    } else if (value < 2.75) {
-      return "2.5"
-    } else if (value < 3.25) {
-      return "3"
-    } else if (value < 3.75) {
-      return "3.5"
-    } else if (value < 4.25) {
-      return "4"
-    } else if (value < 4.75) {
-      return "4.5"
-    } else {
-      return "5"
     }
   }
 

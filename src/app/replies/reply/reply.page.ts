@@ -48,21 +48,27 @@ export class ReplyPage
     },
     reasons: [{
       id: 1,
+      counted: true,
       enabled: true,
       object: 'you',
+      score: 55,
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
       enim volutpat vitae.`,
       verb: 'helps',
     }, {
       id: 2,
+      counted: true,
       enabled: true,
       object: 'them',
+      score: 30,
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
       verb: 'lets'
     }, {
       id: 3,
+      counted: true,
       enabled: true,
       object: 'you',
+      score: 15,
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
       verb: 'lets'
     }, {

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ItemReorderEventDetail } from '@ionic/angular';
+import { ReasonService } from 'src/app/services/reason.service';
 
 @Component({
   selector: 'app-idea-reasons',
@@ -10,7 +11,9 @@ export class IdeaReasonsComponent implements OnInit {
 
   @Input() idea
 
-  constructor() { }
+  constructor(
+    private reasonService: ReasonService
+  ) { }
 
   ngOnInit() { }
 
@@ -20,18 +23,25 @@ export class IdeaReasonsComponent implements OnInit {
 
   doReorder(ev) {
     console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
-
-    // Before complete is called with the items they will remain in the
-    // order before the drag
-    console.log('Before complete', JSON.stringify(this.idea.reasons));
-
-    // Finish the reorder and position the item in the DOM based on
-    // where the gesture ended. Update the items variable to the
-    // new order of items
+    // console.log('Before complete', JSON.stringify(this.idea.reasons));
     this.idea.reasons = ev.detail.complete(this.idea.reasons);
+    // console.log('After complete', JSON.stringify(this.idea.reasons));
+  }
 
-    // After complete is called the items will be in the new order
-    console.log('Before complete', JSON.stringify(this.idea.reasons));
+  getScore() {
+    return this.reasonService.getTotalScoreAndUpdateReasonScores(this.idea.reasons)
+  }
+
+  changeEnabled(
+    reason
+  ) {
+    // reason.enabled = !reason.enabled
+  }
+
+  getVerb(
+    reason
+  ) {
+    return this.reasonService.getVerb(reason)
   }
 
 }

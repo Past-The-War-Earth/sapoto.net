@@ -39,4 +39,28 @@ export class NumberUtilsService {
     }
   }
 
+  get5ScaleDisplayValue(
+    value: number
+  ): string {
+    if (value < 1.25) {
+      return "1"
+    } else if (value < 1.75) {
+      return "1.5"
+    } else if (value < 2.25) {
+      return "2"
+    } else if (value < 2.75) {
+      return "2.5"
+    } else if (value < 3.25) {
+      return "3"
+    } else if (value < 3.75) {
+      return "3.5"
+    } else if (value < 4.25) {
+      return "4"
+    } else if (value < 4.75) {
+      return "4.5"
+    } else {
+      return "5"
+    }
+  }
+
 }
