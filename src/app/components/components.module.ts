@@ -26,9 +26,11 @@ import { SituationAutoCompleteComponent } from './situation/situation-auto-compl
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { SituationLabelsComponent } from './situation/situation-labels/situation-labels.component';
 import { MediaRecorderComponent } from './common/media-recorder/media-recorder.component';
+import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component';
 
 @NgModule({
   declarations: [
+    IdeaReasonsComponent,
     IdeaStatsComponent,
     IdeaStatsIconComponent,
     IdeaTabIconComponent,
@@ -60,6 +62,7 @@ import { MediaRecorderComponent } from './common/media-recorder/media-recorder.c
     QuillModule
   ],
   exports: [
+    IdeaReasonsComponent,
     IdeaStatsIconComponent,
     IdeaStatsComponent,
     IdeaTabIconComponent,

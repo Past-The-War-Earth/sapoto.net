@@ -28,12 +28,20 @@ export class ReplyBlockComponent implements OnInit {
 
   ngOnInit() { }
 
-  setAsBeingDesignated() {
+  showActionsPopup() {
     this.onActionsClick.emit(this.reply)
   }
 
   showReplyTypeOptions() {
     return this.action === 'designate'
+  }
+
+  showReasons() {
+    return this.action === 'reason'
+  }
+
+  showActionsIcon() {
+    return !this.action
   }
 
   replyTypeOptionsDone() {
