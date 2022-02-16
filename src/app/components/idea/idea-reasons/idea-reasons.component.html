@@ -1,16 +1,11 @@
-<ion-list>
-  <!-- Sliding item with text options on both sides -->
-  <ion-item-sliding>
-    <ion-item-options side="end">
-      <ion-item-option>Favorite</ion-item-option>
-      <ion-item-option class="">Flip</ion-item-option>
-      <ion-item-option class="enable">Enable</ion-item-option>
-      <ion-item-option class="disable">Disable</ion-item-option>
-    </ion-item-options>
-
-    <ion-item>
-      <ion-label>Item Options</ion-label>
-      <ion-icon name="chevron-forward-outline"></ion-icon>
-    </ion-item>
-  </ion-item-sliding>
-</ion-list>
+<ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+  <!-- Default reorder icon, end aligned items -->
+  <ion-item class="row{{i}}" *ngFor="let reason of idea.reasons; let i = index; trackBy: trackByReasons">
+    <ion-toggle *ngIf="i < 3" slot="start"></ion-toggle>
+    <div *ngIf="i >= 3" class="toggle-spacer"></div>
+    <div class="reason-contents">
+      This {{reason.verb}} {{reason.object}} {{reason.text}}
+    </div>
+    <ion-reorder slot="end"></ion-reorder>
+  </ion-item>
+</ion-reorder-group>

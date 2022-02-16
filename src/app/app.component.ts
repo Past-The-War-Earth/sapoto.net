@@ -23,7 +23,7 @@ export class AppComponent {
       },
       */
       {
-        label: 'Early Childhood',
+        label: 'Middle Childhood',
         icon: 'child_toy_icons/middle-childhood-toy.png'
       },
       {

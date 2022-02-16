@@ -1,0 +1,60 @@
+.enable {
+    background-color: rgb(23, 191, 95);
+}
+
+img {
+    display: block;
+    height: 25px;
+    width: 25px;
+}
+
+.enable-image {
+
+}
+
+.option-text {
+
+}
+
+.disable {
+    background-color: orange;
+}
+
+.disable-image {
+
+}
+
+.flip {
+}
+
+.flip-image {
+
+}
+
+ion-item {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+ion-item.row2 {
+    border-bottom: 2px solid gray;
+}
+
+ion-toggle {
+    margin-left: -10px;
+    padding-right: 10px;
+}
+
+.toggle-spacer {
+    width: 30px;
+}
+
+.reason-contents {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+ion-reorder {
+    margin-left: 5px;
+    margin-right: -5px;
+}

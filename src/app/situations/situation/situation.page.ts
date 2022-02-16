@@ -79,6 +79,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
     enim volutpat vitae.`,
     votes: {
@@ -115,6 +116,7 @@ export class SituationPage
       up: 1995,
       user: 1
     },
+    reasons: [],
     text: `Why lorem ipsum dolor sit amet?`,
     votes: {
       totalPoints: 0,
@@ -150,6 +152,7 @@ export class SituationPage
       up: 10,
       user: -1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
@@ -188,6 +191,7 @@ export class SituationPage
       up: 10,
       user: -1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
@@ -226,6 +230,7 @@ export class SituationPage
       up: 5,
       user: 1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet.`,
     votes: {
       totalPoints: 0,
@@ -261,6 +266,7 @@ export class SituationPage
       up: 0,
       user: 0
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     votes: {
       totalPoints: 0,
@@ -296,6 +302,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -332,6 +339,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -368,6 +376,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -404,6 +413,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -440,6 +450,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -476,6 +487,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -512,6 +524,7 @@ export class SituationPage
       user: 1,
       up: 234
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -548,6 +561,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -584,6 +598,7 @@ export class SituationPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {

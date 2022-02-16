@@ -215,7 +215,7 @@ export class SituationListPage implements OnInit {
     this.router.navigate(['/post-situation'])
   }
 
-  trackBySituations(situation) {
+  trackBySituations(index, situation) {
     return situation.id
   }
 

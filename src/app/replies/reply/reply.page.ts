@@ -21,7 +21,7 @@ export class ReplyPage
       experiences: 8,
       ideas: 0,
       questions: 2,
-      reasons: 9,
+      reasons: 4,
       replies: 38
     },
     createdAt: new Date().getTime() - 10000000000,
@@ -46,6 +46,38 @@ export class ReplyPage
       user: 1,
       up: 234,
     },
+    reasons: [{
+      id: 1,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 5,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -84,6 +116,7 @@ export class ReplyPage
       user: 1,
       up: 234,
     },
+    reasons: [],
     votes: {
       totalPoints: 0,
       users: 0,
@@ -120,6 +153,7 @@ export class ReplyPage
       up: 1995,
       user: 1
     },
+    reasons: [],
     text: `Why lorem ipsum dolor sit amet?`,
     votes: {
       totalPoints: 0,
@@ -155,6 +189,7 @@ export class ReplyPage
       up: 10,
       user: -1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
@@ -193,6 +228,7 @@ export class ReplyPage
       up: 10,
       user: -1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
@@ -231,6 +267,7 @@ export class ReplyPage
       up: 5,
       user: 1
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet.`,
     votes: {
       totalPoints: 0,
@@ -266,6 +303,7 @@ export class ReplyPage
       up: 0,
       user: 0
     },
+    reasons: [],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     votes: {
       totalPoints: 0,
