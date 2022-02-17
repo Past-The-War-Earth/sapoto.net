@@ -14,25 +14,24 @@ export class ReasonService {
   getVerb(
     reason
   ) {
-    switch (reason.verb) {
-      case 'helps':
-        if (reason.active) {
+    if (reason.enabled) {
+      switch (reason.verb) {
+        case 'helps':
           return 'helps'
-        } else {
-          return `doesn't help`
-        }
-      case 'lets':
-        if (reason.active) {
+        case 'lets':
           return 'lets'
-        } else {
-          return `doesn't let`
-        }
-      case 'makes':
-        if (reason.active) {
+        case 'makes':
           return 'makes'
-        } else {
+      }
+    } else {
+      switch (reason.verb) {
+        case 'helps':
+          return `doesn't help`
+        case 'lets':
+          return `doesn't let`
+        case 'makes':
           return `doesn't make`
-        }
+      }
     }
     return 'unknown verb'
   }

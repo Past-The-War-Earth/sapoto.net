@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ItemReorderEventDetail } from '@ionic/angular';
-import { ReasonService } from 'src/app/services/reason.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ReasonService } from '../../../services/reason.service';
 
 @Component({
   selector: 'app-idea-reasons',
@@ -10,12 +9,23 @@ import { ReasonService } from 'src/app/services/reason.service';
 export class IdeaReasonsComponent implements OnInit {
 
   @Input() idea
+  @Input() type
+
+  @Output() onDone = new EventEmitter()
 
   constructor(
     private reasonService: ReasonService
   ) { }
 
   ngOnInit() { }
+
+  showDoneOptions() {
+    return this.type === 'listing'
+  }
+
+  doneDesignating() {
+    this.onDone.emit()
+  }
 
   trackByReasons(index, reason) {
     return reason.id
@@ -42,6 +52,10 @@ export class IdeaReasonsComponent implements OnInit {
     reason
   ) {
     return this.reasonService.getVerb(reason)
+  }
+
+  addReason() {
+
   }
 
 }

@@ -2,6 +2,9 @@
   <ion-item (click)="onDesignate()" button [detail]="false">
     Designate
   </ion-item>
+  <ion-item *ngIf="isIdea()" (click)="onReasonAbout()" button [detail]="false">
+    Reason About
+  </ion-item>
   <ion-item button [detail]="false" [disabled]="true">
     Edit
   </ion-item>

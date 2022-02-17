@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
   selector: 'app-reply-actions',
@@ -11,12 +12,22 @@ export class ReplyActionsComponent implements OnInit {
 
   @Output() onSelection = new EventEmitter()
 
-  constructor() { }
+  constructor(
+    private replyService: ReplyService
+  ) { }
 
   ngOnInit() { }
 
   onDesignate() {
     this.onSelection.emit('designate')
+  }
+
+  isIdea() {
+    return this.replyService.isIdea(this.reply)
+  }
+
+  onReasonAbout() {
+    this.onSelection.emit('reasonAbout')
   }
 
 }

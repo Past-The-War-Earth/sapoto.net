@@ -1,4 +1,7 @@
-<div *ngIf="showDoneOption()" (click)="doneDesignating()" class="done-designating">Done</div>
+<div *ngIf="showDoneOptions()" class="done-designating">
+  <div (click)="doneDesignating()" class="save-button">Save</div>
+  <div (click)="doneDesignating()" class="cancel-button">Cancel</div>
+</div>
 <app-reply-type-labels [reply]="reply" [type]="type" (onSelection)="setDesignations($event)"></app-reply-type-labels>
 <table>
   <tr>
@@ -8,12 +11,14 @@
     <td>
       <div *ngIf="isIdea()">
         <div>Urgency</div>
-        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.urgency" min="1" max="5" step="1" name="urgency" snaps="true">
+        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.urgency" min="1" max="5" step="1" name="urgency"
+          snaps="true">
           <ion-label slot="start">Low</ion-label>
           <ion-label slot="end">High</ion-label>
         </ion-range>
         <div>Priority</div>
-        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.priority" min="1" max="5" step="1" name="priority" snaps="true">
+        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.priority" min="1" max="5" step="1" name="priority"
+          snaps="true">
           <ion-label slot="start">Low</ion-label>
           <ion-label slot="end">High</ion-label>
         </ion-range>
@@ -35,8 +40,9 @@
         </ion-row>
       </div>
       <div *ngIf="isQuestion()">
-        <ion-chip *ngFor="let questionType of getQuestionTypes()" [ngClass]="{'selected': hasQuestionType(questionType)}"
-          (click)="onQuestionTypeClick(questionType)" [outline]="!hasQuestionType(questionType)">
+        <ion-chip *ngFor="let questionType of getQuestionTypes()"
+          [ngClass]="{'selected': hasQuestionType(questionType)}" (click)="onQuestionTypeClick(questionType)"
+          [outline]="!hasQuestionType(questionType)">
           <div>{{questionType}}?</div>
         </ion-chip>
       </div>

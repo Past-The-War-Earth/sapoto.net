@@ -28,6 +28,11 @@
     text-align: right;
 }
 
+.save-button, .cancel-button {
+    display: inline;
+    padding: 5px;
+}
+
 ion-chip.selected {
     background-color: rgb(255, 128, 0);
     border: 0px;

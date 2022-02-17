@@ -26,7 +26,7 @@ export class ReplyTypeOptionsComponent implements OnInit {
     return this.replyService.getQuestionTypes()
   }
 
-  showDoneOption() {
+  showDoneOptions() {
     return this.type === 'listing'
   }
 

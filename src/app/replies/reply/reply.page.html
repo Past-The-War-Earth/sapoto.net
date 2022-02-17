@@ -7,8 +7,6 @@
 <ion-content id="page-content">
   <app-reply-block (onActionsClick)="onShowReplyActions(reply)" [action]="getReplyAction()" [reply]="reply"
     actionsTriggerElementId="reply-actions-button"></app-reply-block>
-  <app-idea-reasons [idea]="reply"></app-idea-reasons>
-
   <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [activeActionsReplyId]="getActiveActionsReplyId()"
     [action]="replyAction" [replies]="replies" actionsTriggerElementId="reply-actions-button"></app-reply-listing>
 </ion-content>

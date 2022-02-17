@@ -12,8 +12,8 @@
         <div class="reply-header">
           <div class="reply-by">{{reply.createdBy.username}}</div>
           <div class="reply-age">{{ageOf(reply.createdAt)}}</div>
-          <ion-icon *ngIf="!showReplyTypeOptions()" (click)="showActionsPopup()"
-            [id]="actionsTriggerElementId" class="reply-actions-button" name="ellipsis-vertical-outline">
+          <ion-icon *ngIf="!showReplyTypeOptions()" (click)="showActionsPopup()" [id]="actionsTriggerElementId"
+            class="reply-actions-button" name="ellipsis-vertical-outline">
           </ion-icon>
         </div>
         <div>
@@ -31,8 +31,7 @@
           <td class="reply-rank-up">
             <img *ngIf="reply.ratings.user === 1" (click)="unrankUp()" class="reply-rank"
               src="assets/rank/ranked_up.png">
-            <img *ngIf="reply.ratings.user < 1" (click)="rankUp()" class="reply-rank"
-              src="assets/rank/rank_up.png">
+            <img *ngIf="reply.ratings.user < 1" (click)="rankUp()" class="reply-rank" src="assets/rank/rank_up.png">
           </td>
           <td class="reply-count-up">
             {{getNumberAcronym(reply.ratings.up)}}
@@ -55,3 +54,5 @@
     </ion-col>
   </ion-row>
 </div>
+<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypeOptionsDone()" [idea]="reply" type="listing">
+</app-idea-reasons>

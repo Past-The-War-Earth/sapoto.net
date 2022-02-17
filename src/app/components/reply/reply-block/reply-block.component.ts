@@ -36,6 +36,11 @@ export class ReplyBlockComponent implements OnInit {
     return this.action === 'designate'
   }
 
+  showIdeaReasons() {
+    return this.replyService.hasADesignation('idea', this.reply)
+      && this.action === 'reasonAbout'
+  }
+
   showReasons() {
     return this.action === 'reason'
   }
