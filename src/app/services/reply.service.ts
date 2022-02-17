@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +7,10 @@ import { Injectable } from '@angular/core';
 export class ReplyService {
 
   newReplyId = 1000
-  
-  constructor() {
+
+  constructor(
+    private numberUtilsService: NumberUtilsService
+  ) {
   }
 
 
@@ -95,6 +98,19 @@ export class ReplyService {
     return numUsers ? Math.ceil(votes.totalPoints / numUsers) : 0
   }
 
+  getAccentAverage(
+    idea
+  ) {
+    let votes = idea.votes
+    let numUsers = votes.users
+    let average = numUsers ? votes.totalPoints / numUsers : 0
+
+    if (!average) {
+      return ""
+    }
+    return this.numberUtilsService.get5ScaleDisplayValue(average)
+  }
+
   sortBy(
     sortType: 'time' | 'postRating' | 'userRanking',
     replies
@@ -176,5 +192,25 @@ export class ReplyService {
     }
     return reply.designations.indexOf(designation) > -1
   }
+
+  canHaveIdeas(
+    parent
+  ) {
+    return parent.type === 'situation'
+  }
+
+  canHaveExperiences(
+    parent
+  ) {
+    return parent.type === 'situation' || this.hasADesignation('idea', parent)
+  }
+
+  canHaveQuestions(
+    parent
+  ) {
+    return parent.type === 'situation'
+      || this.hasAnyOfDesignations(['idea', 'experience'], parent)
+  }
+
 
 }

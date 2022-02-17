@@ -1,18 +1,24 @@
-.done-reasoning-about {
-    color: rgb(23, 191, 95);
-    width: calc(100% - 10px);
-    font-size: 14px;
-    margin: 5px;
-    margin-top: 10px;
-    text-align: right;
+@media only screen and (max-width: 320px) {
+    div.reason-starting-words {
+        font-size: 12px;
+    }
 }
-
-.save-button, .cancel-button {
-    display: inline;
-    padding: 5px;
+  
+@media only screen and (min-width: 321px) and (max-width: 428px) {
+    div.reason-starting-words {
+        font-size: 13px;
+    }
+    ion-select.reason-option {
+        font-size: 14px;
+    }
+    
+    ion-textarea.reason-text {
+        font-size: 14px;
+    }
 }
 
 .reasons-header {
+    margin-top: 10px;
     font-size: 14px;
     padding-left: 10px;
     width: 100%;
@@ -20,6 +26,12 @@
 
 .assent-info {
     width: 70%;
+}
+
+img {
+    display: block;
+    height: 25px;
+    width: 25px;
 }
 
 .assent-image {
@@ -45,37 +57,26 @@
     width: 25px;
 }
 
-.enable {
-    background-color: rgb(23, 191, 95);
+.reason-starting-words:first-of-type {
+    margin-left: 15px;
 }
 
-img {
-    display: block;
-    height: 25px;
-    width: 25px;
+.reason-starting-words {
+    margin-top: 12px;
+    font-size: 14px;
 }
 
-.enable-image {
-
+.reason-option {
+    padding-left: 0px;
+    font-size: 14px;
 }
 
-.option-text {
-
+.reason-text {
+    font-size: 14px;
 }
 
-.disable {
-    background-color: orange;
-}
-
-.disable-image {
-
-}
-
-.flip {
-}
-
-.flip-image {
-
+.add-reason-button {
+    float: right;
 }
 
 ion-item {

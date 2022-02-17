@@ -9,23 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'situations/:id',
-    loadChildren: () => import('./situations/situation-list/situation-list.module').then( m => m.SituationListPageModule)
-  },
-  {
-    path: 'post-situation',
-    loadChildren: () => import('./situations/post-situation/post-situation.module').then( m => m.PostSituationPageModule)
+    loadChildren: () => import('./pages/situation-list/situation-list.module').then( m => m.SituationListPageModule)
   },
   {
     path: 'situation',
-    loadChildren: () => import('./situations/situation/situation.module').then( m => m.SituationPageModule)
-  },
-  {
-    path: 'post-reply',
-    loadChildren: () => import('./replies/post-reply/post-reply.module').then( m => m.PostReplyPageModule)
+    loadChildren: () => import('./pages/situation/situation.module').then( m => m.SituationPageModule)
   },
   {
     path: 'reply',
-    loadChildren: () => import('./replies/reply/reply.module').then( m => m.ReplyPageModule)
+    loadChildren: () => import('./pages/reply/reply.module').then( m => m.ReplyPageModule)
   }
 
 ];

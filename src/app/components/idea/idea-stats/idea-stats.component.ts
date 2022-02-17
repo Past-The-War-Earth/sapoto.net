@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NumberUtilsService } from 'src/app/services/number-utils.service';
-import { ReplyService } from 'src/app/services/reply.service';
+import { NumberUtilsService } from '../../../services/number-utils.service';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-idea-stats',
@@ -18,14 +18,18 @@ export class IdeaStatsComponent implements OnInit {
 
   ngOnInit() { }
 
+  accentAverage() {
+    return this.replyService.getAccentAverage(this.idea)
+  }
+
   accentPercentage() {
     return this.replyService.getAccentPercentage(this.idea)
   }
 
   getNumberAcronym(
-    ranking: number
+    aNumber: number
   ): string {
-    return this.numberUtils.getNumberAcronym(ranking)
+    return this.numberUtils.getNumberAcronym(aNumber)
   }
 
 }

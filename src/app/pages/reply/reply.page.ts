@@ -15,13 +15,14 @@ export class ReplyPage
   activeReply
   replyAction
   showReplyActions = false
+  postingReplyType
 
   reply = {
     counts: {
       experiences: 8,
       ideas: 0,
       questions: 2,
-      reasons: 4,
+      reasons: 5,
       replies: 38
     },
     createdAt: new Date().getTime() - 10000000000,
@@ -40,6 +41,40 @@ export class ReplyPage
       }
     },
     id: 11,
+    parent: {
+      counts: {
+        experiences: 1,
+        ideas: 1,
+        questions: 1,
+        reasons: 0,
+        replies: 4
+      },
+      createdAt: new Date().getTime() - 90000000,
+      createdBy: {
+        username: 'Cool Dad 1978',
+        ranking: 1000
+      },
+      eisenhowerMatrix: {
+        importance: 70,
+        urgency: 88,
+        votes: 20,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 7,
+      labels: [{
+        id: 1,
+        text: 'abc label'
+      }, {
+        id: 3,
+        text: 'cde - THE COOLEST LABEL'
+      }],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
+      type: 'situation'
+    },
     questionTypes: ['When'],
     ratings: {
       down: 0,
@@ -87,7 +122,8 @@ export class ReplyPage
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 2500,
+      // totalPoints: 2500,
+      totalPoints: 130,
       users: 30,
     }
   };
@@ -320,6 +356,9 @@ export class ReplyPage
   constructor(
     private dateUtils: DateUtilsService
   ) {
+    for (let reply of this.replies) {
+      (reply as any).parent = this.reply
+    }
   }
 
   ngOnInit() {
@@ -374,4 +413,15 @@ export class ReplyPage
     return this.replyAction
   }
 
+  postAReply(replyType) {
+    this.postingReplyType = replyType
+  }
+
+  isPostingAReply() {
+    return !!this.postingReplyType
+  }
+
+  donePostingAReply() {
+    this.postingReplyType = null
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NumberUtilsService } from 'src/app/services/number-utils.service';
+import { NumberUtilsService } from '../../../services/number-utils.service';
 
 @Component({
   selector: 'app-situation-stats',

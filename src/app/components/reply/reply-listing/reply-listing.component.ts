@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ReplyService } from 'src/app/services/reply.service';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-reply-listing',
@@ -10,6 +10,7 @@ export class ReplyListingComponent implements OnInit {
 
   @Input() action;
   @Input() activeActionsReplyId;
+  @Input() parent;
   @Input() replies;
   @Input() actionsTriggerElementId;
 

@@ -1,16 +1,16 @@
-<ion-row>
+<ion-row *ngIf="canBeNonGeneric()">
   <ion-col class="{{type}}" size="12">
     <div *ngIf="type ==='filter'" class="filter-label">Filter</div>
-    <ion-chip [ngClass]="{'selected': selected.idea}" (click)="onIdeaClick()" [outline]="!selected.idea">
+    <ion-chip *ngIf="canBeAnIdea()" (click)="onIdeaClick()" [ngClass]="{'selected': selected.idea}" [outline]="!selected.idea">
       <app-idea-stats-icon [selected]="selected.idea"></app-idea-stats-icon>
       <ion-label>Idea</ion-label>
     </ion-chip>
-    <ion-chip [ngClass]="{'selected': selected.experience}" (click)="onExperienceClick()" [outline]="!selected.experience">
+    <ion-chip *ngIf="canBeAnExperience()" (click)="onExperienceClick()" [ngClass]="{'selected': selected.experience}" [outline]="!selected.experience">
       <img *ngIf="!selected.experience" class="experiences-image" src="assets/situation/experiences.png">
       <img *ngIf="selected.experience" class="experiences-image" src="assets/situation/experiences_white.png">
       <ion-label>Experience</ion-label>
     </ion-chip>
-    <ion-chip [ngClass]="{'selected': selected.question}" (click)="onQuestionClick()" [outline]="!selected.question">
+    <ion-chip *ngIf="canBeAQuestion()" (click)="onQuestionClick()" [ngClass]="{'selected': selected.question}" [outline]="!selected.question">
       <img *ngIf="!selected.question" class="question-icon" src="assets/situation/questions.png">
       <img *ngIf="selected.question" class="question-icon" src="assets/situation/questions_white.png">
       <ion-label>Question</ion-label>

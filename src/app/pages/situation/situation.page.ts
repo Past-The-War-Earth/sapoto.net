@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DateUtilsService } from '../../services/date-utils.service';
 
 @Component({
   selector: 'app-situation',
@@ -20,7 +19,7 @@ export class SituationPage
       experiences: 1,
       ideas: 1,
       questions: 1,
-      reasons: 1,
+      reasons: 0,
       replies: 4
     },
     createdAt: new Date().getTime() - 90000000,
@@ -47,6 +46,7 @@ export class SituationPage
     }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
     enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
+    type: 'situation'
   };
 
   replies = [{
@@ -302,11 +302,37 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 250,
+      // totalPoints: 250,
+      totalPoints: 20,
       users: 5,
     }
   }, {
@@ -339,11 +365,55 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 5,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }, {
+      id: 6,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 250,
+      // totalPoints: 250,
+      totalPoints: 12,
       users: 4,
     },
   }, {
@@ -376,11 +446,49 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 5,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 450,
+      // totalPoints: 450,
+      totalPoints: 21,
       users: 5,
     }
   }, {
@@ -413,11 +521,21 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 550,
+      // totalPoints: 550,
+      totalPoints: 24,
       users: 6,
     }
   }, {
@@ -450,11 +568,77 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 5,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }, {
+      id: 6,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 7,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 8,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 9,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 2500,
+      // totalPoints: 2500,
+      totalPoints: 140,
       users: 30,
     }
   }, {
@@ -462,7 +646,7 @@ export class SituationPage
       experiences: 4,
       ideas: 0,
       questions: 6,
-      reasons: 9,
+      reasons: 4,
       replies: 35
     },
     createdAt: new Date().getTime() - 5000000000,
@@ -487,11 +671,43 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 750,
+      // totalPoints: 750,
+      totalPoints: 40,
       users: 10,
     }
   }, {
@@ -524,11 +740,49 @@ export class SituationPage
       user: 1,
       up: 234
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }, {
+      id: 5,
+      enabled: true,
+      object: 'them',
+      text: `Lorem ipsum dolor sit amet.`,
+      verb: 'helps'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 250,
+      // totalPoints: 250,
+      totalPoints: 12,
       users: 4
     }
   }, {
@@ -561,11 +815,37 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 240,
+      // totalPoints: 240,
+      totalPoints: 11,
       users: 3,
     }
   }, {
@@ -598,11 +878,43 @@ export class SituationPage
       user: 1,
       up: 234,
     },
-    reasons: [],
+    reasons: [{
+      id: 1,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 55,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      verb: 'helps',
+    }, {
+      id: 2,
+      counted: true,
+      enabled: true,
+      object: 'them',
+      score: 30,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor.`,
+      verb: 'lets'
+    }, {
+      id: 3,
+      counted: true,
+      enabled: true,
+      object: 'you',
+      score: 15,
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing `,
+      verb: 'lets'
+    }, {
+      id: 4,
+      enabled: true,
+      object: 'you',
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+      verb: 'makes'
+    }],
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
-      totalPoints: 320,
+      // totalPoints: 320,
+      totalPoints: 12,
       users: 4,
     }
   }];

@@ -1,0 +1,78 @@
+<ion-modal [isOpen]="visible">
+  <ng-template>
+    <ion-content>
+      <ion-row class="reasons-header">
+        <ion-col class="assent-info">
+          <img class="assent-image" src="assets/idea/assent.png">
+          <div class="assent-description">
+            Assent: {{getScore()}} / 5
+          </div>
+        </ion-col>
+        <ion-col class="add-container">
+          <img class="add-icon" src="assets/tools_menu/add.png" (click)="showAddReason()">
+        </ion-col>
+      </ion-row>
+      <div *ngIf="isAddingAReason()">
+        <ion-row>
+          <ion-col size="3">
+            <div class="reason-starting-words">This</div>
+          </ion-col>
+          <ion-col size="3">
+            <div class="reason-starting-words" *ngIf="newReason.verb">{{newReason.verb}}</div>
+            <ion-select class="reason-option marker" *ngIf="!newReason.verb" [(ngModel)]="newReason.verb" placeholder="What">
+              <ion-select-option value="helps">helps</ion-select-option>
+              <ion-select-option value="lets">lets</ion-select-option>
+              <ion-select-option value="makes">makes</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col class="reason-option" size="3">
+            <div class="reason-starting-words" *ngIf="newReason.object">{{newReason.object}}</div>
+            <ion-select class="reason-option marker" *ngIf="!newReason.object" [(ngModel)]="newReason.object" placeholder="Who">
+              <ion-select-option value="her">her</ion-select-option>
+              <ion-select-option value="him">him</ion-select-option>
+              <ion-select-option value="them">them</ion-select-option>
+              <ion-select-option value="you">you</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-textarea class="reason-text marker" [(ngModel)]="newReason.text" maxlength="250"
+              placeholder="what does this enable to help/let/make"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button class="add-reason-button" (click)="addAReason()" color="light">Add a Reason</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-row>
+        <ion-col class="assent-column" size="6">
+          <div class="assent-info-wrapper">
+          </div>
+        </ion-col>
+        <ion-col size="6">
+        </ion-col>
+      </ion-row>
+      <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+        <ion-item class="row{{i}}" *ngFor="let reason of idea.reasons; let i = index; trackBy: trackByReasons">
+          <ion-toggle *ngIf="i < 3" [(ngModel)]="reason.enabled" slot="start"></ion-toggle>
+          <div *ngIf="i >= 3" class="toggle-spacer" slot="start"></div>
+          <div class="reason-contents">
+            This <u>{{getVerb(reason)}} {{reason.object}}</u> {{reason.text}}
+          </div>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="primary">
+          <ion-button (click)="cancel()" color="primary">Cancel</ion-button>
+          <ion-button (click)="save()" color="secondary">Save</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

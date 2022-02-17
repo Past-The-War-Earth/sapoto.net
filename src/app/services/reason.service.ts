@@ -6,9 +6,21 @@ import { NumberUtilsService } from './number-utils.service';
 })
 export class ReasonService {
 
-  constructor(
-    private numberUtilsService: NumberUtilsService
-  ) {
+  reasonId = 1000;
+
+  constructor() {
+  }
+
+  getNewReason() {
+    return {
+      id: ++this.reasonId,
+      counted: true,
+      enabled: true,
+      object: '',
+      score: 0,
+      text: ``,
+      verb: '',
+    }
   }
 
   getVerb(

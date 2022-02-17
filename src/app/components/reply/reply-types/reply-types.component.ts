@@ -2,36 +2,27 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
-  selector: 'app-reply-type-options',
-  templateUrl: './reply-type-options.component.html',
-  styleUrls: ['./reply-type-options.component.scss'],
+  selector: 'app-reply-types',
+  templateUrl: './reply-types.component.html',
+  styleUrls: ['./reply-types.component.scss'],
 })
-export class ReplyTypeOptionsComponent implements OnInit {
+export class ReplyTypesComponent implements OnInit {
 
-  @Input() action
+  @Input() parent
 
   @Input() reply
 
   @Input() type
 
-  @Output() onDone = new EventEmitter()
-
   constructor(
     private replyService: ReplyService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   getQuestionTypes() {
     return this.replyService.getQuestionTypes()
-  }
-
-  showDoneOptions() {
-    return this.type === 'listing'
-  }
-
-  doneDesignating() {
-    this.onDone.emit()
   }
 
   setDesignations(designations) {
@@ -73,5 +64,6 @@ export class ReplyTypeOptionsComponent implements OnInit {
       this.reply.questionTypes.push(questionType)
     }
   }
+
 
 }

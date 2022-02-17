@@ -1,0 +1,16 @@
+<ion-modal [isOpen]="visible">
+  <ng-template>
+    <ion-content>
+      <app-reply-types [reply]="reply" [parent]="parent" type="post"></app-reply-types>
+      <quill-editor [(ngModel)]="reply.text" [modules]="quillModules" [sanitize]="true"></quill-editor>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="primary">
+          <ion-button (click)="cancel()" color="primary">Cancel</ion-button>
+          <ion-button (click)="enterReply()" color="secondary">Reply</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

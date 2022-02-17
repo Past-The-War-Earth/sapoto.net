@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LabelSearchService } from 'src/app/services/label-search.service';
+import { LabelSearchService } from '../../../services/label-search.service';
 import { SituationSearchService } from '../../../services/situation-search.service';
 
 @Component({

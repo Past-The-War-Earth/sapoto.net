@@ -1,4 +1,4 @@
-<app-reply-type-labels [type]="'filter'" (onSelection)="setReplyTypeFilters($event)"></app-reply-type-labels>
+<app-reply-type-labels (onSelection)="setReplyTypeFilters($event)" [parent]="parent" [type]="'filter'"></app-reply-type-labels>
 <app-reply-sort-order (onSelection)="sortBy($event)"></app-reply-sort-order>
 <ion-list>
   <ion-item class="reply" *ngFor="let reply of filteredReplies; trackBy: trackByReplies">

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
   selector: 'app-tools-menu',
@@ -9,8 +10,13 @@ import { MenuController } from '@ionic/angular';
 })
 export class ToolsMenuComponent implements OnInit {
 
+  @Input() parent;
+
   @Output()
   onFilterChange = new EventEmitter();
+  @Output()
+  onPostReply = new EventEmitter();
+
 
   filterValue = ''
 
@@ -23,6 +29,7 @@ export class ToolsMenuComponent implements OnInit {
 
   constructor(
     protected menu: MenuController,
+    protected replyService: ReplyService,
     protected router: Router
   ) { }
 
@@ -61,27 +68,26 @@ export class ToolsMenuComponent implements OnInit {
 
   addExperience() {
     this.addingAExperience = true
-    this.router.navigate(['/post-reply'])
+    this.onPostReply.emit('experience')
   }
 
   addIdea() {
     this.addingAIdea = true
-    this.router.navigate(['/post-reply'])
+    this.onPostReply.emit('idea')
   }
 
   addComment() {
     this.addingAComment = true
-    this.router.navigate(['/post-reply'])
+    this.onPostReply.emit(null)
   }
 
   addQuestion() {
     this.addingAQuestion = true
-    this.router.navigate(['/post-reply'])
+    this.onPostReply.emit('question')
   }
 
   addReason() {
     this.addingAReason = true
-    this.router.navigate(['/post-reply'])
   }
 
   goToAll() {
@@ -130,6 +136,18 @@ export class ToolsMenuComponent implements OnInit {
 
   sortByPostRanking() {
     console.log('Sorting By Post Ranking...')
+  }
+
+  canAddAnIdea() {
+    return this.replyService.canHaveIdeas(this.parent)
+  }
+
+  canAddAnExperience() {
+    return this.replyService.canHaveExperiences(this.parent)
+  }
+
+  canAddAQuestion() {
+    return this.replyService.canHaveQuestions(this.parent)
   }
 
 }

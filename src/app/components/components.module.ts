@@ -14,7 +14,6 @@ import { IdeaStatsIconComponent } from './idea/idea-stats-icon/idea-stats-icon.c
 import { ReplyTypeLabelsComponent } from './reply/reply-type-labels/reply-type-labels.component';
 import { ReplySortOrderComponent } from './reply/reply-sort-order/reply-sort-order.component';
 import { SituationMatrixComponent } from './situation/situation-matrix/situation-matrix.component';
-import { ReplyTypeOptionsComponent } from './reply/reply-type-options/reply-type-options.component';
 import { SituationBlockComponent } from './situation/situation-block/situation-block.component';
 import { SituationActionsComponent } from './situation/situation-actions/situation-actions.component';
 import { ReplyActionsComponent } from './reply/reply-actions/reply-actions.component';
@@ -26,7 +25,11 @@ import { SituationAutoCompleteComponent } from './situation/situation-auto-compl
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { SituationLabelsComponent } from './situation/situation-labels/situation-labels.component';
 import { MediaRecorderComponent } from './common/media-recorder/media-recorder.component';
-import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component';
+import { IdeaReasonsComponent } from './modals/idea-reasons/idea-reasons.component';
+import { PostReplyComponent } from './modals/post-reply/post-reply.component';
+import { PostSituationComponent } from './modals/post-situation/post-situation.component';
+import { ReplyTypeOptionsComponent } from './modals/reply-type-options/reply-type-options.component';
+import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
 
 @NgModule({
   declarations: [
@@ -37,14 +40,17 @@ import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component
     MediaRecorderComponent,
     PageHeaderComponent,
     PopoverComponent,
+    PostReplyComponent,
+    PostSituationComponent,
     ReplyActionsComponent,
     ReplyBlockComponent,
     ReplyDesignationIconComponent,
     ReplyEntryBarComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
-    ReplyTypeOptionsComponent,
     ReplyTypeLabelsComponent,
+    ReplyTypeOptionsComponent,
+    ReplyTypesComponent,
     SituationActionsComponent,
     SituationAutoCompleteComponent,
     SituationBlockComponent,
@@ -52,7 +58,7 @@ import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component
     SituationLabelsComponent,
     SituationMatrixComponent,
     SituationStatsComponent,
-    ToolsMenuComponent,
+    ToolsMenuComponent
   ],
   imports: [
     AutoCompleteModule,
@@ -69,6 +75,8 @@ import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component
     MediaRecorderComponent,
     PageHeaderComponent,
     PopoverComponent,
+    PostReplyComponent,
+    PostSituationComponent,
     ReplyActionsComponent,
     ReplyBlockComponent,
     ReplyDesignationIconComponent,
@@ -77,6 +85,7 @@ import { IdeaReasonsComponent } from './idea/idea-reasons/idea-reasons.component
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
     ReplyTypeOptionsComponent,
+    ReplyTypesComponent,
     SituationActionsComponent,
     SituationAutoCompleteComponent,
     SituationBlockComponent,

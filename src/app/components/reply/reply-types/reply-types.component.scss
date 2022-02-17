@@ -12,25 +12,29 @@
 @media only screen and (min-width: 321px) and (max-width: 428px) {
 
     ion-col ion-chip {
-        padding: 5px 9px;
-        font-size: 13px;
+        font-size: 13px;;
         line-height: 13px;
+        padding: 5px 9px;
     }
   
 }
 
-.done-designating {
-    color: rgb(23, 191, 95);
-    width: calc(100% - 10px);
-    font-size: 14px;
-    margin: 5px;
+app-reply-type-labels {
+    display: block;
     margin-top: 10px;
-    text-align: right;
 }
 
-.save-button, .cancel-button {
-    display: inline;
-    padding: 5px;
+table {
+  width: 100%;
+}
+
+.idea-icon {
+    padding-left: 5px;
+    width: 62px;
+}
+
+.idea-controls, .experience-controls, .question-controls {
+    margin-top: 10px;
 }
 
 ion-chip.selected {
@@ -46,16 +50,8 @@ ion-col {
 ion-chip {
     font-size: 14px;
     line-height: 14px;
-}
-
-
-table {
-    width: 100%;
-}
-
-.idea-icon {
-    padding-left: 5px;
-    width: 62px;
+    margin: 2px;
+    padding: 6px 10px;
 }
 
 div {
@@ -73,14 +69,16 @@ ion-range {
 }
 
 ion-img {
+    float: right;
     height: 25px;
+    width: 25px;
 }
 
 .record-description {
     text-align: left;
 }
 
-.record-description div{
+.record-description ion-label{
     display: inline-block;
     height: 25px;
     margin-top: 3px;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EisenhowerMatrixService } from 'src/app/services/eisenhower-matrix.service';
+import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.service';
 import { SituationService } from '../../../services/situation.service';
 
 @Component({

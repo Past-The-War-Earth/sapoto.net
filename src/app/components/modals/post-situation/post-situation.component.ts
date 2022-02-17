@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 
 import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
-import { ReplyService } from '../../services/reply.service';
+import { SituationService } from '../../../services/situation.service';
 
 @Component({
-  selector: 'app-post-reply',
-  templateUrl: './post-reply.page.html',
-  styleUrls: ['./post-reply.page.scss'],
+  selector: 'app-post-situation',
+  templateUrl: './post-situation.component.html',
+  styleUrls: ['./post-situation.component.scss'],
 })
-export class PostReplyPage implements OnInit {
+export class PostSituationComponent implements OnInit {
 
-  reply
+  situation;
 
   quillModules = {
     'emoji-shortname': true,
@@ -30,20 +30,16 @@ export class PostReplyPage implements OnInit {
 
   constructor(
     private router: Router,
-    private replyService: ReplyService
-  ) { 
-    this.reply = replyService.getNewReply()
+    situationService: SituationService
+  ) {
+    this.situation = situationService.getNewSituation();
   }
 
   ngOnInit() {
   }
 
-  enterReply() {
-    this.router.navigate(['/reply'])
-  }
-
-  setReplyTypes(replyTypes) {
-    this.reply.designations = replyTypes
+  enterSituation() {
+    this.router.navigate(['/situation'])
   }
 
 }

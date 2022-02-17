@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReplyService } from 'src/app/services/reply.service';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-reply-entry-bar',

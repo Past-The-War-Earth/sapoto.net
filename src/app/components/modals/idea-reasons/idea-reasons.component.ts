@@ -13,19 +13,32 @@ export class IdeaReasonsComponent implements OnInit {
 
   @Output() onDone = new EventEmitter()
 
+  addingAReason = false
+  newReason
+  visible = true
+
   constructor(
     private reasonService: ReasonService
   ) { }
 
   ngOnInit() { }
 
-  showDoneOptions() {
-    return this.type === 'listing'
+  showAddReason() {
+    this.newReason =  this.reasonService.getNewReason()
+    this.addingAReason = true;
   }
 
-  doneDesignating() {
-    this.onDone.emit()
+  isAddingAReason() {
+    return this.addingAReason;
   }
+
+  addAReason() {
+    this.addingAReason = false;
+  }
+
+  // showDoneOptions() {
+  //   return this.type === 'listing'
+  // }
 
   trackByReasons(index, reason) {
     return reason.id
@@ -54,8 +67,19 @@ export class IdeaReasonsComponent implements OnInit {
     return this.reasonService.getVerb(reason)
   }
 
-  addReason() {
+  save() {
+    this.hide()
+  }
 
+  cancel() {
+    this.hide()
+  }
+
+  private hide() {
+    this.visible = false
+    setTimeout(() => {
+      this.onDone.emit()
+    })
   }
 
 }

@@ -1,4 +1,4 @@
-<app-tools-menu (onFilterChange)="filter($event)"></app-tools-menu>
+<app-tools-menu (onFilterChange)="filter($event)" (onPostReply)="postAReply($event)" [parent]="reply"></app-tools-menu>
 <app-page-header title="Reply Thread" [showToolsIcon]="true"></app-page-header>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showReplyActions" triggerElementId="reply-actions-button">
   <app-reply-actions *ngIf="showReplyActions" (onSelection)="onReplyAction($event)" [reply]="activeReply">
@@ -8,6 +8,8 @@
   <app-reply-block (onActionsClick)="onShowReplyActions(reply)" [action]="getReplyAction()" [reply]="reply"
     actionsTriggerElementId="reply-actions-button"></app-reply-block>
   <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [activeActionsReplyId]="getActiveActionsReplyId()"
-    [action]="replyAction" [replies]="replies" actionsTriggerElementId="reply-actions-button"></app-reply-listing>
+    [action]="replyAction" [parent]="reply" [replies]="replies" actionsTriggerElementId="reply-actions-button"></app-reply-listing>
 </ion-content>
 <app-reply-entry-bar></app-reply-entry-bar>
+<app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [parent]="reply"
+  [replyType]="postingReplyType"></app-post-reply>

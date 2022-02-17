@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-reply-type-labels',
@@ -6,6 +7,8 @@ import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Ou
   styleUrls: ['./reply-type-labels.component.scss'],
 })
 export class ReplyTypeLabelsComponent implements OnInit {
+
+  @Input() parent
 
   @Input() type
 
@@ -38,6 +41,7 @@ export class ReplyTypeLabelsComponent implements OnInit {
 
   constructor(
     // private injector: Injector
+    private replyService: ReplyService
   ) { }
 
   ngOnInit() { }
@@ -78,6 +82,22 @@ export class ReplyTypeLabelsComponent implements OnInit {
       idea: false,
       experience: false
     }
+  }
+
+  canBeNonGeneric() {
+    return this.canBeAnIdea() || this.canBeAnExperience() || this.canBeAQuestion()
+  }
+
+  canBeAnIdea() {
+    return this.replyService.canHaveIdeas(this.parent)
+  }
+
+  canBeAnExperience() {
+    return this.replyService.canHaveExperiences(this.parent)
+  }
+
+  canBeAQuestion() {
+    return this.replyService.canHaveQuestions(this.parent)
   }
 
 }

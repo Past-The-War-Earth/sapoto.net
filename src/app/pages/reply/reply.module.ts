@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PostReplyPageRoutingModule } from './post-reply-routing.module';
+import { ReplyPageRoutingModule } from './reply-routing.module';
 
-import { PostReplyPage } from './post-reply.page';
-import { QuillModule } from 'ngx-quill';
+import { ReplyPage } from './reply.page';
 import { ComponentsModule } from '../../components/components.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -16,9 +16,9 @@ import { ComponentsModule } from '../../components/components.module';
     ComponentsModule,
     FormsModule,
     IonicModule,
-    PostReplyPageRoutingModule,
+    ReplyPageRoutingModule,
     QuillModule
   ],
-  declarations: [PostReplyPage]
+  declarations: [ReplyPage]
 })
-export class PostReplyPageModule { }
+export class ReplyPageModule { }
