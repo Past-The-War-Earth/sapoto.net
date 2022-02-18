@@ -143,8 +143,10 @@ ion-item.reply tr {
   .reply-actions-button {
     color: rgb(23, 191, 95);
     float: right;
-    font-size: 14px;
-    padding-right: 5px;
+    font-size: 16px;
+    padding: 5px;
+    margin-top: -5px;
+    padding-right: 7px;
   }
   
   .action-column {
@@ -197,5 +199,6 @@ ion-item.reply tr {
   }
   
   a {
+    padding: 10px;
     text-decoration-line: none;
   }
