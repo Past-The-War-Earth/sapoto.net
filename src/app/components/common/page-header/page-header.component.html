@@ -2,13 +2,16 @@
   <ion-toolbar class="top-page-toolbar" color="primary">
     <ion-buttons slot="start">
       <ion-menu-button menu="main"></ion-menu-button>
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="situation-list"></ion-back-button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
-    <ion-buttons *ngIf="showToolsIcon" slot="end">
-      <ion-menu-button menu="tools">
+    <ion-buttons slot="end">
+      <ion-menu-button *ngIf="showToolsIcon" menu="tools">
         <ion-icon name="hammer-outline"></ion-icon>
       </ion-menu-button>
+      <ion-button *ngIf="showPostSituation" (click)="postSituation()">
+        <ion-icon name="document-text-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

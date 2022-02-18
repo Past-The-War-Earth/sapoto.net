@@ -12,4 +12,4 @@
 </ion-content>
 <app-reply-entry-bar></app-reply-entry-bar>
 <app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [parent]="reply"
-  [replyType]="postingReplyType"></app-post-reply>
+  [replyType]="getPostingReplyType()"></app-post-reply>

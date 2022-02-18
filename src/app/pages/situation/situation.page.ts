@@ -920,6 +920,9 @@ export class SituationPage
   }];
 
   constructor() {
+    for (let reply of this.replies) {
+      (reply as any).situation = this.situation
+    }
   }
 
   ngOnInit() {

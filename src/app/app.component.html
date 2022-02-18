@@ -25,11 +25,9 @@
 
             <ion-list slot="content">
               <ion-menu-toggle auto-hide="false">
-                <ion-item [routerLink]="['/situations/' + category.label]"
+                <ion-item class="category-item" [routerLink]="['situation-list/' + category.label]"
                   *ngFor="let category of metaCategory.categories; let y = index">
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <ion-img *ngIf="category.icon" src="assets/{{category.icon}}"></ion-img>
-                  &nbsp;&nbsp;
+                  <ion-img class="category-icon" *ngIf="category.icon" src="assets/{{category.icon}}"></ion-img>
                   <ion-label [ngClass]="{'no-icon': !category.icon}">{{ category.label }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>
@@ -56,8 +54,7 @@
 
             <ion-list slot="content">
               <ion-menu-toggle auto-hide="false">
-                <ion-item *ngFor="let label of labels; let y = index">
-                  &nbsp;&nbsp;&nbsp;&nbsp;
+                <ion-item class="label-item" *ngFor="let label of labels; let y = index">
                   <ion-label>{{ label }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>

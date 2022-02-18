@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
@@ -9,10 +9,20 @@ export class PageHeaderComponent implements OnInit {
 
   @Input() showToolsIcon
 
+  @Input() showPostSituation
+
   @Input() title
+
+  @Output() onPostSituation = new EventEmitter()
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('on init')
+  }
+
+  postSituation() {
+    this.onPostSituation.emit()
+  }
 
 }

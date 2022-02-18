@@ -1,0 +1,16 @@
+<ion-modal [isOpen]="visible">
+  <ng-template>
+    <ion-content>
+      <app-reply-types [parent]="parent" [reply]="reply" [type]="type">
+      </app-reply-types>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="primary">
+          <ion-button (click)="cancel()" color="primary">Cancel</ion-button>
+          <ion-button (click)="changeType()" color="secondary">Save</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

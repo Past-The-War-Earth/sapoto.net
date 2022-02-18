@@ -196,19 +196,19 @@ export class ReplyService {
   canHaveIdeas(
     parent
   ) {
-    return parent.type === 'situation'
+    return !parent
   }
 
   canHaveExperiences(
     parent
   ) {
-    return parent.type === 'situation' || this.hasADesignation('idea', parent)
+    return !parent || this.hasADesignation('idea', parent)
   }
 
   canHaveQuestions(
     parent
   ) {
-    return parent.type === 'situation'
+    return !parent
       || this.hasAnyOfDesignations(['idea', 'experience'], parent)
   }
 

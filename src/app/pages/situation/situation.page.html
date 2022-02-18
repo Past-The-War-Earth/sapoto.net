@@ -1,4 +1,4 @@
-<app-tools-menu (onFilterChange)="filter($event)" [parent]="situation"></app-tools-menu>
+<app-tools-menu (onFilterChange)="filter($event)"></app-tools-menu>
 <app-page-header title="Situation Thread" [showToolsIcon]="true"></app-page-header>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions || showReplyActions"
   triggerElementId="reply-actions-button">
@@ -12,6 +12,6 @@
     [situation]="situation" actionsTriggerElementId="reply-actions-button">
   </app-situation-block>
   <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [activeActionsReplyId]="getActiveActionsReplyId()"
-    [action]="replyAction" [parent]="situation" actionsTriggerElementId="reply-actions-button" [replies]="replies">
+    [action]="replyAction" actionsTriggerElementId="reply-actions-button" [replies]="replies">
   </app-reply-listing>
 </ion-content>

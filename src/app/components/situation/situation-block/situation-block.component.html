@@ -1,16 +1,15 @@
-<app-situation-matrix *ngIf="showMatrix()" [situation]="situation" (onDone)="matrixClosed()" type="entry">
-</app-situation-matrix>
 <div class="situation-contents">
   <table class="situation-main-container">
     <tr class="situation-main">
       <td class="situation-column">
-        <app-situation-icon *ngIf="!showMatrix()" [situation]="situation" mode="show" type="listing"></app-situation-icon>
+        <app-situation-icon *ngIf="!showSituationMatrix()" [situation]="situation" mode="show" type="listing">
+        </app-situation-icon>
       </td>
       <td>
         <div class="situation-header">
           <div class="situation-by">{{situation.createdBy.username}}</div>
           <div class="situation-age">{{ageOf(situation.createdAt)}}</div>
-          <ion-icon *ngIf="!showMatrix()" (click)="actionsClicked(situation)" [id]="actionsTriggerElementId"
+          <ion-icon *ngIf="!showSituationMatrix()" (click)="actionsClicked(situation)" [id]="actionsTriggerElementId"
             class="situation-actions-button" name="ellipsis-vertical-outline">
           </ion-icon>
         </div>
@@ -27,9 +26,12 @@
     </ion-col>
     <ion-col size="5" class="situation-in-thread">
       <div *ngIf="showMainAction()" class="situation-action">
-        <a *ngIf="situation.counts.replies === 0" href="situation">View</a>
-        <a *ngIf="situation.counts.replies > 0" href="situation">View ({{getNumberAcronym(situation.counts.replies)}})</a>
+        <a *ngIf="situation.counts.replies === 0" [routerLink]="['/situation']">View</a>
+        <a *ngIf="situation.counts.replies > 0" [routerLink]="['/situation']">View
+          ({{getNumberAcronym(situation.counts.replies)}})</a>
       </div>
     </ion-col>
   </ion-row>
 </div>
+<app-situation-matrix-modal *ngIf="showSituationMatrix()" [situation]="situation" (onDone)="situationMatrixClosed()">
+</app-situation-matrix-modal>

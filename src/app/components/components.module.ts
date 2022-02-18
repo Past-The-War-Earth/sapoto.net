@@ -28,8 +28,10 @@ import { MediaRecorderComponent } from './common/media-recorder/media-recorder.c
 import { IdeaReasonsComponent } from './modals/idea-reasons/idea-reasons.component';
 import { PostReplyComponent } from './modals/post-reply/post-reply.component';
 import { PostSituationComponent } from './modals/post-situation/post-situation.component';
-import { ReplyTypeOptionsComponent } from './modals/reply-type-options/reply-type-options.component';
+import { ReplyTypesModalComponent } from './modals/reply-types-modal/reply-types-modal.component';
 import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
+import { SituationMatrixModalComponent } from './modals/situation-matrix-modal/situation-matrix-modal.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -49,14 +51,15 @@ import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
     ReplyListingComponent,
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
-    ReplyTypeOptionsComponent,
     ReplyTypesComponent,
+    ReplyTypesModalComponent,
     SituationActionsComponent,
     SituationAutoCompleteComponent,
     SituationBlockComponent,
     SituationIconComponent,
     SituationLabelsComponent,
     SituationMatrixComponent,
+    SituationMatrixModalComponent,
     SituationStatsComponent,
     ToolsMenuComponent
   ],
@@ -65,7 +68,8 @@ import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    QuillModule
+    QuillModule,
+    RouterModule
   ],
   exports: [
     IdeaReasonsComponent,
@@ -84,14 +88,15 @@ import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
     ReplyListingComponent,
     ReplySortOrderComponent,
     ReplyTypeLabelsComponent,
-    ReplyTypeOptionsComponent,
     ReplyTypesComponent,
+    ReplyTypesModalComponent,
     SituationActionsComponent,
     SituationAutoCompleteComponent,
     SituationBlockComponent,
     SituationIconComponent,
     SituationLabelsComponent,
     SituationMatrixComponent,
+    SituationMatrixModalComponent,
     SituationStatsComponent,
     ToolsMenuComponent,
   ]

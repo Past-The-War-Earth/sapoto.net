@@ -1,6 +1,7 @@
-<ion-auto-complete class="{{type}}" [clearInvalidInput]="false" [dataProvider]="searchService"
-  [emptyTemplate]="noResults" [multi]="isLabelsOnly()" [options]="{ placeholder : placeholder }"
-  [selectionTemplate]="labelSelection" [styles]="autoCompleteStyles" [template]="withLabels">
+<ion-auto-complete #searchbar (itemsChange)="itemChanged()" class="{{type}}" [clearInvalidInput]="false"
+  [dataProvider]="searchService" [emptyTemplate]="noResults" [multi]="isLabelsOnly()"
+  [options]="{ placeholder : placeholder }" [selectionTemplate]="labelSelection" [styles]="autoCompleteStyles"
+  [template]="withLabels">
 </ion-auto-complete>
 <ng-template #labelSelection let-attrs="attrs">
 </ng-template>
@@ -17,13 +18,6 @@
       {{getSituationText(attrs.data)}}
     </div>
   </div>
-  <!--
-    <img src="assets/image/flags/{{attrs.data.name}}.png" class="flag" />
-    <span [innerHTML]="attrs.data.name | boldprefix:attrs.keyword"></span>
-  -->
-  <!--
-    {{attrs.data.common}}
-  -->
 </ng-template>
 <ng-template #noResults let-attrs="attrs">
   <div *ngIf="isLabelsOnly()" class="situation-labels-empty">

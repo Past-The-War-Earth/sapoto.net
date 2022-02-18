@@ -1,22 +1,3 @@
-@media only screen and (max-width: 320px) {
-    div.reason-starting-words {
-        font-size: 12px;
-    }
-}
-  
-@media only screen and (min-width: 321px) and (max-width: 428px) {
-    div.reason-starting-words {
-        font-size: 13px;
-    }
-    ion-select.reason-option {
-        font-size: 14px;
-    }
-    
-    ion-textarea.reason-text {
-        font-size: 14px;
-    }
-}
-
 .reasons-header {
     margin-top: 10px;
     font-size: 14px;
@@ -62,7 +43,7 @@ img {
 }
 
 .reason-starting-words {
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 14px;
 }
 

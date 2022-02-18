@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateUtilsService } from '../../services/date-utils.service';
-
-import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
+import { DateUtilsService } from '../../services/date-utils.service';
 
 @Component({
   selector: 'app-reply',
@@ -41,40 +39,6 @@ export class ReplyPage
       }
     },
     id: 11,
-    parent: {
-      counts: {
-        experiences: 1,
-        ideas: 1,
-        questions: 1,
-        reasons: 0,
-        replies: 4
-      },
-      createdAt: new Date().getTime() - 90000000,
-      createdBy: {
-        username: 'Cool Dad 1978',
-        ranking: 1000
-      },
-      eisenhowerMatrix: {
-        importance: 70,
-        urgency: 88,
-        votes: 20,
-        user: {
-          importance: 0,
-          urgency: 0
-        }
-      },
-      id: 7,
-      labels: [{
-        id: 1,
-        text: 'abc label'
-      }, {
-        id: 3,
-        text: 'cde - THE COOLEST LABEL'
-      }],
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-      enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-      type: 'situation'
-    },
     questionTypes: ['When'],
     ratings: {
       down: 0,
@@ -119,6 +83,40 @@ export class ReplyPage
       text: `Lorem ipsum dolor sit amet.`,
       verb: 'helps'
     }],
+    situation: {
+      counts: {
+        experiences: 1,
+        ideas: 1,
+        questions: 1,
+        reasons: 0,
+        replies: 4
+      },
+      createdAt: new Date().getTime() - 90000000,
+      createdBy: {
+        username: 'Cool Dad 1978',
+        ranking: 1000
+      },
+      eisenhowerMatrix: {
+        importance: 70,
+        urgency: 88,
+        votes: 20,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 7,
+      labels: [{
+        id: 1,
+        text: 'abc label'
+      }, {
+        id: 3,
+        text: 'cde - THE COOLEST LABEL'
+      }],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
+      type: 'situation'
+    },
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
   enim volutpat vitae.`,
     votes: {
@@ -357,7 +355,8 @@ export class ReplyPage
     private dateUtils: DateUtilsService
   ) {
     for (let reply of this.replies) {
-      (reply as any).parent = this.reply
+      (reply as any).parent = this.reply;
+      (reply as any).situation = this.reply.situation
     }
   }
 
@@ -419,6 +418,13 @@ export class ReplyPage
 
   isPostingAReply() {
     return !!this.postingReplyType
+  }
+
+  getPostingReplyType() {
+    if (this.postingReplyType === 'comment') {
+      return null
+    }
+    return this.postingReplyType
   }
 
   donePostingAReply() {

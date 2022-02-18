@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CoreService } from 'src/app/services/core.service';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 
@@ -24,11 +25,11 @@ export class SituationBlockComponent implements OnInit {
 
   ngOnInit() { }
 
-  showMatrix() {
+  showSituationMatrix() {
     return this.action === 'size'
   }
 
-  matrixClosed() {
+  situationMatrixClosed() {
     this.action = null
     this.onMatrixClosed.emit()
   }

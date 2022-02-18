@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ReplyService } from 'src/app/services/reply.service';
 
@@ -30,7 +29,6 @@ export class ToolsMenuComponent implements OnInit {
   constructor(
     protected menu: MenuController,
     protected replyService: ReplyService,
-    protected router: Router
   ) { }
 
   ngOnInit() { }
@@ -78,7 +76,7 @@ export class ToolsMenuComponent implements OnInit {
 
   addComment() {
     this.addingAComment = true
-    this.onPostReply.emit(null)
+    this.onPostReply.emit('comment')
   }
 
   addQuestion() {

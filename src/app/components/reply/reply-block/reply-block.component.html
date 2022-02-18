@@ -45,14 +45,15 @@
     <ion-col size="5" class="reply-in-thread">
       <div *ngIf="showMainAction()" class="reply-action">
         <div class="reply-action" *ngIf="reply.counts.replies === 0" (click)="addReply(reply)">Reply</div>
-        <a *ngIf="reply.counts.replies === 1" href="reply">1 reply</a>
-        <a *ngIf="reply.counts.replies > 1" href="reply">{{getNumberAcronym(reply.counts.replies)}} replies</a>
+        <a *ngIf="reply.counts.replies === 1" [routerLink]="['/reply']">1 reply</a>
+        <a *ngIf="reply.counts.replies > 1" [routerLink]="['/reply']">{{getNumberAcronym(reply.counts.replies)}}
+          replies</a>
       </div>
     </ion-col>
   </ion-row>
 </div>
-<app-reply-type-options *ngIf="showReplyTypeOptions()" [action]="action" [parent]="reply.parent" [reply]="reply"
-  (onDone)="replyTypeOptionsDone()" type="listing">
-</app-reply-type-options>
-<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypeOptionsDone()" [idea]="reply" type="listing">
+<app-reply-types-modal *ngIf="showReplyTypes()" [action]="action" [parent]="reply.parent" [reply]="reply"
+  (onDone)="replyTypesDone()" type="listing">
+</app-reply-types-modal>
+<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypesDone()" [idea]="reply" type="listing">
 </app-idea-reasons>

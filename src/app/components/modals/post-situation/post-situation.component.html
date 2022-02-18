@@ -1,8 +1,17 @@
-<app-page-header title="Enter New Situation"></app-page-header>
-<ion-content>
-  <app-media-recorder></app-media-recorder>
-    <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>
-  <app-situation-labels [situation]="situation"></app-situation-labels>
-  <quill-editor [(ngModel)]="situation.text" [modules]="quillModules" [sanitize]="true"></quill-editor>
-  <ion-button [size]="'full'" (click)="enterSituation()">Enter Situation</ion-button>
-</ion-content>
+<ion-modal [isOpen]="visible">
+  <ng-template>
+    <ion-content>
+      <app-media-recorder></app-media-recorder>
+      <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>
+      <quill-editor [(ngModel)]="situation.text" [modules]="quillModules" [sanitize]="true"></quill-editor>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="primary">
+          <ion-button (click)="cancel()" color="primary">Cancel</ion-button>
+          <ion-button (click)="enterSituation()" color="secondary">Post</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

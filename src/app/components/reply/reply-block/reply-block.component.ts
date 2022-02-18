@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { CoreService } from 'src/app/services/core.service';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 import { ReplyService } from '../../../services/reply.service';
@@ -31,7 +32,7 @@ export class ReplyBlockComponent implements OnInit {
     this.onActionsClick.emit(this.reply)
   }
 
-  showReplyTypeOptions() {
+  showReplyTypes() {
     return this.action === 'designate'
   }
 
@@ -44,7 +45,7 @@ export class ReplyBlockComponent implements OnInit {
     return !this.action
   }
 
-  replyTypeOptionsDone() {
+  replyTypesDone() {
     this.action = null
   }
 
@@ -120,10 +121,6 @@ export class ReplyBlockComponent implements OnInit {
     aNumber: number
   ): string {
     return this.numberUtils.getNumberAcronym(aNumber)
-  }
-
-  add() {
-    this.router.navigate(['post-idea']);
   }
 
   showMainAction() {

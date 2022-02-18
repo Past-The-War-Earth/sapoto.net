@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 })
 export class LabelSearchService implements AutoCompleteService {
 
+  labelAttribute = 'text';
+
   private labels = [{
     id: 1,
     type: 'label',
@@ -46,6 +48,10 @@ export class LabelSearchService implements AutoCompleteService {
   }
 
   getResults(keyword: string): Observable<any[]> {
+    if (!keyword || typeof keyword !== 'string') {
+      return of([])
+    }
+
     let labelsObservable = of(this.labels)
 
     return labelsObservable.pipe(

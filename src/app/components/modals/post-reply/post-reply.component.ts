@@ -1,7 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-
-import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
 import { QuillService } from '../../../services/quill.service';
 import { ReplyService } from '../../../services/reply.service';
@@ -18,24 +15,22 @@ export class PostReplyComponent implements OnInit {
 
   @Output() onDone = new EventEmitter()
 
+  quillModules
+  reply
   visible = true
 
-  reply
-
-  quillModules
-
   constructor(
-    private replyService: ReplyService,
+    replyService: ReplyService,
     private quillService: QuillService
   ) {
     this.reply = replyService.getNewReply()
-    if (this.replyType) {
-      this.reply.designations.push(this.replyType)
-    }
     this.quillModules = this.quillService.quillModules
   }
 
   ngOnInit() {
+    if (this.replyType) {
+      this.reply.designations.push(this.replyType)
+    }
   }
 
   enterReply() {

@@ -12,9 +12,10 @@ import { SituationSearchService } from '../../services/situation-search.service'
 export class SituationListPage implements OnInit {
 
   activeSituation
+  myForm: FormGroup
+  postingASituation = false
   situationAction
   showSituationActions = false
-  myForm: FormGroup
   topic: string
 
 
@@ -211,10 +212,6 @@ export class SituationListPage implements OnInit {
     this.topic = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
-  add(): void {
-    this.router.navigate(['/post-situation'])
-  }
-
   trackBySituations(index, situation) {
     return situation.id
   }
@@ -245,6 +242,18 @@ export class SituationListPage implements OnInit {
     action
   ) {
     this.situationAction = action
+  }
+
+  postASituation() {
+    this.postingASituation = true
+  }
+
+  isPostingASituation() {
+    return !!this.postingASituation
+  }
+
+  donePostingASituation() {
+    this.postingASituation = false
   }
 
 }

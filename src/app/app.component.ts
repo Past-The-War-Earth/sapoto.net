@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public metaCategories = [
     {
       categories: [{
@@ -44,53 +44,67 @@ export class AppComponent {
     },
     {
       categories: [{
-        label: 'Siblings'
+        label: 'Siblings',
+        icon: null
       }, {
-        label: 'Cousins'
+        label: 'Cousins',
+        icon: null
       }],
       image: 'Siblings_n_Kin',
       title: 'Sibligs & Kin'
     },
     {
       categories: [{
-        label: 'Working Parents'
+        label: 'Working Parents',
+        icon: null
       }, {
-        label: 'Retired Parents'
+        label: 'Retired Parents',
+        icon: null
       }, {
-        label: 'Grandparents'
+        label: 'Grandparents',
+        icon: null
       }],
       image: 'Parents',
       title: 'Parents'
     },
     {
       categories: [{
-        label: 'Dating Pairs'
+        label: 'Dating Pairs',
+        icon: null
       }, {
-        label: 'Engaged Pairs'
+        label: 'Engaged Pairs',
+        icon: null
       }, {
-        label: 'Married < 10 years'
+        label: 'Married < 10 years',
+        icon: null
       }, {
-        label: 'Married 10+ years'
+        label: 'Married 10+ years',
+        icon: null
       }],
       image: 'Partners',
       title: 'Partners'
     },
     {
       categories: [{
-        label: 'Nephews & Nieces'
+        label: 'Nephews & Nieces',
+        icon: null
       }, {
-        label: 'Aunts & Uncles'
+        label: 'Aunts & Uncles',
+        icon: null
       }],
       image: 'Extended',
       title: 'Extended'
     },
     {
       categories: [{
-        label: 'Best Friends'
+        label: 'Best Friends',
+        icon: null
       }, {
-        label: 'Close Friends'
+        label: 'Close Friends',
+        icon: null
       }, {
-        label: 'Good Friends'
+        label: 'Good Friends',
+        icon: null
       }],
       image: 'Friends',
       title: 'Friends'
@@ -99,9 +113,26 @@ export class AppComponent {
   public labels = ['Bed Time', 'Homework', 'Chores', 'Cleaning', 'Hygene'];
   constructor() { }
 
+  ngOnInit(): void {
+    document.body.classList.toggle('dark', true);
+  }
+
   deSpace(
     name: string
   ) {
     name.replace(' ', '_')
   }
 }
+
+// // Use matchMedia to check the user preference
+// const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+// toggleDarkTheme(prefersDark.matches);
+
+// // Listen for changes to the prefers-color-scheme media query
+// // prefersDark.addListener((mediaQuery) => toggleDarkTheme(mediaQuery.matches));
+
+// // Add or remove the "dark" class based on if the media query matches
+// function toggleDarkTheme(shouldAdd) {
+//   document.body.classList.toggle('dark', shouldAdd);
+// }

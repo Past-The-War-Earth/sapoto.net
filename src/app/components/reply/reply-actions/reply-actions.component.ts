@@ -26,6 +26,10 @@ export class ReplyActionsComponent implements OnInit {
     return this.replyService.isIdea(this.reply)
   }
 
+  canDesignate() {
+    return true
+  }
+
   onReasonAbout() {
     this.onSelection.emit('reasonAbout')
   }

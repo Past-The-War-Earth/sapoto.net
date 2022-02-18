@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-
-import Quill from 'quill'
 import 'quill-emoji/dist/quill-emoji.js'
+import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
 
 @Component({
@@ -12,34 +11,37 @@ import { SituationService } from '../../../services/situation.service';
 })
 export class PostSituationComponent implements OnInit {
 
-  situation;
+  @Output() onDone = new EventEmitter()
 
-  quillModules = {
-    'emoji-shortname': true,
-    'emoji-toolbar': true,
-    'toolbar': [
-      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-      ['blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-      [{ 'direction': 'rtl' }],                         // text direction
-      ['link', 'image', 'video'],                         // link and image, video
-      ['emoji']
-    ]
-  }
+  quillModules
+  situation
+  visible = true
 
   constructor(
+    private quillService: QuillService,
     private router: Router,
     situationService: SituationService
   ) {
-    this.situation = situationService.getNewSituation();
+    this.situation = situationService.getNewSituation()
+    this.quillModules = this.quillService.quillModules
   }
 
   ngOnInit() {
   }
 
   enterSituation() {
-    this.router.navigate(['/situation'])
+    this.hide()
+  }
+
+  cancel() {
+    this.hide()
+  }
+
+  private hide() {
+    this.visible = false
+    setTimeout(() => {
+      this.onDone.emit()
+    })
   }
 
 }

@@ -1,4 +1,3 @@
-<div *ngIf="showDoneOption()" (click)="doneSizing()" class="done-designating">Done</div>
 <table>
   <tr>
     <td class="situation-icon">
@@ -20,4 +19,9 @@
     </td>
   </tr>
 </table>
-<app-situation-auto-complete [type]="type" placeholder="Search for Labels"></app-situation-auto-complete>
+<app-situation-auto-complete (onLabelSelected)="onLabelSelected($event)" [labelRemoved]="labelRemoved" [type]="type"
+  [situation]="situation" placeholder="Search for Labels">
+</app-situation-auto-complete>
+<app-situation-labels (onLabelRemoved)="onLabelRemoved($event)" [editMode]="true" [labelSelected]="labelSelected"
+  [situation]="situation">
+</app-situation-labels>

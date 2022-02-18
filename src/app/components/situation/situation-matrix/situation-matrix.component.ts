@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-situation-matrix',
@@ -8,21 +9,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SituationMatrixComponent implements OnInit {
 
   @Input() situation
-
   @Input() type
 
-  @Output() onDone = new EventEmitter()
+  labelRemoved = new Subject()
+  labelSelected = new Subject()
 
   constructor() { }
 
   ngOnInit() { }
 
-  showDoneOption() {
-    return this.type === 'entry'
+  onLabelRemoved(
+    label
+  ) {
+    this.labelRemoved.next(label)
   }
 
-  doneSizing() {
-    this.onDone.emit()
+  onLabelSelected(
+    labels
+  ) {
+    this.labelSelected.next(labels)
   }
 
 }

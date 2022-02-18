@@ -1,6 +1,11 @@
-<div *ngFor="let label of situation.labels; trackBy: trackByLabels" class="situation-label">
+<div *ngFor="let label of labels; trackBy: trackByLabels" class="situation-label">
   <!--
     <div class="label-icon-dot"></div>
   -->
-  <div class="label-description">{{label.text}}</div>
+  <div class="label-description">
+    <img *ngIf="editMode" (click)="onRemove(label)" src="assets/icon/remove_icon.png">
+    <div class="label-text">
+      {{label.text}}
+    </div>
+  </div>
 </div>
