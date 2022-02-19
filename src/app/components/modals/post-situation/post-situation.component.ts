@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import 'quill-emoji/dist/quill-emoji.js'
+import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
 
@@ -14,12 +14,12 @@ export class PostSituationComponent implements OnInit {
   @Output() onDone = new EventEmitter()
 
   quillModules
+  sharedClicker = new Clicker()
   situation
   visible = true
 
   constructor(
     private quillService: QuillService,
-    private router: Router,
     situationService: SituationService
   ) {
     this.situation = situationService.getNewSituation()
@@ -30,11 +30,15 @@ export class PostSituationComponent implements OnInit {
   }
 
   enterSituation() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   cancel() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   private hide() {

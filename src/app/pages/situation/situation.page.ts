@@ -9,6 +9,7 @@ export class SituationPage
   implements OnInit {
 
   activeReply
+  postingReplyType
   replyAction
   situationAction
   showReplyActions = false
@@ -919,6 +920,8 @@ export class SituationPage
     }
   }];
 
+  showToolsMenu = false
+
   constructor() {
     for (let reply of this.replies) {
       (reply as any).situation = this.situation
@@ -926,6 +929,14 @@ export class SituationPage
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.showToolsMenu = true
+  }
+
+  ionViewWillLeave() {
+    this.showToolsMenu = false
   }
 
   filter(
@@ -978,6 +989,25 @@ export class SituationPage
       return null
     }
     return this.situationAction
+  }
+
+  postAReply(replyType) {
+    this.postingReplyType = replyType
+  }
+
+  isPostingAReply() {
+    return !!this.postingReplyType
+  }
+
+  getPostingReplyType() {
+    if (this.postingReplyType === 'comment') {
+      return null
+    }
+    return this.postingReplyType
+  }
+
+  donePostingAReply() {
+    this.postingReplyType = null
   }
 
 }

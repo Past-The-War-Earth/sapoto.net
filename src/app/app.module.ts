@@ -9,7 +9,6 @@ import { QuillModule } from 'ngx-quill'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SituationStatsComponent } from './components/situation/situation-stats/situation-stats.component';
 
 @NgModule({
   declarations: [

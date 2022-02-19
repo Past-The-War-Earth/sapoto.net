@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CoreService } from 'src/app/services/core.service';
+import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 
@@ -17,6 +17,8 @@ export class SituationBlockComponent implements OnInit {
 
   @Output() onActionsClick = new EventEmitter()
   @Output() onMatrixClosed = new EventEmitter()
+
+  sharedClicker = new Clicker()
 
   constructor(
     private dateUtilsService: DateUtilsService,
@@ -49,7 +51,9 @@ export class SituationBlockComponent implements OnInit {
   actionsClicked(
     situation
   ) {
-    this.onActionsClick.emit(situation)
+    this.sharedClicker.click(() => {
+      this.onActionsClick.emit(situation)
+    })
   }
 
   showMainAction() {

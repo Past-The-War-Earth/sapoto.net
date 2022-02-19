@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 
 @Component({
   selector: 'app-situation-actions',
@@ -11,13 +12,17 @@ export class SituationActionsComponent implements OnInit {
 
   @Output() onSelection = new EventEmitter()
 
+  sharedClicker = new Clicker()
+
   constructor() { }
 
   ngOnInit() { }
 
 
   sizeSituation() {
-    this.onSelection.emit('size')
+    this.sharedClicker.click(() => {
+      this.onSelection.emit('size')
+    })
   }
 
 }

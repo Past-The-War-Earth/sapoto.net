@@ -2,15 +2,15 @@
   <table class="situation-main-container">
     <tr class="situation-main">
       <td class="situation-column">
-        <app-situation-icon *ngIf="!showSituationMatrix()" [situation]="situation" mode="show" type="listing">
+        <app-situation-icon [situation]="situation" mode="show" type="listing">
         </app-situation-icon>
       </td>
       <td>
         <div class="situation-header">
           <div class="situation-by">{{situation.createdBy.username}}</div>
           <div class="situation-age">{{ageOf(situation.createdAt)}}</div>
-          <ion-icon *ngIf="!showSituationMatrix()" (click)="actionsClicked(situation)" [id]="actionsTriggerElementId"
-            class="situation-actions-button" name="ellipsis-vertical-outline">
+          <ion-icon (click)="actionsClicked(situation)" [id]="actionsTriggerElementId" class="situation-actions-button"
+            name="ellipsis-vertical-outline">
           </ion-icon>
         </div>
         <div>

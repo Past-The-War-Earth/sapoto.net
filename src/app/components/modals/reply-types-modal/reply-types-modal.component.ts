@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 
 @Component({
   selector: 'app-reply-types-modal',
@@ -17,22 +18,23 @@ export class ReplyTypesModalComponent implements OnInit {
 
   @Output() onDone = new EventEmitter()
 
+  sharedClicker = new Clicker()
   visible = true
 
   constructor() { }
 
   ngOnInit() { }
 
-  changeType() {
-    this.hide()
+  updateReply() {
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   cancel() {
-    this.hide()
-  }
-
-  done() {
-    this.onDone.emit()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   private hide() {

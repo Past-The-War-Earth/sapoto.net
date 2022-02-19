@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { CoreService } from 'src/app/services/core.service';
+import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 import { ReplyService } from '../../../services/reply.service';
@@ -19,17 +18,20 @@ export class ReplyBlockComponent implements OnInit {
 
   @Output() onActionsClick = new EventEmitter()
 
+  sharedClicker = new Clicker()
+
   constructor(
     private dateUtils: DateUtilsService,
     private numberUtils: NumberUtilsService,
     private replyService: ReplyService,
-    private router: Router
   ) { }
 
   ngOnInit() { }
 
   showActionsPopup() {
-    this.onActionsClick.emit(this.reply)
+    this.sharedClicker.click(() => {
+      this.onActionsClick.emit(this.reply)
+    })
   }
 
   showReplyTypes() {

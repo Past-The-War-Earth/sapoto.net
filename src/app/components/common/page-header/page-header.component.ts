@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 
 @Component({
   selector: 'app-page-header',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
 
-  @Input() showToolsIcon
+  @Input() menuId
 
   @Input() showPostSituation
 
@@ -15,14 +16,21 @@ export class PageHeaderComponent implements OnInit {
 
   @Output() onPostSituation = new EventEmitter()
 
+  sharedClicker = new Clicker()
+
   constructor() { }
 
   ngOnInit() {
-    console.log('on init')
   }
 
   postSituation() {
-    this.onPostSituation.emit()
+    this.sharedClicker.click(() => {
+      this.onPostSituation.emit()
+    })
+  }
+
+  showToolsIcon() {
+    return !!this.menuId
   }
 
 }

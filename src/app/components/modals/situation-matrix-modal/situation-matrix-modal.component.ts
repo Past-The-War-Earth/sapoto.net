@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 
 @Component({
   selector: 'app-situation-matrix-modal',
@@ -11,6 +12,7 @@ export class SituationMatrixModalComponent implements OnInit {
 
   @Output() onDone = new EventEmitter()
 
+  sharedClicker = new Clicker()
   visible = true
 
   constructor() { }
@@ -18,15 +20,15 @@ export class SituationMatrixModalComponent implements OnInit {
   ngOnInit() { }
 
   updateSituation() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   cancel() {
-    this.hide()
-  }
-
-  done() {
-    this.onDone.emit()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   private hide() {

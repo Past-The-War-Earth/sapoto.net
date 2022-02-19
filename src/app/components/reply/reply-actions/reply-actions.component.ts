@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class ReplyActionsComponent implements OnInit {
 
   @Output() onSelection = new EventEmitter()
 
+  sharedClicker = new Clicker()
+
   constructor(
     private replyService: ReplyService
   ) { }
@@ -19,7 +22,9 @@ export class ReplyActionsComponent implements OnInit {
   ngOnInit() { }
 
   onDesignate() {
-    this.onSelection.emit('designate')
+    this.sharedClicker.click(() => {
+      this.onSelection.emit('designate')
+    })
   }
 
   isIdea() {
@@ -31,7 +36,9 @@ export class ReplyActionsComponent implements OnInit {
   }
 
   onReasonAbout() {
-    this.onSelection.emit('reasonAbout')
+    this.sharedClicker.click(() => {
+      this.onSelection.emit('reasonAbout')
+    })
   }
 
 }

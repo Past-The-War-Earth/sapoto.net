@@ -1,7 +1,7 @@
-<ion-menu contentId="page-content" menuId="tools" side="end" type="overlay">
+<ion-menu [contentId]="contentId" [menuId]="menuId" side="end" type="overlay">
   <ion-header>
     <ion-toolbar class="top-toolbar" color="secondary">
-      <ion-title>Situation Tools</ion-title>
+      <ion-title>{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -37,7 +37,8 @@
               <ion-img class="child-menu-icon" src="assets/situation/questions.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Questions</ion-label>
-              <ion-img *ngIf="canAddAQuestion()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addQuestion()"></ion-img>
+              <ion-img *ngIf="canAddAQuestion()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png"
+                (click)="addQuestion()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -46,7 +47,8 @@
               <ion-img class="child-menu-icon" src="assets/situation/experiences.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Experiences</ion-label>
-              <ion-img *ngIf="canAddAnExperience()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addExperience()"></ion-img>
+              <ion-img *ngIf="canAddAnExperience()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png"
+                (click)="addExperience()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -55,7 +57,8 @@
               <ion-img class="child-menu-icon" src="assets/idea/ideas.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Ideas</ion-label>
-              <ion-img *ngIf="canAddAnIdea()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addIdea()"></ion-img>
+              <ion-img *ngIf="canAddAnIdea()" class="child-menu-icon add-icon" src="assets/tools_menu/add.png"
+                (click)="addIdea()"></ion-img>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" menu="tools">
@@ -64,7 +67,8 @@
               <ion-img class="child-menu-icon" src="assets/reply_type/comments.png"></ion-img>
               &nbsp;&nbsp;
               <ion-label>Comments</ion-label>
-              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addComment()"></ion-img>
+              <ion-img class="child-menu-icon add-icon" src="assets/tools_menu/add.png" (click)="addComment()">
+              </ion-img>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

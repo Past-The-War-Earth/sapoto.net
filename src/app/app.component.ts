@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -112,6 +112,7 @@ export class AppComponent {
     }
   ];
   public labels = ['Bed Time', 'Homework', 'Chores', 'Cleaning', 'Hygene'];
+
   constructor() { }
 
   deSpace(

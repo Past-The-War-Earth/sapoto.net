@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { ReplyService } from 'src/app/services/reply.service';
+import { Clicker } from '../../../utils/Clicker';
+import { ReplyService } from '../../../services/reply.service';
 
 @Component({
   selector: 'app-tools-menu',
@@ -9,29 +10,34 @@ import { ReplyService } from 'src/app/services/reply.service';
 })
 export class ToolsMenuComponent implements OnInit {
 
+  @Input() contentId;
+  @Input() menuId;
   @Input() parent;
+  @Input() title
 
   @Output()
   onFilterChange = new EventEmitter();
   @Output()
   onPostReply = new EventEmitter();
 
+  addingAComment = false
+  addingAQuestion = false
+  addingAExperience = false
+  addingAIdea = false
+  addingAReason = false
+  addingARelatedSituation = false
 
   filterValue = ''
 
-  addingAComment = false
-  addingAQuestion = false
-  addingAReason = false
-  addingARelatedSituation = false
-  addingAIdea = false
-  addingAExperience = false
+  sharedClicker = new Clicker()
 
   constructor(
     protected menu: MenuController,
     protected replyService: ReplyService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   onFilterKeyPress(event) {
     if (event.keyCode === 13) {
@@ -65,23 +71,31 @@ export class ToolsMenuComponent implements OnInit {
   }
 
   addExperience() {
-    this.addingAExperience = true
-    this.onPostReply.emit('experience')
+    this.sharedClicker.click(() => {
+      this.addingAExperience = true
+      this.onPostReply.emit('experience')
+    })
   }
 
   addIdea() {
-    this.addingAIdea = true
-    this.onPostReply.emit('idea')
+    this.sharedClicker.click(() => {
+      this.addingAIdea = true
+      this.onPostReply.emit('idea')
+    })
   }
 
   addComment() {
-    this.addingAComment = true
-    this.onPostReply.emit('comment')
+    this.sharedClicker.click(() => {
+      this.addingAComment = true
+      this.onPostReply.emit('comment')
+    })
   }
 
   addQuestion() {
-    this.addingAQuestion = true
-    this.onPostReply.emit('question')
+    this.sharedClicker.click(() => {
+      this.addingAQuestion = true
+      this.onPostReply.emit('question')
+    })
   }
 
   addReason() {

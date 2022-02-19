@@ -3,7 +3,7 @@
       --min-height: 40px !important;
   }
 
-  .top-toolbar ion-title {
+  .top-toolbar .title {
     font-size: 17px;
   }
 
@@ -17,13 +17,18 @@
     --min-height: 44px !important;
   }
 
-  .top-toolbar ion-title {
+  .top-toolbar .title {
     font-size: 18px;
   }
 
   .top-toolbar .sub-title {
     font-size: 14px;
   }
+}
+
+.title {
+  padding-left: 22px;
+  font-size: 19px;
 }
 
 .sub-title {
@@ -40,6 +45,7 @@
     height: 38px;
     padding: 3px;
     border-radius: 22px;
+    width: 38px;
   }
 
   span {

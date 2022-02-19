@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Clicker } from '../../../utils/Clicker';
 import { ReasonService } from '../../../services/reason.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class IdeaReasonsComponent implements OnInit {
 
   addingAReason = false
   newReason
+  sharedClicker = new Clicker()
   visible = true
+
 
   constructor(
     private reasonService: ReasonService
@@ -24,7 +27,7 @@ export class IdeaReasonsComponent implements OnInit {
   ngOnInit() { }
 
   showAddReason() {
-    this.newReason =  this.reasonService.getNewReason()
+    this.newReason = this.reasonService.getNewReason()
     this.addingAReason = true;
   }
 
@@ -33,7 +36,9 @@ export class IdeaReasonsComponent implements OnInit {
   }
 
   addAReason() {
-    this.addingAReason = false;
+    this.sharedClicker.click(() => {
+      this.addingAReason = false;
+    })
   }
 
   // showDoneOptions() {
@@ -68,11 +73,15 @@ export class IdeaReasonsComponent implements OnInit {
   }
 
   save() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   cancel() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   private hide() {

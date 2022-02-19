@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import 'quill-emoji/dist/quill-emoji.js'
+import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { ReplyService } from '../../../services/reply.service';
 
@@ -17,6 +18,7 @@ export class PostReplyComponent implements OnInit {
 
   quillModules
   reply
+  sharedClicker = new Clicker()
   visible = true
 
   constructor(
@@ -34,11 +36,15 @@ export class PostReplyComponent implements OnInit {
   }
 
   enterReply() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   cancel() {
-    this.hide()
+    this.sharedClicker.click(() => {
+      this.hide()
+    })
   }
 
   private hide() {

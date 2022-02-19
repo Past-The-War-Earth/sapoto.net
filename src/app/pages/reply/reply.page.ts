@@ -351,6 +351,8 @@ export class ReplyPage
     }
   }];
 
+  showToolsMenu = false
+
   constructor(
     private dateUtils: DateUtilsService
   ) {
@@ -361,6 +363,14 @@ export class ReplyPage
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.showToolsMenu = true
+  }
+
+  ionViewWillLeave() {
+    this.showToolsMenu = false
   }
 
   filter(
