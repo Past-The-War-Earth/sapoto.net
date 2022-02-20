@@ -1,3 +1,24 @@
+.combined-icon {
+    margin: 0;
+    width: 100%;
+}
+
+.priority-stars {
+    text-align: center;
+}
+
+.priority-icon {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+}
+
+.urgency-icon {
+    height: 30px;
+    width: 30px;
+}
+
+/*
 .active.very-low-urgency {
     border-color: blue;
 }
@@ -122,6 +143,7 @@ div.listing.very-high {
     max-height: 19px;
     max-width: 19px;
 }
+*/
 
 .dimension-label {
     font-size: 11px;
@@ -132,7 +154,7 @@ div.listing.very-high {
     font-size: 13px;
     text-align: center;
     }
-
+/*
 figure {
     border-style: none;
     margin: auto;
@@ -173,3 +195,4 @@ figure.icon.post {
     height: 13px;
     width: 13px;
 }
+*/

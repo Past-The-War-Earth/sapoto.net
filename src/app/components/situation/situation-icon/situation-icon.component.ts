@@ -15,13 +15,23 @@ export class SituationIconComponent implements OnInit {
 
   @Input() type: 'entry' | 'listing';
 
+  priorityStars
+
   constructor(
-    private situationService: SituationService,
     private eisenhowerMatrixService: EisenhowerMatrixService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.priorityStars = []
+    let numberOfStars = this.eisenhowerMatrixService.getImportanceNoDecimalValue(
+      this.situation.eisenhowerMatrix, this.mode)
 
+    for (let i = 0; i < numberOfStars; i++) {
+      this.priorityStars.push(1)
+    }
+  }
+
+  /*
   getImportanceClassName() {
     return this.eisenhowerMatrixService.getImportanceClassName(
       this.situation.eisenhowerMatrix, this.mode
@@ -32,6 +42,7 @@ export class SituationIconComponent implements OnInit {
     return this.eisenhowerMatrixService.getUrgencyClassName(
       this.situation.eisenhowerMatrix, this.mode)
   }
+  */
 
 
   getUrgencyImageName(

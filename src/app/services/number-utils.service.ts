@@ -63,4 +63,20 @@ export class NumberUtilsService {
     }
   }
 
+  get5ScaleNoDecimalValue(
+    value: number
+  ): number {
+    if (value < 1.75) {
+      return 1
+    } else if (value < 2.75) {
+      return 2
+    } else if (value < 3.75) {
+      return 3
+    } else if (value < 4.75) {
+      return 4
+    } else {
+      return 5
+    }
+  }
+
 }

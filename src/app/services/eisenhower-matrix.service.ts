@@ -37,6 +37,15 @@ export class EisenhowerMatrixService {
     return this.numberUtilsService.get5ScaleDisplayValue(value)
   }
 
+  getImportanceNoDecimalValue(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    const value = this.getImportanceValue(eisenhowerMatrix, mode)
+
+    return this.numberUtilsService.get5ScaleNoDecimalValue(value)
+  }
+
   getImportanceValue(
     eisenhowerMatrix,
     mode: 'edit' | 'show'
