@@ -4,15 +4,16 @@
       <ion-header>
         <ion-toolbar class="top-toolbar" color="secondary">
           <div class="title">sapoto.net</div>
-          <div class="sub-title">{{currentTheme.display}}</div>
+          <div class="sub-title">
+            <ion-select class="theme-select" [value]="currentTheme" (ionChange)="onThemeSelect($event)"
+              interface="popover" placeholder="Select a Theme">
+              <ion-select-option *ngFor="let theme of themes; let y = index" [value]="theme">{{theme.display}}
+              </ion-select-option>
+            </ion-select>
+          </div>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-select class="theme-select" [value]="currentTheme" (ionChange)="onThemeSelect($event)" interface="popover"
-          placeholder="Select a Theme">
-          <ion-select-option *ngFor="let theme of themes; let y = index" [value]="theme">{{theme.display}}
-          </ion-select-option>
-        </ion-select>
         <ion-accordion-group>
           <ion-accordion value="{{metaCategory.title}}"
             *ngFor="let metaCategory of currentTheme.metaCategories; let i = index">
