@@ -1,30 +1,33 @@
-<div *ngIf="type === 'entry'" class="dimension-label">
-  Average
-</div>
-<div class="dimension-label">
-  Urgency
-</div>
-<div class="dimension-value">
-  {{getUrgencyDisplayValue()}}
-</div>
 <figure class="combined-icon">
-  <div class="priority-stars">
-    <ion-icon *ngFor="let _ of importanceStars; let y = index" class="priority-icon" name="star-outline">
-    </ion-icon>
+  <div class="importance-container">
+    <div *ngIf="type === 'entry'" class="dimension-label">
+      Average
+    </div>
+    <div class="dimension-label">
+      Importance
+    </div>
+    <div class="priority-stars">
+      <ion-icon *ngFor="let _ of importanceStars; let y = index" class="priority-icon" name="star-outline">
+      </ion-icon>
+    </div>
+    <div class="dimension-value">
+      {{getImportanceDisplayValue()}}
+    </div>
   </div>
-
-  <img *ngIf="isVeryLowUrgency()" class="urgency-icon" src="assets/urgency/icons/low_urgency.png">
-  <ion-icon *ngIf="isLowUrgency()" class="urgency-icon" name="bicycle-outline"></ion-icon>
-  <ion-icon *ngIf="isAverageUrgency()" class="urgency-icon" name="car-outline"></ion-icon>
-  <ion-icon *ngIf="isHighUrgency()" class="urgency-icon" name="airplane-outline"></ion-icon>
-  <ion-icon *ngIf="isVeryHighUrgency()" class="urgency-icon" name="rocket-outline"></ion-icon>
+  <div class="urgency-container">
+    <div *ngIf="type === 'entry'" class="dimension-label">
+      Average
+    </div>
+    <div class="dimension-label">
+      Urgency
+    </div>
+    <img *ngIf="isVeryLowUrgency()" class="urgency-icon" src="assets/urgency/icons/low_urgency_green.png">
+    <ion-icon *ngIf="isLowUrgency()" class="urgency-icon" name="bicycle-outline"></ion-icon>
+    <ion-icon *ngIf="isAverageUrgency()" class="urgency-icon" name="car-outline"></ion-icon>
+    <ion-icon *ngIf="isHighUrgency()" class="urgency-icon" name="airplane-outline"></ion-icon>
+    <ion-icon *ngIf="isVeryHighUrgency()" class="urgency-icon" name="rocket-outline"></ion-icon>
+    <div class="dimension-value">
+      {{getUrgencyDisplayValue()}}
+    </div>
+  </div>
 </figure>
-<div *ngIf="type === 'entry'" class="dimension-label">
-  Average
-</div>
-<div class="dimension-label">
-  Importance
-</div>
-<div class="dimension-value">
-  {{getImportanceDisplayValue()}}
-</div>

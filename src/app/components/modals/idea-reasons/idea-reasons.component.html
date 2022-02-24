@@ -19,7 +19,8 @@
           </ion-col>
           <ion-col size="3">
             <div class="reason-starting-words" *ngIf="newReason.verb">{{newReason.verb}}</div>
-            <ion-select class="reason-option marker" *ngIf="!newReason.verb" [(ngModel)]="newReason.verb" placeholder="What">
+            <ion-select class="reason-option marker" interface="popover" *ngIf="!newReason.verb"
+              [(ngModel)]="newReason.verb" placeholder="What">
               <ion-select-option value="helps">helps</ion-select-option>
               <ion-select-option value="lets">lets</ion-select-option>
               <ion-select-option value="makes">makes</ion-select-option>
@@ -27,7 +28,8 @@
           </ion-col>
           <ion-col class="reason-option" size="3">
             <div class="reason-starting-words" *ngIf="newReason.object">{{newReason.object}}</div>
-            <ion-select class="reason-option marker" *ngIf="!newReason.object" [(ngModel)]="newReason.object" placeholder="Who">
+            <ion-select class="reason-option marker" interface="popover" *ngIf="!newReason.object"
+              [(ngModel)]="newReason.object" placeholder="Who">
               <ion-select-option value="her">her</ion-select-option>
               <ion-select-option value="him">him</ion-select-option>
               <ion-select-option value="them">them</ion-select-option>

@@ -1,6 +1,12 @@
 .combined-icon {
     margin: 0;
+    margin-top: 10px;
+    text-align: center;
     width: 100%;
+}
+
+.priority-container {
+    margin-bottom: 10px;
 }
 
 .priority-stars {
@@ -8,13 +14,16 @@
 }
 
 .priority-icon {
+    color: #ff8000;
     display: inline-block;
     height: 11px;
     width: 11px;
 }
 
 .urgency-icon {
+    color: #ff8000;
     height: 30px;
+    margin-top: 3px;
     width: 30px;
 }
 
