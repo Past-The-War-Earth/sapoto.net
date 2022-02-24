@@ -15,42 +15,20 @@ export class SituationIconComponent implements OnInit {
 
   @Input() type: 'entry' | 'listing';
 
-  priorityStars
+  importanceStars
 
   constructor(
     private eisenhowerMatrixService: EisenhowerMatrixService
   ) { }
 
   ngOnInit() {
-    this.priorityStars = []
+    this.importanceStars = []
     let numberOfStars = this.eisenhowerMatrixService.getImportanceNoDecimalValue(
       this.situation.eisenhowerMatrix, this.mode)
 
     for (let i = 0; i < numberOfStars; i++) {
-      this.priorityStars.push(1)
+      this.importanceStars.push(1)
     }
-  }
-
-  /*
-  getImportanceClassName() {
-    return this.eisenhowerMatrixService.getImportanceClassName(
-      this.situation.eisenhowerMatrix, this.mode
-    )
-  }
-
-  getUrgencyClassName() {
-    return this.eisenhowerMatrixService.getUrgencyClassName(
-      this.situation.eisenhowerMatrix, this.mode)
-  }
-  */
-
-
-  getUrgencyImageName(
-    listing
-  ) {
-    return this.eisenhowerMatrixService.getUrgencyImageName(
-      this.situation.eisenhowerMatrix, this.mode, listing
-    )
   }
 
   getImportanceDisplayValue() {
@@ -60,6 +38,31 @@ export class SituationIconComponent implements OnInit {
 
   getUrgencyDisplayValue() {
     return this.eisenhowerMatrixService.getUrgencyDisplayValue(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  isVeryLowUrgency() {
+    return this.eisenhowerMatrixService.isVeryLowUrgency(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  isLowUrgency() {
+    return this.eisenhowerMatrixService.isLowUrgency(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  isAverageUrgency() {
+    return this.eisenhowerMatrixService.isAverageUrgency(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  isHighUrgency() {
+    return this.eisenhowerMatrixService.isHighUrgency(
+      this.situation.eisenhowerMatrix, this.mode)
+  }
+
+  isVeryHighUrgency() {
+    return this.eisenhowerMatrixService.isVeryHighUrgency(
       this.situation.eisenhowerMatrix, this.mode)
   }
 

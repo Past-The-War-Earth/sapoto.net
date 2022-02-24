@@ -15,25 +15,21 @@ export class ReplyDesignationIconComponent implements OnInit {
 
   @Input() type: 'entry' | 'listing'
 
+  priorityStars
+
   constructor(
     private eisenhowerMatrixService: EisenhowerMatrixService,
     private replyService: ReplyService
   ) { }
 
   ngOnInit() {
-  }
-
-  getPriorityClassName() {
-    return this.eisenhowerMatrixService.getPriorityClassName(
+    this.priorityStars = []
+    let numberOfStars = this.eisenhowerMatrixService.getPriorityNoDecimalValue(
       this.reply.eisenhowerMatrix, this.mode)
-  }
 
-  getUrgencyImageName(
-    listing
-  ) {
-    return this.eisenhowerMatrixService.getUrgencyImageName(
-      this.reply.eisenhowerMatrix, this.mode, listing
-    )
+    for (let i = 0; i < numberOfStars; i++) {
+      this.priorityStars.push(1)
+    }
   }
 
   getPriorityDisplayValue() {
@@ -64,6 +60,31 @@ export class ReplyDesignationIconComponent implements OnInit {
 
   isAQuestion() {
     return this.replyService.hasADesignation('question', this.reply)
+  }
+
+  isVeryLowUrgency() {
+    return this.eisenhowerMatrixService.isVeryLowUrgency(
+      this.reply.eisenhowerMatrix, this.mode)
+  }
+
+  isLowUrgency() {
+    return this.eisenhowerMatrixService.isLowUrgency(
+      this.reply.eisenhowerMatrix, this.mode)
+  }
+
+  isAverageUrgency() {
+    return this.eisenhowerMatrixService.isAverageUrgency(
+      this.reply.eisenhowerMatrix, this.mode)
+  }
+
+  isHighUrgency() {
+    return this.eisenhowerMatrixService.isHighUrgency(
+      this.reply.eisenhowerMatrix, this.mode)
+  }
+
+  isVeryHighUrgency() {
+    return this.eisenhowerMatrixService.isVeryHighUrgency(
+      this.reply.eisenhowerMatrix, this.mode)
   }
 
 }

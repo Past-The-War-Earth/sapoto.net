@@ -8,9 +8,17 @@
   <div class="dimension-value">
     {{getUrgencyDisplayValue()}}
   </div>
-  <figure class="idea {{type}} {{getPriorityClassName()}}">
-    <img class="urgency-image {{getPriorityClassName()}}"
-      src="assets/urgency/listing/{{getUrgencyImageName(false)}}.png">
+  <figure class="combined-icon">
+    <div class="priority-stars">
+      <ion-icon *ngFor="let _ of priorityStars; let y = index" class="priority-icon" name="sunny-outline">
+      </ion-icon>
+    </div>
+
+    <img *ngIf="isVeryLowUrgency()" class="urgency-icon" src="assets/urgency/icons/low_urgency.png">
+    <ion-icon *ngIf="isLowUrgency()" class="urgency-icon" name="bicycle-outline"></ion-icon>
+    <ion-icon *ngIf="isAverageUrgency()" class="urgency-icon" name="car-outline"></ion-icon>
+    <ion-icon *ngIf="isHighUrgency()" class="urgency-icon" name="airplane-outline"></ion-icon>
+    <ion-icon *ngIf="isVeryHighUrgency()" class="urgency-icon" name="rocket-outline"></ion-icon>
   </figure>
   <div *ngIf="type === 'entry'" class="dimension-label">
     Average
@@ -33,4 +41,27 @@
       {{questionType}}
     </div>
   </div>
+
+.designation-container {
+    margin-top: 5px;
+}
+
+.designation-icon {
+    width: 20px;
+    margin-left: 3px;
+}
+
+.question-types {
+    padding-top: 5px;
+    width: 100%;
+}
+  
+.question-type {
+    font-size: 11px;
+    padding: 3px;
+    padding-left: 0px;
+    padding-top: 0px;
+    text-align: center;
+}
+
 -->

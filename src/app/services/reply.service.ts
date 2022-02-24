@@ -108,7 +108,7 @@ export class ReplyService {
     if (!average) {
       return ""
     }
-    return this.numberUtilsService.get5ScaleDisplayValue(average)
+    return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(average)
   }
 
   sortBy(

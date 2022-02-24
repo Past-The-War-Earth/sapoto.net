@@ -39,40 +39,40 @@ export class NumberUtilsService {
     }
   }
 
-  get5ScaleDisplayValue(
+  get1to5WithOneDecimalDisplayValue(
     value: number
   ): string {
-    if (value < 1.25) {
+    if (value <= 1.25) {
       return "1"
-    } else if (value < 1.75) {
+    } else if (value <= 1.75) {
       return "1.5"
-    } else if (value < 2.25) {
+    } else if (value <= 2.25) {
       return "2"
-    } else if (value < 2.75) {
+    } else if (value <= 2.75) {
       return "2.5"
-    } else if (value < 3.25) {
+    } else if (value <= 3.25) {
       return "3"
-    } else if (value < 3.75) {
+    } else if (value <= 3.75) {
       return "3.5"
-    } else if (value < 4.25) {
+    } else if (value <= 4.25) {
       return "4"
-    } else if (value < 4.75) {
+    } else if (value <= 4.75) {
       return "4.5"
     } else {
       return "5"
     }
   }
 
-  get5ScaleNoDecimalValue(
+  get1to5WithNoDecimalValue(
     value: number
   ): number {
-    if (value < 1.75) {
+    if (value <= 1.5) {
       return 1
-    } else if (value < 2.75) {
+    } else if (value <= 2.5) {
       return 2
-    } else if (value < 3.75) {
+    } else if (value <= 3.5) {
       return 3
-    } else if (value < 4.75) {
+    } else if (value <= 4.5) {
       return 4
     } else {
       return 5

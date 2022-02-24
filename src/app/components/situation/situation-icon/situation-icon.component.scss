@@ -9,141 +9,14 @@
 
 .priority-icon {
     display: inline-block;
-    height: 12px;
-    width: 12px;
+    height: 11px;
+    width: 11px;
 }
 
 .urgency-icon {
     height: 30px;
     width: 30px;
 }
-
-/*
-.active.very-low-urgency {
-    border-color: blue;
-}
-
-.active.low-urgency {
-    border-color: green;
-}
-
-.active.average-urgency {
-    border-color: gold;
-}
-
-.active.high-urgency {
-    border-color: orange;
-}
-
-.active.very-high-urgency {
-    border-color: red;
-}
-
-div.listing:not(.active) {
-    padding-top: 3.5px;
-}
-
-.entry.importance.very-high {
-    width: 150px;
-    height: 150px;
-}
-
-div.listing.very-high {
-    width: 54px;
-    height: 54px;
-}
-
-.importance {
-    border-style: none;
-    margin: auto;
-    position: relative;
-}
-
-.importance.entry {
-    border-width: 4px;
-    height: calc(100% - 10px);
-    top: 5px;
-    width: calc(100% - 10px);
-}
-
-.importance.listing {
-    border-width: 3px;
-    // top: 0px;
-}
-
-.very-high.active {
-    border-style: solid;
-}
-
-.entry.high {
-    max-height: 130px;
-    max-width: 130px;
-}
-
-.listing.high {
-    height: 47px;
-    width: 47px;
-}
-
-.high.active {
-    border-style: double;
-}
-
-.entry.average {
-    max-height: 110px;
-    max-width: 110px;
-}
-
-.listing.average {
-    height: 40px;
-    width: 40px;
-}
-
-.average.active {
-    border-style: dashed;
-}
-
-.entry.low {
-    max-height: 90px;
-    max-width: 90px;
-}
-
-.listing.low {
-    height: 33px;
-    width: 33px;
-}
-
-.entry.very-low {
-    max-height: 70px;
-    max-width: 70px;
-}
-
-.listing.very-low {
-    height: 26px;
-    width: 26px;
-}
-
-.low.active, .very-low.active {
-    border-style: dotted;
-}
-
-.urgency-image {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.entry.urgency-image {
-    max-height: 55px;
-    max-width: 55px;
-}
-
-.listing.urgency-image {
-    max-height: 19px;
-    max-width: 19px;
-}
-*/
 
 .dimension-label {
     font-size: 11px;
@@ -154,45 +27,3 @@ div.listing.very-high {
     font-size: 13px;
     text-align: center;
     }
-/*
-figure {
-    border-style: none;
-    margin: auto;
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-
-figure.icon.entry {
-    height: 53px;
-}
-
-figure.icon.post {
-    height: 53px;
-}
-
-.very-high-importance, figure.very-high-importance {
-    height: 53px;
-    width: 53px;
-}
-
-.high-importance, figure.high-importance {
-    height: 43px;
-    width: 43px;
-}
-
-.average-importance, figure.average-importance {
-    height: 33px;
-    width: 33px;
-}
-
-.low-importance, figure.low-importance {
-    height: 23px;
-    width: 23px;
-}
-
-.very-low-importance, figure.very-low-importance {
-    height: 13px;
-    width: 13px;
-}
-*/

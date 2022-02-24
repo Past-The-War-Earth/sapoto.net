@@ -7,27 +7,17 @@
 <div class="dimension-value">
   {{getUrgencyDisplayValue()}}
 </div>
-<!--
-  <figure class="icon {{type}} {{getImportanceClassName()}}">
-    <img class="urgency-image {{getImportanceClassName()}}"
-    src="assets/urgency/listing/{{getUrgencyImageName(false)}}.png">
-  </figure>
--->
-
 <figure class="combined-icon">
   <div class="priority-stars">
-    <ion-icon name="star-outline"></ion-icon>
-    <ion-icon *ngFor="let priorityStar of priorityStars; let y = index" class="star-outline"
-      src="assets/urgency/listing/low_urgency.png"></ion-icon>
+    <ion-icon *ngFor="let _ of importanceStars; let y = index" class="priority-icon" name="star-outline">
+    </ion-icon>
   </div>
 
-  <ion-icon class="urgency-icon" name="walk-outline"></ion-icon>
-  <!--
-    <ion-icon name="bicycle-outline"></ion-icon>
-    <ion-icon name="car-outline"></ion-icon>
-    <ion-icon name="airplane-outline"></ion-icon>
-    <ion-icon name="rocket-outline"></ion-icon>
-  -->
+  <img *ngIf="isVeryLowUrgency()" class="urgency-icon" src="assets/urgency/icons/low_urgency.png">
+  <ion-icon *ngIf="isLowUrgency()" class="urgency-icon" name="bicycle-outline"></ion-icon>
+  <ion-icon *ngIf="isAverageUrgency()" class="urgency-icon" name="car-outline"></ion-icon>
+  <ion-icon *ngIf="isHighUrgency()" class="urgency-icon" name="airplane-outline"></ion-icon>
+  <ion-icon *ngIf="isVeryHighUrgency()" class="urgency-icon" name="rocket-outline"></ion-icon>
 </figure>
 <div *ngIf="type === 'entry'" class="dimension-label">
   Average

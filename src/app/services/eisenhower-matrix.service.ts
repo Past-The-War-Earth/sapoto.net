@@ -34,7 +34,7 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getImportanceValue(eisenhowerMatrix, mode)
 
-    return this.numberUtilsService.get5ScaleDisplayValue(value)
+    return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
   getImportanceNoDecimalValue(
@@ -43,7 +43,7 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getImportanceValue(eisenhowerMatrix, mode)
 
-    return this.numberUtilsService.get5ScaleNoDecimalValue(value)
+    return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   getImportanceValue(
@@ -82,7 +82,16 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getPriorityValue(eisenhowerMatrix, mode)
 
-    return this.numberUtilsService.get5ScaleDisplayValue(value)
+    return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
+  }
+
+  getPriorityNoDecimalValue(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    const value = this.getPriorityValue(eisenhowerMatrix, mode)
+
+    return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   getPriorityValue(
@@ -140,7 +149,52 @@ export class EisenhowerMatrixService {
   ) {
     const value = this.getUrgencyValue(eisenhowerMatrix, mode)
 
-    return this.numberUtilsService.get5ScaleDisplayValue(value)
+    return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
+  }
+
+  isVeryLowUrgency(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    return this.urgencyEquals(eisenhowerMatrix, mode, 1)
+  }
+
+  isLowUrgency(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    return this.urgencyEquals(eisenhowerMatrix, mode, 2)
+  }
+
+  isAverageUrgency(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    return this.urgencyEquals(eisenhowerMatrix, mode, 3)
+  }
+
+  isHighUrgency(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    return this.urgencyEquals(eisenhowerMatrix, mode, 4)
+  }
+
+  isVeryHighUrgency(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    return this.urgencyEquals(eisenhowerMatrix, mode, 5)
+  }
+
+  private urgencyEquals(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show',
+    equalsToValue
+  ) {
+    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
+
+    return equalsToValue === this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   getUrgencyValue(
