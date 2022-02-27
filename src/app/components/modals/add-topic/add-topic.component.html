@@ -1,7 +1,23 @@
 <ion-modal [isOpen]="visible">
   <ng-template>
+    <ion-header class="ion-no-border">
+      <ion-title>Add a Topic</ion-title>
+    </ion-header>
     <ion-content>
-      
+      <div class="image-wrapper">
+        <div class="image-standin">
+          <img class="image-standin-icon" src="assets/icon/picture.png">
+        </div>
+      </div>
+      <ion-button expand="full">Upload Topic Image</ion-button>
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input placeholder="Enter topic name..."></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea placeholder="Enter topic description..."></ion-textarea>
+      </ion-item>
     </ion-content>
     <ion-footer class="ion-no-border">
       <ion-toolbar>
