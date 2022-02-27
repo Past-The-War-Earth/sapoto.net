@@ -14,19 +14,40 @@ export class SituationIconComponent implements OnInit {
 
   @Input() type: 'entry' | 'listing';
 
-  importanceStars
+  importancePoints
+  halfImportancePoint = false
+  halfUrgencyPoint = false
+  urgencyPoints
 
   constructor(
     private eisenhowerMatrixService: EisenhowerMatrixService
   ) { }
 
   ngOnInit() {
-    this.importanceStars = []
-    let numberOfStars = this.eisenhowerMatrixService.getImportanceNoDecimalValue(
+    this.importancePoints = []
+    let importanceDisplayValue = this.eisenhowerMatrixService.getImportanceDisplayValue(
       this.situation.eisenhowerMatrix, this.mode)
 
-    for (let i = 0; i < numberOfStars; i++) {
-      this.importanceStars.push(1)
+    const wholeImportanceValue: any = importanceDisplayValue.substring(0, 1)
+    if (importanceDisplayValue.endsWith(".5")) {
+      this.halfImportancePoint = true
+    }
+
+    for (let i = 0; i < wholeImportanceValue; i++) {
+      this.importancePoints.push(1)
+    }
+
+    this.urgencyPoints = []
+    let urgencyDisplayValue = this.eisenhowerMatrixService.getUrgencyDisplayValue(
+      this.situation.eisenhowerMatrix, this.mode)
+
+    const wholeUrgencyValue: any = urgencyDisplayValue.substring(0, 1)
+    if (urgencyDisplayValue.endsWith(".5")) {
+      this.halfUrgencyPoint = true
+    }
+
+    for (let i = 0; i < wholeUrgencyValue; i++) {
+      this.urgencyPoints.push(1)
     }
   }
 

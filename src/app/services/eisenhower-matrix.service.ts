@@ -37,7 +37,7 @@ export class EisenhowerMatrixService {
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
-  getImportanceNoDecimalValue(
+  getApproximateImportanceNoDecimalValue(
     eisenhowerMatrix,
     mode: 'edit' | 'show'
   ) {
@@ -85,7 +85,7 @@ export class EisenhowerMatrixService {
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
-  getPriorityNoDecimalValue(
+  getAproximatePriorityNoDecimalValue(
     eisenhowerMatrix,
     mode: 'edit' | 'show'
   ) {
@@ -150,6 +150,15 @@ export class EisenhowerMatrixService {
     const value = this.getUrgencyValue(eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
+  }
+
+  getApproximateUrgencyNoDecimalValue(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
+
+    return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   isVeryLowUrgency(

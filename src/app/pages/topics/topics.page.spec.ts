@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ReplyDesignationIconComponent } from './reply-designation-icon.component';
+import { TopicsPage } from './topics.page';
 
-describe('IdeaIconComponent', () => {
-  let component: ReplyDesignationIconComponent;
-  let fixture: ComponentFixture<ReplyDesignationIconComponent>;
+describe('TopicsPage', () => {
+  let component: TopicsPage;
+  let fixture: ComponentFixture<TopicsPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReplyDesignationIconComponent ],
+      declarations: [ TopicsPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ReplyDesignationIconComponent);
+    fixture = TestBed.createComponent(TopicsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

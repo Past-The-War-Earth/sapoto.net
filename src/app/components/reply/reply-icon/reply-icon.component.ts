@@ -3,11 +3,11 @@ import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.ser
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
-  selector: 'app-reply-designation-icon',
-  templateUrl: './reply-designation-icon.component.html',
-  styleUrls: ['./reply-designation-icon.component.scss'],
+  selector: 'app-reply-icon',
+  templateUrl: './reply-icon.component.html',
+  styleUrls: ['./reply-icon.component.scss'],
 })
-export class ReplyDesignationIconComponent implements OnInit {
+export class ReplyIconComponent implements OnInit {
 
   @Input() mode: 'edit' | 'show'
 
@@ -15,7 +15,10 @@ export class ReplyDesignationIconComponent implements OnInit {
 
   @Input() type: 'entry' | 'listing'
 
-  priorityStars
+  priorityPoints
+  halfPriorityPoint = false
+  halfUrgencyPoint = false
+  urgencyPoints
 
   constructor(
     private eisenhowerMatrixService: EisenhowerMatrixService,
@@ -23,12 +26,30 @@ export class ReplyDesignationIconComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.priorityStars = []
-    let numberOfStars = this.eisenhowerMatrixService.getPriorityNoDecimalValue(
+    this.priorityPoints = []
+    let priorityDisplayValue = this.eisenhowerMatrixService.getPriorityDisplayValue(
       this.reply.eisenhowerMatrix, this.mode)
 
-    for (let i = 0; i < numberOfStars; i++) {
-      this.priorityStars.push(1)
+    const wholePriorityValue: any = priorityDisplayValue.substring(0, 1)
+    if (priorityDisplayValue.endsWith(".5")) {
+      this.halfPriorityPoint = true
+    }
+
+    for (let i = 0; i < wholePriorityValue; i++) {
+      this.priorityPoints.push(1)
+    }
+
+    this.urgencyPoints = []
+    let urgencyDisplayValue = this.eisenhowerMatrixService.getUrgencyDisplayValue(
+      this.reply.eisenhowerMatrix, this.mode)
+
+    const wholeUrgencyValue: any = urgencyDisplayValue.substring(0, 1)
+    if (urgencyDisplayValue.endsWith(".5")) {
+      this.halfUrgencyPoint = true
+    }
+
+    for (let i = 0; i < wholeUrgencyValue; i++) {
+      this.urgencyPoints.push(1)
     }
   }
 

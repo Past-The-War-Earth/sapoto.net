@@ -8,7 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'situation-list/:id',
+    path: 'situation-list/:name',
     loadChildren: () => import('./pages/situation-list/situation-list.module').then(m => m.SituationListPageModule)
   },
   {
@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'reply',
     loadChildren: () => import('./pages/reply/reply.module').then(m => m.ReplyPageModule)
+  },  {
+    path: 'topics',
+    loadChildren: () => import('./pages/topics/topics.module').then( m => m.TopicsPageModule)
   }
+
 
 ];
 

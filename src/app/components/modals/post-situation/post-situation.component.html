@@ -1,6 +1,7 @@
 <ion-modal [isOpen]="visible">
   <ng-template>
     <ion-content>
+      <app-situation-topic-select [situation]="situation"></app-situation-topic-select>
       <app-media-recorder></app-media-recorder>
       <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>
       <quill-editor [(ngModel)]="situation.text" [modules]="quillModules" [sanitize]="true"></quill-editor>

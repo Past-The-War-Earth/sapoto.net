@@ -1,0 +1,24 @@
+<app-page-header title="Topics">
+</app-page-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let topic of topics; let i = index" size="12" size-sm="6" size-md="4" size-lg="4" size-xl="3">
+        <ion-card>
+          <img [src]="topic.imageUrl" />
+          <ion-card-header>
+            <ion-card-subtitle>Topic</ion-card-subtitle>
+            <ion-card-title>{{topic.name}}</ion-card-title>
+            <img *ngIf="topic.favorite" (click)="toggleFavorite(topic)" class="favorite-icon"
+              src="assets/menu/favorite_selected.png">
+            <img *ngIf="!topic.favorite" (click)="toggleFavorite(topic)" class="favorite-icon"
+              src="assets/menu/favorite.png">
+          </ion-card-header>
+          <ion-card-content>
+            {{topic.description}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,42 @@
+<div *ngIf="isIdea()" class="idea">
+  <figure class="combined-icon">
+    <div class="priority-container">
+      <div *ngIf="type === 'entry'" class="dimension-label">
+        Average
+      </div>
+      <div class="dimension-label">
+        Priority
+      </div>
+      <div class="priority-points">
+        <img *ngFor="let _ of priorityPoints; let y = index" class="priority-icon"
+          src="assets/priority/rating/priority_rating_full_point.png">
+        <img *ngIf="halfPriorityPoint" class="priority-icon"
+          src="assets/priority/rating/priority_rating_half_point.png">
+      </div>
+      <div class="dimension-value">
+        {{getPriorityDisplayValue()}}
+      </div>
+    </div>
+    <div class="urgency-container">
+      <div *ngIf="type === 'entry'" class="dimension-label">
+        Average
+      </div>
+      <div class="dimension-label">
+        Urgency
+      </div>
+      <div class="urgency-points">
+        <img *ngFor="let _ of urgencyPoints; let y = index" class="priority-icon"
+          src="assets/urgency/rating/urgency_rating_full_point.png">
+        <img *ngIf="halfUrgencyPoint" class="urgency-icon" src="assets/urgency/rating/urgency_rating_half_point.png">
+      </div>
+      <div class="dimension-value">
+        {{getUrgencyDisplayValue()}}
+      </div>
+    </div>
+  </figure>
+</div>
+<figure class="designation-container">
+  <img *ngIf="isComment()" class="designation-icon" src="assets/reply_type/comments_active.png" />
+  <img *ngIf="isExperience()" class="designation-icon" src="assets/reply_type/experiences_active.png">
+  <img *ngIf="isQuestion()" class="designation-icon" src="assets/reply_type/questions_active.png" />
+</figure>

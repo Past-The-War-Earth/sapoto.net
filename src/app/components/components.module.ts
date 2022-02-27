@@ -7,7 +7,7 @@ import { IdeaStatsComponent } from './idea/idea-stats/idea-stats.component';
 import { ReplyListingComponent } from './reply/reply-listing/reply-listing.component';
 import { ToolsMenuComponent } from './common/tools-menu/tools-menu.component';
 import { PageHeaderComponent } from './common/page-header/page-header.component';
-import { ReplyDesignationIconComponent } from './reply/reply-designation-icon/reply-designation-icon.component';
+import { ReplyIconComponent } from './reply/reply-icon/reply-icon.component';
 import { SituationIconComponent } from './situation/situation-icon/situation-icon.component';
 import { IdeaTabIconComponent } from './idea/idea-tab-icon/idea-tab-icon.component';
 import { IdeaStatsIconComponent } from './idea/idea-stats-icon/idea-stats-icon.component';
@@ -32,9 +32,12 @@ import { ReplyTypesModalComponent } from './modals/reply-types-modal/reply-types
 import { ReplyTypesComponent } from './reply/reply-types/reply-types.component';
 import { SituationMatrixModalComponent } from './modals/situation-matrix-modal/situation-matrix-modal.component';
 import { RouterModule } from '@angular/router';
+import { SituationTopicSelectComponent } from './situation/situation-topic-select/situation-topic-select.component';
+import { AddTopicComponent } from './modals/add-topic/add-topic.component';
 
 @NgModule({
   declarations: [
+    AddTopicComponent,
     IdeaReasonsComponent,
     IdeaStatsComponent,
     IdeaStatsIconComponent,
@@ -46,7 +49,7 @@ import { RouterModule } from '@angular/router';
     PostSituationComponent,
     ReplyActionsComponent,
     ReplyBlockComponent,
-    ReplyDesignationIconComponent,
+    ReplyIconComponent,
     ReplyEntryBarComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
@@ -61,6 +64,7 @@ import { RouterModule } from '@angular/router';
     SituationMatrixComponent,
     SituationMatrixModalComponent,
     SituationStatsComponent,
+    SituationTopicSelectComponent,
     ToolsMenuComponent
   ],
   imports: [
@@ -72,6 +76,7 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [
+    AddTopicComponent,
     IdeaReasonsComponent,
     IdeaStatsIconComponent,
     IdeaStatsComponent,
@@ -83,7 +88,7 @@ import { RouterModule } from '@angular/router';
     PostSituationComponent,
     ReplyActionsComponent,
     ReplyBlockComponent,
-    ReplyDesignationIconComponent,
+    ReplyIconComponent,
     ReplyEntryBarComponent,
     ReplyListingComponent,
     ReplySortOrderComponent,
@@ -98,6 +103,7 @@ import { RouterModule } from '@angular/router';
     SituationMatrixComponent,
     SituationMatrixModalComponent,
     SituationStatsComponent,
+    SituationTopicSelectComponent,
     ToolsMenuComponent,
   ]
 })

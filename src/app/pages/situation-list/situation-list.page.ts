@@ -196,20 +196,24 @@ export class SituationListPage implements OnInit {
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
   }]
 
+  topicName
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
-    private router: Router,
     public situationSearchService: SituationSearchService
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.topicName = params['name'];
+    });
     this.myForm = new FormGroup({
       country: new FormControl('', [
         Validators.required
       ])
     })
-    this.topic = this.activatedRoute.snapshot.paramMap.get('id');
+    this.topic = this.activatedRoute.snapshot.paramMap.get('name');
   }
 
   trackBySituations(index, situation) {

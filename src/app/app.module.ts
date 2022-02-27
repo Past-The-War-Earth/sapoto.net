@@ -9,6 +9,7 @@ import { QuillModule } from 'ngx-quill'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component';
   entryComponents: [],
   imports: [
     BrowserModule,
+    ComponentsModule,
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,

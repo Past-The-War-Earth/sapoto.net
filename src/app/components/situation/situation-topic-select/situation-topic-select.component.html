@@ -1,0 +1,21 @@
+<div>
+  <div class="topic-search-label">Topic:</div>
+  <ion-auto-complete #searchbar (modelChange)="modelChange()" [clearInvalidInput]="false"
+    [dataProvider]="topicSearchService" [emptyTemplate]="noResults"
+    [options]="{ placeholder : 'Select Situation Topic' }" [styles]="autoCompleteStyles"
+    [template]="topicListingTemplate" [useIonInput]="true" class="topic-search">
+  </ion-auto-complete>
+</div>
+<ng-template #topicListingTemplate let-attrs="attrs">
+  <div class="topic-listing">
+    {{attrs.data.name}}
+  </div>
+</ng-template>
+<ng-template #noResults let-attrs="attrs">
+  <div *ngIf="showNoTopicsFound()">
+    <ion-text class="no-topics-found-label">No topics found.</ion-text>
+    <ion-button [size]="'full'" (click)="add()">
+      Create new Topic
+    </ion-button>
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -28,6 +28,10 @@ export class SituationMatrixComponent implements OnInit {
     labels
   ) {
     this.labelSelected.next(labels)
+  }
+
+  showTopic() {
+    return this.type === 'post'
   }
 
 }

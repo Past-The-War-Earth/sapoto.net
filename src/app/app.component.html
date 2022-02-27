@@ -5,71 +5,28 @@
         <ion-toolbar class="top-toolbar" color="secondary">
           <div class="title">sapoto.net</div>
           <div class="sub-title">
-            <ion-select class="theme-select" [value]="currentTheme" (ionChange)="onThemeSelect($event)"
-              interface="popover" placeholder="Select a Theme">
-              <ion-select-option *ngFor="let theme of themes; let y = index" [value]="theme">{{theme.display}}
-              </ion-select-option>
-            </ion-select>
+            Support Network
           </div>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-accordion-group>
-          <ion-accordion value="{{metaCategory.title}}"
-            *ngFor="let metaCategory of currentTheme.metaCategories; let i = index">
-            <ion-item slot="header">
-              <!-- <span class="{{metaCategory.image}}"> -->
-              <span>
-                <img src="assets/menu/simple/{{metaCategory.image}}.png  ">
-                <!--
-                <ion-avatar class="menu-image">
-                  <img src="assets/menu/{{metaCategory.image}}.png">
-                </ion-avatar>
-                -->
-              </span>
-              <ion-label>{{ metaCategory.title }}</ion-label>
-            </ion-item>
-
-            <ion-list slot="content">
-              <ion-menu-toggle auto-hide="false">
-                <ion-item class="category-item" [routerLink]="['situation-list/' + category.label]"
-                  *ngFor="let category of metaCategory.categories; let y = index">
-                  <ion-img class="category-icon" *ngIf="category.icon" src="assets/{{category.icon}}"></ion-img>
-                  <ion-label [ngClass]="{'no-icon': !category.icon}">{{ category.label }}</ion-label>
-                </ion-item>
-              </ion-menu-toggle>
-            </ion-list>
-          </ion-accordion>
-          <ion-accordion value="Labels">
-            <ion-item slot="header">
-              <span>
-                <div class="label-icon">
-                  <div class="label-icon-dot"></div>
-                </div>
-                <!--
-                  <ion-img src="assets/menu/Topics.png">
-                  </ion-img>
-                -->
-                <!--
-                <ion-avatar class="menu-image">
-                  <img src="assets/menu/Topics.png">
-                </ion-avatar>
-              -->
-              </span>
-              <ion-label>Recent Labels</ion-label>
-            </ion-item>
-
-            <ion-list slot="content">
-              <ion-menu-toggle auto-hide="false">
-                <ion-item class="label-item" *ngFor="let label of labels; let y = index">
-                  <ion-label>{{ label }}</ion-label>
-                </ion-item>
-              </ion-menu-toggle>
-            </ion-list>
-          </ion-accordion>
-        </ion-accordion-group>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="addATopic()">
+            <ion-img class="topic-menu-icon" src="assets/menu/add.png"></ion-img>
+            <ion-label>Add a Topic</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['situation-list/' + topic.name]" *ngFor="let topic of topics; let i = index">
+            <ion-label>{{ topic.name }}</ion-label>
+            <ion-img *ngIf="topic.favorite" class="topic-favorite" src="assets/menu/favorite_selected.png"></ion-img>
+          </ion-item>
+          <ion-item [routerLink]="['topics']">
+            <ion-img class="topic-menu-icon" src="assets/menu/discover.png"></ion-img>
+            <ion-label>More Topics</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+<app-add-topic *ngIf="isAddingATopic()" (onDone)="doneAddingATopic()"></app-add-topic>
