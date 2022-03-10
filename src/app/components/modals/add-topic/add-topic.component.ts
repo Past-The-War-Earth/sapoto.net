@@ -19,12 +19,6 @@ export class AddTopicComponent implements OnInit {
   ngOnInit() {
   }
 
-  enterReply() {
-    this.sharedClicker.click(() => {
-      this.hide()
-    })
-  }
-
   cancel() {
     this.sharedClicker.click(() => {
       this.hide()
