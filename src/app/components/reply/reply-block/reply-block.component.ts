@@ -11,8 +11,8 @@ import { ReplyService } from '../../../services/reply.service';
 })
 export class ReplyBlockComponent implements OnInit {
 
-  @Input() action
   @Input() actionsTriggerElementId
+  @Input() activeActionsReplyId
   @Input() reply
   @Input() type
 
@@ -34,21 +34,19 @@ export class ReplyBlockComponent implements OnInit {
     })
   }
 
-  showReplyTypes() {
-    return this.action === 'designate'
+  showReplies(): boolean {
+    return this.reply.replies && this.reply.replies.length
   }
 
-  showIdeaReasons() {
-    return this.replyService.hasADesignation('idea', this.reply)
-      && this.action === 'reasonAbout'
+  trackByReplies(index, reply) {
+    return reply.id
   }
 
-  showActionsIcon() {
-    return !this.action
-  }
-
-  replyTypesDone() {
-    this.action = null
+  setDesignatedReply(
+    reply
+  ) {
+    this.activeActionsReplyId = reply.id
+    this.onActionsClick.emit(reply)
   }
 
   hasAnyOfDesignations(

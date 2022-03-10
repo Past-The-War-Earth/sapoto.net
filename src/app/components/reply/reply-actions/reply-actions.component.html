@@ -5,6 +5,9 @@
   <ion-item *ngIf="isIdea()" (click)="onReasonAbout()" button [detail]="false">
     Reason About
   </ion-item>
+  <ion-item (click)="doReply()" button [detail]="false">
+    Reply
+  </ion-item>
   <ion-item *ngIf="isIdea()" button [detail]="false" [disabled]="true">
     Add as Task
   </ion-item>

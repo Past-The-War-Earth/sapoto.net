@@ -43,17 +43,20 @@
       </table>
     </ion-col>
     <ion-col size="5" class="reply-in-thread">
+      <!--
       <div *ngIf="showMainAction()" class="reply-action">
         <div class="reply-action" *ngIf="reply.counts.replies === 0" (click)="addReply(reply)">Reply</div>
         <a *ngIf="reply.counts.replies === 1" [routerLink]="['/reply']">1 reply</a>
         <a *ngIf="reply.counts.replies > 1" [routerLink]="['/reply']">{{getNumberAcronym(reply.counts.replies)}}
           replies</a>
       </div>
+      -->
     </ion-col>
   </ion-row>
+  <ion-list class="nested-replies" *ngIf="showReplies()">
+    <ion-item class="reply" *ngFor="let nestedReply of reply.replies; trackBy: trackByReplies">
+      <app-reply-block (onActionsClick)="setDesignatedReply(reply)" [actionsTriggerElementId]="actionsTriggerElementId"
+        [reply]="nestedReply" type="listing"></app-reply-block>
+    </ion-item>
+  </ion-list>
 </div>
-<app-reply-types-modal *ngIf="showReplyTypes()" [action]="action" [parent]="reply.parent" [reply]="reply"
-  (onDone)="replyTypesDone()" type="listing">
-</app-reply-types-modal>
-<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypesDone()" [idea]="reply" type="listing">
-</app-idea-reasons>

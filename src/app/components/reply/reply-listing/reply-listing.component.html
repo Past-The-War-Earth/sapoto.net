@@ -1,8 +1,14 @@
-<app-reply-type-labels (onSelection)="setReplyTypeFilters($event)" [parent]="parent" [type]="'filter'"></app-reply-type-labels>
+<app-reply-type-labels (onSelection)="setReplyTypeFilters($event)" [parent]="parent" [type]="'filter'">
+</app-reply-type-labels>
 <app-reply-sort-order (onSelection)="sortBy($event)"></app-reply-sort-order>
 <ion-list>
   <ion-item class="reply" *ngFor="let reply of filteredReplies; trackBy: trackByReplies">
-    <app-reply-block (onActionsClick)="setDesignatedReply(reply)" [action]="getReplyAction(reply)"
+    <app-reply-block (onActionsClick)="setDesignatedReply(reply)"
       [actionsTriggerElementId]="actionsTriggerElementId" [reply]="reply" type="listing"></app-reply-block>
   </ion-item>
 </ion-list>
+<app-reply-types-modal *ngIf="showReplyTypes()" [action]="action" [parent]="activeReply.parent" [reply]="activeReply"
+  (onDone)="replyTypesDone()" type="listing">
+</app-reply-types-modal>
+<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypesDone()" [idea]="activeReply" type="listing">
+</app-idea-reasons>

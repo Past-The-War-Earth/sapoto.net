@@ -34,10 +34,12 @@ import { SituationMatrixModalComponent } from './modals/situation-matrix-modal/s
 import { RouterModule } from '@angular/router';
 import { SituationTopicSelectComponent } from './situation/situation-topic-select/situation-topic-select.component';
 import { AddTopicComponent } from './modals/add-topic/add-topic.component';
+import { EnterReplyComponent } from './common/enter-reply/enter-reply.component';
 
 @NgModule({
   declarations: [
     AddTopicComponent,
+    EnterReplyComponent,
     IdeaReasonsComponent,
     IdeaStatsComponent,
     IdeaStatsIconComponent,
@@ -77,6 +79,7 @@ import { AddTopicComponent } from './modals/add-topic/add-topic.component';
   ],
   exports: [
     AddTopicComponent,
+    EnterReplyComponent,
     IdeaReasonsComponent,
     IdeaStatsIconComponent,
     IdeaStatsComponent,

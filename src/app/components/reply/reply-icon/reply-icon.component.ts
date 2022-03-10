@@ -53,16 +53,6 @@ export class ReplyIconComponent implements OnInit {
     }
   }
 
-  getPriorityDisplayValue() {
-    return this.eisenhowerMatrixService.getPriorityDisplayValue(
-      this.reply.eisenhowerMatrix, this.mode)
-  }
-
-  getUrgencyDisplayValue() {
-    return this.eisenhowerMatrixService.getUrgencyDisplayValue(
-      this.reply.eisenhowerMatrix, this.mode)
-  }
-
   isComment() {
     return this.replyService.isComment(this.reply)
   }

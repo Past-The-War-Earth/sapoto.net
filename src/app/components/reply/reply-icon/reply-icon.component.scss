@@ -13,7 +13,19 @@
     text-align: center;
 }
 
-.priority-icon, .urgency-icon {
+.assent-point-icon {
+    display: inline-block;
+    height: 11px;
+    width: 11px;
+}
+
+.assent-half-point-icon {
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+}
+
+.urgency-icon {
     color: #ff8000;
     display: inline-block;
     height: 11px;

@@ -12,9 +12,6 @@
       <img *ngIf="halfImportancePoint" class="priority-icon"
         src="assets/importance/rating/importance_rating_half_point.png">
     </div>
-    <div class="dimension-value">
-      {{getImportanceDisplayValue()}}
-    </div>
   </div>
   <div class="urgency-container">
     <div *ngIf="type === 'entry'" class="dimension-label">
@@ -27,9 +24,6 @@
       <img *ngFor="let _ of urgencyPoints; let y = index" class="priority-icon"
         src="assets/urgency/rating/urgency_rating_full_point.png">
       <img *ngIf="halfUrgencyPoint" class="urgency-icon" src="assets/urgency/rating/urgency_rating_half_point.png">
-    </div>
-    <div class="dimension-value">
-      {{getUrgencyDisplayValue()}}
     </div>
   </div>
 </figure>

@@ -232,11 +232,235 @@ export class SituationPage
       user: 1
     },
     reasons: [],
+    replies: [{
+      counts: {
+        experiences: 1,
+        ideas: 0,
+        questions: 0,
+        reasons: 0,
+        replies: 1
+      },
+      createdAt: new Date().getTime() - 4000000000,
+      createdBy: {
+        username: 'Super Cool Mom',
+        ranking: 9000
+      },
+      designations: [],
+      eisenhowerMatrix: {
+        priority: 0,
+        urgency: 0,
+        votes: 0,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 5,
+      questionTypes: [],
+      ratings: {
+        down: -105,
+        up: 5,
+        user: 1
+      },
+      reasons: [],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      votes: {
+        totalPoints: 0,
+        users: 0,
+      },
+    }, {
+      counts: {
+        experiences: 1,
+        ideas: 0,
+        questions: 0,
+        reasons: 0,
+        replies: 1
+      },
+      createdAt: new Date().getTime() - 4000000000,
+      createdBy: {
+        username: 'Super Cool Dad',
+        ranking: 9000
+      },
+      designations: [],
+      eisenhowerMatrix: {
+        priority: 0,
+        urgency: 0,
+        votes: 0,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 5,
+      questionTypes: [],
+      ratings: {
+        down: -105,
+        up: 5,
+        user: 1
+      },
+      reasons: [],
+      replies: [{
+        counts: {
+          experiences: 1,
+          ideas: 0,
+          questions: 0,
+          reasons: 0,
+          replies: 1
+        },
+        createdAt: new Date().getTime() - 4000000000,
+        createdBy: {
+          username: 'Super Cool Mom',
+          ranking: 9000
+        },
+        designations: [],
+        eisenhowerMatrix: {
+          priority: 0,
+          urgency: 0,
+          votes: 0,
+          user: {
+            importance: 0,
+            urgency: 0
+          }
+        },
+        id: 5,
+        questionTypes: [],
+        ratings: {
+          down: -105,
+          up: 5,
+          user: 1
+        },
+        reasons: [],
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+        enim volutpat vitae.`,
+        votes: {
+          totalPoints: 0,
+          users: 0,
+        },
+      }, {
+        counts: {
+          experiences: 1,
+          ideas: 0,
+          questions: 0,
+          reasons: 0,
+          replies: 1
+        },
+        createdAt: new Date().getTime() - 4000000000,
+        createdBy: {
+          username: 'Super Cool Sister',
+          ranking: 9000
+        },
+        designations: [],
+        eisenhowerMatrix: {
+          priority: 0,
+          urgency: 0,
+          votes: 0,
+          user: {
+            importance: 0,
+            urgency: 0
+          }
+        },
+        id: 5,
+        questionTypes: [],
+        ratings: {
+          down: -105,
+          up: 5,
+          user: 1
+        },
+        reasons: [],
+        text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+        enim volutpat vitae.`,
+        votes: {
+          totalPoints: 0,
+          users: 0,
+        },
+      }],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      votes: {
+        totalPoints: 0,
+        users: 0,
+      },
+    }, {
+      counts: {
+        experiences: 1,
+        ideas: 0,
+        questions: 0,
+        reasons: 0,
+        replies: 1
+      },
+      createdAt: new Date().getTime() - 4000000000,
+      createdBy: {
+        username: 'Super Cool Sister',
+        ranking: 9000
+      },
+      designations: [],
+      eisenhowerMatrix: {
+        priority: 0,
+        urgency: 0,
+        votes: 0,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 5,
+      questionTypes: [],
+      ratings: {
+        down: -105,
+        up: 5,
+        user: 1
+      },
+      reasons: [],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      votes: {
+        totalPoints: 0,
+        users: 0,
+      },
+    }, {
+      counts: {
+        experiences: 1,
+        ideas: 0,
+        questions: 0,
+        reasons: 0,
+        replies: 1
+      },
+      createdAt: new Date().getTime() - 4000000000,
+      createdBy: {
+        username: 'Super Cool Brother',
+        ranking: 9000
+      },
+      designations: [],
+      eisenhowerMatrix: {
+        priority: 0,
+        urgency: 0,
+        votes: 0,
+        user: {
+          importance: 0,
+          urgency: 0
+        }
+      },
+      id: 5,
+      questionTypes: [],
+      ratings: {
+        down: -105,
+        up: 5,
+        user: 1
+      },
+      reasons: [],
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
+      enim volutpat vitae.`,
+      votes: {
+        totalPoints: 0,
+        users: 0,
+      },
+    }],
     text: `Lorem ipsum dolor sit amet.`,
     votes: {
       totalPoints: 0,
       users: 0,
-    }
+    },
   }, {
     counts: {
       experiences: 1,
@@ -964,6 +1188,12 @@ export class SituationPage
     this.showReplyActions = true
   }
 
+  onReply(
+    action
+  ) {
+    this.postAReply('comment')
+  }
+
   onSituationAction(
     action
   ) {
@@ -974,14 +1204,6 @@ export class SituationPage
     action
   ) {
     this.replyAction = action
-  }
-
-  getActiveActionsReplyId() {
-    if (!this.activeReply) {
-      return null
-    }
-
-    return this.activeReply.id
   }
 
   getSituationAction() {

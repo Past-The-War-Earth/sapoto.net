@@ -9,13 +9,13 @@ import { ReplyService } from '../../../services/reply.service';
 export class ReplyListingComponent implements OnInit {
 
   @Input() action;
-  @Input() activeActionsReplyId;
   @Input() parent;
   @Input() replies;
   @Input() actionsTriggerElementId;
 
   @Output() onActionsClick = new EventEmitter()
 
+  activeReply
   filteredReplies = []
 
   constructor(
@@ -80,17 +80,21 @@ export class ReplyListingComponent implements OnInit {
   setDesignatedReply(
     reply
   ) {
-    this.activeActionsReplyId = reply.id
+    this.activeReply = reply
     this.onActionsClick.emit(reply)
   }
 
-  getReplyAction(
-    reply
-  ) {
-    if (!this.action || this.activeActionsReplyId !== reply.id) {
-      return null
-    }
-    return this.action
+  showReplyTypes() {
+    return this.activeReply && this.action === 'designate'
+  }
+
+  showIdeaReasons() {
+    return this.activeReply && this.replyService.hasADesignation('idea', this.activeReply)
+      && this.action === 'reasonAbout'
+  }
+
+  replyTypesDone() {
+    this.action = null
   }
 
 }

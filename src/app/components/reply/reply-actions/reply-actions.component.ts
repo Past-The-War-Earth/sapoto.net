@@ -11,6 +11,8 @@ export class ReplyActionsComponent implements OnInit {
 
   @Input() reply
 
+  @Output() onReply = new EventEmitter()
+
   @Output() onSelection = new EventEmitter()
 
   sharedClicker = new Clicker()
@@ -24,6 +26,12 @@ export class ReplyActionsComponent implements OnInit {
   onDesignate() {
     this.sharedClicker.click(() => {
       this.onSelection.emit('designate')
+    })
+  }
+
+  doReply() {
+    this.sharedClicker.click(() => {
+      this.onReply.emit('reply')
     })
   }
 

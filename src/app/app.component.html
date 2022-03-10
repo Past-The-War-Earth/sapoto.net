@@ -10,18 +10,41 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+        <ion-accordion-group>
+          <ion-accordion value="{{theme.title}}" *ngFor="let theme of themes; let i = index">
+            <ion-item slot="header">
+              <span>
+                <img class="theme-image" src="assets/menu/simple/{{theme.image}}.png  ">
+                <!--
+                <ion-avatar class="menu-image">
+                  <img src="assets/menu/{{theme.image}}.png">
+                </ion-avatar>
+                -->
+              </span>
+              <ion-label>{{theme.title}}</ion-label>
+            </ion-item>
+
+            <ion-list slot="content">
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="topic-item" [routerLink]="['situation-list/' + topic.label]"
+                  *ngFor="let topic of theme.topics; let y = index">
+                  <ion-img class="topic-icon" *ngIf="topic.icon" src="assets/{{topic.icon}}"></ion-img>
+                  <ion-label [ngClass]="{'no-icon': !topic.icon}">{{ topic.label }}</ion-label>
+                  <ion-img *ngIf="topic.favorite" class="topic-favorite" src="assets/menu/favorite_selected.png">
+                  </ion-img>
+                </ion-item>
+                <ion-item [routerLink]="['topics']">
+                  <ion-img class="more-topics-icon" src="assets/menu/discover.png"></ion-img>
+                  <ion-label>More Topics</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
         <ion-menu-toggle auto-hide="false">
-          <ion-item (click)="addATopic()">
-            <ion-img class="topic-menu-icon" src="assets/menu/add.png"></ion-img>
-            <ion-label>Add a Topic</ion-label>
-          </ion-item>
-          <ion-item [routerLink]="['situation-list/' + topic.name]" *ngFor="let topic of topics; let i = index">
-            <ion-label>{{ topic.name }}</ion-label>
-            <ion-img *ngIf="topic.favorite" class="topic-favorite" src="assets/menu/favorite_selected.png"></ion-img>
-          </ion-item>
           <ion-item [routerLink]="['topics']">
-            <ion-img class="topic-menu-icon" src="assets/menu/discover.png"></ion-img>
-            <ion-label>More Topics</ion-label>
+            <ion-img class="more-themes-icon" src="assets/menu/discover.png"></ion-img>
+            <ion-label>More Themes</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-content>

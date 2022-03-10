@@ -10,6 +10,8 @@ export class SituationActionsComponent implements OnInit {
 
   @Input() situation
 
+  @Output() onReply = new EventEmitter()
+
   @Output() onSelection = new EventEmitter()
 
   sharedClicker = new Clicker()
@@ -18,6 +20,11 @@ export class SituationActionsComponent implements OnInit {
 
   ngOnInit() { }
 
+  doReply() {
+    this.sharedClicker.click(() => {
+      this.onReply.emit('reply')
+    })
+  }
 
   sizeSituation() {
     this.sharedClicker.click(() => {

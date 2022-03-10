@@ -5,16 +5,20 @@
         Average
       </div>
       <div class="dimension-label">
-        Priority
+        Assent
       </div>
       <div class="priority-points">
-        <img *ngFor="let _ of priorityPoints; let y = index" class="priority-icon"
-          src="assets/priority/rating/priority_rating_full_point.png">
-        <img *ngIf="halfPriorityPoint" class="priority-icon"
-          src="assets/priority/rating/priority_rating_half_point.png">
-      </div>
-      <div class="dimension-value">
-        {{getPriorityDisplayValue()}}
+        <!--
+        0
+          -->
+        <img *ngFor="let _ of priorityPoints; let y = index" class="assent-point-icon" src="assets/rank/ranked_up.png">
+        <img *ngIf="halfPriorityPoint" class="assent-half-point-icon" src="assets/rank/ranked_up.png">
+        <!--          
+        <img *ngFor="let _ of priorityPoints; let y = index" class="assent-point-icon"
+          src="assets/rank/ranked_down.png">
+        <img *ngIf="halfPriorityPoint" class="assent-half-point-icon"
+          src="assets/rank/ranked_down.png">
+        -->
       </div>
     </div>
     <div class="urgency-container">
@@ -25,12 +29,9 @@
         Urgency
       </div>
       <div class="urgency-points">
-        <img *ngFor="let _ of urgencyPoints; let y = index" class="priority-icon"
+        <img *ngFor="let _ of urgencyPoints; let y = index" class="urgency-icon"
           src="assets/urgency/rating/urgency_rating_full_point.png">
         <img *ngIf="halfUrgencyPoint" class="urgency-icon" src="assets/urgency/rating/urgency_rating_half_point.png">
-      </div>
-      <div class="dimension-value">
-        {{getUrgencyDisplayValue()}}
       </div>
     </div>
   </figure>

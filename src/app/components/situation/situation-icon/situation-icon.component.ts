@@ -51,16 +51,6 @@ export class SituationIconComponent implements OnInit {
     }
   }
 
-  getImportanceDisplayValue() {
-    return this.eisenhowerMatrixService.getImportanceDisplayValue(
-      this.situation.eisenhowerMatrix, this.mode)
-  }
-
-  getUrgencyDisplayValue() {
-    return this.eisenhowerMatrixService.getUrgencyDisplayValue(
-      this.situation.eisenhowerMatrix, this.mode)
-  }
-
   isVeryLowUrgency() {
     return this.eisenhowerMatrixService.isVeryLowUrgency(
       this.situation.eisenhowerMatrix, this.mode)
