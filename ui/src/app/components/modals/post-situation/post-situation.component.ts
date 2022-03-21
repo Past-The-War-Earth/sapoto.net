@@ -31,8 +31,14 @@ export class PostSituationComponent implements OnInit {
 
   enterSituation() {
     this.sharedClicker.click(() => {
-      this.hide()
+      this.createSituation().then(() => {
+        this.hide()
+      })
     })
+  }
+
+  async createSituation(): Promise<void> {
+
   }
 
   cancel() {

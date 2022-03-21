@@ -11,26 +11,26 @@
       </ion-header>
       <ion-content>
         <ion-accordion-group>
-          <ion-accordion value="{{theme.title}}" *ngFor="let theme of themes; let i = index">
+          <ion-accordion value="{{theme.name}}" *ngFor="let theme of themes; let i = index">
             <ion-item slot="header">
               <span>
-                <img class="theme-image" src="assets/menu/simple/{{theme.image}}.png  ">
+                <img class="theme-image" src="assets/menu/simple/{{theme.imageName}}.png  ">
                 <!--
                 <ion-avatar class="menu-image">
                   <img src="assets/menu/{{theme.image}}.png">
                 </ion-avatar>
                 -->
               </span>
-              <ion-label>{{theme.title}}</ion-label>
+              <ion-label>{{theme.name}}</ion-label>
             </ion-item>
 
             <ion-list slot="content">
               <ion-menu-toggle auto-hide="false">
-                <ion-item class="topic-item" [routerLink]="['situation-list/' + topic.label]"
+                <ion-item class="topic-item" [routerLink]="['situation-list/' + topic.name]"
                   *ngFor="let topic of theme.topics; let y = index">
-                  <ion-img class="topic-icon" *ngIf="topic.icon" src="assets/{{topic.icon}}"></ion-img>
-                  <ion-label [ngClass]="{'no-icon': !topic.icon}">{{ topic.label }}</ion-label>
-                  <ion-img *ngIf="topic.favorite" class="topic-favorite" src="assets/menu/favorite_selected.png">
+                  <ion-img class="topic-icon" *ngIf="topic.imagePath" src="assets/{{topic.imagePath}}"></ion-img>
+                  <ion-label [ngClass]="{'no-icon': !topic.imagePath}">{{ topic.name }}</ion-label>
+                  <ion-img *ngIf="false" class="topic-favorite" src="assets/menu/favorite_selected.png">
                   </ion-img>
                 </ion-item>
                 <ion-item [routerLink]="['topics']">

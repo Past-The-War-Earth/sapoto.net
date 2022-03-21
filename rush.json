@@ -1,0 +1,388 @@
+{
+  // NOTE: Comments are allowed in all Rush config files :-)
+  "rushVersion": "5.34.4",
+  "pnpmVersion": "5.9.3",
+  "nodeSupportedVersionRange": ">=16.0.0 <17.0.0",
+  "projectFolderMinDepth": 1,
+  "projectFolderMaxDepth": 6,
+  "projects": [
+    {
+      "packageName": "@sapoto/app",
+      "projectFolder": "app",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sapoto/ui",
+      "projectFolder": "ui",
+      "shouldPublish": true
+    },
+    // DoBecause
+    // "apps" folder (alphabetical order)
+    {
+      "packageName": "@dobecause/core",
+      "projectFolder": "../dobecause/apps/core",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@dobecause/host",
+      "projectFolder": "../dobecause/apps/host",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@dobecause/main",
+      "projectFolder": "../dobecause/apps/main",
+      "shouldPublish": true
+    },
+    // "libs" folder (alphabetical order)
+    {
+      "packageName": "@dobecause/dependency-injection",
+      "projectFolder": "../dobecause/libs/dependency-injection",
+      "shouldPublish": true
+    },
+    // Votecube
+    // "schemas" folder (alphabetical order)
+    {
+      "packageName": "@votecube/dependency-injection",
+      "projectFolder": "../../Votecube/votecube-ui/libs/dependency-injection",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/forum",
+      "projectFolder": "../../Votecube/votecube-ui/schemas/forum",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@votecube/votecube",
+      "projectFolder": "../../Votecube/votecube-ui/schemas/votecube",
+      "shouldPublish": true
+    },
+    // AIRport
+    // "apis" folder (alphabetical order)
+    {
+      "packageName": "@airport/air-control",
+      "projectFolder": "../../AIR/AIRport/apis/air-control",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/arrivals-n-departures",
+      "projectFolder": "../../AIR/AIRport/apis/arrivals-n-departures",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/aviation-communication",
+      "projectFolder": "../../AIR/AIRport/apis/aviation-communication",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/check-in",
+      "projectFolder": "../../AIR/AIRport/apis/check-in",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/config",
+      "projectFolder": "../../AIR/AIRport/apis/config",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/ground-control",
+      "projectFolder": "../../AIR/AIRport/apis/ground-control",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/security-check",
+      "projectFolder": "../../AIR/AIRport/apis/security-check",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/terminal-map",
+      "projectFolder": "../../AIR/AIRport/apis/terminal-map",
+      "shouldPublish": true
+    },
+    // "common" folder (alphabetical order)
+    {
+      "packageName": "@airport/tools",
+      "projectFolder": "../../AIR/AIRport/common/tools",
+      "shouldPublish": true
+    },
+    // "db" folder (alphabetical order)
+    {
+      "packageName": "@airport/cockroachdb",
+      "projectFolder": "../../AIR/AIRport/db/cockroachdb",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/mysql",
+      "projectFolder": "../../AIR/AIRport/db/mysql",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/postgres",
+      "projectFolder": "../../AIR/AIRport/db/postgres",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/sequence",
+      "projectFolder": "../../AIR/AIRport/db/sequence",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/sqlite",
+      "projectFolder": "../../AIR/AIRport/db/sqlite",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/sqljs",
+      "projectFolder": "../../AIR/AIRport/db/sqljs",
+      "shouldPublish": true
+    },
+    // "engines" folder (alphabetical order)
+    {
+      "packageName": "@airport/automated-guideway-transit",
+      "projectFolder": "../../AIR/AIRport/engines/automated-guideway-transit",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/tarmaq",
+      "projectFolder": "../../AIR/AIRport/engines/tarmaq",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/terminal",
+      "projectFolder": "../../AIR/AIRport/engines/terminal",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/tower",
+      "projectFolder": "../../AIR/AIRport/engines/tower",
+      "shouldPublish": true
+    },
+    // "execs" folder (alphabetical order)
+    {
+      "packageName": "@airport/go-terminal",
+      "projectFolder": "../../AIR/AIRport/execs/go-terminal",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/go-tower",
+      "projectFolder": "../../AIR/AIRport/execs/go-tower",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/web-terminal",
+      "projectFolder": "../../AIR/AIRport/execs/web-terminal",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/web-tower",
+      "projectFolder": "../../AIR/AIRport/execs/web-tower",
+      "shouldPublish": true
+    },
+    // "generators" folder (alphabetical order)
+    {
+      "packageName": "@airport/landing",
+      "projectFolder": "../../AIR/AIRport/generators/landing",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/runway",
+      "projectFolder": "../../AIR/AIRport/generators/runway",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/takeoff",
+      "projectFolder": "../../AIR/AIRport/generators/takeoff",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/taxiway",
+      "projectFolder": "../../AIR/AIRport/generators/taxiway",
+      "shouldPublish": true
+    },
+    // "highway" folder (alphabetical order)
+    {
+      "packageName": "@airport/hw-control",
+      "projectFolder": "../../AIR/AIRport/highway/control",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/hw-driveway",
+      "projectFolder": "../../AIR/AIRport/highway/driveway",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/hw-flow",
+      "projectFolder": "../../AIR/AIRport/highway/flow",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/hw-scylladb",
+      "projectFolder": "../../AIR/AIRport/highway/scylladb",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/hw-vespa",
+      "projectFolder": "../../AIR/AIRport/highway/vespa",
+      "shouldPublish": true
+    },
+    // "libs" folder (alphabetical order)
+    // {
+    //   "packageName": "@airport/approach-lighting-system",
+    //   "projectFolder": "../../AIR/AIRport/libs/approach-lighting-system",
+    //   "shouldPublish": true
+    // },
+    {
+      "packageName": "@airport/autopilot",
+      "projectFolder": "../../AIR/AIRport/libs/autopilot",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/blueprint",
+      "projectFolder": "../../AIR/AIRport/libs/blueprint",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/di",
+      "projectFolder": "../../AIR/AIRport/libs/di",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/fuel-hydrant-system",
+      "projectFolder": "../../AIR/AIRport/libs/fuel-hydrant-system",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/ground-transport",
+      "projectFolder": "../../AIR/AIRport/libs/ground-transport",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/jet-bridge",
+      "projectFolder": "../../AIR/AIRport/libs/jet-bridge",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/mono-rail",
+      "projectFolder": "../../AIR/AIRport/libs/mono-rail",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/pressurization",
+      "projectFolder": "../../AIR/AIRport/libs/pressurization",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/ramp",
+      "projectFolder": "../../AIR/AIRport/libs/ramp",
+      "shouldPublish": true
+    },
+    // "nonhub" folder (alphabetical order)
+    {
+      "packageName": "@airport/nonhub-client",
+      "projectFolder": "../../AIR/AIRport/nonhub/client",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/nonhub-in-memory-server",
+      "projectFolder": "../../AIR/AIRport/nonhub/in-memory-server",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/nonhub-types",
+      "projectFolder": "../../AIR/AIRport/nonhub/nonhub-types",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/processor-common",
+      "projectFolder": "../../AIR/AIRport/nonhub/processor-common",
+      "shouldPublish": true
+    },
+    // "schemas" folder (alphabetical order)
+    {
+      "packageName": "@airport/airport-code",
+      "projectFolder": "../../AIR/AIRport/schemas/airport-code",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/airspace",
+      "projectFolder": "../../AIR/AIRport/schemas/airspace",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/flight-log-archive",
+      "projectFolder": "../../AIR/AIRport/schemas/flight-log-archive",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/functionality-demo-schema",
+      "projectFolder": "../../AIR/AIRport/schemas/functionality-demo-schema",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/guideway",
+      "projectFolder": "../../AIR/AIRport/schemas/guideway",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/holding-pattern",
+      "projectFolder": "../../AIR/AIRport/schemas/holding-pattern",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/moving-walkway",
+      "projectFolder": "../../AIR/AIRport/schemas/moving-walkway",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/na-kano",
+      "projectFolder": "../../AIR/AIRport/schemas/na-kano",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/point-of-destination",
+      "projectFolder": "../../AIR/AIRport/schemas/point-of-destination",
+      "shouldPublish": true
+    },
+    // {
+    //   "packageName": "@airport/runway-edge-lighting",
+    //   "projectFolder": "../../AIR/AIRport/schemas/runway-edge-lighting",
+    //   "shouldPublish": true
+    // },
+    {
+      "packageName": "@airport/travel-document-checkpoint",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/vasi",
+      "projectFolder": "../../AIR/AIRport/schemas/vasi",
+      "shouldPublish": true
+    },
+    // "test" folder (alphabetical order)
+    {
+      "packageName": "@airport/functionality-demo-frame",
+      "projectFolder": "../../AIR/AIRport/test/functionality-demo-frame",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/functionality-demo-framework",
+      "projectFolder": "../../AIR/AIRport/test/functionality-demo-framework",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/repository-demo-framework",
+      "projectFolder": "../../AIR/AIRport/test/repository-demo-framework",
+      "shouldPublish": true
+    },
+    // "ui" folder (alphabetical order)
+    {
+      "packageName": "@airport/functionality-demo",
+      "projectFolder": "../../AIR/AIRport/ui/functionality-demo",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/todo",
+      "projectFolder": "../../AIR/AIRport/ui/todo",
+      "shouldPublish": true
+    }
+  ]
+}
