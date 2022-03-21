@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "core",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\apps\\core\\node_modules\\@airport\\runway\\lib\\index.js",
+            "outFiles": [
+                "${workspaceFolder}/*/*/lib/**/*.js"
+            ],
+            "cwd": "${workspaceFolder}\\apps\\core",
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
+        },
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "main",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\apps\\main\\node_modules\\@airport\\runway\\lib\\index.js",
+            "outFiles": [
+                "${workspaceFolder}/*/*/lib/**/*.js"
+            ],
+            "cwd": "${workspaceFolder}\\apps\\main",
+            "runtimeArgs": [
+                "--experimental-specifier-resolution=node"
+            ]
+        }
+    ]
+}

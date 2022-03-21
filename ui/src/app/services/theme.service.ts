@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ITheme,
   ThemeApiClient
-} from '@dobecause/core'
+} from '@sapoto/core'
 
 @Injectable({
   providedIn: 'root'

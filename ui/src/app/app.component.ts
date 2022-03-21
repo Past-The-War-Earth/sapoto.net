@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ITheme } from '@dobecause/core';
+import { ITheme } from '@sapoto/core';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
 import { LOCAL_API_CLIENT } from '@airport/autopilot';

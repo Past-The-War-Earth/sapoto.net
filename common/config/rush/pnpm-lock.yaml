@@ -37,7 +37,6 @@ dependencies:
   '@rush-temp/air-control': 'file:projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:projects/airport-code.tgz'
   '@rush-temp/airspace': 'file:projects/airspace.tgz'
-  '@rush-temp/app': 'file:projects/app.tgz'
   '@rush-temp/arrivals-n-departures': 'file:projects/arrivals-n-departures.tgz'
   '@rush-temp/automated-guideway-transit': 'file:projects/automated-guideway-transit.tgz'
   '@rush-temp/autopilot': 'file:projects/autopilot.tgz'
@@ -17748,23 +17747,6 @@ packages:
       integrity: sha512-VY6S8Z1Fz54U4s4NF9U+/tGIm+0jsyIjL8JlwgRuQ1kg4OyxUGfZnqWq3js/tukrzih8LgjHYjbPTk/ieeEFWA==
       tarball: 'file:projects/airspace.tgz'
     version: 0.0.0
-  'file:projects/app.tgz':
-    dependencies:
-      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
-      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
-      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
-      rollup: 2.70.1
-      rollup-plugin-livereload: 2.0.5
-      rollup-plugin-terser: 7.0.2_rollup@2.70.1
-      sirv-cli: 1.0.14
-      tslib: 2.3.1
-      typescript: 4.6.2
-    dev: false
-    name: '@rush-temp/app'
-    resolution:
-      integrity: sha512-Rymy48jAtNKSGgI19L2TY6QpBI1vzhkiANfWjOdWjNusnm+1WBFOZudDXQd3E1lTZ5iPVvAU2bv9NZDh8YvIZA==
-      tarball: 'file:projects/app.tgz'
-    version: 0.0.0
   'file:projects/arrivals-n-departures.tgz':
     dev: false
     name: '@rush-temp/arrivals-n-departures'
@@ -17844,7 +17826,7 @@ packages:
     dev: false
     name: '@rush-temp/core'
     resolution:
-      integrity: sha512-CKm09NTUgRngd6PztlUYcMbf694sRTq33C6yMuJbLN63h5Gp1tNt+i+Y/XNA1brphlkLQ2JuNOkwBN6TC6MGXg==
+      integrity: sha512-WVQcA98IGuGoSFYVizAnb4akpTjj6RDVbXBmbpiuRQJLF7yB0j+/nzNp+akPRL35sXKAX1N/b2B7cdeoUwonrw==
       tarball: 'file:projects/core.tgz'
     version: 0.0.0
   'file:projects/dependency-injection-1.tgz':
@@ -18041,7 +18023,7 @@ packages:
     dev: false
     name: '@rush-temp/host'
     resolution:
-      integrity: sha512-XxS/s2UCUiqvrj6cxt/3pGC4G5it8Dw1U4MfT1w8/VcDi13fH8qECsMxgRIH30epP7fZpr0ntfJf3uBksZNYMA==
+      integrity: sha512-rFkuiQQFZ+2qkZbLajocIpHVhAdWRey9tA/epAb5uKRiasBiUGdF8kBHRQStI8vYd6+GLIppuXODGXT8QsHn3w==
       tarball: 'file:projects/host.tgz'
     version: 0.0.0
   'file:projects/hw-control.tgz':
@@ -18145,7 +18127,7 @@ packages:
     dev: false
     name: '@rush-temp/main'
     resolution:
-      integrity: sha512-N0vRQczGzRJSHBuuX/eeE+8lM3sQxd30tPZ0++KigB201LnYzsBR6zdwdYD5TYVOyd4spXZB+UFh+ItCyjPhqw==
+      integrity: sha512-vzAmAABJo6TqKPNvu4hsH5Cxop5po/GwBhtCca+SwLrCPguz4yKmsDsV/93Rbf58s8Iu0dulk6mIK1zKCtQlFw==
       tarball: 'file:projects/main.tgz'
     version: 0.0.0
   'file:projects/mono-rail.tgz':
@@ -18490,7 +18472,7 @@ packages:
       webpack: '*'
       webpack-cli: '*'
     resolution:
-      integrity: sha512-I9vMknbdkbzsoxZ5nF6tDK4lxWPqBWx4HBVctXaTGmiFGv2s8O2+MPud7+iP3d3MC+rNkS76/vmqKa77uuSC0Q==
+      integrity: sha512-1NHapj9srN8sscgVAa4hEiCHZktvubgPw0oyMMgdhdCiBKGV9NvRkOENVyS8lG+g6+Xz0L8xexi9Ia72PmrxKw==
       tarball: 'file:projects/ui.tgz'
     version: 0.0.0
   'file:projects/vasi.tgz':
@@ -18514,7 +18496,7 @@ packages:
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-Ox72pzf1zyKx1sQR5SNbsMUBbYIpCWKGBSmUuKr+THl/F/9bZmejqLJo06zX4obLg7s3X8FOzF+eOf5JjrTj2w==
+      integrity: sha512-s3hMUpheR6NwkiHMDW4Aiv2NHDbJy0wlII8Lg9AN7LjREOszPKaIrGKzXQ0iXWvAUwH6BJ+990Tv2+mK6AKNkQ==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
@@ -18537,6 +18519,7 @@ packages:
       integrity: sha512-tDwUA6zaDYwyePqx7ftsFVAfxeQGfDuXLTPJEdGNxz2t/3WSXyucH8sq/R49Z4VPxjB/cNOpMwJSLuw8OlCGfg==
       tarball: 'file:projects/web-tower.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@angular-devkit/build-angular': ~13.0.1
   '@angular-eslint/builder': ~13.0.1
@@ -18576,7 +18559,6 @@ specifiers:
   '@rush-temp/air-control': 'file:./projects/air-control.tgz'
   '@rush-temp/airport-code': 'file:./projects/airport-code.tgz'
   '@rush-temp/airspace': 'file:./projects/airspace.tgz'
-  '@rush-temp/app': 'file:./projects/app.tgz'
   '@rush-temp/arrivals-n-departures': 'file:./projects/arrivals-n-departures.tgz'
   '@rush-temp/automated-guideway-transit': 'file:./projects/automated-guideway-transit.tgz'
   '@rush-temp/autopilot': 'file:./projects/autopilot.tgz'

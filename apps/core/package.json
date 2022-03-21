@@ -1,7 +1,7 @@
 {
   "airport": {
     "domain": "localhost:9000",
-    "schema": "@sapoto/app",
+    "schema": "@sapoto/core",
     "daoDir": "src/dao",
     "ddlDir": "src/ddl",
     "generatedDir": "src/generated"
@@ -19,9 +19,7 @@
     "@airport/terminal-map": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
     "@airport/web-tower": "0.0.1",
-    "@dobecause/core": "0.0.1",
-    "@dobecause/main": "0.0.1",
-    "@votecube/votecube": "0.0.1",
+    "@sapoto/dependency-injection": "0.0.1"
   },
   "devDependencies": {
     "@airport/runway": "0.0.1",
@@ -36,7 +34,7 @@
     "tslib": "^2.0.0"
   },
   "main": "lib/client/index.js",
-  "name": "@sapoto/app",
+  "name": "@sapoto/core",
   "type": "module",
   "typings": "lib/client/index",
   "version": "0.0.1"

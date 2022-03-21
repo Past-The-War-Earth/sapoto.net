@@ -7,36 +7,30 @@
   "projectFolderMaxDepth": 6,
   "projects": [
     {
-      "packageName": "@sapoto/app",
-      "projectFolder": "app",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@sapoto/ui",
       "projectFolder": "ui",
       "shouldPublish": true
     },
-    // DoBecause
     // "apps" folder (alphabetical order)
     {
-      "packageName": "@dobecause/core",
-      "projectFolder": "../dobecause/apps/core",
+      "packageName": "@sapoto/core",
+      "projectFolder": "./apps/core",
       "shouldPublish": true
     },
     {
-      "packageName": "@dobecause/host",
-      "projectFolder": "../dobecause/apps/host",
+      "packageName": "@sapoto/host",
+      "projectFolder": "./apps/host",
       "shouldPublish": true
     },
     {
-      "packageName": "@dobecause/main",
-      "projectFolder": "../dobecause/apps/main",
+      "packageName": "@sapoto/main",
+      "projectFolder": "./apps/main",
       "shouldPublish": true
     },
     // "libs" folder (alphabetical order)
     {
-      "packageName": "@dobecause/dependency-injection",
-      "projectFolder": "../dobecause/libs/dependency-injection",
+      "packageName": "@sapoto/dependency-injection",
+      "projectFolder": "./libs/dependency-injection",
       "shouldPublish": true
     },
     // Votecube
