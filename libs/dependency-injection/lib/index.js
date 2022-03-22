@@ -1,6 +1,6 @@
 import { domain as injectionDomain } from "@airport/di";
-export const domain = injectionDomain('localhost:9000');
+export const domain = injectionDomain('localhost:8100');
 export function app(applicationName) {
-    return domain.app(applicationName);
+    return domain.app("@sapoto/" + applicationName);
 }
 //# sourceMappingURL=index.js.map

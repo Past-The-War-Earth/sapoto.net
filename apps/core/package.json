@@ -1,6 +1,6 @@
 {
   "airport": {
-    "domain": "localhost:9000",
+    "domain": "localhost:8100",
     "schema": "@sapoto/core",
     "daoDir": "src/dao",
     "ddlDir": "src/ddl",

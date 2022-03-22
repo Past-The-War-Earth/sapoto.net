@@ -8,7 +8,7 @@ import { Situation } from '../ddl/Situation';
 import { UserTopicFavorite } from '../ddl/UserTopicFavorite';
 
 DI.db().get(AIRPORT_DATABASE).then(airDb => {
-  const accumulator = airDb.getAccumulator('localhost:9000', 'undefined');
+  const accumulator = airDb.getAccumulator('localhost:8100', 'undefined');
   accumulator.add(SituationRating, 0);
   accumulator.add(Theme, 1);
   accumulator.add(Topic, 2);

@@ -47,7 +47,7 @@ const __constructors__ = {
 
 export const Q_APPLICATION: LocalQApplication = <any>{
 	__constructors__,
-  domain: 'localhost:9000',
+  domain: 'localhost:8100',
   name: '@sapoto/core'
 };
 export const Q: LocalQApplication = Q_APPLICATION
