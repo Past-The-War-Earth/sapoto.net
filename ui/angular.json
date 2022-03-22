@@ -34,9 +34,18 @@
                 "glob": "**/*",
                 "input": "node_modules/ionic4-auto-complete/assets/",
                 "output": "./assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/AIRport",
+                "output": "AIRport"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss", "./node_modules/quill-emoji/dist/quill-emoji.css"],
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "./node_modules/quill-emoji/dist/quill-emoji.css"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,

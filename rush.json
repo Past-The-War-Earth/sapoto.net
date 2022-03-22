@@ -6,11 +6,6 @@
   "projectFolderMinDepth": 1,
   "projectFolderMaxDepth": 6,
   "projects": [
-    {
-      "packageName": "@sapoto/ui",
-      "projectFolder": "ui",
-      "shouldPublish": true
-    },
     // "apps" folder (alphabetical order)
     {
       "packageName": "@sapoto/core",

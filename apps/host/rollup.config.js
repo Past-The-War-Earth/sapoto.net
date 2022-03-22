@@ -11,7 +11,7 @@ export default [{
         sourcemap: true,
         format: 'iife',
         name: 'app',
-        file: 'build/AIRport/apps/core/bundle.js'
+        file: '../../ui/src/AIRport/apps/@sapoto/core/bundle.js'
     },
     plugins: [
         resolve({
@@ -33,7 +33,7 @@ export default [{
         sourcemap: true,
         format: 'iife',
         name: 'app',
-        file: 'build/AIRport/apps/main/bundle.js'
+        file: '../../ui/src/AIRport/apps/@sapoto/main/bundle.js'
     },
     plugins: [
         resolve({
