@@ -9,7 +9,6 @@ npm-debug.log
 node_modules
 
 # Ignore build files
-apps/**/lib
 bundle.js
 bundle.css
 0.0.js

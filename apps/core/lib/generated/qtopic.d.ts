@@ -1,0 +1,81 @@
+import { IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-control';
+import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { ThemeGraph, ThemeEOptionalId, ThemeESelect, QThemeQRelation } from './qtheme';
+import { SituationGraph, SituationESelect, QSituation } from './qsituation';
+import { ISituation } from './situation';
+import { ITopic } from './topic';
+/**
+ * SELECT - All fields and relations (optional).
+ */
+export interface TopicESelect extends RepositoryEntityESelect, TopicEOptionalId {
+    name?: string | IQStringField;
+    imagePath?: string | IQStringField;
+    theme?: ThemeESelect;
+    situations?: SituationESelect;
+}
+/**
+ * DELETE - Ids fields and relations only (required).
+ */
+export interface TopicEId extends RepositoryEntityEId {
+}
+/**
+ * Ids fields and relations only (optional).
+ */
+export interface TopicEOptionalId {
+}
+/**
+ * UPDATE - non-id fields and relations (optional).
+ */
+export interface TopicEUpdateProperties extends RepositoryEntityEUpdateProperties {
+    name?: string | IQStringField;
+    imagePath?: string | IQStringField;
+    theme?: ThemeEOptionalId;
+}
+/**
+ * PERSIST CASCADE - non-id relations (optional).
+ */
+export interface TopicGraph extends TopicEOptionalId, RepositoryEntityGraph {
+    name?: string | IQStringField;
+    imagePath?: string | IQStringField;
+    theme?: ThemeGraph;
+    situations?: SituationGraph[];
+}
+/**
+ * UPDATE - non-id columns (optional).
+ */
+export interface TopicEUpdateColumns extends RepositoryEntityEUpdateColumns {
+    AGE_SUITABILITY?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
+    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    NAME?: string | IQStringField;
+    IMAGEPATH?: string | IQStringField;
+    THEME_RID_1?: number | IQNumberField;
+    THEME_AID_1?: number | IQNumberField;
+    THEME_ARID_1?: number | IQNumberField;
+}
+/**
+ * CREATE - id fields and relations (required) and non-id fields and relations (optional).
+ */
+export interface TopicECreateProperties extends Partial<TopicEId>, TopicEUpdateProperties {
+}
+/**
+ * CREATE - id columns (required) and non-id columns (optional).
+ */
+export interface TopicECreateColumns extends TopicEId, TopicEUpdateColumns {
+}
+/**
+ * Query Entity Query Definition (used for Q.EntityName).
+ */
+export interface QTopic extends QRepositoryEntity {
+    name: IQStringField;
+    imagePath: IQStringField;
+    theme: QThemeQRelation;
+    situations: IQRepositoryEntityOneToManyRelation<ISituation, QSituation>;
+}
+export interface QTopicQId extends QRepositoryEntityQId {
+}
+export interface QTopicQRelation extends QRepositoryEntityQRelation<ITopic, QTopic>, QTopicQId {
+}
+//# sourceMappingURL=qtopic.d.ts.map

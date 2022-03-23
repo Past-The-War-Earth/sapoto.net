@@ -1,0 +1,1 @@
+{"version":3,"file":"situationrating.d.ts","sourceRoot":"","sources":["../../src/generated/situationrating.ts"],"names":[],"mappings":"AAAA,OAAO,EACN,iBAAiB,EACjB,MAAM,0BAA0B,CAAC;AAClC,OAAO,EACN,UAAU,EACV,MAAM,aAAa,CAAC;AAQrB,MAAM,WAAW,gBAAiB,SAAQ,iBAAiB;IAO1D,gBAAgB,CAAC,EAAE,MAAM,CAAC;IAC1B,aAAa,CAAC,EAAE,MAAM,CAAC;IAGvB,SAAS,CAAC,EAAE,UAAU,CAAC;CAMvB"}
