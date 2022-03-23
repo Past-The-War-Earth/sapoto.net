@@ -3,6 +3,8 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
+import { ISituation } from '@sapoto/core';
+import { SituationThreadService } from 'src/app/services/situation-thread.service';
 
 @Component({
   selector: 'app-post-situation',
@@ -15,14 +17,26 @@ export class PostSituationComponent implements OnInit {
 
   quillModules
   sharedClicker = new Clicker()
-  situation
+  situation: ISituation
   visible = true
 
   constructor(
     private quillService: QuillService,
-    situationService: SituationService
+    private situationService: SituationService,
+    private situationThreadService: SituationThreadService
   ) {
-    this.situation = situationService.getNewSituation()
+    this.situation = situationService.getNewSituation('', {
+      actor: null,
+      actorRecordId: null,
+      name: 'Test Topic',
+      repository: null,
+      theme: {
+        actor: null,
+        actorRecordId: null,
+        name: 'Test Theme',
+        repository: null
+      }
+    })
     this.quillModules = this.quillService.quillModules
   }
 
@@ -38,7 +52,12 @@ export class PostSituationComponent implements OnInit {
   }
 
   async createSituation(): Promise<void> {
-
+    await this.situationThreadService.addSituationThread({
+      actor: null,
+      actorRecordId: null,
+      repository: null,
+      situation: this.situation
+    })
   }
 
   cancel() {

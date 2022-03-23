@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-control";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 let Situation = class Situation extends RepositoryEntity {
 };
@@ -17,6 +17,12 @@ __decorate([
 __decorate([
     OneToMany({ mappedBy: 'situation' })
 ], Situation.prototype, "ratings", void 0);
+__decorate([
+    Transient()
+], Situation.prototype, "counts", void 0);
+__decorate([
+    Transient()
+], Situation.prototype, "eisenhowerMatrix", void 0);
 Situation = __decorate([
     Entity(),
     Table({ name: 'SITUATIONS' })

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-control";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { SituationRating } from "./SituationRating";
 import { Topic } from "./Topic";
@@ -15,5 +15,25 @@ export class Situation extends RepositoryEntity {
 
     @OneToMany({ mappedBy: 'situation' })
     ratings: SituationRating[]
+
+    @Transient()
+    counts: {
+        experiences: number
+        ideas: number
+        questions: number
+        reasons: number
+        replies: number
+    }
+
+    @Transient()
+    eisenhowerMatrix: {
+        importance: number
+        urgency: number
+        votes: number
+        user: {
+            importance: number
+            urgency: number
+        }
+    }
 
 }

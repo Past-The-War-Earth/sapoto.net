@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { ISituation, ITopic } from '@sapoto/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SituationService {
 
-  newSituationId = 1000;
-
   constructor() { }
 
-  getNewSituation() {
+  getNewSituation(
+    text: string,
+    topic: ITopic
+  ): ISituation {
     return {
+      actor: null,
+      actorRecordId: null,
       counts: {
         experiences: 0,
         ideas: 0,
@@ -18,11 +22,7 @@ export class SituationService {
         reasons: 0,
         replies: 0
       },
-      createdAt: new Date().getTime(),
-      createdBy: {
-        username: 'You',
-        ranking: 1000
-      },
+      repository: null,
       eisenhowerMatrix: {
         importance: 0,
         urgency: 0,
@@ -32,9 +32,8 @@ export class SituationService {
           urgency: 0
         }
       },
-      id: ++this.newSituationId,
-      labels: [],
-      text: '',
+      text,
+      topic
     };
   }
 

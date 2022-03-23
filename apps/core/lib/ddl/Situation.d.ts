@@ -5,5 +5,21 @@ export declare class Situation extends RepositoryEntity {
     text: string;
     topic: Topic;
     ratings: SituationRating[];
+    counts: {
+        experiences: number;
+        ideas: number;
+        questions: number;
+        reasons: number;
+        replies: number;
+    };
+    eisenhowerMatrix: {
+        importance: number;
+        urgency: number;
+        votes: number;
+        user: {
+            importance: number;
+            urgency: number;
+        };
+    };
 }
 //# sourceMappingURL=Situation.d.ts.map
