@@ -18,11 +18,11 @@ export class DemoDataLoader
             name: 'Children',
             topics: [{
                 name: 'Baby Time',
-                imagePath: 'child_toy_icons/baby-toy',
+                imagePath: 'child_toy_icons/baby-toy.png',
             },
             {
                 name: 'Toddler Years',
-                imagePath: 'child_toy_icons/toddler-toy',
+                imagePath: 'child_toy_icons/toddler-toy.png',
             },
             {
                 name: 'Middle Childhood',
@@ -127,8 +127,10 @@ export class DemoDataLoader
         ] as any
 
         themes.forEach(theme => {
+            theme.ageSuitability = 0
             theme.topics.forEach(topic => {
                 topic.theme = theme
+                topic.ageSuitability = 0
             })
         })
 

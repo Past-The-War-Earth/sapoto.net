@@ -8,6 +8,14 @@ export const APPLICATION = {
 		{
 			"api": {
 				"apiObjectMap": {
+					"IThemeApi": {
+						"operationMap": {
+							"getAllWithTopics": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
 					"ISituationApi": {
 						"operationMap": {
 							"save": {

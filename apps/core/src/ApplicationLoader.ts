@@ -10,7 +10,6 @@ import {
     LastIds
 } from '@airport/security-check'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
-import { domain } from '@sapoto/dependency-injection'
 import { APPLICATION } from './generated/application'
 import { DEMO_DATA_LOADER } from './server-tokens'
 
@@ -36,7 +35,9 @@ export class ApplicationLoader
         await applicationInitializer.initializeForAIRportApp(APPLICATION as any)
 
         apiRegistry.initialize(APPLICATION.versions[0].api)
+    }
 
+    async initialize(): Promise<void> {
         const demoDataLoader = await container(this).get(DEMO_DATA_LOADER)
         await demoDataLoader.loadDemoData()
     }
@@ -47,6 +48,6 @@ export class ApplicationLoader
 }
 DI.set(APPLICATION_LOADER, ApplicationLoader)
 
-export function loadApplicationInitializer() {
-    console.log('Application Initializer loaded')
+export function wireApplicationLoader() {
+    console.log('ApplicationLoader wired')
 }

@@ -37,12 +37,15 @@ export class ApplicationLoader
         apiRegistry.initialize(APPLICATION.versions[0].api)
     }
 
+    async initialize(): Promise<void> {
+    }
+
     getApplication(): JsonApplicationWithLastIds {
         return APPLICATION as any
     }
 }
 DI.set(APPLICATION_LOADER, ApplicationLoader)
 
-export function loadApplicationInitializer() {
-    console.log('Application Initializer loaded')
+export function wireApplicationLoader() {
+    console.log('ApplicationLoader wired')
 }

@@ -3,7 +3,6 @@ import {
     IInjectionApplication
 } from "@airport/di";
 
-
 export const domain = injectionDomain('localhost:8100')
 
 export function app(

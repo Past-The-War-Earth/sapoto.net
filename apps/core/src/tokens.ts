@@ -5,6 +5,6 @@ import { ITopicApi } from './api/TopicApi';
 
 export const core = app('core')
 
-export const SITUATION_API = core.token<ISituationApi>('SITUATION_API')
-export const THEME_API = core.token<IThemeApi>('THEME_API')
-export const TOPIC_API = core.token<ITopicApi>('TOPIC_API')
+export const SITUATION_API = core.token<ISituationApi>('ISituationApi')
+export const THEME_API = core.token<IThemeApi>('IThemeApi')
+export const TOPIC_API = core.token<ITopicApi>('ITopicApi')
