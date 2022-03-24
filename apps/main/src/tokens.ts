@@ -3,4 +3,4 @@ import { ISituationThreadApi } from './server'
 
 export const main = app('main')
 
-export const SITUATION_THREAD_API = main.token<ISituationThreadApi>('SITUATION_THREAD_API')
+export const SITUATION_THREAD_API = main.token<ISituationThreadApi>('ISituationThreadApi')
