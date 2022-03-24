@@ -1,0 +1,1 @@
+{"version":3,"file":"AgreementApiClient.d.ts","sourceRoot":"","sources":["../../src/client/AgreementApiClient.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAE,MAAM,yBAAyB,CAAC;AAGrD,qBAAa,kBAAkB;IAErB,aAAa,CACf,SAAS,EAAE,UAAU,GACtB,OAAO,CAAC,IAAI,CAAC;IAMV,qBAAqB,CACvB,kBAAkB,EAAE,MAAM,GAC3B,OAAO,CAAC,UAAU,CAAC;CAMzB"}
