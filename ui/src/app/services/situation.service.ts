@@ -15,6 +15,7 @@ export class SituationService {
     return {
       actor: null,
       actorRecordId: null,
+      ageSuitability: 0,
       counts: {
         experiences: 0,
         ideas: 0,

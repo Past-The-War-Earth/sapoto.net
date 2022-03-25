@@ -28,11 +28,13 @@ export class PostSituationComponent implements OnInit {
     this.situation = situationService.getNewSituation('', {
       actor: null,
       actorRecordId: null,
+      ageSuitability: 0,
       name: 'Test Topic',
       repository: null,
       theme: {
         actor: null,
         actorRecordId: null,
+        ageSuitability: 0,
         name: 'Test Theme',
         repository: null
       }
@@ -55,6 +57,7 @@ export class PostSituationComponent implements OnInit {
     await this.situationThreadService.addSituationThread({
       actor: null,
       actorRecordId: null,
+      ageSuitability: 0,
       repository: null,
       situation: this.situation
     })
