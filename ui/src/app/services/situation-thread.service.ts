@@ -13,6 +13,12 @@ export class SituationThreadService {
   async addSituationThread(
     situationThread: ISituationThread
   ) {
-    this.situationThreadApi.addSituationThread(situationThread)
+    try {
+      await this.situationThreadApi.addSituationThread(situationThread)
+    } catch(e) {
+      console.error(e)
+    } finally {
+      console.log('Situation Thread added.')
+    }
   }
 }
