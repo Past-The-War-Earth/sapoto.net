@@ -4,7 +4,7 @@
   "pnpmVersion": "5.9.3",
   "nodeSupportedVersionRange": ">=16.0.0 <17.0.0",
   "projectFolderMinDepth": 1,
-  "projectFolderMaxDepth": 6,
+  "projectFolderMaxDepth": 7,
   "projects": [
     // "apps" folder (alphabetical order)
     {
@@ -13,13 +13,28 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@sapoto/host",
-      "projectFolder": "./apps/host",
+      "packageName": "@sapoto/core-client",
+      "projectFolder": "./apps/core/client",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sapoto/core-runtime",
+      "projectFolder": "./apps/core/runtime",
       "shouldPublish": true
     },
     {
       "packageName": "@sapoto/main",
       "projectFolder": "./apps/main",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sapoto/main-client",
+      "projectFolder": "./apps/main/client",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sapoto/main-runtime",
+      "projectFolder": "./apps/main/runtime",
       "shouldPublish": true
     },
     // "libs" folder (alphabetical order)
@@ -36,13 +51,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@votecube/forum",
-      "projectFolder": "../../Votecube/votecube-ui/schemas/forum",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@votecube/votecube",
-      "projectFolder": "../../Votecube/votecube-ui/schemas/votecube",
+      "packageName": "@votecube/votecube-client",
+      "projectFolder": "../../Votecube/votecube-ui/schemas/votecube/client",
       "shouldPublish": true
     },
     // AIRport

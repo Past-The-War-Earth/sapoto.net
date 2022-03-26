@@ -1,0 +1,1 @@
+export const domain = injectionDomain('localhost:8100')

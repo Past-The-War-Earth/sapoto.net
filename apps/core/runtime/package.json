@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@airport/air-control": "0.0.1",
+    "@airport/check-in": "0.0.1",
+    "@airport/di": "0.0.1",
+    "@airport/ground-control": "0.0.1",
+    "@airport/holding-pattern": "0.0.1",
+    "@airport/landing": "0.0.1",
+    "@airport/pressurization": "0.0.1",
+    "@airport/security-check": "0.0.1",
+    "@airport/takeoff": "0.0.1",
+    "@airport/terminal-map": "0.0.1",
+    "@airport/travel-document-checkpoint": "0.0.1",
+    "@airport/tower": "0.0.1",
+    "@airport/web-tower": "0.0.1",
+    "@sapoto/core": "0.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "sirv-cli": "^1.0.0"
+  },
+  "main": "lib/runtime.js",
+  "name": "@sapoto/core-runtime",
+  "type": "module",
+  "typings": "lib/runtime",
+  "version": "0.0.1"
+}

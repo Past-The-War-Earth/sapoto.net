@@ -21,11 +21,12 @@ dependencies:
   '@rush-temp/cockroachdb': 'file:projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:projects/config.tgz'
   '@rush-temp/core': 'file:projects/core.tgz'
+  '@rush-temp/core-client': 'file:projects/core-client.tgz'
+  '@rush-temp/core-runtime': 'file:projects/core-runtime.tgz_tslib@2.3.1+typescript@4.6.2'
   '@rush-temp/dependency-injection': 'file:projects/dependency-injection.tgz'
   '@rush-temp/dependency-injection-1': 'file:projects/dependency-injection-1.tgz'
   '@rush-temp/di': 'file:projects/di.tgz_typescript@4.6.2'
   '@rush-temp/flight-log-archive': 'file:projects/flight-log-archive.tgz'
-  '@rush-temp/forum': 'file:projects/forum.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:projects/fuel-hydrant-system.tgz'
   '@rush-temp/functionality-demo': 'file:projects/functionality-demo.tgz'
   '@rush-temp/functionality-demo-frame': 'file:projects/functionality-demo-frame.tgz'
@@ -37,7 +38,6 @@ dependencies:
   '@rush-temp/ground-transport': 'file:projects/ground-transport.tgz'
   '@rush-temp/guideway': 'file:projects/guideway.tgz'
   '@rush-temp/holding-pattern': 'file:projects/holding-pattern.tgz'
-  '@rush-temp/host': 'file:projects/host.tgz'
   '@rush-temp/hw-control': 'file:projects/hw-control.tgz'
   '@rush-temp/hw-driveway': 'file:projects/hw-driveway.tgz'
   '@rush-temp/hw-flow': 'file:projects/hw-flow.tgz'
@@ -46,6 +46,8 @@ dependencies:
   '@rush-temp/jet-bridge': 'file:projects/jet-bridge.tgz'
   '@rush-temp/landing': 'file:projects/landing.tgz'
   '@rush-temp/main': 'file:projects/main.tgz'
+  '@rush-temp/main-client': 'file:projects/main-client.tgz'
+  '@rush-temp/main-runtime': 'file:projects/main-runtime.tgz_tslib@2.3.1+typescript@4.6.2'
   '@rush-temp/mono-rail': 'file:projects/mono-rail.tgz'
   '@rush-temp/moving-walkway': 'file:projects/moving-walkway.tgz'
   '@rush-temp/mysql': 'file:projects/mysql.tgz'
@@ -74,7 +76,7 @@ dependencies:
   '@rush-temp/tower': 'file:projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:projects/travel-document-checkpoint.tgz'
   '@rush-temp/vasi': 'file:projects/vasi.tgz'
-  '@rush-temp/votecube': 'file:projects/votecube.tgz'
+  '@rush-temp/votecube-client': 'file:projects/votecube-client.tgz'
   '@rush-temp/web-terminal': 'file:projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:projects/web-tower.tgz'
   '@tsconfig/node16': 1.0.2
@@ -6887,6 +6889,32 @@ packages:
       integrity: sha512-8So3LgeYHF0UcgpG4swUlZich4ha6otKiMi4MrZVqoGMfrypZSoaDdhJPqi4Wxb6eFBW04qMBVdtQyA6Y4LUHw==
       tarball: 'file:projects/config.tgz'
     version: 0.0.0
+  'file:projects/core-client.tgz':
+    dev: false
+    name: '@rush-temp/core-client'
+    resolution:
+      integrity: sha512-WqI6lWp79uUUty4hkGmEOL7bET1MQjTQwF2i03f8MOxPShQMmkR+f4WZuaH7zcoGJJjDSHyKTAyLZmsBVgO8RA==
+      tarball: 'file:projects/core-client.tgz'
+    version: 0.0.0
+  'file:projects/core-runtime.tgz_tslib@2.3.1+typescript@4.6.2':
+    dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
+      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
+      rollup: 2.70.1
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.70.1
+      sirv-cli: 1.0.14
+    dev: false
+    id: 'file:projects/core-runtime.tgz'
+    name: '@rush-temp/core-runtime'
+    peerDependencies:
+      tslib: '*'
+      typescript: '*'
+    resolution:
+      integrity: sha512-pic33WyrP+HXt9Urwu1QJJKIsc0uHSjS1Rul3CE91XdOatoLvNnA+HpMEBSAsMIMVL9rEyPxRH6CBPUcEt7D8w==
+      tarball: 'file:projects/core-runtime.tgz'
+    version: 0.0.0
   'file:projects/core.tgz':
     dependencies:
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
@@ -6901,7 +6929,7 @@ packages:
     dev: false
     name: '@rush-temp/core'
     resolution:
-      integrity: sha512-WVQcA98IGuGoSFYVizAnb4akpTjj6RDVbXBmbpiuRQJLF7yB0j+/nzNp+akPRL35sXKAX1N/b2B7cdeoUwonrw==
+      integrity: sha512-k+SVow893fQzCsPqqaeBt85U5/Ost32PX93+zR3VVx3SXL7ciy91liHL0Wifi/OcGJfCQ7ShGRydBRittQufwg==
       tarball: 'file:projects/core.tgz'
     version: 0.0.0
   'file:projects/dependency-injection-1.tgz':
@@ -6942,13 +6970,6 @@ packages:
     resolution:
       integrity: sha512-YVyqAD9prwr3QXrtKop3wbOE2P8kYm9MzWupv0NZrcxx8dMZj4hLmWamVwfliDpgjNTUGc8T48DLBD37RvdHPw==
       tarball: 'file:projects/flight-log-archive.tgz'
-    version: 0.0.0
-  'file:projects/forum.tgz':
-    dev: false
-    name: '@rush-temp/forum'
-    resolution:
-      integrity: sha512-b7vWPkQavbWYsoSxhtRs4S8pzMTqMBshQWqFHE1zD2nrVm3HgL7By6dGcAPBoK44gqDnd4MWIvj6H82dsuW88A==
-      tarball: 'file:projects/forum.tgz'
     version: 0.0.0
   'file:projects/fuel-hydrant-system.tgz':
     dependencies:
@@ -7087,23 +7108,6 @@ packages:
       integrity: sha512-hbFv2Bl71RptvOp4nQQKRSoVVG+KMrgbSCN/Z9augxwKsrMJNhVNqgik2AGPZ4wVfPCoLX2Y/wIurcyiBrTvWw==
       tarball: 'file:projects/holding-pattern.tgz'
     version: 0.0.0
-  'file:projects/host.tgz':
-    dependencies:
-      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
-      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
-      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
-      rollup: 2.70.1
-      rollup-plugin-livereload: 2.0.5
-      rollup-plugin-terser: 7.0.2_rollup@2.70.1
-      sirv-cli: 1.0.14
-      tslib: 2.3.1
-      typescript: 4.6.2
-    dev: false
-    name: '@rush-temp/host'
-    resolution:
-      integrity: sha512-rFkuiQQFZ+2qkZbLajocIpHVhAdWRey9tA/epAb5uKRiasBiUGdF8kBHRQStI8vYd6+GLIppuXODGXT8QsHn3w==
-      tarball: 'file:projects/host.tgz'
-    version: 0.0.0
   'file:projects/hw-control.tgz':
     dependencies:
       rxjs: 7.4.0
@@ -7191,6 +7195,32 @@ packages:
       integrity: sha512-JEMq0eUT3s1XUbX/CMZl7QnmdQQJRWBY/kWCheLsgetNoN9c3YU/u6sbu+Ur2hNhCalpaT6RR1y5DUQg0X4vTA==
       tarball: 'file:projects/landing.tgz'
     version: 0.0.0
+  'file:projects/main-client.tgz':
+    dev: false
+    name: '@rush-temp/main-client'
+    resolution:
+      integrity: sha512-8HzMSfz1mATSucRlEtlaZK3dzYJdHCG7vDX7ztLrMpGfVdeRMZ0S0hv2KGiY1DuTvedJVUSeUHpw8b/rsOt7dg==
+      tarball: 'file:projects/main-client.tgz'
+    version: 0.0.0
+  'file:projects/main-runtime.tgz_tslib@2.3.1+typescript@4.6.2':
+    dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
+      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
+      rollup: 2.70.1
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.70.1
+      sirv-cli: 1.0.14
+    dev: false
+    id: 'file:projects/main-runtime.tgz'
+    name: '@rush-temp/main-runtime'
+    peerDependencies:
+      tslib: '*'
+      typescript: '*'
+    resolution:
+      integrity: sha512-Jy3Vvox6xyXjBmLq7mpx9yrO2jykor5VOO8jA3D0ZairSMVOuemioAGBCn2GJQUqzBJssYmL6g5qT7t+IH+ZUg==
+      tarball: 'file:projects/main-runtime.tgz'
+    version: 0.0.0
   'file:projects/main.tgz':
     dependencies:
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
@@ -7205,7 +7235,7 @@ packages:
     dev: false
     name: '@rush-temp/main'
     resolution:
-      integrity: sha512-vzAmAABJo6TqKPNvu4hsH5Cxop5po/GwBhtCca+SwLrCPguz4yKmsDsV/93Rbf58s8Iu0dulk6mIK1zKCtQlFw==
+      integrity: sha512-EnQDbke8NSYLiei61yLi1fC/NeWdTBHj4aARvEnQBBy7povYB+aqmoNFOQlXWNd4uqzl9CScX+1ggojedcfNdw==
       tarball: 'file:projects/main.tgz'
     version: 0.0.0
   'file:projects/mono-rail.tgz':
@@ -7499,22 +7529,12 @@ packages:
       integrity: sha512-xonl9qqYggc/ONGP0X2AYxM792xd5WmvJ6Dl2EpksXWgqk46j+NFcBx9CPpNdjjKjDURyyzDygacmDGUi+C87Q==
       tarball: 'file:projects/vasi.tgz'
     version: 0.0.0
-  'file:projects/votecube.tgz':
-    dependencies:
-      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
-      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
-      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
-      rollup: 2.70.1
-      rollup-plugin-livereload: 2.0.5
-      rollup-plugin-terser: 7.0.2_rollup@2.70.1
-      sirv-cli: 1.0.14
-      tslib: 2.3.1
-      typescript: 4.6.2
+  'file:projects/votecube-client.tgz':
     dev: false
-    name: '@rush-temp/votecube'
+    name: '@rush-temp/votecube-client'
     resolution:
-      integrity: sha512-s3hMUpheR6NwkiHMDW4Aiv2NHDbJy0wlII8Lg9AN7LjREOszPKaIrGKzXQ0iXWvAUwH6BJ+990Tv2+mK6AKNkQ==
-      tarball: 'file:projects/votecube.tgz'
+      integrity: sha512-NMta8fK+ZToP4ukLw/EhOd/lLtMq1JIWqZR/GfTKtL9DveJbRpTd50bsOucuUUT2dtFcs3k6ddO/Gw1zT9rrkw==
+      tarball: 'file:projects/votecube-client.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
     dependencies:
@@ -7560,11 +7580,12 @@ specifiers:
   '@rush-temp/cockroachdb': 'file:./projects/cockroachdb.tgz'
   '@rush-temp/config': 'file:./projects/config.tgz'
   '@rush-temp/core': 'file:./projects/core.tgz'
+  '@rush-temp/core-client': 'file:./projects/core-client.tgz'
+  '@rush-temp/core-runtime': 'file:./projects/core-runtime.tgz'
   '@rush-temp/dependency-injection': 'file:./projects/dependency-injection.tgz'
   '@rush-temp/dependency-injection-1': 'file:./projects/dependency-injection-1.tgz'
   '@rush-temp/di': 'file:./projects/di.tgz'
   '@rush-temp/flight-log-archive': 'file:./projects/flight-log-archive.tgz'
-  '@rush-temp/forum': 'file:./projects/forum.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:./projects/fuel-hydrant-system.tgz'
   '@rush-temp/functionality-demo': 'file:./projects/functionality-demo.tgz'
   '@rush-temp/functionality-demo-frame': 'file:./projects/functionality-demo-frame.tgz'
@@ -7576,7 +7597,6 @@ specifiers:
   '@rush-temp/ground-transport': 'file:./projects/ground-transport.tgz'
   '@rush-temp/guideway': 'file:./projects/guideway.tgz'
   '@rush-temp/holding-pattern': 'file:./projects/holding-pattern.tgz'
-  '@rush-temp/host': 'file:./projects/host.tgz'
   '@rush-temp/hw-control': 'file:./projects/hw-control.tgz'
   '@rush-temp/hw-driveway': 'file:./projects/hw-driveway.tgz'
   '@rush-temp/hw-flow': 'file:./projects/hw-flow.tgz'
@@ -7585,6 +7605,8 @@ specifiers:
   '@rush-temp/jet-bridge': 'file:./projects/jet-bridge.tgz'
   '@rush-temp/landing': 'file:./projects/landing.tgz'
   '@rush-temp/main': 'file:./projects/main.tgz'
+  '@rush-temp/main-client': 'file:./projects/main-client.tgz'
+  '@rush-temp/main-runtime': 'file:./projects/main-runtime.tgz'
   '@rush-temp/mono-rail': 'file:./projects/mono-rail.tgz'
   '@rush-temp/moving-walkway': 'file:./projects/moving-walkway.tgz'
   '@rush-temp/mysql': 'file:./projects/mysql.tgz'
@@ -7613,7 +7635,7 @@ specifiers:
   '@rush-temp/tower': 'file:./projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:./projects/travel-document-checkpoint.tgz'
   '@rush-temp/vasi': 'file:./projects/vasi.tgz'
-  '@rush-temp/votecube': 'file:./projects/votecube.tgz'
+  '@rush-temp/votecube-client': 'file:./projects/votecube-client.tgz'
   '@rush-temp/web-terminal': 'file:./projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:./projects/web-tower.tgz'
   '@tsconfig/node16': 1.0.2
