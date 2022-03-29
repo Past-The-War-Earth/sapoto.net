@@ -24,7 +24,6 @@ export class AppComponent {
   }
 
   async load() {
-    await IOC.get(LOCAL_API_CLIENT)
     this.themes = await this.themeService.getThemes()
   }
 
