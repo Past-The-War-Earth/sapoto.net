@@ -14,21 +14,6 @@ import {
 } from "../server-tokens";
 import { SITUATION_API } from "../tokens";
 
-export interface ISituationApi {
-
-    save(
-        situation: ISituation
-    ): Promise<void>
-
-    rateSituation(
-        situation: ISituation,
-        importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5,
-        user: IUser
-    ): Promise<ISituationRating>
-
-}
-
 export class SituationApi implements ISituationApi {
 
     @Api()

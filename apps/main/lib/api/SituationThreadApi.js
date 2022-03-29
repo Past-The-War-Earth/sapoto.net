@@ -14,11 +14,9 @@ import { REPLY_DAO, REPLY_RATING_DAO, REPLY_TYPE_DAO, SITUATION_THREAD_DAO } fro
 export class SituationThreadApi {
     async addSituationThread(situationThread) {
         // start transactional
-        transactional(async () => {
-            const [situationApi, situationThreadDao] = await container(this).get(SITUATION_API, SITUATION_THREAD_DAO);
-            await situationApi.save(situationThread.situation);
-            await situationThreadDao.add(situationThread);
-        });
+        const [situationApi, situationThreadDao] = await container(this).get(SITUATION_API, SITUATION_THREAD_DAO);
+        await situationApi.save(situationThread.situation);
+        await situationThreadDao.add(situationThread);
     }
     async addReply(reply) {
         const replyDao = await container(this).get(REPLY_DAO);

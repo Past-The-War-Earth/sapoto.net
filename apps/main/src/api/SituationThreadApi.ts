@@ -51,13 +51,11 @@ export class SituationThreadApi implements ISituationThreadApi {
         situationThread: ISituationThread
     ): Promise<void> {
         // start transactional
-        transactional(async () => {
-            const [situationApi, situationThreadDao] = await container(this).get(
-                SITUATION_API, SITUATION_THREAD_DAO)
+        const [situationApi, situationThreadDao] = await container(this).get(
+            SITUATION_API, SITUATION_THREAD_DAO)
 
-            await situationApi.save(situationThread.situation)
-            await situationThreadDao.add(situationThread)
-        })
+        await situationApi.save(situationThread.situation)
+        await situationThreadDao.add(situationThread)
     }
 
     @Api()
