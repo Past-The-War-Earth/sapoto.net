@@ -1,4 +1,7 @@
 import {
+    IUser
+} from '@airport/travel-document-checkpoint-client'
+import {
     ISituation,
     ISituationRating
 } from '@sapoto/core/lib/generated/generated'

@@ -352,6 +352,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@airport/travel-document-checkpoint-client",
+      "projectFolder": "../../AIR/AIRport/schemas/travel-document-checkpoint/client",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@airport/vasi",
       "projectFolder": "../../AIR/AIRport/schemas/vasi",
       "shouldPublish": true
