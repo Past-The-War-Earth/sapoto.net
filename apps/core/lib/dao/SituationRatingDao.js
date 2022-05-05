@@ -1,7 +1,7 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { SITUATION_RATING_DAO } from "../server-tokens";
 import { BaseSituationRatingDao, Q } from "../generated/generated";
-import { and } from "@airport/air-control";
+import { and } from "@airport/air-traffic-control";
 export class SituationRatingDao extends BaseSituationRatingDao {
     async findForSituationAndUser(situation, user) {
         let sir;

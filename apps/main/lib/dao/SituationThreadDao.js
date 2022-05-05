@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { BaseSituationThreadDao } from "../generated/generated";
 import { SITUATION_THREAD_DAO } from "../server-tokens";
 export class SituationThreadDao extends BaseSituationThreadDao {

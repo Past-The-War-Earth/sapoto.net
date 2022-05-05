@@ -1,4 +1,4 @@
-import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/air-control";
+import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { Situation } from "./Situation";
 

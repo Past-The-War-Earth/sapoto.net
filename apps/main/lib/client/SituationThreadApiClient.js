@@ -1,4 +1,4 @@
-import { IOC } from "@airport/di";
+import { IOC } from "@airport/direction-indicator";
 import { SITUATION_THREAD_API } from "../tokens";
 export class SituationThreadApiClient {
     async addSituationThread(situationThread) {

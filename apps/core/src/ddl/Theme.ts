@@ -1,4 +1,4 @@
-import { Entity, OneToMany, Table } from "@airport/air-control";
+import { Entity, OneToMany, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { Topic } from "./Topic";
 

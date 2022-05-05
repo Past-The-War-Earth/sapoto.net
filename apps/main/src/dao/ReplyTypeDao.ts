@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { BaseReplyTypeDao, IBaseReplyTypeDao } from "../generated/generated";
 import { REPLY_TYPE_DAO } from "../server";
 

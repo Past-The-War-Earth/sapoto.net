@@ -2,7 +2,7 @@
   "dependencies": {
     "@airport/autopilot": "0.0.1",
     "@airport/travel-document-checkpoint-client": "0.0.1",
-    "@airport/di": "0.0.1",
+    "@airport/direction-indicator": "0.0.1",
     "@airport/pressurization": "0.0.1"
   },
   "devDependencies": {

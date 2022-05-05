@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Api } from "@airport/check-in";
 import { transactional } from "@airport/tower";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { SITUATION_API } from "@sapoto/core/lib/app";
 import { IDEA_SITUATION_API } from '@votecube/votecube/lib/app';
 import { SITUATION_THREAD_API, } from "../tokens";

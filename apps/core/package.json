@@ -7,7 +7,7 @@
     "generatedDir": "src/generated"
   },
   "dependencies": {
-    "@airport/di": "0.0.1"
+    "@airport/direction-indicator": "0.0.1"
   },
   "devDependencies": {
     "@airport/runway": "0.0.1",

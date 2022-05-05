@@ -1,7 +1,7 @@
 import { API_REGISTRY, } from '@airport/check-in';
 import { container, DI } from '@airport/di';
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map';
-import { APPLICATION_LOADER } from '@airport/security-check';
+import { APPLICATION_LOADER } from '@airport/apron';
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff';
 import { APPLICATION } from './generated/application';
 export class ApplicationLoader {

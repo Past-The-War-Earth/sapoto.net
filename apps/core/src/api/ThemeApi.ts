@@ -1,5 +1,5 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { ITheme, THEME_DAO } from "../app";
 import { THEME_API } from "../tokens";
 

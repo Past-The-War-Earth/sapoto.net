@@ -1,4 +1,4 @@
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { DEMO_DATA_LOADER } from "./app";
 import { THEME_DAO } from "./server-tokens";
 export class DemoDataLoader {

@@ -1,4 +1,4 @@
-import { IOC } from "@airport/di";
+import { IOC } from "@airport/direction-indicator";
 import { SITUATION_API } from "../tokens";
 
 export class SituationApiClient {

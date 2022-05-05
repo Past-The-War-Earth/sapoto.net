@@ -1,7 +1,7 @@
 import {
     domain as injectionDomain,
     IInjectionApplication
-} from "@airport/di";
+} from "@airport/direction-indicator";
 
 export const domain = injectionDomain('localhost:8100')
 

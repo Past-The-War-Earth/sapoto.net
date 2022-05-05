@@ -1,4 +1,4 @@
-import { IQBooleanField, IQNumberField } from '@airport/air-control';
+import { IQBooleanField, IQNumberField } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { TopicGraph, TopicEOptionalId, TopicESelect, QTopicQRelation } from './qtopic';
 import { IUserTopicFavorite } from './usertopicfavorite';

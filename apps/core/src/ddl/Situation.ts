@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-control";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { SituationRating } from "./SituationRating";
 import { Topic } from "./Topic";

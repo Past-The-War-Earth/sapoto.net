@@ -1,5 +1,5 @@
-import { ALL_FIELDS } from "@airport/air-control";
-import { DI } from "@airport/di";
+import { ALL_FIELDS } from "@airport/air-traffic-control";
+import { DI } from "@airport/direction-indicator";
 import { BaseThemeDao, Q } from "../generated/generated";
 import { THEME_DAO } from "../server-tokens";
 export class ThemeDao extends BaseThemeDao {

@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import { BaseSituationDao } from "../generated/baseDaos";
 import { SITUATION_DAO } from "../server-tokens";
 export class SituationDao extends BaseSituationDao {

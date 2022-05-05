@@ -8,10 +8,11 @@ import {
     IApplicationLoader,
     JsonApplicationWithLastIds,
     LastIds
-} from '@airport/security-check'
+} from '@airport/apron'
 import { DDL_OBJECT_RETRIEVER } from '@airport/takeoff'
 import { APPLICATION } from './generated/application'
 import { DEMO_DATA_LOADER } from './server-tokens'
+import { core } from './tokens'
 
 export class ApplicationLoader
     implements IApplicationLoader {
@@ -26,7 +27,7 @@ export class ApplicationLoader
         }
         this.initializing = true
 
-        DI.db().context.inAIRportApp = true
+        core.autopilot = false
 
         const [apiRegistry, ddlObjectRetriever, applicationInitializer] = await container(this)
             .get(API_REGISTRY, DDL_OBJECT_RETRIEVER, APPLICATION_INITIALIZER)

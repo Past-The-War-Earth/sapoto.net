@@ -1,6 +1,6 @@
 import { Api } from "@airport/check-in";
 import { transactional } from "@airport/tower";
-import { container, DI } from "@airport/di";
+import { container, DI } from "@airport/direction-indicator";
 import { SITUATION_API } from "@sapoto/core/lib/app";
 import { IIdeaSituation, IDEA_SITUATION_API } from '@votecube/votecube/lib/app'
 import {

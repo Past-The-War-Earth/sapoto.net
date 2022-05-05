@@ -58,8 +58,13 @@
     // AIRport
     // "apis" folder (alphabetical order)
     {
-      "packageName": "@airport/air-control",
-      "projectFolder": "../../AIR/AIRport/apis/air-control",
+      "packageName": "@airport/air-traffic-control",
+      "projectFolder": "../../AIR/AIRport/apis/air-traffic-control",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/apron",
+      "projectFolder": "../../AIR/AIRport/apis/apron",
       "shouldPublish": true
     },
     {
@@ -83,21 +88,11 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/security-check",
-      "projectFolder": "../../AIR/AIRport/apis/security-check",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/terminal-map",
       "projectFolder": "../../AIR/AIRport/apis/terminal-map",
       "shouldPublish": true
     },
     // "db" folder (alphabetical order)
-    {
-      "packageName": "@airport/cockroachdb",
-      "projectFolder": "../../AIR/AIRport/db/cockroachdb",
-      "shouldPublish": true
-    },
     {
       "packageName": "@airport/mysql",
       "projectFolder": "../../AIR/AIRport/db/mysql",
@@ -136,16 +131,6 @@
     },
     // "execs" folder (alphabetical order)
     {
-      "packageName": "@airport/go-terminal",
-      "projectFolder": "../../AIR/AIRport/execs/go-terminal",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/go-tower",
-      "projectFolder": "../../AIR/AIRport/execs/go-tower",
-      "shouldPublish": true
-    },
-    {
       "packageName": "@airport/web-terminal",
       "projectFolder": "../../AIR/AIRport/execs/web-terminal",
       "shouldPublish": true
@@ -171,20 +156,10 @@
       "projectFolder": "../../AIR/AIRport/generators/takeoff",
       "shouldPublish": true
     },
-    {
-      "packageName": "@airport/taxiway",
-      "projectFolder": "../../AIR/AIRport/generators/taxiway",
-      "shouldPublish": true
-    },
     // "highway" folder (alphabetical order)
     {
       "packageName": "@airport/hw-control",
       "projectFolder": "../../AIR/AIRport/highway/control",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@airport/hw-driveway",
-      "projectFolder": "../../AIR/AIRport/highway/driveway",
       "shouldPublish": true
     },
     {
@@ -214,8 +189,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/di",
-      "projectFolder": "../../AIR/AIRport/libs/di",
+      "packageName": "@airport/direction-indicator",
+      "projectFolder": "../../AIR/AIRport/libs/direction-indicator",
       "shouldPublish": true
     },
     {

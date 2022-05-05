@@ -2,7 +2,7 @@ import { Api } from "@airport/check-in";
 import {
     container,
     DI
-} from "@airport/di";
+} from "@airport/direction-indicator";
 import { IUser } from "@airport/travel-document-checkpoint";
 import {
     ISituation,

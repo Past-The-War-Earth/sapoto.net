@@ -1,4 +1,4 @@
-import { IOC } from "@airport/di";
+import { IOC } from "@airport/direction-indicator";
 import { ITheme } from "../generated/interfaces";
 import { THEME_API } from "../tokens";
 

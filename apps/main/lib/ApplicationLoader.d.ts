@@ -1,4 +1,4 @@
-import { IApplicationLoader, JsonApplicationWithLastIds, LastIds } from '@airport/security-check';
+import { IApplicationLoader, JsonApplicationWithLastIds, LastIds } from '@airport/apron';
 export declare class ApplicationLoader implements IApplicationLoader {
     private initializing;
     load(lastIds: LastIds): Promise<void>;

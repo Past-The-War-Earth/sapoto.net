@@ -1,4 +1,4 @@
-import { DI } from "@airport/di";
+import { DI } from "@airport/direction-indicator";
 import {
     IUser,
     QUser
@@ -12,7 +12,7 @@ import {
     QSituationRating,
     Q
 } from "../generated/generated";
-import { and } from "@airport/air-control";
+import { and } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
 
 export interface ISituationRatingDao

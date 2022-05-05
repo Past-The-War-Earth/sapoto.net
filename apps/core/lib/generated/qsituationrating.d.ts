@@ -1,4 +1,4 @@
-import { IQNumberField } from '@airport/air-control';
+import { IQNumberField } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from './qsituation';
 import { ISituationRating } from './situationrating';
