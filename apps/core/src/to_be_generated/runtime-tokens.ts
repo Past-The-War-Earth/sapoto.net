@@ -1,7 +1,7 @@
 import { APPLICATION_STORE, IApplicationLoader } from '@airport/apron'
 import { API_REGISTRY } from '@airport/check-in'
 import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
-import { APPLICATION_INITIALIZER } from '../../../../../../AIR/AIRport/apis/terminal-map/lib'
+import { APPLICATION_INITIALIZER } from '@airport/terminal-map'
 import { SituationApi } from '../api/SituationApi'
 import { ThemeApi } from '../api/ThemeApi'
 import { TopicApi } from '../api/TopicApi'
