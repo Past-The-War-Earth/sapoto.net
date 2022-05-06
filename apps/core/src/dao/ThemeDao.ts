@@ -1,5 +1,5 @@
 import { ALL_FIELDS } from "@airport/air-traffic-control";
-import { DI } from "@airport/direction-indicator";
+import { Injected } from "@airport/direction-indicator";
 import {
     BaseThemeDao,
     IBaseThemeDao,
@@ -8,7 +8,6 @@ import {
     QTheme,
     QTopic
 } from "../generated/generated";
-import { THEME_DAO } from "../server-tokens";
 
 export interface IThemeDao
     extends IBaseThemeDao {
@@ -17,6 +16,7 @@ export interface IThemeDao
 
 }
 
+@Injected()
 export class ThemeDao
     extends BaseThemeDao
     implements IThemeDao {
@@ -39,4 +39,3 @@ export class ThemeDao
     }
 
 }
-DI.set(THEME_DAO, ThemeDao)

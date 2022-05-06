@@ -2,15 +2,13 @@
   "dependencies": {
     "@airport/autopilot": "0.0.1",
     "@airport/travel-document-checkpoint-client": "0.0.1",
+    "@airport/holding-pattern-client": "0.0.1",
     "@airport/direction-indicator": "0.0.1",
     "@airport/pressurization": "0.0.1"
-  },
-  "devDependencies": {
-    "@sapoto/core": "0.0.1"
   },
   "main": "lib/client.js",
   "name": "@sapoto/core-client",
   "type": "module",
-  "typings": "lib/client",
+  "typings": "lib/to_be_generated/client",
   "version": "0.0.1"
 }

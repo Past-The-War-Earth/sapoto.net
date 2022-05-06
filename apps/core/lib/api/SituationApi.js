@@ -5,17 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
-import { SITUATION_DAO, SITUATION_RATING_DAO } from "../server-tokens";
-import { SITUATION_API } from "../tokens";
-export class SituationApi {
+import { Inject, Injected } from "@airport/direction-indicator";
+let SituationApi = class SituationApi {
     async save(situation) {
-        const situationDao = await container(this).get(SITUATION_DAO);
-        await situationDao.save(situation);
+        await this.situationDao.save(situation);
     }
     async rateSituation(situation, importanceRating, urgencyRating, user) {
-        const situationRatingDao = await container(this).get(SITUATION_RATING_DAO);
-        let situationRating = await situationRatingDao
+        let situationRating = await this.situationRatingDao
             .findForSituationAndUser(situation, user);
         if (!situationRating) {
             situationRating = {
@@ -31,15 +27,24 @@ export class SituationApi {
             situationRating.importanceRating = importanceRating;
             situationRating.urgencyRating = urgencyRating;
         }
-        await situationRatingDao.save(situationRating);
+        await this.situationRatingDao.save(situationRating);
         return situationRating;
     }
-}
+};
+__decorate([
+    Inject()
+], SituationApi.prototype, "situationDao", void 0);
+__decorate([
+    Inject()
+], SituationApi.prototype, "situationRatingDao", void 0);
 __decorate([
     Api()
 ], SituationApi.prototype, "save", null);
 __decorate([
     Api()
 ], SituationApi.prototype, "rateSituation", null);
-DI.set(SITUATION_API, SituationApi);
+SituationApi = __decorate([
+    Injected()
+], SituationApi);
+export { SituationApi };
 //# sourceMappingURL=SituationApi.js.map

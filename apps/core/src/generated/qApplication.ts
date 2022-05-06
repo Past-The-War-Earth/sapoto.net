@@ -1,33 +1,33 @@
 import {
 	AIRPORT_DATABASE,
 	QApplication as AirportQApplication
-}                      from '@airport/air-traffic-control'
+} from '@airport/air-traffic-control'
 import {
 	diSet as dS,
 	duoDiSet as ddS
-}                      from '@airport/check-in'
-import {DI}            from '@airport/di'
+} from '@airport/check-in'
+import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
 import {
 	DbApplication,
 	EntityId,
 	getFullApplicationName
-}                      from '@airport/ground-control';
+} from '@airport/ground-control';
 import { QSituation } from './qsituation';
 import { QSituationRating } from './qsituationrating';
 import { QTheme } from './qtheme';
 import { QTopic } from './qtopic';
 import { QUserTopicFavorite } from './qusertopicfavorite';
 import {
-  Situation,
-  SituationRating,
-  Theme,
-  Topic,
-  UserTopicFavorite
+	Situation,
+	SituationRating,
+	Theme,
+	Topic,
+	UserTopicFavorite
 } from '../ddl/ddl';
 
 export interface LocalQApplication extends AirportQApplication {
 
-  db: DbApplication;
+	db: DbApplication;
 
 	Situation: QSituation;
 	SituationRating: QSituationRating;
@@ -47,8 +47,8 @@ const __constructors__ = {
 
 export const Q_APPLICATION: LocalQApplication = <any>{
 	__constructors__,
-  domain: 'localhost:8100',
-  name: '@sapoto/core'
+	domain: 'localhost:8100',
+	name: '@sapoto/core'
 };
 export const Q: LocalQApplication = Q_APPLICATION
 
@@ -64,7 +64,7 @@ export function duoDiSet(
 	return ddS(Q.__dbApplication__, dbEntityId)
 }
 
-DI.db().eventuallyGet(AIRPORT_DATABASE).then((
+DEPENDENCY_INJECTION.db().eventuallyGet(AIRPORT_DATABASE).then((
 	airDb
 ) => {
 	airDb.QM[getFullApplicationName(Q_APPLICATION)] = Q

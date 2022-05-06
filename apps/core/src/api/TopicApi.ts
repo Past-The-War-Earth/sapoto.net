@@ -1,12 +1,11 @@
-import { DI } from "@airport/direction-indicator";
-import { TOPIC_API } from "../tokens";
+import { Injected } from "@airport/direction-indicator";
 
 export interface ITopicApi {
 
 }
 
+@Injected()
 export class TopicApi
     implements ITopicApi {
 
 }
-DI.set(TOPIC_API, TopicApi)

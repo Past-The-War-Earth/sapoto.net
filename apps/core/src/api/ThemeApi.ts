@@ -1,7 +1,7 @@
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
-import { ITheme, THEME_DAO } from "../app";
-import { THEME_API } from "../tokens";
+import { Inject, Injected } from "@airport/direction-indicator";
+import { ITheme } from "../generated/interfaces";
+import { ThemeDao } from "../dao/ThemeDao";
 
 export interface IThemeApi {
 
@@ -9,15 +9,16 @@ export interface IThemeApi {
 
 }
 
+@Injected()
 export class ThemeApi
     implements IThemeApi {
 
+    @Inject()
+    themeDao: ThemeDao
+
     @Api()
     async getAllWithTopics(): Promise<ITheme[]> {
-        const themeDao = await container(this).get(THEME_DAO)
-
-        return await themeDao.getAllWithTopics()
+        return await this.themeDao.getAllWithTopics()
     }
 
 }
-DI.set(THEME_API, ThemeApi)

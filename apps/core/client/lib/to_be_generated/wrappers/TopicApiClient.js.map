@@ -1,0 +1,1 @@
+{"version":3,"file":"TopicApiClient.js","sourceRoot":"","sources":["../../../src/to_be_generated/wrappers/TopicApiClient.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,8BAA8B,CAAC;AACnD,OAAO,EAAE,SAAS,EAAE,MAAM,WAAW,CAAC;AAMtC,MAAM,OAAO,cAAc;IAGvB,KAAK,CAAC,IAAI;QAEN,MAAM,QAAQ,GAAG,MAAM,GAAG,CAAC,GAAG,CAAC,SAAS,CAAC,CAAA;QAEzC,+BAA+B;IACnC,CAAC;CAEJ"}

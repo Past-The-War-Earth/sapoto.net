@@ -12,7 +12,7 @@ import {
 //////////////////////////////
 
 export interface IUserTopicFavorite extends IRepositoryEntity {
-	
+
 	// Id Properties
 
 	// Id Relations
@@ -26,7 +26,7 @@ export interface IUserTopicFavorite extends IRepositoryEntity {
 	// Transient Properties
 
 	// Public Methods
-	
+
 }
 
 

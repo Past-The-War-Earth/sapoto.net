@@ -5,17 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { container, DI } from "@airport/direction-indicator";
-import { THEME_DAO } from "../app";
-import { THEME_API } from "../tokens";
-export class ThemeApi {
+import { Inject, Injected } from "@airport/direction-indicator";
+let ThemeApi = class ThemeApi {
     async getAllWithTopics() {
-        const themeDao = await container(this).get(THEME_DAO);
-        return await themeDao.getAllWithTopics();
+        return await this.themeDao.getAllWithTopics();
     }
-}
+};
+__decorate([
+    Inject()
+], ThemeApi.prototype, "themeDao", void 0);
 __decorate([
     Api()
 ], ThemeApi.prototype, "getAllWithTopics", null);
-DI.set(THEME_API, ThemeApi);
+ThemeApi = __decorate([
+    Injected()
+], ThemeApi);
+export { ThemeApi };
 //# sourceMappingURL=ThemeApi.js.map

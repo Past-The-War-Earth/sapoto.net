@@ -28,6 +28,7 @@ dependencies:
   '@rush-temp/ground-control': 'file:projects/ground-control.tgz'
   '@rush-temp/ground-transport': 'file:projects/ground-transport.tgz'
   '@rush-temp/holding-pattern': 'file:projects/holding-pattern.tgz'
+  '@rush-temp/holding-pattern-client': 'file:projects/holding-pattern-client.tgz'
   '@rush-temp/hw-control': 'file:projects/hw-control.tgz'
   '@rush-temp/hw-flow': 'file:projects/hw-flow.tgz'
   '@rush-temp/hw-scylladb': 'file:projects/hw-scylladb.tgz'
@@ -54,7 +55,6 @@ dependencies:
   '@rush-temp/tower': 'file:projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:projects/travel-document-checkpoint.tgz'
   '@rush-temp/travel-document-checkpoint-client': 'file:projects/travel-document-checkpoint-client.tgz'
-  '@rush-temp/travel-document-checkpoint-internal': 'file:projects/travel-document-checkpoint-internal.tgz'
   '@rush-temp/votecube-client': 'file:projects/votecube-client.tgz'
   '@rush-temp/web-terminal': 'file:projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:projects/web-tower.tgz'
@@ -2702,7 +2702,7 @@ packages:
     dev: false
     name: '@rush-temp/arrivals-n-departures'
     resolution:
-      integrity: sha512-uoRGWYp6cMPBhVQNRiWXr4O/4I5Iq7D12h2weiyA8gzDwea7XwhLutuU/u4s2N3auN1MT7ZMoKbAdQa4el8ogQ==
+      integrity: sha512-zXT3MLeFlps4bpyW9ejso9ioTyfq+nVvg2AnhqLLe8UR5VCJYphG+3jy4hdCCT9fSLzXs1jOPpWgKu1Wex10Cw==
       tarball: 'file:projects/arrivals-n-departures.tgz'
     version: 0.0.0
   'file:projects/autopilot.tgz_typescript@4.6.2':
@@ -2734,7 +2734,7 @@ packages:
     peerDependencies:
       typescript: '*'
     resolution:
-      integrity: sha512-wTdIS8A9UuQjI+XFTS1HSicTCtHCq9a1ThjepVWpmdQQGdNbFzT8pRFSbCArOsYj10ayDIhF1QIz73MTQCbDow==
+      integrity: sha512-OBv/DIjhZmG17vDMwl3slSauqHE6CIkpDuM2Zw55KDwR4sg7tK+JywGxquoPuqGqECoi9dO8WpOpbjOpn7AZVg==
       tarball: 'file:projects/blueprint.tgz'
     version: 0.0.0
   'file:projects/check-in.tgz':
@@ -2750,7 +2750,7 @@ packages:
     dev: false
     name: '@rush-temp/core-client'
     resolution:
-      integrity: sha512-zWO9jZIc/fn47t07+WLZyUVb+/rC21QBVoOAWXLQZD3okJfdazs5HnXBwI8ToxGP2d2Wu7Q0DTCOwP/YfKV4BA==
+      integrity: sha512-qxWBY9sdQcq0gbjwZQKDrvbls3ngW+jtkxBDjLHQEsu9ZycJ82yjU8pwpWtLGpBO0lZp1Mbw8jkr51v9U9FeFA==
       tarball: 'file:projects/core-client.tgz'
     version: 0.0.0
   'file:projects/core-runtime.tgz_tslib@2.3.1+typescript@4.6.2':
@@ -2786,7 +2786,7 @@ packages:
     dev: false
     name: '@rush-temp/core'
     resolution:
-      integrity: sha512-Sivp8F6L7xUSkZfOikdG2oXGlelQRFsbdUZBDyU1kqAKLsuvsfgO2VFZqB8eM3H99gtcyNRQIpohi155JvMwQA==
+      integrity: sha512-XAa5ZadIHKi9CC9Fi2ERqLLRpfwYGv+QHcF19KZ75HVSAHWuw1rFQAPK2HE6dY5e8xE6RXvbMdT/IjVaI0LrdQ==
       tarball: 'file:projects/core.tgz'
     version: 0.0.0
   'file:projects/dependency-injection-1.tgz':
@@ -2846,8 +2846,15 @@ packages:
     dev: false
     name: '@rush-temp/ground-transport'
     resolution:
-      integrity: sha512-l+nmonW2+00BME5hieh7xo72qG7iwIN88IifJQm4sGl8VX2oo5Jx5UgChyl6KABk17iKs0R6wdMUYpN1OpN9/A==
+      integrity: sha512-jMipeK1xWCdcGhjgOmkX7x/kyQhD2rbcpfV7P63SWTMttJrQnXqD1uCH6hXZmRHL4OM7/OmoJoTUkm3Qd8UpTQ==
       tarball: 'file:projects/ground-transport.tgz'
+    version: 0.0.0
+  'file:projects/holding-pattern-client.tgz':
+    dev: false
+    name: '@rush-temp/holding-pattern-client'
+    resolution:
+      integrity: sha512-N9O2mRqxvf2WRlAtlM9z/q4WI07rL8ey5w8OT0RqW7i6iBuaS16Xi1ewhk6M+QmHD+BUTnf8ds45cT61IxxJlA==
+      tarball: 'file:projects/holding-pattern-client.tgz'
     version: 0.0.0
   'file:projects/holding-pattern.tgz':
     dependencies:
@@ -2855,7 +2862,7 @@ packages:
     dev: false
     name: '@rush-temp/holding-pattern'
     resolution:
-      integrity: sha512-xtKndEYjUqBtFCn8CojhBmBzfEPg4QRF3CRBdHODUYpgeas17a10I8Um319Yd7zAIEy20vikxWtbPNUtU5KB1A==
+      integrity: sha512-9COkzYrYIt1liSoglM6QIzwxs2nnwifHcPNVMYU6LRGmsQIS31eQLcYX8caHcw+TyW6bvMO7cxW3NjVPAZcYnw==
       tarball: 'file:projects/holding-pattern.tgz'
     version: 0.0.0
   'file:projects/hw-control.tgz':
@@ -2967,7 +2974,7 @@ packages:
     dev: false
     name: '@rush-temp/moving-walkway'
     resolution:
-      integrity: sha512-h5/ZEfrd3QE/QR2UTg/8Dco8zm7joxxpoTjHS6C+1agkyjelAdOIG74bppvpEGFL76DVgMzRjWsWLuauEjFiqg==
+      integrity: sha512-B8jNheTUELo93nbToFuxEcP00SZfY+3diOuzV4KGINF93oS3b713PiD0ccO7eIdaWZ9D++OU7K+PrfnQjl2h0Q==
       tarball: 'file:projects/moving-walkway.tgz'
     version: 0.0.0
   'file:projects/mysql.tgz':
@@ -3114,7 +3121,7 @@ packages:
     dev: false
     name: '@rush-temp/terminal-map'
     resolution:
-      integrity: sha512-2FIP3zo0FOtJyLEGKrWHqefxdaA++2camCjLrQdLeAbxkDGUPM915SbD3MR+clpJAz3V61Hiy6IRBZbocOF4Rg==
+      integrity: sha512-Teg/dBF+YqrkQwfvrfAmi8lhsxdo3Z6JnaRrnKT/DDhLQfNS+ps1/az8Fu1IshId7puIabNhdiZ2VpxrA1ayPQ==
       tarball: 'file:projects/terminal-map.tgz'
     version: 0.0.0
   'file:projects/terminal.tgz':
@@ -3125,7 +3132,7 @@ packages:
     dev: false
     name: '@rush-temp/terminal'
     resolution:
-      integrity: sha512-FRJFqIAyczRTlCQpp5/zMdjhHPDJuganXZEEk3gAC9Gw0W50Fxljj0SagXe9j2S4Sg9jGslYMMGjEdVWptUjjA==
+      integrity: sha512-XwQOWb8dfg7CC8yvjAKqFE2eMp6Y+jEu51cp33W+6nBIR5UNVdPs7TBJWJh7RdIkwVUfQYl6rbekaamDrdYXPA==
       tarball: 'file:projects/terminal.tgz'
     version: 0.0.0
   'file:projects/tower.tgz':
@@ -3143,13 +3150,6 @@ packages:
     resolution:
       integrity: sha512-ZS1OTQcN6B8nbTVkwxQQhwAH7mM9b/bZNKe+hJyllurrKvUEFrI4ZJEvIb5aHIitMNCn6iHppeNTrtzlEHpOUw==
       tarball: 'file:projects/travel-document-checkpoint-client.tgz'
-    version: 0.0.0
-  'file:projects/travel-document-checkpoint-internal.tgz':
-    dev: false
-    name: '@rush-temp/travel-document-checkpoint-internal'
-    resolution:
-      integrity: sha512-kw6dt28XiYgbNVIUmY/rM2Ovz4z4juJFsQDX2O81Re0K7yWIMrL7MPQeXLbzs7cvjvumJqzBBkNw1992kKAm9Q==
-      tarball: 'file:projects/travel-document-checkpoint-internal.tgz'
     version: 0.0.0
   'file:projects/travel-document-checkpoint.tgz':
     dependencies:
@@ -3219,6 +3219,7 @@ specifiers:
   '@rush-temp/ground-control': 'file:./projects/ground-control.tgz'
   '@rush-temp/ground-transport': 'file:./projects/ground-transport.tgz'
   '@rush-temp/holding-pattern': 'file:./projects/holding-pattern.tgz'
+  '@rush-temp/holding-pattern-client': 'file:./projects/holding-pattern-client.tgz'
   '@rush-temp/hw-control': 'file:./projects/hw-control.tgz'
   '@rush-temp/hw-flow': 'file:./projects/hw-flow.tgz'
   '@rush-temp/hw-scylladb': 'file:./projects/hw-scylladb.tgz'
@@ -3245,7 +3246,6 @@ specifiers:
   '@rush-temp/tower': 'file:./projects/tower.tgz'
   '@rush-temp/travel-document-checkpoint': 'file:./projects/travel-document-checkpoint.tgz'
   '@rush-temp/travel-document-checkpoint-client': 'file:./projects/travel-document-checkpoint-client.tgz'
-  '@rush-temp/travel-document-checkpoint-internal': 'file:./projects/travel-document-checkpoint-internal.tgz'
   '@rush-temp/votecube-client': 'file:./projects/votecube-client.tgz'
   '@rush-temp/web-terminal': 'file:./projects/web-terminal.tgz'
   '@rush-temp/web-tower': 'file:./projects/web-tower.tgz'

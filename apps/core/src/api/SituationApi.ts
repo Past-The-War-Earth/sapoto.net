@@ -1,28 +1,45 @@
 import { Api } from "@airport/check-in";
 import {
-    container,
-    DI
+    Inject,
+    Injected
 } from "@airport/direction-indicator";
 import { IUser } from "@airport/travel-document-checkpoint";
 import {
     ISituation,
     ISituationRating
 } from "../generated/generated";
-import {
-    SITUATION_DAO,
-    SITUATION_RATING_DAO
-} from "../server-tokens";
-import { SITUATION_API } from "../tokens";
+import { SituationDao } from "../dao/SituationDao";
+import { SituationRatingDao } from "../dao/SituationRatingDao";
 
+export interface ISituationApi {
+
+    save(
+        situation: ISituation
+    ): Promise<void>
+
+    rateSituation(
+        situation: ISituation,
+        importanceRating: 1 | 2 | 3 | 4 | 5,
+        urgencyRating: 1 | 2 | 3 | 4 | 5,
+        user: IUser
+    ): Promise<ISituationRating>
+
+}
+
+@Injected()
 export class SituationApi implements ISituationApi {
+
+    @Inject()
+    situationDao: SituationDao
+
+    @Inject()
+    situationRatingDao: SituationRatingDao
 
     @Api()
     async save(
         situation: ISituation
     ): Promise<void> {
-        const situationDao = await container(this).get(SITUATION_DAO)
-
-        await situationDao.save(situation)
+        await this.situationDao.save(situation)
     }
 
     @Api()
@@ -32,9 +49,7 @@ export class SituationApi implements ISituationApi {
         urgencyRating: 1 | 2 | 3 | 4 | 5,
         user: IUser
     ): Promise<ISituationRating> {
-        const situationRatingDao = await container(this).get(SITUATION_RATING_DAO)
-
-        let situationRating = await situationRatingDao
+        let situationRating = await this.situationRatingDao
             .findForSituationAndUser(situation, user)
 
         if (!situationRating) {
@@ -52,10 +67,9 @@ export class SituationApi implements ISituationApi {
         }
 
 
-        await situationRatingDao.save(situationRating)
+        await this.situationRatingDao.save(situationRating)
 
         return situationRating
     }
 
 }
-DI.set(SITUATION_API, SituationApi)

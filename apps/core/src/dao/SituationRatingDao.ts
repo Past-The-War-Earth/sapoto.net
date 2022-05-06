@@ -1,9 +1,8 @@
-import { DI } from "@airport/direction-indicator";
+import { Injected } from "@airport/direction-indicator";
 import {
     IUser,
     QUser
 } from "@airport/travel-document-checkpoint";
-import { SITUATION_RATING_DAO } from "../server-tokens";
 import {
     BaseSituationRatingDao,
     IBaseSituationRatingDao,
@@ -25,6 +24,7 @@ export interface ISituationRatingDao
 
 }
 
+@Injected()
 export class SituationRatingDao
     extends BaseSituationRatingDao
     implements ISituationRatingDao {
@@ -51,4 +51,3 @@ export class SituationRatingDao
     }
 
 }
-DI.set(SITUATION_RATING_DAO, SituationRatingDao)

@@ -1,1 +1,1 @@
-{"version":3,"file":"TopicApi.d.ts","sourceRoot":"","sources":["../../src/api/TopicApi.ts"],"names":[],"mappings":"AAGA,MAAM,WAAW,SAAS;CAEzB;AAED,qBAAa,QACT,YAAW,SAAS;CAEvB"}
+{"version":3,"file":"TopicApi.d.ts","sourceRoot":"","sources":["../../src/api/TopicApi.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,SAAS;CAEzB;AAED,qBACa,QACT,YAAW,SAAS;CAEvB"}

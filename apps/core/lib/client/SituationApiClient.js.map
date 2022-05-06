@@ -1,1 +1,0 @@
-{"version":3,"file":"SituationApiClient.js","sourceRoot":"","sources":["../../src/client/SituationApiClient.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,aAAa,CAAC;AAClC,OAAO,EAAE,aAAa,EAAE,MAAM,WAAW,CAAC;AAE1C,MAAM,OAAO,kBAAkB;IAE3B,KAAK,CAAC,IAAI;QAEN,MAAM,YAAY,GAAG,MAAM,GAAG,CAAC,GAAG,CAAC,aAAa,CAAC,CAAA;QAEjD,mCAAmC;IACvC,CAAC;CAEJ"}
