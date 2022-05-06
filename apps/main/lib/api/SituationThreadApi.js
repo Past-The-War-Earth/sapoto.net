@@ -5,33 +5,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Api } from "@airport/check-in";
-import { transactional } from "@airport/tower";
-import { container, DI } from "@airport/direction-indicator";
-import { SITUATION_API } from "@sapoto/core/lib/app";
-import { IDEA_SITUATION_API } from '@votecube/votecube/lib/app';
-import { SITUATION_THREAD_API, } from "../tokens";
-import { REPLY_DAO, REPLY_RATING_DAO, REPLY_TYPE_DAO, SITUATION_THREAD_DAO } from "../server-tokens";
-export class SituationThreadApi {
+import { Inject, Injected } from "@airport/direction-indicator";
+let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
-        // start transactional
-        const [situationApi, situationThreadDao] = await container(this).get(SITUATION_API, SITUATION_THREAD_DAO);
-        await situationApi.save(situationThread.situation);
-        await situationThreadDao.add(situationThread);
+        await this.situationApi.save(situationThread.situation);
+        await this.situationThreadDao.add(situationThread);
     }
     async addReply(reply) {
-        const replyDao = await container(this).get(REPLY_DAO);
-        await replyDao.save(reply);
+        await this.replyDao.save(reply);
     }
     async addIdea(reply, ideaSituation) {
-        const ideaSituationApi = await container(this).get(IDEA_SITUATION_API);
-        transactional(async () => {
-            ideaSituationApi.add(ideaSituation);
-            await this.addReply(reply);
-        });
+        await this.ideaSituationApi.add(ideaSituation);
+        await this.addReply(reply);
     }
     async rateReply(replyRating) {
-        const replyRatingDao = await container(this).get(REPLY_RATING_DAO);
-        replyRatingDao.save(replyRating);
+        this.replyRatingDao.save(replyRating);
     }
     async addReplyType(reply, type) {
         const replyType = {
@@ -39,11 +27,28 @@ export class SituationThreadApi {
             repository: reply.repository,
             type
         };
-        const replyTypeDao = await container(this).get(REPLY_TYPE_DAO);
-        await replyTypeDao.save(replyType);
+        await this.replyTypeDao.save(replyType);
         reply.replyTypes.push(replyType);
     }
-}
+};
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "ideaSituationApi", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "replyDao", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "replyRatingDao", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "replyTypeDao", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "situationApi", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "situationThreadDao", void 0);
 __decorate([
     Api()
 ], SituationThreadApi.prototype, "addSituationThread", null);
@@ -59,5 +64,8 @@ __decorate([
 __decorate([
     Api()
 ], SituationThreadApi.prototype, "addReplyType", null);
-DI.set(SITUATION_THREAD_API, SituationThreadApi);
+SituationThreadApi = __decorate([
+    Injected()
+], SituationThreadApi);
+export { SituationThreadApi };
 //# sourceMappingURL=SituationThreadApi.js.map

@@ -1,5 +1,5 @@
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { Situation } from "@sapoto/core/lib/app";
+import { Situation } from "@sapoto/core";
 import { Reply } from "./Reply";
 export declare class SituationThread extends RepositoryEntity {
     situation: Situation;

@@ -1,10 +1,9 @@
-import { DI } from "@airport/direction-indicator";
+import { Injected } from "@airport/direction-indicator";
 import {
     BaseSituationThreadDao,
     IBaseSituationThreadDao,
     ISituationThread
 } from "../generated/generated";
-import { SITUATION_THREAD_DAO } from "../server-tokens";
 
 export interface ISituationThreadDao
     extends IBaseSituationThreadDao {
@@ -15,6 +14,7 @@ export interface ISituationThreadDao
 
 }
 
+@Injected()
 export class SituationThreadDao
     extends BaseSituationThreadDao
     implements ISituationThreadDao {
@@ -26,4 +26,3 @@ export class SituationThreadDao
     }
 
 }
-DI.set(SITUATION_THREAD_DAO, SituationThreadDao)

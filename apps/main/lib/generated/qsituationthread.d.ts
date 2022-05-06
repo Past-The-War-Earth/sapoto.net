@@ -1,6 +1,6 @@
 import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
-import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core/lib/app';
+import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
 import { ReplyGraph, ReplyESelect, QReply } from './qreply';
 import { IReply } from './reply';
 import { ISituationThread } from './situationthread';

@@ -42,7 +42,4 @@ ApplicationLoader = __decorate([
     Injected()
 ], ApplicationLoader);
 export { ApplicationLoader };
-export function wireApplicationLoader() {
-    console.log('ApplicationLoader wired');
-}
 //# sourceMappingURL=ApplicationLoader.js.map

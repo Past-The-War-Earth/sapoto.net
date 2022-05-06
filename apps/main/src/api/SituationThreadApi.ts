@@ -1,23 +1,19 @@
 import { Api } from "@airport/check-in";
-import { transactional } from "@airport/tower";
-import { container, DI } from "@airport/direction-indicator";
-import { SITUATION_API } from "@sapoto/core/lib/app";
-import { IIdeaSituation, IDEA_SITUATION_API } from '@votecube/votecube/lib/app'
-import {
-    SITUATION_THREAD_API,
-} from "../tokens";
-import {
-    REPLY_DAO,
-    REPLY_RATING_DAO,
-    REPLY_TYPE_DAO,
-    SITUATION_THREAD_DAO
-} from "../server-tokens";
+import { Inject, Injected } from "@airport/direction-indicator";
+import { IIdeaSituation } from '@votecube/votecube'
 import {
     IReply,
     IReplyRating,
     IReplyType,
     ISituationThread
 } from "../generated/generated";
+import { ISituationDao } from "@sapoto/core/lib/dao/SituationDao";
+import { IReplyTypeDao } from "../dao/ReplyTypeDao";
+import { IReplyRatingDao } from "../dao/ReplyRatingDao";
+import { IReplyDao } from "../dao/ReplyDao";
+import { ISituationThreadDao } from "../dao/SituationThreadDao";
+import { IIdeaSituationApi } from "@votecube/votecube/lib/app";
+
 export interface ISituationThreadApi {
 
     addSituationThread(
@@ -44,26 +40,41 @@ export interface ISituationThreadApi {
 
 }
 
+@Injected()
 export class SituationThreadApi implements ISituationThreadApi {
+
+    @Inject()
+    ideaSituationApi: IIdeaSituationApi
+
+    @Inject()
+    replyDao: IReplyDao
+
+    @Inject()
+    replyRatingDao: IReplyRatingDao
+
+    @Inject()
+    replyTypeDao: IReplyTypeDao
+
+    @Inject()
+    situationApi: ISituationDao
+
+    @Inject()
+    situationThreadDao: ISituationThreadDao
 
     @Api()
     async addSituationThread(
         situationThread: ISituationThread
     ): Promise<void> {
-        // start transactional
-        const [situationApi, situationThreadDao] = await container(this).get(
-            SITUATION_API, SITUATION_THREAD_DAO)
 
-        await situationApi.save(situationThread.situation)
-        await situationThreadDao.add(situationThread)
+        await this.situationApi.save(situationThread.situation)
+        await this.situationThreadDao.add(situationThread)
     }
 
     @Api()
     async addReply(
         reply: IReply
     ): Promise<void> {
-        const replyDao = await container(this).get(REPLY_DAO)
-        await replyDao.save(reply)
+        await this.replyDao.save(reply)
     }
 
     @Api()
@@ -71,19 +82,15 @@ export class SituationThreadApi implements ISituationThreadApi {
         reply: IReply,
         ideaSituation: IIdeaSituation
     ): Promise<void> {
-        const ideaSituationApi = await container(this).get(IDEA_SITUATION_API)
-        transactional(async () => {
-            ideaSituationApi.add(ideaSituation)
-            await this.addReply(reply)
-        })
+        await this.ideaSituationApi.add(ideaSituation)
+        await this.addReply(reply)
     }
 
     @Api()
     async rateReply(
         replyRating: IReplyRating
     ): Promise<void> {
-        const replyRatingDao = await container(this).get(REPLY_RATING_DAO)
-        replyRatingDao.save(replyRating)
+        this.replyRatingDao.save(replyRating)
     }
 
     @Api()
@@ -97,10 +104,8 @@ export class SituationThreadApi implements ISituationThreadApi {
             type
         } as any
 
-        const replyTypeDao = await container(this).get(REPLY_TYPE_DAO)
-        await replyTypeDao.save(replyType)
+        await this.replyTypeDao.save(replyType)
         reply.replyTypes.push(replyType as any)
     }
 
 }
-DI.set(SITUATION_THREAD_API, SituationThreadApi)

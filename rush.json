@@ -51,6 +51,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@votecube/votecube",
+      "projectFolder": "../../Votecube/votecube-ui/schemas/votecube",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@votecube/votecube-client",
       "projectFolder": "../../Votecube/votecube-ui/schemas/votecube/client",
       "shouldPublish": true

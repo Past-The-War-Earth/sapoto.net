@@ -53,7 +53,3 @@ export class ApplicationLoader
         return APPLICATION as any
     }
 }
-
-export function wireApplicationLoader() {
-    console.log('ApplicationLoader wired')
-}

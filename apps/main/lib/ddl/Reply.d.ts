@@ -1,5 +1,5 @@
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { IdeaSituation } from "@votecube/votecube/lib/app";
+import { IdeaSituation } from "@votecube/votecube";
 import { IdeaUrgencyRating } from "./IdeaUrgencyRating";
 import { ReplyRating } from "./ReplyRating";
 import { ReplyType } from "./ReplyType";

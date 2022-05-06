@@ -1,12 +1,12 @@
 /* eslint-disable */
 import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
-import { DI } from '@airport/di';
+import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
 import { ReplyRating } from '../ddl/ReplyRating';
 import { ReplyType } from '../ddl/ReplyType';
 import { SituationThread } from '../ddl/SituationThread';
 import { Reply } from '../ddl/Reply';
 import { IdeaUrgencyRating } from '../ddl/IdeaUrgencyRating';
-DI.db().get(AIRPORT_DATABASE).then(airDb => {
+DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
     const accumulator = airDb.getAccumulator('localhost:8100', 'undefined');
     accumulator.add(ReplyRating, 0);
     accumulator.add(ReplyType, 1);
