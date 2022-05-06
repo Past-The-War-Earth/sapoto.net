@@ -1,13 +1,13 @@
-import { IOC } from '@airport/di';
+import { IOC } from '@airport/direction-indicator';
 import { TRANSACTIONAL_CONNECTOR } from '@airport/ground-control';
 import { loadIframe } from '@airport/web-tower'
-import { wireApplicationLoader } from '@sapoto/core/lib/app'
+import { APPLICATION_LOADER } from '@sapoto/core-runtime'
 
 loadIframe()
-wireApplicationLoader()
 
 export async function initAIRportApp() {
-    await IOC.get(TRANSACTIONAL_CONNECTOR)
+    // await IOC.get(TRANSACTIONAL_CONNECTOR)
+    await IOC.get(APPLICATION_LOADER)
 }
 
 initAIRportApp().then();

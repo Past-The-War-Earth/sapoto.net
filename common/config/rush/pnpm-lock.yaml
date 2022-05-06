@@ -30,6 +30,7 @@ dependencies:
   '@rush-temp/holding-pattern': 'file:projects/holding-pattern.tgz'
   '@rush-temp/holding-pattern-client': 'file:projects/holding-pattern-client.tgz'
   '@rush-temp/holding-pattern-runtime': 'file:projects/holding-pattern-runtime.tgz'
+  '@rush-temp/host': 'file:projects/host.tgz'
   '@rush-temp/hw-control': 'file:projects/hw-control.tgz'
   '@rush-temp/hw-flow': 'file:projects/hw-flow.tgz'
   '@rush-temp/hw-scylladb': 'file:projects/hw-scylladb.tgz'
@@ -2875,6 +2876,22 @@ packages:
       integrity: sha512-9COkzYrYIt1liSoglM6QIzwxs2nnwifHcPNVMYU6LRGmsQIS31eQLcYX8caHcw+TyW6bvMO7cxW3NjVPAZcYnw==
       tarball: 'file:projects/holding-pattern.tgz'
     version: 0.0.0
+  'file:projects/host.tgz':
+    dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.70.1
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.70.1
+      '@rollup/plugin-typescript': 8.3.1_859e05ab655ea3c900a5f26a0311c0b5
+      rollup: 2.70.1
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.70.1
+      tslib: 2.3.1
+      typescript: 4.6.2
+    dev: false
+    name: '@rush-temp/host'
+    resolution:
+      integrity: sha512-9S7n0g/b5PSDvjxNDtn+mHSk9yJ28zmJFsIx3iRXTkSLFy/K7yCPOYsENHVDKNIAeZejLVwk/XFGfm2vLlj4Qg==
+      tarball: 'file:projects/host.tgz'
+    version: 0.0.0
   'file:projects/hw-control.tgz':
     dependencies:
       rxjs: 7.4.0
@@ -3254,6 +3271,7 @@ specifiers:
   '@rush-temp/holding-pattern': 'file:./projects/holding-pattern.tgz'
   '@rush-temp/holding-pattern-client': 'file:./projects/holding-pattern-client.tgz'
   '@rush-temp/holding-pattern-runtime': 'file:./projects/holding-pattern-runtime.tgz'
+  '@rush-temp/host': 'file:./projects/host.tgz'
   '@rush-temp/hw-control': 'file:./projects/hw-control.tgz'
   '@rush-temp/hw-flow': 'file:./projects/hw-flow.tgz'
   '@rush-temp/hw-scylladb': 'file:./projects/hw-scylladb.tgz'

@@ -23,6 +23,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@sapoto/host",
+      "projectFolder": "./apps/host",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@sapoto/main",
       "projectFolder": "./apps/main",
       "shouldPublish": true
