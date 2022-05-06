@@ -1,9 +1,9 @@
-import { domain } from '@airport/direction-indicator'
+import { app } from '@sapoto/dependency-injection'
 import type { ISituationApi } from './wrappers/SituationApiClient'
 import type { IThemeApi } from './wrappers/ThemeApiClient'
 import type { ITopicApi } from './wrappers/TopicApiClient'
 
-export const core = domain('localhost:8100').app('@sapoto/core')
+export const core = app('core')
 
 export const SITUATION_API = core.token<ISituationApi>({
     class: null,

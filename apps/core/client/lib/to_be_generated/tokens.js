@@ -1,5 +1,5 @@
-import { domain } from '@airport/direction-indicator';
-export const core = domain('localhost:8100').app('@sapoto/core');
+import { app } from '@sapoto/dependency-injection';
+export const core = app('core');
 export const SITUATION_API = core.token({
     class: null,
     interface: 'ISituationApi',
