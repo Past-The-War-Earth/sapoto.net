@@ -2,7 +2,8 @@
   "dependencies": {
     "@airport/autopilot": "0.0.1",
     "@airport/direction-indicator": "0.0.1",
-    "@airport/pressurization": "0.0.1"
+    "@airport/pressurization": "0.0.1",
+    "@votecube/votecube-client": "0.0.1"
   },
   "main": "lib/to_be_generated/client.js",
   "name": "@sapoto/main-client",

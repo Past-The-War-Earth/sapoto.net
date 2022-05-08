@@ -1,7 +1,6 @@
 import { AIRPORT_DATABASE } from '@airport/air-traffic-control';
 import { diSet as dS, duoDiSet as ddS } from '@airport/check-in';
 import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
-import { getFullApplicationName } from '@airport/ground-control';
 import { Situation, SituationRating, Theme, Topic, UserTopicFavorite } from '../ddl/ddl';
 const __constructors__ = {
     Situation: Situation,
@@ -22,7 +21,7 @@ export function diSet(dbEntityId) {
 export function duoDiSet(dbEntityId) {
     return ddS(Q.__dbApplication__, dbEntityId);
 }
-DEPENDENCY_INJECTION.db().eventuallyGet(AIRPORT_DATABASE).then((airDb) => {
-    airDb.QM[getFullApplicationName(Q_APPLICATION)] = Q;
+DEPENDENCY_INJECTION.db().eventuallyGet(AIRPORT_DATABASE).then((airportDatabase) => {
+    airportDatabase.setQApplication(Q_APPLICATION);
 });
 //# sourceMappingURL=qApplication.js.map

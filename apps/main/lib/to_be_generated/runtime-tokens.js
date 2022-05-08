@@ -1,6 +1,5 @@
 import { APPLICATION_STORE } from '@airport/apron';
 import { API_REGISTRY } from '@airport/check-in';
-import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map';
 import { SITUATION_API } from '@sapoto/core';
 import { ApplicationLoader } from './ApplicationLoader';
@@ -32,7 +31,7 @@ export const SITUATION_THREAD_DAO = votecube.token({
     interface: 'ISituationThreadDao',
     token: 'SITUATION_THREAD_DAO'
 });
-DEPENDENCY_INJECTION.set(SITUATION_THREAD_API, SituationThreadApi);
+SITUATION_THREAD_API.setClass(SituationThreadApi);
 SITUATION_THREAD_API.setDependencies({
     ideaSituationApi: IDEA_SITUATION_API,
     replyDao: REPLY_DAO,

@@ -1,4 +1,4 @@
-import {
+import type {
 	IRepositoryEntity,
 } from '@airport/holding-pattern-client';
 import {

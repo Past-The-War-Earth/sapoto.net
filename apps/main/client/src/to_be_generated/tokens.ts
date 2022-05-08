@@ -2,6 +2,7 @@ import { app } from '@sapoto/dependency-injection'
 import { ISituationThreadApi } from './wrappers/SituationThreadApiClient'
 
 export const main = app('main')
+main.autopilot = true
 
 export const SITUATION_THREAD_API = main.token<ISituationThreadApi>({
     class: null,

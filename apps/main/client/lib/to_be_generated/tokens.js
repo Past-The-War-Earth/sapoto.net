@@ -1,5 +1,6 @@
 import { app } from '@sapoto/dependency-injection';
 export const main = app('main');
+main.autopilot = true;
 export const SITUATION_THREAD_API = main.token({
     class: null,
     interface: 'ISituationApi',

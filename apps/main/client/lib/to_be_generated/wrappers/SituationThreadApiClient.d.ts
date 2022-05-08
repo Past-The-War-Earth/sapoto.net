@@ -1,5 +1,5 @@
 import { IReply, IReplyRating, ISituationThread } from "../../generated/interfaces";
-import { IIdeaSituation } from "@votecube/votecube";
+import { IIdeaSituation } from "@votecube/votecube-client";
 export interface ISituationThreadApi {
     addSituationThread(situationThread: ISituationThread): Promise<void>;
     addReply(reply: IReply): Promise<void>;

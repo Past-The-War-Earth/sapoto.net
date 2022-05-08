@@ -4,7 +4,7 @@ import {
     IReplyRating,
     ISituationThread
 } from "../../generated/interfaces"
-import { IIdeaSituation } from "@votecube/votecube"
+import { IIdeaSituation } from "@votecube/votecube-client"
 import { SITUATION_THREAD_API } from "../tokens"
 
 export interface ISituationThreadApi {

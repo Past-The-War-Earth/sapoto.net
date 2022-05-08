@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISituationThread, SituationThreadApiClient } from '@sapoto/main'
+import { ISituationThread, SituationThreadApiClient } from '@sapoto/main-client'
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class SituationThreadService {
   ) {
     try {
       await this.situationThreadApi.addSituationThread(situationThread)
-    } catch(e) {
+    } catch (e) {
       console.error(e)
     } finally {
       console.log('Situation Thread added.')

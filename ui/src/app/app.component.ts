@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { ITheme } from '@sapoto/core';
+import { ITheme } from '@sapoto/core-client';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
-import { LOCAL_API_CLIENT } from '@airport/autopilot';
-import { IOC } from '@airport/di';
 
 @Component({
   selector: 'app-root',

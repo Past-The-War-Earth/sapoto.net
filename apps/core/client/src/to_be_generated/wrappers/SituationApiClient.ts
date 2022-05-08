@@ -1,5 +1,5 @@
 import { IOC } from "@airport/direction-indicator";
-import { IUser } from "@airport/travel-document-checkpoint-client";
+import type { IUser } from "@airport/travel-document-checkpoint-client";
 import { ISituation } from "../../generated/situation";
 import { ISituationRating } from "../../generated/situationrating";
 import { SITUATION_API } from "../tokens";

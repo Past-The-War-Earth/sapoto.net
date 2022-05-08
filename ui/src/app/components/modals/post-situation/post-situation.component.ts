@@ -3,7 +3,7 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
-import { ISituation } from '@sapoto/core';
+import { ISituation } from '@sapoto/core-client';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 
 @Component({

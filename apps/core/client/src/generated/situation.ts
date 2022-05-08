@@ -1,4 +1,4 @@
-import {
+import type {
 	IRepositoryEntity,
 } from '@airport/holding-pattern-client';
 import {
@@ -15,7 +15,7 @@ import {
 //////////////////////////////
 
 export interface ISituation extends IRepositoryEntity {
-	
+
 	// Id Properties
 
 	// Id Relations
@@ -29,10 +29,10 @@ export interface ISituation extends IRepositoryEntity {
 
 	// Transient Properties
 	counts?: { experiences: number; ideas: number; questions: number; reasons: number; replies: number; };
-	eisenhowerMatrix?: { importance: number; urgency: number; votes: number; user: {    importance: number;    urgency: number;}; };
+	eisenhowerMatrix?: { importance: number; urgency: number; votes: number; user: { importance: number; urgency: number; }; };
 
 	// Public Methods
-	
+
 }
 
 

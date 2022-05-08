@@ -1,4 +1,4 @@
-import { IUser } from "@airport/travel-document-checkpoint-client";
+import type { IUser } from "@airport/travel-document-checkpoint-client";
 import { ISituation } from "../../generated/situation";
 import { ISituationRating } from "../../generated/situationrating";
 export interface ISituationApi {

@@ -35,7 +35,7 @@ export const SITUATION_THREAD_DAO = votecube.token<ISituationThreadDao>({
     token: 'SITUATION_THREAD_DAO'
 })
 
-DEPENDENCY_INJECTION.set(SITUATION_THREAD_API, SituationThreadApi)
+SITUATION_THREAD_API.setClass(SituationThreadApi)
 SITUATION_THREAD_API.setDependencies({
     ideaSituationApi: IDEA_SITUATION_API,
     replyDao: REPLY_DAO,

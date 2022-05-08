@@ -1,6 +1,5 @@
 import { APPLICATION_STORE } from '@airport/apron';
 import { API_REGISTRY } from '@airport/check-in';
-import { DEPENDENCY_INJECTION } from '@airport/direction-indicator';
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map';
 import { SituationApi } from '../api/SituationApi';
 import { ThemeApi } from '../api/ThemeApi';
@@ -29,16 +28,16 @@ export const TOPIC_DAO = core.token({
     interface: 'ITopicDao',
     token: 'TOPIC_DAO'
 });
-DEPENDENCY_INJECTION.set(SITUATION_API, SituationApi);
+SITUATION_API.setClass(SituationApi);
 THEME_API.setDependencies({
     situtaionDao: SITUATION_DAO,
     situtaionRatingDao: SITUATION_RATING_DAO,
 });
-DEPENDENCY_INJECTION.set(THEME_API, ThemeApi);
+THEME_API.setClass(ThemeApi);
 THEME_API.setDependencies({
     themeDao: THEME_DAO
 });
-DEPENDENCY_INJECTION.set(TOPIC_API, TopicApi);
+TOPIC_API.setClass(TopicApi);
 export const DEMO_DATA_LOADER = core.token({
     class: DemoDataLoader,
     interface: 'IDemoDataLoader',

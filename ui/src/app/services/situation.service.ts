@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISituation, ITopic } from '@sapoto/core';
+import { ISituation, ITopic } from '@sapoto/core-client';
 
 @Injectable({
   providedIn: 'root'

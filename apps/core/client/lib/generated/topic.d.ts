@@ -1,4 +1,4 @@
-import { IRepositoryEntity } from '@airport/holding-pattern-client';
+import type { IRepositoryEntity } from '@airport/holding-pattern-client';
 import { ITheme } from './theme';
 import { ISituation } from './situation';
 export interface ITopic extends IRepositoryEntity {
