@@ -1,4 +1,4 @@
-import { APPLICATION_STORE, IApplicationLoader } from '@airport/apron'
+import { APPLICATION_LOADER, APPLICATION_STORE, IApplicationLoader } from '@airport/apron'
 import { API_REGISTRY } from '@airport/check-in'
 import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
 import { APPLICATION_INITIALIZER } from '@airport/terminal-map'
@@ -45,11 +45,7 @@ SITUATION_THREAD_API.setDependencies({
     situationThreadDao: SITUATION_THREAD_DAO
 })
 
-export const APPLICATION_LOADER = votecube.token<IApplicationLoader>({
-    class: ApplicationLoader,
-    interface: 'IApplicationLoader',
-    token: 'APPLICATION_LOADER'
-})
+APPLICATION_LOADER.setClass(ApplicationLoader)
 
 APPLICATION_LOADER.setDependencies({
     applicationInitializer: APPLICATION_INITIALIZER,
