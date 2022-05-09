@@ -15,7 +15,9 @@ export class ThemeService {
   }
 
   async getThemes(): Promise<ITheme[]> {
-    return await this.themeApi.getAllWithTopics()
+    const themes = await this.themeApi.getAllWithTopics()
+
+    return themes
   }
 
 }
