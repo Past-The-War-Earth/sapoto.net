@@ -43,6 +43,9 @@ export const DEMO_DATA_LOADER = core.token({
     interface: 'IDemoDataLoader',
     token: 'DEMO_DATA_LOADER'
 });
+DEMO_DATA_LOADER.setDependencies({
+    themeDao: THEME_DAO
+});
 APPLICATION_LOADER.setClass(ApplicationLoader);
 APPLICATION_LOADER.setDependencies({
     applicationInitializer: APPLICATION_INITIALIZER,
