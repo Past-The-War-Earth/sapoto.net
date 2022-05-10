@@ -1,6 +1,6 @@
-import { APPLICATION_LOADER, APPLICATION_STORE } from '@airport/apron';
+import { APPLICATION_LOADER } from '@airport/apron';
 import { API_REGISTRY } from '@airport/check-in';
-import { APPLICATION_INITIALIZER } from '@airport/terminal-map';
+import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map';
 import { SITUATION_API } from '@sapoto/core';
 import { ApplicationLoader } from './ApplicationLoader';
 import { main } from './common-tokens';
@@ -43,7 +43,7 @@ SITUATION_THREAD_API.setDependencies({
 APPLICATION_LOADER.setClass(ApplicationLoader);
 APPLICATION_LOADER.setDependencies({
     applicationInitializer: APPLICATION_INITIALIZER,
-    applicationStore: APPLICATION_STORE,
-    apiRegistry: API_REGISTRY
+    apiRegistry: API_REGISTRY,
+    terminalStore: TERMINAL_STORE,
 });
 //# sourceMappingURL=runtime-tokens.js.map

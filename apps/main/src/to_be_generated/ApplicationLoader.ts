@@ -9,7 +9,7 @@ import {
 } from '@airport/apron'
 import { APPLICATION } from '../generated/application'
 import { Inject, Injected } from '@airport/direction-indicator'
-import { IApplicationInitializer } from '@airport/terminal-map'
+import { IApplicationInitializer, ITerminalStore } from '@airport/terminal-map'
 
 @Injected()
 export class ApplicationLoader
@@ -19,7 +19,7 @@ export class ApplicationLoader
     applicationInitializer: IApplicationInitializer
 
     @Inject()
-    applicationStore: IApplicationStore
+    terminalStore: ITerminalStore
 
     @Inject()
     apiRegistry: IApiRegistry
@@ -34,7 +34,11 @@ export class ApplicationLoader
         }
         this.initializing = true
 
-        this.applicationStore.state.lastIds = lastIds
+        const lastTerminalState = this.terminalStore.getTerminalState()
+        this.terminalStore.state.next({
+            ...lastTerminalState,
+            lastIds
+        })
 
         await this.applicationInitializer.initializeForAIRportApp(APPLICATION as any)
 

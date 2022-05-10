@@ -1,9 +1,9 @@
 import { IApiRegistry } from '@airport/check-in';
-import { IApplicationLoader, IApplicationStore, JsonApplicationWithLastIds, LastIds } from '@airport/apron';
-import { IApplicationInitializer } from '@airport/terminal-map';
+import { IApplicationLoader, JsonApplicationWithLastIds, LastIds } from '@airport/apron';
+import { IApplicationInitializer, ITerminalStore } from '@airport/terminal-map';
 export declare class ApplicationLoader implements IApplicationLoader {
     applicationInitializer: IApplicationInitializer;
-    applicationStore: IApplicationStore;
+    terminalStore: ITerminalStore;
     apiRegistry: IApiRegistry;
     private initializing;
     load(lastIds: LastIds): Promise<void>;

@@ -56,7 +56,7 @@ import {
 	QIdeaSituationQId,
 	QIdeaSituationQRelation,
 	IIdeaSituation,
-} from '@votecube/votecube/lib/app';
+} from '@votecube/votecube';
 import {
 	ReplyRatingGraph,
 	ReplyRatingEId,

@@ -1,7 +1,6 @@
-import { APPLICATION_LOADER, APPLICATION_STORE, IApplicationLoader } from '@airport/apron'
+import { APPLICATION_LOADER } from '@airport/apron'
 import { API_REGISTRY } from '@airport/check-in'
-import { DEPENDENCY_INJECTION } from '@airport/direction-indicator'
-import { APPLICATION_INITIALIZER } from '@airport/terminal-map'
+import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map'
 import { SituationApi } from '../api/SituationApi'
 import { ThemeApi } from '../api/ThemeApi'
 import { TopicApi } from '../api/TopicApi'
@@ -52,7 +51,7 @@ APPLICATION_LOADER.setClass(ApplicationLoader)
 
 APPLICATION_LOADER.setDependencies({
     applicationInitializer: APPLICATION_INITIALIZER,
-    applicationStore: APPLICATION_STORE,
     apiRegistry: API_REGISTRY,
-    demoDataLoader: DEMO_DATA_LOADER
+    demoDataLoader: DEMO_DATA_LOADER,
+    terminalStore: TERMINAL_STORE,
 })

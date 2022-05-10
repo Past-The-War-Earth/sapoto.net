@@ -15,7 +15,8 @@ let ApplicationLoader = class ApplicationLoader {
             return;
         }
         this.initializing = true;
-        this.applicationStore.state.lastIds = lastIds;
+        const lastTerminalState = this.terminalStore.getTerminalState();
+        this.terminalStore.state.next(Object.assign(Object.assign({}, lastTerminalState), { lastIds }));
         await this.applicationInitializer.initializeForAIRportApp(APPLICATION);
         this.apiRegistry.initialize(APPLICATION.versions[0].api);
     }
@@ -30,7 +31,7 @@ __decorate([
 ], ApplicationLoader.prototype, "applicationInitializer", void 0);
 __decorate([
     Inject()
-], ApplicationLoader.prototype, "applicationStore", void 0);
+], ApplicationLoader.prototype, "terminalStore", void 0);
 __decorate([
     Inject()
 ], ApplicationLoader.prototype, "apiRegistry", void 0);

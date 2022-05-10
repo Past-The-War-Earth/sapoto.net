@@ -5,7 +5,7 @@ import { IReplyTypeDao } from "../dao/ReplyTypeDao";
 import { IReplyRatingDao } from "../dao/ReplyRatingDao";
 import { IReplyDao } from "../dao/ReplyDao";
 import { ISituationThreadDao } from "../dao/SituationThreadDao";
-import { IIdeaSituationApi } from "@votecube/votecube/lib/app";
+import { IIdeaSituationApi } from "@votecube/votecube";
 export interface ISituationThreadApi {
     addSituationThread(situationThread: ISituationThread): Promise<void>;
     addReply(reply: IReply): Promise<void>;

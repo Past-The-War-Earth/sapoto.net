@@ -7,14 +7,6 @@
 		{
 			"api": {
 				"apiObjectMap": {
-					"IThemeApi": {
-						"operationMap": {
-							"getAllWithTopics": {
-								"isAsync": true,
-								"parameters": []
-							}
-						}
-					},
 					"ISituationApi": {
 						"operationMap": {
 							"save": {
@@ -22,6 +14,14 @@
 								"parameters": []
 							},
 							"rateSituation": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
+					"IThemeApi": {
+						"operationMap": {
+							"getAllWithTopics": {
 								"isAsync": true,
 								"parameters": []
 							}
@@ -39,7 +39,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -61,7 +61,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -139,7 +139,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -161,7 +161,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -398,7 +398,7 @@
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -409,7 +409,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -420,7 +420,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -431,7 +431,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -462,7 +462,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -484,7 +484,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -562,7 +562,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -584,7 +584,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -752,7 +752,7 @@
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -763,7 +763,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -774,7 +774,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -785,7 +785,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -819,7 +819,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -841,7 +841,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -919,7 +919,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -941,7 +941,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1187,7 +1187,7 @@
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1198,7 +1198,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1209,7 +1209,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1220,7 +1220,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1264,7 +1264,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1286,7 +1286,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1364,7 +1364,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1386,7 +1386,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1609,7 +1609,7 @@
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1620,7 +1620,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1631,7 +1631,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1642,7 +1642,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -1686,7 +1686,7 @@
 								{
 									"manyRelationIndex": 0,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1708,7 +1708,7 @@
 								{
 									"manyRelationIndex": 1,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1786,7 +1786,7 @@
 								{
 									"manyRelationIndex": 2,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 2,
+									"oneTableIndex": 4,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1808,7 +1808,7 @@
 								{
 									"manyRelationIndex": 3,
 									"oneApplicationIndex": 0,
-									"oneTableIndex": 1,
+									"oneTableIndex": 0,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -2019,7 +2019,7 @@
 							"propertyRef": {
 								"index": 0
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -2030,7 +2030,7 @@
 							"propertyRef": {
 								"index": 1
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -2041,7 +2041,7 @@
 							"propertyRef": {
 								"index": 5
 							},
-							"relationTableIndex": 2,
+							"relationTableIndex": 4,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},
@@ -2052,7 +2052,7 @@
 							"propertyRef": {
 								"index": 6
 							},
-							"relationTableIndex": 1,
+							"relationTableIndex": 0,
 							"relationTableApplicationIndex": 0,
 							"sinceVersion": 1
 						},

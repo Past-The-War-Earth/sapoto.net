@@ -6,14 +6,6 @@ export declare const APPLICATION: {
     versions: {
         api: {
             apiObjectMap: {
-                IThemeApi: {
-                    operationMap: {
-                        getAllWithTopics: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                    };
-                };
                 ISituationApi: {
                     operationMap: {
                         save: {
@@ -21,6 +13,14 @@ export declare const APPLICATION: {
                             parameters: any[];
                         };
                         rateSituation: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                    };
+                };
+                IThemeApi: {
+                    operationMap: {
+                        getAllWithTopics: {
                             isAsync: boolean;
                             parameters: any[];
                         };

@@ -73,12 +73,12 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface SituationThreadESelect
-	extends RepositoryEntityESelect, SituationThreadEOptionalId {
+    extends RepositoryEntityESelect, SituationThreadEOptionalId {
 	// Non-Id Properties
 
 	// Id Relations - full property interfaces
 
-	// Non-Id relations (including OneToMany's)
+  // Non-Id relations (including OneToMany's)
 	situation?: SituationESelect;
 	replies?: ReplyESelect;
 
@@ -88,7 +88,7 @@ export interface SituationThreadESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface SituationThreadEId
-	extends RepositoryEntityEId {
+    extends RepositoryEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -122,8 +122,8 @@ export interface SituationThreadEUpdateProperties
  */
 export interface SituationThreadGraph
 	extends SituationThreadEOptionalId, RepositoryEntityGraph {
-	// NOT USED: Cascading Relations
-	// NOT USED: ${relationsForCascadeGraph}
+// NOT USED: Cascading Relations
+// NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 
 	// Relations
@@ -153,14 +153,14 @@ export interface SituationThreadEUpdateColumns
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
 export interface SituationThreadECreateProperties
-	extends Partial<SituationThreadEId>, SituationThreadEUpdateProperties {
+extends Partial<SituationThreadEId>, SituationThreadEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
 export interface SituationThreadECreateColumns
-	extends SituationThreadEId, SituationThreadEUpdateColumns {
+extends SituationThreadEId, SituationThreadEUpdateColumns {
 }
 
 
@@ -173,7 +173,8 @@ export interface SituationThreadECreateColumns
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSituationThread extends QRepositoryEntity {
+export interface QSituationThread extends QRepositoryEntity
+{
 	// Id Fields
 
 	// Id Relations
@@ -188,8 +189,9 @@ export interface QSituationThread extends QRepositoryEntity {
 
 
 // Entity Id Interface
-export interface QSituationThreadQId extends QRepositoryEntityQId {
-
+export interface QSituationThreadQId extends QRepositoryEntityQId
+{
+	
 	// Id Fields
 
 	// Id Relations
