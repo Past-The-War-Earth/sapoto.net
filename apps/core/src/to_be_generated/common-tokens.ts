@@ -3,7 +3,7 @@ import type { ISituationApi } from "../api/SituationApi";
 import type { IThemeApi } from '../api/ThemeApi';
 import type { ITopicApi } from '../api/TopicApi';
 
-export const core = app('core')
+export const core = app('@sapoto/core')
 
 export const SITUATION_API = core.token<ISituationApi>({
     class: null,

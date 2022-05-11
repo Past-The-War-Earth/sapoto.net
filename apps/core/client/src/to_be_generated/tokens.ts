@@ -3,7 +3,7 @@ import type { ISituationApi } from './wrappers/SituationApiClient'
 import type { IThemeApi } from './wrappers/ThemeApiClient'
 import type { ITopicApi } from './wrappers/TopicApiClient'
 
-export const core = app('core')
+export const core = app('@sapoto/core')
 core.autopilot = true
 
 export const SITUATION_API = core.token<ISituationApi>({
