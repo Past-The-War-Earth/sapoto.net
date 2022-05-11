@@ -1,6 +1,6 @@
 /* eslint-disable */
 export const APPLICATION = {
-	"domain": "localhost:8100",
+	"domain": "localhost:8080",
 	"index": null,
 	"name": "@sapoto/main",
 	"sinceVersion": 1,
