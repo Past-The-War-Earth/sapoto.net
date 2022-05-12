@@ -1,6 +1,6 @@
 import { IIdeaSituation } from '@votecube/votecube';
 import { IReply, IReplyRating, ISituationThread } from "../generated/generated";
-import { ISituationDao } from "@sapoto/core/lib/dao/SituationDao";
+import { SituationApi } from "@sapoto/core";
 import { IReplyTypeDao } from "../dao/ReplyTypeDao";
 import { IReplyRatingDao } from "../dao/ReplyRatingDao";
 import { IReplyDao } from "../dao/ReplyDao";
@@ -18,7 +18,7 @@ export declare class SituationThreadApi implements ISituationThreadApi {
     replyDao: IReplyDao;
     replyRatingDao: IReplyRatingDao;
     replyTypeDao: IReplyTypeDao;
-    situationApi: ISituationDao;
+    situationApi: SituationApi;
     situationThreadDao: ISituationThreadDao;
     addSituationThread(situationThread: ISituationThread): Promise<void>;
     addReply(reply: IReply): Promise<void>;

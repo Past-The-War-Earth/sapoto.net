@@ -12,8 +12,8 @@ export const SITUATION_API = core.token<ISituationApi>({
 })
 export const THEME_API = core.token<IThemeApi>({
     class: null,
-    interface: 'ISituationApi',
-    token: 'IThemeApi'
+    interface: 'IThemeApi',
+    token: 'THEME_API'
 })
 export const TOPIC_API = core.token<ITopicApi>({
     class: null,

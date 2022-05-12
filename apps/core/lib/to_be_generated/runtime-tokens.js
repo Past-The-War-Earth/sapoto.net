@@ -29,9 +29,9 @@ export const TOPIC_DAO = core.token({
     token: 'TOPIC_DAO'
 });
 SITUATION_API.setClass(SituationApi);
-THEME_API.setDependencies({
-    situtaionDao: SITUATION_DAO,
-    situtaionRatingDao: SITUATION_RATING_DAO,
+SITUATION_API.setDependencies({
+    situationDao: SITUATION_DAO,
+    situationRatingDao: SITUATION_RATING_DAO
 });
 THEME_API.setClass(ThemeApi);
 THEME_API.setDependencies({

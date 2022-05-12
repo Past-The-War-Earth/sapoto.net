@@ -7,7 +7,7 @@ import {
     IReplyType,
     ISituationThread
 } from "../generated/generated";
-import { ISituationDao } from "@sapoto/core/lib/dao/SituationDao";
+import { SituationApi } from "@sapoto/core";
 import { IReplyTypeDao } from "../dao/ReplyTypeDao";
 import { IReplyRatingDao } from "../dao/ReplyRatingDao";
 import { IReplyDao } from "../dao/ReplyDao";
@@ -56,7 +56,7 @@ export class SituationThreadApi implements ISituationThreadApi {
     replyTypeDao: IReplyTypeDao
 
     @Inject()
-    situationApi: ISituationDao
+    situationApi: SituationApi
 
     @Inject()
     situationThreadDao: ISituationThreadDao
