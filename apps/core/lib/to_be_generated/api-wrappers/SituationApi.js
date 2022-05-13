@@ -13,6 +13,15 @@ let SituationApi = class SituationApi {
     async rateSituation(situation, importanceRating, urgencyRating, user) {
         return await this.interAppApiClient.invokeApiMethod(SITUATION_API, 'rateSituation', [situation, importanceRating, urgencyRating, user]);
     }
+    async findWithListingDetailsForATopic(topic) {
+        return await this.interAppApiClient.invokeApiMethod(SITUATION_API, 'findWithListingDetailsForATopic', [topic]);
+    }
+    async findWithListingDetailsForATheme(theme) {
+        return await this.interAppApiClient.invokeApiMethod(SITUATION_API, 'findWithListingDetailsForATheme', [theme]);
+    }
+    async getNewSituation() {
+        return await this.interAppApiClient.invokeApiMethod(SITUATION_API, 'getNewSituation', []);
+    }
 };
 __decorate([
     Inject()

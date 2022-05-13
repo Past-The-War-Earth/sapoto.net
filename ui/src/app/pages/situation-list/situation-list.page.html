@@ -1,4 +1,4 @@
-<app-page-header (onPostSituation)="postASituation()" [showPostSituation]="true" [title]="topicName">
+<app-page-header (onPostSituation)="postASituation()" [showPostSituation]="true" [title]="topic?.name">
 </app-page-header>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions" triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)"

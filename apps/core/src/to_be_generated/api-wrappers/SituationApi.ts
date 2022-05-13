@@ -1,6 +1,11 @@
 import { IInterAppAPIClient } from "@airport/ground-control";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { ISituation, ISituationRating } from "../../generated/interfaces";
+import {
+    ISituation,
+    ISituationRating,
+    ITheme,
+    ITopic
+} from "../../generated/interfaces";
 import { IUser } from "@airport/travel-document-checkpoint";
 import { SITUATION_API } from "../common-tokens";
 
@@ -26,6 +31,25 @@ export class SituationApi {
     ): Promise<ISituationRating> {
         return await this.interAppApiClient.invokeApiMethod(
             SITUATION_API, 'rateSituation', [situation, importanceRating, urgencyRating, user])
+    }
+
+    async findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituation[]> {
+        return await this.interAppApiClient.invokeApiMethod(
+            SITUATION_API, 'findWithListingDetailsForATopic', [topic])
+    }
+
+    async findWithListingDetailsForATheme(
+        theme: ITheme
+    ): Promise<ISituation[]> {
+        return await this.interAppApiClient.invokeApiMethod(
+            SITUATION_API, 'findWithListingDetailsForATheme', [theme])
+    }
+
+    async getNewSituation(): Promise<ISituation> {
+        return await this.interAppApiClient.invokeApiMethod(
+            SITUATION_API, 'getNewSituation', [])
     }
 
 }

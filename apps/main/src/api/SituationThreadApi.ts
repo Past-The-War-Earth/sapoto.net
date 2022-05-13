@@ -65,9 +65,31 @@ export class SituationThreadApi implements ISituationThreadApi {
     async addSituationThread(
         situationThread: ISituationThread
     ): Promise<void> {
+        const situation = await this.situationApi.getNewSituation();
+        const situationIn = situationThread.situation
 
-        await this.situationApi.save(situationThread.situation)
-        situationThread.repository = situationThread.situation.repository
+        if (situationIn.ageSuitability < 0 || situationIn.ageSuitability > 25) {
+            throw new Error(`Invalid importance, must be between 0 & 25`);
+        }
+
+        let eMatrix = situationIn.eisenhowerMatrix
+        if (eMatrix.user.importance < 20 || eMatrix.user.importance > 100) {
+            throw new Error(`Invalid importance, must be between 20 & 100`);
+        }
+        if (eMatrix.user.urgency < 20 || eMatrix.user.urgency > 100) {
+            throw new Error(`Invalid urgency, must be between 20 & 100`);
+        }
+
+        situation.ageSuitability = situationIn.ageSuitability
+        situation.eisenhowerMatrix.importance = eMatrix.user.importance
+        situation.eisenhowerMatrix.urgency = eMatrix.user.urgency
+        situation.text = situationIn.text
+
+        situationThread.situation = situation
+        situationThread.replies = []
+
+        await this.situationApi.save(situation)
+        situationThread.repository = situation.repository
         await this.situationThreadDao.add(situationThread)
     }
 

@@ -25,11 +25,12 @@ export class PostSituationComponent implements OnInit {
     private situationService: SituationService,
     private situationThreadService: SituationThreadService
   ) {
-    this.situation = situationService.getNewSituation()
     this.quillModules = this.quillService.quillModules
   }
 
   ngOnInit() {
+    this.situationService.getNewSituation().then(situation =>
+      this.situation = situation)
   }
 
   enterSituation() {

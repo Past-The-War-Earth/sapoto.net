@@ -3,6 +3,8 @@ import { NavController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { SituationSearchService } from '../../services/situation-search.service';
+import { ISituation, ITopic } from '@sapoto/core-client';
+import { SituationService } from 'src/app/services/situation.service';
 
 @Component({
   selector: 'app-situation-list',
@@ -16,10 +18,11 @@ export class SituationListPage implements OnInit {
   postingASituation = false
   situationAction
   showSituationActions = false
-  topic: string
+  topic: ITopic
 
+  situations: ISituation[]
 
-  situations = [{
+  mockSituations = [{
     counts: {
       experiences: 7,
       ideas: 3,
@@ -196,17 +199,26 @@ export class SituationListPage implements OnInit {
   enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
   }]
 
-  topicName
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
-    public situationSearchService: SituationSearchService
+    public situationSearchService: SituationSearchService,
+    public situationService: SituationService
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.topicName = params['name'];
+      const topic: ITopic = {
+        repository: {
+          id: parseInt(params['topicRepositoryId']),
+        },
+        actor: {
+          id: parseInt(params['topicActorId']),
+        },
+        actorRecordId: parseInt(params['topicActorRecordId']),
+      }
+      this.situationService.getTopicSituations(topic).then(
+        situations => this.situations = situations)
     });
     this.myForm = new FormGroup({
       country: new FormControl('', [

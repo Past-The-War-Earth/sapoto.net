@@ -26,7 +26,8 @@
 
             <ion-list slot="content">
               <ion-menu-toggle auto-hide="false">
-                <ion-item class="topic-item" [routerLink]="['situation-list/' + topic.name]"
+                <ion-item class="topic-item"
+                  [routerLink]="['situation-list/topic/' + topic.repository.id + '/' + topic.actor.id + '/' + topic.actorRecordId]"
                   *ngFor="let topic of theme.topics; let y = index">
                   <ion-img class="topic-icon" *ngIf="topic.imagePath" src="assets/{{topic.imagePath}}"></ion-img>
                   <ion-label [ngClass]="{'no-icon': !topic.imagePath}">{{ topic.name }}</ion-label>

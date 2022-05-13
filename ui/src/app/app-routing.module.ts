@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'situation-list/Children',
+    redirectTo: 'about',
     pathMatch: 'full'
   },
   {
-    path: 'situation-list/:name',
+    path: 'situation-list/topic/:topicRepositoryId/:topicActorId/:topicActorRecordId',
     loadChildren: () => import('./pages/situation-list/situation-list.module').then(m => m.SituationListPageModule)
   },
   {
@@ -18,10 +18,16 @@ const routes: Routes = [
   {
     path: 'reply',
     loadChildren: () => import('./pages/reply/reply.module').then(m => m.ReplyPageModule)
-  },  {
+  },
+  {
     path: 'topics',
-    loadChildren: () => import('./pages/topics/topics.module').then( m => m.TopicsPageModule)
+    loadChildren: () => import('./pages/topics/topics.module').then(m => m.TopicsPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
   }
+
 
 
 ];

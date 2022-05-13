@@ -6,7 +6,9 @@ import {
 import { IUser } from "@airport/travel-document-checkpoint";
 import {
     ISituation,
-    ISituationRating
+    ISituationRating,
+    ITopic,
+    ITheme
 } from "../generated/generated";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
@@ -23,6 +25,16 @@ export interface ISituationApi {
         urgencyRating: 1 | 2 | 3 | 4 | 5,
         user: IUser
     ): Promise<ISituationRating>
+
+    findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituation[]>
+
+    findWithListingDetailsForATheme(
+        theme: ITheme
+    ): Promise<ISituation[]>
+
+    getNewSituation(): Promise<ISituation>
 
 }
 
@@ -70,6 +82,50 @@ export class SituationApi implements ISituationApi {
         await this.situationRatingDao.save(situationRating)
 
         return situationRating
+    }
+
+    @Api()
+    async findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituation[]> {
+        return await this.situationDao
+            .findWithListingDetailsForATopic(topic)
+    }
+
+    @Api()
+    async findWithListingDetailsForATheme(
+        theme: ITheme
+    ): Promise<ISituation[]> {
+        return await this.situationDao
+            .findWithListingDetailsForATheme(theme)
+    }
+
+    @Api()
+    async getNewSituation(): Promise<ISituation> {
+        return {
+            actor: null,
+            actorRecordId: null,
+            ageSuitability: 0,
+            counts: {
+                experiences: 0,
+                ideas: 0,
+                questions: 0,
+                reasons: 0,
+                replies: 0
+            },
+            repository: null,
+            eisenhowerMatrix: {
+                importance: 0,
+                urgency: 0,
+                votes: 0,
+                user: {
+                    importance: 0,
+                    urgency: 0
+                }
+            },
+            text: '',
+            topic: null
+        };
     }
 
 }
