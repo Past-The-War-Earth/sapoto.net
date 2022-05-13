@@ -9,6 +9,7 @@ import { Inject, Injected } from "@airport/direction-indicator";
 let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
         await this.situationApi.save(situationThread.situation);
+        situationThread.repository = situationThread.situation.repository;
         await this.situationThreadDao.add(situationThread);
     }
     async addReply(reply) {

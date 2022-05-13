@@ -27,6 +27,14 @@ export const APPLICATION = {
                                 "parameters": []
                             }
                         }
+                    },
+                    "ITopicApi": {
+                        "operationMap": {
+                            "findAll": {
+                                "isAsync": true,
+                                "parameters": []
+                            }
+                        }
                     }
                 }
             },

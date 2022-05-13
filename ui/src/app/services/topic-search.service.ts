@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { TopicApiClient } from '@sapoto/core-client';
 import { AutoCompleteService } from 'ionic4-auto-complete';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -8,32 +9,9 @@ import { map } from 'rxjs/operators';
 })
 export class TopicSearchService implements AutoCompleteService {
 
-  labelAttribute = 'name';
+  topicApiClient = new TopicApiClient()
 
-  topics = [{
-    id: 1,
-    name: 'Children'
-  },
-  {
-    id: 2,
-    name: 'Work'
-  },
-  {
-    id: 3,
-    name: 'School'
-  },
-  {
-    id: 4,
-    name: 'Spouses'
-  },
-  {
-    id: 5,
-    name: 'In-Laws'
-  },
-  {
-    id: 6,
-    name: 'Friends'
-  }]
+  labelAttribute = 'name';
 
   situation
 
@@ -66,15 +44,15 @@ export class TopicSearchService implements AutoCompleteService {
       return of([])
     }
 
-    let themesObservable = of(this.topics)
+    let topicsObservable = from(this.topicApiClient.findAll())
 
-    return themesObservable.pipe(
+    return topicsObservable.pipe(
       map(
         (result) => {
           return result
             .filter(
               (theme) => {
-                return !this.existingLabelMap[theme.id] && theme.name.toLowerCase().indexOf(
+                return theme.name.toLowerCase().indexOf(
                   keyword.toLowerCase()
                 ) > -1;
               }
@@ -82,5 +60,9 @@ export class TopicSearchService implements AutoCompleteService {
         }
       )
     );
+  }
+
+  async getTopics() {
+
   }
 }

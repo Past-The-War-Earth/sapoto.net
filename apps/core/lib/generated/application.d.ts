@@ -26,6 +26,14 @@ export declare const APPLICATION: {
                         };
                     };
                 };
+                ITopicApi: {
+                    operationMap: {
+                        findAll: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                    };
+                };
             };
         };
         entities: ({

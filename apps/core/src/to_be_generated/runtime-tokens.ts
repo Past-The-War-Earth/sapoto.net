@@ -39,6 +39,9 @@ THEME_API.setDependencies({
     themeDao: THEME_DAO
 })
 TOPIC_API.setClass(TopicApi)
+TOPIC_API.setDependencies({
+    topicDao: TOPIC_DAO
+})
 export const DEMO_DATA_LOADER = core.token<IDemoDataLoader>({
     class: DemoDataLoader,
     interface: 'IDemoDataLoader',

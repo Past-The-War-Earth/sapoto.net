@@ -67,6 +67,7 @@ export class SituationThreadApi implements ISituationThreadApi {
     ): Promise<void> {
 
         await this.situationApi.save(situationThread.situation)
+        situationThread.repository = situationThread.situation.repository
         await this.situationThreadDao.add(situationThread)
     }
 

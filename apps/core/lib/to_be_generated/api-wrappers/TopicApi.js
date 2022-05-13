@@ -5,7 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Inject, Injected } from "@airport/direction-indicator";
+import { TOPIC_API } from "../common-tokens";
 let TopicApi = class TopicApi {
+    async findAll() {
+        return await this.interAppApiClient.invokeApiMethod(TOPIC_API, 'findAll', []);
+    }
 };
 __decorate([
     Inject()

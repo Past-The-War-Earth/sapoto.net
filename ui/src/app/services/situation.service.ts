@@ -8,10 +8,7 @@ export class SituationService {
 
   constructor() { }
 
-  getNewSituation(
-    text: string,
-    topic: ITopic
-  ): ISituation {
+  getNewSituation(): ISituation {
     return {
       actor: null,
       actorRecordId: null,
@@ -33,8 +30,8 @@ export class SituationService {
           urgency: 0
         }
       },
-      text,
-      topic
+      text: '',
+      topic: null
     };
   }
 

@@ -25,20 +25,7 @@ export class PostSituationComponent implements OnInit {
     private situationService: SituationService,
     private situationThreadService: SituationThreadService
   ) {
-    this.situation = situationService.getNewSituation('', {
-      actor: null,
-      actorRecordId: null,
-      ageSuitability: 0,
-      name: 'Test Topic',
-      repository: null,
-      theme: {
-        actor: null,
-        actorRecordId: null,
-        ageSuitability: 0,
-        name: 'Test Theme',
-        repository: null
-      }
-    })
+    this.situation = situationService.getNewSituation()
     this.quillModules = this.quillService.quillModules
   }
 

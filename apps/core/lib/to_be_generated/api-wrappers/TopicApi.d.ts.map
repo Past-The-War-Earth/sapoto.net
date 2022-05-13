@@ -1,1 +1,1 @@
-{"version":3,"file":"TopicApi.d.ts","sourceRoot":"","sources":["../../../src/to_be_generated/api-wrappers/TopicApi.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,kBAAkB,EAAE,MAAM,yBAAyB,CAAA;AAE5D,qBACa,QAAQ;IAGjB,iBAAiB,EAAE,kBAAkB,CAAA;CAExC"}
+{"version":3,"file":"TopicApi.d.ts","sourceRoot":"","sources":["../../../src/to_be_generated/api-wrappers/TopicApi.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,kBAAkB,EAAE,MAAM,yBAAyB,CAAA;AAC5D,OAAO,EAAE,MAAM,EAAE,MAAM,4BAA4B,CAAA;AAGnD,qBACa,QAAQ;IAGjB,iBAAiB,EAAE,kBAAkB,CAAA;IAG/B,OAAO,IAAI,OAAO,CAAC,MAAM,EAAE,CAAC;CAKrC"}
