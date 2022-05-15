@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ISituation } from '@sapoto/core-client';
 import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.service';
 
 @Component({
@@ -6,24 +7,34 @@ import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.ser
   templateUrl: './situation-icon.component.html',
   styleUrls: ['./situation-icon.component.scss'],
 })
-export class SituationIconComponent implements OnInit {
+export class SituationIconComponent implements OnInit, OnChanges {
 
   @Input() mode: 'edit' | 'show'
 
-  @Input() situation;
+  @Input() situation: ISituation;
 
   @Input() type: 'entry' | 'listing';
 
-  importancePoints
+  importancePoints = []
   halfImportancePoint = false
   halfUrgencyPoint = false
-  urgencyPoints
+  urgencyPoints = []
 
   constructor(
     private eisenhowerMatrixService: EisenhowerMatrixService
   ) { }
 
+  ngOnChanges(changes: SimpleChanges) {
+    // const situation = changes.situation.currentValue
+    if(this.situation && !this.importancePoints.length) {
+      this.setStateFromSituation()
+    }
+  }
+
   ngOnInit() {
+  }
+
+  setStateFromSituation(): void {
     this.importancePoints = []
     let importanceDisplayValue = this.eisenhowerMatrixService.getImportanceDisplayValue(
       this.situation.eisenhowerMatrix, this.mode)

@@ -12,15 +12,17 @@ let SituationDao = class SituationDao extends BaseSituationDao {
     async findWithListingDetailsForATopic(topic) {
         let s;
         let sR;
-        let t;
+        let to;
+        let th;
         return await this.db.find.graph({
             select: Object.assign(Object.assign({}, ALL_FIELDS), { ratings: {}, topic: Object.assign(Object.assign({}, ALL_FIELDS), { theme: {} }) }),
             from: [
                 s = Q.Situation,
                 sR = s.ratings.leftJoin(),
-                t = s.topic.leftJoin()
+                to = s.topic.leftJoin(),
+                th = to.theme.leftJoin()
             ],
-            where: and(t.repository.id.equals(topic.repository.id), t.actor.id.equals(topic.actor.id), t.actorRecordId.equals(topic.actorRecordId))
+            where: and(to.repository.id.equals(topic.repository.id), to.actor.id.equals(topic.actor.id), to.actorRecordId.equals(topic.actorRecordId))
         });
     }
     async findWithListingDetailsForATheme(theme) {

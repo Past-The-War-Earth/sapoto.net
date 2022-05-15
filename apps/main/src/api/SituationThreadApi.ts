@@ -73,11 +73,11 @@ export class SituationThreadApi implements ISituationThreadApi {
         }
 
         let eMatrix = situationIn.eisenhowerMatrix
-        if (eMatrix.user.importance < 20 || eMatrix.user.importance > 100) {
-            throw new Error(`Invalid importance, must be between 20 & 100`);
+        if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {
+            throw new Error(`Invalid importance, must be between 1 & 5`);
         }
-        if (eMatrix.user.urgency < 20 || eMatrix.user.urgency > 100) {
-            throw new Error(`Invalid urgency, must be between 20 & 100`);
+        if (eMatrix.user.urgency < 1 || eMatrix.user.urgency > 5) {
+            throw new Error(`Invalid urgency, must be between 1 & 5`);
         }
 
         situation.ageSuitability = situationIn.ageSuitability

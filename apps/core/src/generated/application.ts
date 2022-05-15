@@ -17,6 +17,18 @@ export const APPLICATION = {
 							"rateSituation": {
 								"isAsync": true,
 								"parameters": []
+							},
+							"findWithListingDetailsForATopic": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"findWithListingDetailsForATheme": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getNewSituation": {
+								"isAsync": true,
+								"parameters": []
 							}
 						}
 					},
@@ -31,6 +43,10 @@ export const APPLICATION = {
 					"ITopicApi": {
 						"operationMap": {
 							"findAll": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getById": {
 								"isAsync": true,
 								"parameters": []
 							}

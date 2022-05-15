@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TopicApiClient } from '@sapoto/core-client';
+import { ITopic, TopicApiClient } from '@sapoto/core-client';
 import { AutoCompleteService } from 'ionic4-auto-complete';
 import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,6 +20,12 @@ export class TopicSearchService implements AutoCompleteService {
   lastTopicId = 1000;
 
   constructor() { }
+
+  async getById(
+    topicId: ITopic
+  ): Promise<ITopic> {
+    return await this.topicApiClient.getById(topicId);
+  }
 
   async addTopic(
     topicName

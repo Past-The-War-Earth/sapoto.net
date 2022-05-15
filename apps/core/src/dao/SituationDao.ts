@@ -31,7 +31,8 @@ export class SituationDao
     ): Promise<ISituation[]> {
         let s: QSituation
         let sR: QSituationRating
-        let t: QTopic
+        let to: QTopic
+        let th: QTheme
         return await this.db.find.graph({
             select: {
                 ...ALL_FIELDS,
@@ -44,12 +45,13 @@ export class SituationDao
             from: [
                 s = Q.Situation,
                 sR = s.ratings.leftJoin(),
-                t = s.topic.leftJoin()
+                to = s.topic.leftJoin(),
+                th = to.theme.leftJoin()
             ],
             where: and(
-                t.repository.id.equals(topic.repository.id),
-                t.actor.id.equals(topic.actor.id),
-                t.actorRecordId.equals(topic.actorRecordId)
+                to.repository.id.equals(topic.repository.id),
+                to.actor.id.equals(topic.actor.id),
+                to.actorRecordId.equals(topic.actorRecordId)
             )
         })
     }

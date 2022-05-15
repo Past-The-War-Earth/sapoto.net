@@ -1,6 +1,6 @@
 <ion-modal [isOpen]="visible">
   <ng-template>
-    <ion-content>
+    <ion-content *ngIf="situation">
       <app-situation-topic-select [situation]="situation"></app-situation-topic-select>
       <app-media-recorder></app-media-recorder>
       <app-situation-matrix [situation]="situation" type="post"></app-situation-matrix>

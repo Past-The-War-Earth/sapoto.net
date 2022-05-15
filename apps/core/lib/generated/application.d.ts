@@ -16,6 +16,18 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
+                        findWithListingDetailsForATopic: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        findWithListingDetailsForATheme: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        getNewSituation: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
                     };
                 };
                 IThemeApi: {
@@ -29,6 +41,10 @@ export declare const APPLICATION: {
                 ITopicApi: {
                     operationMap: {
                         findAll: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        getById: {
                             isAsync: boolean;
                             parameters: any[];
                         };

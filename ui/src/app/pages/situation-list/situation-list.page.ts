@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SituationSearchService } from '../../services/situation-search.service';
 import { ISituation, ITopic } from '@sapoto/core-client';
 import { SituationService } from 'src/app/services/situation.service';
+import { TopicSearchService } from 'src/app/services/topic-search.service';
 
 @Component({
   selector: 'app-situation-list',
@@ -203,7 +204,8 @@ export class SituationListPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
     public situationSearchService: SituationSearchService,
-    public situationService: SituationService
+    public situationService: SituationService,
+    public topicSearchService: TopicSearchService
   ) { }
 
   ngOnInit(): void {
@@ -219,13 +221,15 @@ export class SituationListPage implements OnInit {
       }
       this.situationService.getTopicSituations(topic).then(
         situations => this.situations = situations)
+      this.topicSearchService.getById(topic).then(topic => {
+        this.topic = topic
+      })
     });
     this.myForm = new FormGroup({
       country: new FormControl('', [
         Validators.required
       ])
     })
-    this.topic = this.activatedRoute.snapshot.paramMap.get('name');
   }
 
   trackBySituations(index, situation) {

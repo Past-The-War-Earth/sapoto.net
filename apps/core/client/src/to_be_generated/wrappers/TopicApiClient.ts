@@ -7,10 +7,22 @@ export interface ITopicApi {
     findAll(
     ): Promise<ITopic[]>
 
+    getById(
+        topicId: ITopic
+    ): Promise<ITopic>
+
 }
 
 export class TopicApiClient
     implements ITopicApi {
+
+    async getById(
+        topicId: ITopic
+    ): Promise<ITopic> {
+        const topicApi = await IOC.get(TOPIC_API)
+
+        return await topicApi.getById(topicId)
+    }
 
     async findAll(
     ): Promise<ITopic[]> {

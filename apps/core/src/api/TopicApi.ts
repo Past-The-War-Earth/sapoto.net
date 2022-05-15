@@ -7,6 +7,10 @@ export interface ITopicApi {
 
     findAll(): Promise<ITopic[]>
 
+    getById(
+        topicId: ITopic
+    ): Promise<ITopic>
+
 }
 
 @Injected()
@@ -19,5 +23,12 @@ export class TopicApi
     @Api()
     async findAll(): Promise<ITopic[]> {
         return await this.topicDao.findAll()
+    }
+
+    @Api()
+    async getById(
+        topicId: ITopic
+    ): Promise<ITopic> {
+        return await this.topicDao.findById(topicId)
     }
 }
