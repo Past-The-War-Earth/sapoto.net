@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ISituation } from '@sapoto/core-client';
+import { IReply } from '@sapoto/main-client';
 import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
@@ -11,10 +13,11 @@ export class EisenhowerMatrixService {
   ) { }
 
   getImportanceClassName(
-    eisenhowerMatrix,
+    situation: ISituation | IReply,
     mode: 'edit' | 'show'
   ) {
-    let importance = this.getImportanceValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situation)
+    let importance = this.getImportanceValue(situation.eisenhowerMatrix, mode)
     if (importance < 1.5) {
       return "very-low-importance"
     } else if (importance < 2.5) {
@@ -29,40 +32,31 @@ export class EisenhowerMatrixService {
   }
 
   getImportanceDisplayValue(
-    eisenhowerMatrix,
+    situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    const value = this.getImportanceValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situation)
+    const value = this.getImportanceValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
   getApproximateImportanceNoDecimalValue(
-    eisenhowerMatrix,
+    situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    const value = this.getImportanceValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situation)
+    const value = this.getImportanceValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
-  getImportanceValue(
-    eisenhowerMatrix,
-    mode: 'edit' | 'show'
-  ) {
-    switch (mode) {
-      case 'edit':
-        return eisenhowerMatrix.user.importance
-      case 'show':
-        return eisenhowerMatrix.importance / eisenhowerMatrix.votes
-    }
-  }
-
   getPriorityClassName(
-    eisenhowerMatrix,
+    situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    let priority = this.getPriorityValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situation)
+    let priority = this.getPriorityValue(situation.eisenhowerMatrix, mode)
     if (priority < 1.5) {
       return "very-low-priority"
     } else if (priority < 2.5) {
@@ -77,10 +71,11 @@ export class EisenhowerMatrixService {
   }
 
   getPriorityDisplayValue(
-    eisenhowerMatrix,
+    situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    const value = this.getPriorityValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situation)
+    const value = this.getPriorityValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
@@ -196,16 +191,6 @@ export class EisenhowerMatrixService {
     return this.urgencyEquals(eisenhowerMatrix, mode, 5)
   }
 
-  private urgencyEquals(
-    eisenhowerMatrix,
-    mode: 'edit' | 'show',
-    equalsToValue
-  ) {
-    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
-
-    return equalsToValue === this.numberUtilsService.get1to5WithNoDecimalValue(value)
-  }
-
   getUrgencyValue(
     eisenhowerMatrix,
     mode: 'edit' | 'show'
@@ -216,6 +201,44 @@ export class EisenhowerMatrixService {
       case 'show':
         return eisenhowerMatrix.urgency / eisenhowerMatrix.votes
     }
+  }
+
+  private ensureMatrixPresent(
+    situation: ISituation
+  ): void {
+    if (!situation.eisenhowerMatrix) {
+      situation.eisenhowerMatrix = {
+        importance: 1,
+        urgency: 1,
+        votes: 0,
+        user: {
+          importance: 1,
+          urgency: 1
+        }
+      }
+    }
+  }
+
+  private getImportanceValue(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show'
+  ) {
+    switch (mode) {
+      case 'edit':
+        return eisenhowerMatrix.user.importance
+      case 'show':
+        return eisenhowerMatrix.importance / eisenhowerMatrix.votes
+    }
+  }
+
+  private urgencyEquals(
+    eisenhowerMatrix,
+    mode: 'edit' | 'show',
+    equalsToValue
+  ) {
+    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
+
+    return equalsToValue === this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
 }

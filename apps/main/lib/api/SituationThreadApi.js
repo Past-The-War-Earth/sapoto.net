@@ -8,26 +8,25 @@ import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
-        const situation = await this.situationApi.getNewSituation();
-        const situationIn = situationThread.situation;
-        if (situationIn.ageSuitability < 0 || situationIn.ageSuitability > 25) {
+        const situation = situationThread.situation;
+        if (situation.ageSuitability < 0 || situation.ageSuitability > 25) {
             throw new Error(`Invalid importance, must be between 0 & 25`);
         }
-        let eMatrix = situationIn.eisenhowerMatrix;
+        let eMatrix = situation.eisenhowerMatrix;
         if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {
             throw new Error(`Invalid importance, must be between 1 & 5`);
         }
         if (eMatrix.user.urgency < 1 || eMatrix.user.urgency > 5) {
             throw new Error(`Invalid urgency, must be between 1 & 5`);
         }
-        situation.ageSuitability = situationIn.ageSuitability;
-        situation.eisenhowerMatrix.importance = eMatrix.user.importance;
-        situation.eisenhowerMatrix.urgency = eMatrix.user.urgency;
-        situation.text = situationIn.text;
-        situationThread.situation = situation;
-        situationThread.replies = [];
+        const topic = situation.topic;
+        if (!topic || !topic.repository.id || !topic.actor.id
+            || !topic.actorRecordId) {
+            throw new Error(`No topic provided - missing topic or an id`);
+        }
         await this.situationApi.save(situation);
         situationThread.repository = situation.repository;
+        situationThread.replies = [];
         await this.situationThreadDao.add(situationThread);
     }
     async addReply(reply) {

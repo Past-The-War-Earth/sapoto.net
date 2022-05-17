@@ -41,6 +41,7 @@ export interface IReply extends IRepositoryEntity {
 	urgencyRatings?: IIdeaUrgencyRating[];
 
 	// Transient Properties
+	eisenhowerMatrix?: { importance: number; urgency: number; votes: number; user: {    importance: number;    urgency: number;}; };
 
 	// Public Methods
 	

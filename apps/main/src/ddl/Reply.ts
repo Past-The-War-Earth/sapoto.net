@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { IdeaSituation } from "@votecube/votecube";
 import { IdeaUrgencyRating } from "./IdeaUrgencyRating";
@@ -31,5 +31,16 @@ export class Reply
 
     @OneToMany({ mappedBy: 'reply' })
     urgencyRatings: IdeaUrgencyRating[]
+
+    @Transient()
+    eisenhowerMatrix: {
+        importance: number
+        urgency: number
+        votes: number
+        user: {
+            importance: number
+            urgency: number
+        }
+    }
 
 }

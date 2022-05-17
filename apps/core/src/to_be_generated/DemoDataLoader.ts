@@ -51,7 +51,7 @@ export class DemoDataLoader
             actor: null,
             repository: null,
             imageName: 'Siblings_n_Kin',
-            name: 'Sibligs & Kin',
+            name: 'Siblings & Kin',
             topics: [{
                 name: 'Siblings',
                 imagePath: null,

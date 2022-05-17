@@ -37,7 +37,7 @@ export class SituationIconComponent implements OnInit, OnChanges {
   setStateFromSituation(): void {
     this.importancePoints = []
     let importanceDisplayValue = this.eisenhowerMatrixService.getImportanceDisplayValue(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, this.mode)
 
     const wholeImportanceValue: any = importanceDisplayValue.substring(0, 1)
     if (importanceDisplayValue.endsWith(".5")) {

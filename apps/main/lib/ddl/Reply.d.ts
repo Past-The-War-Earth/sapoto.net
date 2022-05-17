@@ -12,5 +12,14 @@ export declare class Reply extends RepositoryEntity {
     replyRatings: ReplyRating[];
     replyTypes: ReplyType[];
     urgencyRatings: IdeaUrgencyRating[];
+    eisenhowerMatrix: {
+        importance: number;
+        urgency: number;
+        votes: number;
+        user: {
+            importance: number;
+            urgency: number;
+        };
+    };
 }
 //# sourceMappingURL=Reply.d.ts.map
