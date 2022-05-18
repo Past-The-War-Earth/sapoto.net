@@ -12,5 +12,14 @@ export interface IReply extends IRepositoryEntity {
     replyRatings?: IReplyRating[];
     replyTypes?: IReplyType[];
     urgencyRatings?: IIdeaUrgencyRating[];
+    eisenhowerMatrix?: {
+        priority: number;
+        urgency: number;
+        votes: number;
+        user: {
+            priority: number;
+            urgency: number;
+        };
+    };
 }
 //# sourceMappingURL=reply.d.ts.map

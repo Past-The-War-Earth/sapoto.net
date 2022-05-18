@@ -49,8 +49,8 @@ export class SituationIconComponent implements OnInit, OnChanges {
     }
 
     this.urgencyPoints = []
-    let urgencyDisplayValue = this.eisenhowerMatrixService.getUrgencyDisplayValue(
-      this.situation.eisenhowerMatrix, this.mode)
+    let urgencyDisplayValue = this.eisenhowerMatrixService.getSituationUrgencyDisplayValue(
+      this.situation, this.mode)
 
     const wholeUrgencyValue: any = urgencyDisplayValue.substring(0, 1)
     if (urgencyDisplayValue.endsWith(".5")) {
@@ -64,27 +64,27 @@ export class SituationIconComponent implements OnInit, OnChanges {
 
   isVeryLowUrgency() {
     return this.eisenhowerMatrixService.isVeryLowUrgency(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, 'situation', this.mode)
   }
 
   isLowUrgency() {
     return this.eisenhowerMatrixService.isLowUrgency(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, 'situation', this.mode)
   }
 
   isAverageUrgency() {
     return this.eisenhowerMatrixService.isAverageUrgency(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, 'situation', this.mode)
   }
 
   isHighUrgency() {
     return this.eisenhowerMatrixService.isHighUrgency(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, 'situation', this.mode)
   }
 
   isVeryHighUrgency() {
     return this.eisenhowerMatrixService.isVeryHighUrgency(
-      this.situation.eisenhowerMatrix, this.mode)
+      this.situation, 'situation', this.mode)
   }
 
 }

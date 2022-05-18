@@ -14,13 +14,19 @@ let SituationDao = class SituationDao extends BaseSituationDao {
         let sR;
         let to;
         let th;
+        let a;
+        let u;
         return await this.db.find.graph({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { ratings: {}, topic: Object.assign(Object.assign({}, ALL_FIELDS), { theme: {} }) }),
+            select: Object.assign(Object.assign({}, ALL_FIELDS), { ratings: {}, topic: Object.assign(Object.assign({}, ALL_FIELDS), { theme: {} }), actor: {
+                    user: {}
+                } }),
             from: [
                 s = Q.Situation,
                 sR = s.ratings.leftJoin(),
                 to = s.topic.leftJoin(),
-                th = to.theme.leftJoin()
+                th = to.theme.leftJoin(),
+                a = s.actor.leftJoin(),
+                u = a.user.leftJoin()
             ],
             where: and(to.repository.id.equals(topic.repository.id), to.actor.id.equals(topic.actor.id), to.actorRecordId.equals(topic.actorRecordId))
         });

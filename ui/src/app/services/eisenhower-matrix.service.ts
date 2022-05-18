@@ -13,10 +13,10 @@ export class EisenhowerMatrixService {
   ) { }
 
   getImportanceClassName(
-    situation: ISituation | IReply,
+    situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    this.ensureMatrixPresent(situation)
+    this.ensureSituationMatrixPresent(situation)
     let importance = this.getImportanceValue(situation.eisenhowerMatrix, mode)
     if (importance < 1.5) {
       return "very-low-importance"
@@ -35,7 +35,7 @@ export class EisenhowerMatrixService {
     situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    this.ensureMatrixPresent(situation)
+    this.ensureSituationMatrixPresent(situation)
     const value = this.getImportanceValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
@@ -45,18 +45,18 @@ export class EisenhowerMatrixService {
     situation: ISituation,
     mode: 'edit' | 'show'
   ) {
-    this.ensureMatrixPresent(situation)
+    this.ensureSituationMatrixPresent(situation)
     const value = this.getImportanceValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   getPriorityClassName(
-    situation: ISituation,
+    reply: IReply,
     mode: 'edit' | 'show'
   ) {
-    this.ensureMatrixPresent(situation)
-    let priority = this.getPriorityValue(situation.eisenhowerMatrix, mode)
+    this.ensureReplyMatrixPresent(reply)
+    let priority = this.getPriorityValue(reply, mode)
     if (priority < 1.5) {
       return "very-low-priority"
     } else if (priority < 2.5) {
@@ -71,42 +71,46 @@ export class EisenhowerMatrixService {
   }
 
   getPriorityDisplayValue(
-    situation: ISituation,
+    reply: IReply,
     mode: 'edit' | 'show'
   ) {
-    this.ensureMatrixPresent(situation)
-    const value = this.getPriorityValue(situation.eisenhowerMatrix, mode)
+    this.ensureReplyMatrixPresent(reply)
+    const value = this.getPriorityValue(reply, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
   getAproximatePriorityNoDecimalValue(
-    eisenhowerMatrix,
+    reply: IReply,
     mode: 'edit' | 'show'
   ) {
-    const value = this.getPriorityValue(eisenhowerMatrix, mode)
+    this.ensureReplyMatrixPresent(reply)
+    const value = this.getPriorityValue(reply, mode)
 
     return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   getPriorityValue(
-    eisenhowerMatrix,
+    reply: IReply,
     mode: 'edit' | 'show'
   ) {
+    this.ensureReplyMatrixPresent(reply)
     switch (mode) {
       case 'edit':
-        return eisenhowerMatrix.user.priority
+        return reply.eisenhowerMatrix.user.priority
       case 'show':
-        return eisenhowerMatrix.priority / eisenhowerMatrix.votes
+        return reply.eisenhowerMatrix.priority / reply.eisenhowerMatrix.votes
     }
   }
 
-  getUrgencyImageName(
-    eisenhowerMatrix,
+  getReplyUrgencyImageName(
+    replyOrSituation: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show',
     listing = false
   ) {
-    let urgency = this.getUrgencyValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(replyOrSituation, type)
+    let urgency = this.getUrgencyValue(replyOrSituation.eisenhowerMatrix, mode)
     if (urgency < 1.5) {
       return "very_low_urgency"
     } else if (urgency < 2.5) {
@@ -121,10 +125,12 @@ export class EisenhowerMatrixService {
   }
 
   getUrgencyClassName(
-    eisenhowerMatrix,
+    replyOrSituation: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    let urgency = this.getUrgencyValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(replyOrSituation, type)
+    let urgency = this.getUrgencyValue(replyOrSituation.eisenhowerMatrix, mode)
     if (urgency < 1.5) {
       return "very-low-urgency"
     } else if (urgency < 2.5) {
@@ -138,60 +144,83 @@ export class EisenhowerMatrixService {
     }
   }
 
-  getUrgencyDisplayValue(
-    eisenhowerMatrix,
+  getReplyUrgencyDisplayValue(
+    reply: IReply,
     mode: 'edit' | 'show'
   ) {
-    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
+    this.ensureReplyMatrixPresent(reply)
+    const value = this.getUrgencyValue(reply.eisenhowerMatrix, mode)
+
+    return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
+  }
+
+  getSituationUrgencyDisplayValue(
+    situation: ISituation,
+    mode: 'edit' | 'show'
+  ) {
+    this.ensureSituationMatrixPresent(situation)
+    const value = this.getUrgencyValue(situation.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithOneDecimalDisplayValue(value)
   }
 
   getApproximateUrgencyNoDecimalValue(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    const value = this.getUrgencyValue(eisenhowerMatrix, mode)
+    this.ensureMatrixPresent(situationOrReply, type)
+    const value = this.getUrgencyValue(situationOrReply.eisenhowerMatrix, mode)
 
     return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
   isVeryLowUrgency(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    return this.urgencyEquals(eisenhowerMatrix, mode, 1)
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 1)
   }
 
   isLowUrgency(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    return this.urgencyEquals(eisenhowerMatrix, mode, 2)
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 2)
   }
 
   isAverageUrgency(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    return this.urgencyEquals(eisenhowerMatrix, mode, 3)
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 3)
   }
 
   isHighUrgency(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    return this.urgencyEquals(eisenhowerMatrix, mode, 4)
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 4)
   }
 
   isVeryHighUrgency(
-    eisenhowerMatrix,
+    situationOrReply: ISituation | IReply,
+    type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
-    return this.urgencyEquals(eisenhowerMatrix, mode, 5)
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 5)
   }
 
-  getUrgencyValue(
+  private getUrgencyValue(
     eisenhowerMatrix,
     mode: 'edit' | 'show'
   ) {
@@ -203,7 +232,7 @@ export class EisenhowerMatrixService {
     }
   }
 
-  private ensureMatrixPresent(
+  private ensureSituationMatrixPresent(
     situation: ISituation
   ): void {
     if (!situation.eisenhowerMatrix) {
@@ -213,6 +242,38 @@ export class EisenhowerMatrixService {
         votes: 0,
         user: {
           importance: 1,
+          urgency: 1
+        }
+      }
+    }
+  }
+
+  private ensureMatrixPresent(
+    replyOrSituation: ISituation | IReply,
+    type: 'situation' | 'reply',
+  ): void {
+    switch(type) {
+      case 'situation':
+        this.ensureSituationMatrixPresent(replyOrSituation as ISituation)
+        break;
+      case 'reply':
+        this.ensureReplyMatrixPresent(replyOrSituation as IReply)
+        break;
+      default:
+        throw new Error('Uknown eisenhowerMatrix: ' + type + '. Expecting "situation" or "reply"')
+    }
+  }
+
+  private ensureReplyMatrixPresent(
+    reply: IReply
+  ): void {
+    if (!reply.eisenhowerMatrix) {
+      reply.eisenhowerMatrix = {
+        priority: 1,
+        urgency: 1,
+        votes: 0,
+        user: {
+          priority: 1,
           urgency: 1
         }
       }

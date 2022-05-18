@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
+import { CountsService } from 'src/app/services/counts.service';
 
 @Component({
   selector: 'app-situation-block',
@@ -21,11 +22,25 @@ export class SituationBlockComponent implements OnInit {
   sharedClicker = new Clicker()
 
   constructor(
+    private countsService: CountsService,
     private dateUtilsService: DateUtilsService,
     private numberUtilsService: NumberUtilsService
   ) { }
 
   ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // const situation = changes.situation.currentValue
+    if(this.situation) {
+      this.setSituationTransientState()
+    }
+  }
+
+  private setSituationTransientState() {
+    this.countsService.ensureSituationCounts(
+      this.situation
+    )
+  }
 
   showSituationMatrix() {
     return this.action === 'size'

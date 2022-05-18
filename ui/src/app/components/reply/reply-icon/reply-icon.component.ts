@@ -29,7 +29,7 @@ export class ReplyIconComponent implements OnInit {
   ngOnInit() {
     this.priorityPoints = []
     let priorityDisplayValue = this.eisenhowerMatrixService.getPriorityDisplayValue(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, this.mode)
 
     const wholePriorityValue: any = priorityDisplayValue.substring(0, 1)
     if (priorityDisplayValue.endsWith(".5")) {
@@ -41,8 +41,8 @@ export class ReplyIconComponent implements OnInit {
     }
 
     this.urgencyPoints = []
-    let urgencyDisplayValue = this.eisenhowerMatrixService.getUrgencyDisplayValue(
-      this.reply.eisenhowerMatrix, this.mode)
+    let urgencyDisplayValue = this.eisenhowerMatrixService.getReplyUrgencyDisplayValue(
+      this.reply, this.mode)
 
     const wholeUrgencyValue: any = urgencyDisplayValue.substring(0, 1)
     if (urgencyDisplayValue.endsWith(".5")) {
@@ -76,27 +76,27 @@ export class ReplyIconComponent implements OnInit {
 
   isVeryLowUrgency() {
     return this.eisenhowerMatrixService.isVeryLowUrgency(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, 'reply', this.mode)
   }
 
   isLowUrgency() {
     return this.eisenhowerMatrixService.isLowUrgency(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, 'reply', this.mode)
   }
 
   isAverageUrgency() {
     return this.eisenhowerMatrixService.isAverageUrgency(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, 'reply', this.mode)
   }
 
   isHighUrgency() {
     return this.eisenhowerMatrixService.isHighUrgency(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, 'reply', this.mode)
   }
 
   isVeryHighUrgency() {
     return this.eisenhowerMatrixService.isVeryHighUrgency(
-      this.reply.eisenhowerMatrix, this.mode)
+      this.reply, 'reply', this.mode)
   }
 
 }

@@ -13,11 +13,11 @@ export interface IReply extends IRepositoryEntity {
     replyTypes?: IReplyType[];
     urgencyRatings?: IIdeaUrgencyRating[];
     eisenhowerMatrix?: {
-        importance: number;
+        priority: number;
         urgency: number;
         votes: number;
         user: {
-            importance: number;
+            priority: number;
             urgency: number;
         };
     };

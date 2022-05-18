@@ -1,5 +1,7 @@
 import { ALL_FIELDS, and } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { QActor } from "@airport/holding-pattern";
+import { QUser } from "@airport/travel-document-checkpoint";
 import { IBaseSituationDao, BaseSituationDao } from "../generated/baseDaos";
 import { ISituation, ITheme, ITopic } from "../generated/interfaces";
 import { Q } from "../generated/qApplication";
@@ -33,6 +35,8 @@ export class SituationDao
         let sR: QSituationRating
         let to: QTopic
         let th: QTheme
+        let a: QActor
+        let u: QUser
         return await this.db.find.graph({
             select: {
                 ...ALL_FIELDS,
@@ -40,13 +44,18 @@ export class SituationDao
                 topic: {
                     ...ALL_FIELDS,
                     theme: {}
+                },
+                actor: {
+                    user: {}
                 }
             },
             from: [
                 s = Q.Situation,
                 sR = s.ratings.leftJoin(),
                 to = s.topic.leftJoin(),
-                th = to.theme.leftJoin()
+                th = to.theme.leftJoin(),
+                a = s.actor.leftJoin(),
+                u = a.user.leftJoin()
             ],
             where: and(
                 to.repository.id.equals(topic.repository.id),

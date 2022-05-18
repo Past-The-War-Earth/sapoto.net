@@ -13,11 +13,11 @@ export declare class Reply extends RepositoryEntity {
     replyTypes: ReplyType[];
     urgencyRatings: IdeaUrgencyRating[];
     eisenhowerMatrix: {
-        importance: number;
+        priority: number;
         urgency: number;
         votes: number;
         user: {
-            importance: number;
+            priority: number;
             urgency: number;
         };
     };

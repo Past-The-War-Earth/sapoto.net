@@ -34,11 +34,11 @@ export class Reply
 
     @Transient()
     eisenhowerMatrix: {
-        importance: number
+        priority: number
         urgency: number
         votes: number
         user: {
-            importance: number
+            priority: number
             urgency: number
         }
     }

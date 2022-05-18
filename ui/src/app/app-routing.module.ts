@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/situation-list/situation-list.module').then(m => m.SituationListPageModule)
   },
   {
-    path: 'situation',
+    path: 'situation/:situationRepositoryId/:situationActorId/:situationActorRecordId',
     loadChildren: () => import('./pages/situation/situation.module').then(m => m.SituationPageModule)
   },
   {
