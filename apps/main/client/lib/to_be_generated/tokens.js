@@ -7,4 +7,9 @@ export const SITUATION_THREAD_API = main.token({
     interface: 'ISituationThreadApi',
     token: 'SITUATION_THREAD_API'
 });
+export const REPLY_API = main.token({
+    class: null,
+    interface: 'IReplyApi',
+    token: 'REPLY_API'
+});
 //# sourceMappingURL=tokens.js.map

@@ -13,8 +13,16 @@ export const APPLICATION = {
 							"addSituationThread": {
 								"isAsync": true,
 								"parameters": []
-							},
+							}
+						}
+					},
+					"IReplyApi": {
+						"operationMap": {
 							"addReply": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getRepliesForSituation": {
 								"isAsync": true,
 								"parameters": []
 							},

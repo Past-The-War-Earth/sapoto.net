@@ -29,38 +29,7 @@ let SituationThreadApi = class SituationThreadApi {
         situationThread.replies = [];
         await this.situationThreadDao.add(situationThread);
     }
-    async addReply(reply) {
-        await this.replyDao.save(reply);
-    }
-    async addIdea(reply, ideaSituation) {
-        await this.ideaSituationApi.add(ideaSituation);
-        await this.addReply(reply);
-    }
-    async rateReply(replyRating) {
-        this.replyRatingDao.save(replyRating);
-    }
-    async addReplyType(reply, type) {
-        const replyType = {
-            reply,
-            repository: reply.repository,
-            type
-        };
-        await this.replyTypeDao.save(replyType);
-        reply.replyTypes.push(replyType);
-    }
 };
-__decorate([
-    Inject()
-], SituationThreadApi.prototype, "ideaSituationApi", void 0);
-__decorate([
-    Inject()
-], SituationThreadApi.prototype, "replyDao", void 0);
-__decorate([
-    Inject()
-], SituationThreadApi.prototype, "replyRatingDao", void 0);
-__decorate([
-    Inject()
-], SituationThreadApi.prototype, "replyTypeDao", void 0);
 __decorate([
     Inject()
 ], SituationThreadApi.prototype, "situationApi", void 0);
@@ -70,18 +39,6 @@ __decorate([
 __decorate([
     Api()
 ], SituationThreadApi.prototype, "addSituationThread", null);
-__decorate([
-    Api()
-], SituationThreadApi.prototype, "addReply", null);
-__decorate([
-    Api()
-], SituationThreadApi.prototype, "addIdea", null);
-__decorate([
-    Api()
-], SituationThreadApi.prototype, "rateReply", null);
-__decorate([
-    Api()
-], SituationThreadApi.prototype, "addReplyType", null);
 SituationThreadApi = __decorate([
     Injected()
 ], SituationThreadApi);

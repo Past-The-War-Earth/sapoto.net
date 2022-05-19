@@ -3,14 +3,14 @@ import { API_REGISTRY } from '@airport/check-in'
 import { APPLICATION_INITIALIZER, TERMINAL_STORE } from '@airport/terminal-map'
 import { SITUATION_API } from '@sapoto/core'
 import { ApplicationLoader } from './ApplicationLoader'
-import { main } from './common-tokens'
+import { main, REPLY_API } from './common-tokens'
 
 import { IReplyDao, ReplyDao } from '../dao/ReplyDao'
 import { IReplyRatingDao, ReplyRatingDao } from '../dao/ReplyRatingDao'
 import { ISituationThreadDao, SituationThreadDao } from '../dao/SituationThreadDao'
 import { IReplyTypeDao, ReplyTypeDao } from '../dao/ReplyTypeDao'
 import { SITUATION_THREAD_API } from './common-tokens'
-import { SituationThreadApi } from '../api/api'
+import { ReplyApi, SituationThreadApi } from '../api/api'
 import { IDEA_SITUATION_API } from '@votecube/votecube'
 
 export const REPLY_DAO = main.token<IReplyDao>({
@@ -36,12 +36,16 @@ export const SITUATION_THREAD_DAO = main.token<ISituationThreadDao>({
 
 SITUATION_THREAD_API.setClass(SituationThreadApi)
 SITUATION_THREAD_API.setDependencies({
+    situationThreadDao: SITUATION_THREAD_DAO
+})
+
+REPLY_API.setClass(ReplyApi)
+REPLY_API.setDependencies({
     ideaSituationApi: IDEA_SITUATION_API,
     replyDao: REPLY_DAO,
     replyRatingDao: REPLY_RATING_DAO,
     replyTypeDao: REPLY_TYPE_DAO,
     situationApi: SITUATION_API,
-    situationThreadDao: SITUATION_THREAD_DAO
 })
 
 APPLICATION_LOADER.setClass(ApplicationLoader)

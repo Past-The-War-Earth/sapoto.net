@@ -12,7 +12,15 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
+                    };
+                };
+                IReplyApi: {
+                    operationMap: {
                         addReply: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
+                        getRepliesForSituation: {
                             isAsync: boolean;
                             parameters: any[];
                         };

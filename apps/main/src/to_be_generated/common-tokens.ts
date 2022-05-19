@@ -1,5 +1,5 @@
 import { domain } from '@airport/direction-indicator';
-import { app } from '@sapoto/dependency-injection'
+import { IReplyApi } from '../api/ReplyApi';
 import type { ISituationThreadApi } from '../api/SituationThreadApi';
 
 //export const main = app('main')
@@ -9,4 +9,10 @@ export const SITUATION_THREAD_API = main.token<ISituationThreadApi>({
     class: null,
     interface: 'ISituationThreadApi',
     token: 'SITUATION_THREAD_API'
+})
+
+export const REPLY_API = main.token<IReplyApi>({
+    class: null,
+    interface: 'IReplyApi',
+    token: 'REPLY_API'
 })
