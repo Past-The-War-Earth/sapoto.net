@@ -28,7 +28,6 @@ export interface ISituation extends IRepositoryEntity {
 	ratings?: ISituationRating[];
 
 	// Transient Properties
-	counts?: { experiences: number; ideas: number; questions: number; reasons: number; replies: number; };
 	eisenhowerMatrix?: { importance: number; urgency: number; votes: number; user: {    importance: number;    urgency: number;}; };
 
 	// Public Methods

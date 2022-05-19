@@ -26,14 +26,6 @@ export interface ISituationApi {
         user: IUser
     ): Promise<ISituationRating>
 
-    findWithListingDetailsForATopic(
-        topic: ITopic
-    ): Promise<ISituation[]>
-
-    findWithListingDetailsForATheme(
-        theme: ITheme
-    ): Promise<ISituation[]>
-
     getNewSituation(): Promise<ISituation>
 
 }
@@ -85,34 +77,11 @@ export class SituationApi implements ISituationApi {
     }
 
     @Api()
-    async findWithListingDetailsForATopic(
-        topic: ITopic
-    ): Promise<ISituation[]> {
-        return await this.situationDao
-            .findWithListingDetailsForATopic(topic)
-    }
-
-    @Api()
-    async findWithListingDetailsForATheme(
-        theme: ITheme
-    ): Promise<ISituation[]> {
-        return await this.situationDao
-            .findWithListingDetailsForATheme(theme)
-    }
-
-    @Api()
     async getNewSituation(): Promise<ISituation> {
         return {
             actor: null,
             actorRecordId: null,
             ageSuitability: 0,
-            counts: {
-                experiences: 0,
-                ideas: 0,
-                questions: 0,
-                reasons: 0,
-                replies: 0
-            },
             repository: null,
             eisenhowerMatrix: {
                 importance: 0,

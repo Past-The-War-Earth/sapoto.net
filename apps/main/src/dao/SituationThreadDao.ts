@@ -1,8 +1,14 @@
+import { ALL_FIELDS, and, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { QActor } from "@airport/holding-pattern";
+import { QUser } from "@airport/travel-document-checkpoint";
+import { ITopic, QSituation, QSituationRating } from "@sapoto/core";
 import {
     BaseSituationThreadDao,
     IBaseSituationThreadDao,
-    ISituationThread
+    ISituationThread,
+    Q,
+    QSituationThread
 } from "../generated/generated";
 
 export interface ISituationThreadDao
@@ -11,6 +17,10 @@ export interface ISituationThreadDao
     add(
         situationThread: ISituationThread
     ): Promise<void>
+
+    findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituationThread[]>
 
 }
 
@@ -23,6 +33,40 @@ export class SituationThreadDao
         situationThread: ISituationThread
     ): Promise<void> {
         await this.save(situationThread)
+    }
+
+    async findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituationThread[]> {
+        let st: QSituationThread
+        let s: QSituation
+        let sR: QSituationRating
+        let a: QActor
+        let u: QUser
+        return await this.db.find.graph({
+            select: {
+                ...ALL_FIELDS,
+                situation: {
+                    ...ALL_FIELDS,
+                    ratings: {},
+                    actor: {
+                        user: {
+                            username: Y
+                        }
+                    }
+                }
+            },
+            from: [
+                st = Q.SituationThread,
+                s = st.situation.innerJoin(),
+                sR = s.ratings.leftJoin(),
+                a = s.actor.leftJoin(),
+                u = a.user.leftJoin()
+            ],
+            where: and(
+                s.topic.equals(topic)
+            )
+        })
     }
 
 }

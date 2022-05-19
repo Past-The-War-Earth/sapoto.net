@@ -18,14 +18,6 @@ export const APPLICATION = {
                                 "isAsync": true,
                                 "parameters": []
                             },
-                            "findWithListingDetailsForATopic": {
-                                "isAsync": true,
-                                "parameters": []
-                            },
-                            "findWithListingDetailsForATheme": {
-                                "isAsync": true,
-                                "parameters": []
-                            },
                             "getNewSituation": {
                                 "isAsync": true,
                                 "parameters": []

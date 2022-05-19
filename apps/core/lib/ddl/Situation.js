@@ -19,9 +19,6 @@ __decorate([
 ], Situation.prototype, "ratings", void 0);
 __decorate([
     Transient()
-], Situation.prototype, "counts", void 0);
-__decorate([
-    Transient()
 ], Situation.prototype, "eisenhowerMatrix", void 0);
 Situation = __decorate([
     Entity(),

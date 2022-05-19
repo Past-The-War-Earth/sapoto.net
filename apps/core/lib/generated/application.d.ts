@@ -16,14 +16,6 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        findWithListingDetailsForATopic: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
-                        findWithListingDetailsForATheme: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
                         getNewSituation: {
                             isAsync: boolean;
                             parameters: any[];

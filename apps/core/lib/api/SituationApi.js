@@ -30,26 +30,11 @@ let SituationApi = class SituationApi {
         await this.situationRatingDao.save(situationRating);
         return situationRating;
     }
-    async findWithListingDetailsForATopic(topic) {
-        return await this.situationDao
-            .findWithListingDetailsForATopic(topic);
-    }
-    async findWithListingDetailsForATheme(theme) {
-        return await this.situationDao
-            .findWithListingDetailsForATheme(theme);
-    }
     async getNewSituation() {
         return {
             actor: null,
             actorRecordId: null,
             ageSuitability: 0,
-            counts: {
-                experiences: 0,
-                ideas: 0,
-                questions: 0,
-                reasons: 0,
-                replies: 0
-            },
             repository: null,
             eisenhowerMatrix: {
                 importance: 0,
@@ -77,12 +62,6 @@ __decorate([
 __decorate([
     Api()
 ], SituationApi.prototype, "rateSituation", null);
-__decorate([
-    Api()
-], SituationApi.prototype, "findWithListingDetailsForATopic", null);
-__decorate([
-    Api()
-], SituationApi.prototype, "findWithListingDetailsForATheme", null);
 __decorate([
     Api()
 ], SituationApi.prototype, "getNewSituation", null);

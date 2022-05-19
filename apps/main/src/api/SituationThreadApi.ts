@@ -3,7 +3,7 @@ import { Inject, Injected } from "@airport/direction-indicator";
 import {
     ISituationThread
 } from "../generated/generated";
-import { SituationApi } from "@sapoto/core";
+import { ISituation, ITopic, SituationApi } from "@sapoto/core";
 import { ISituationThreadDao } from "../dao/SituationThreadDao";
 
 export interface ISituationThreadApi {
@@ -11,6 +11,10 @@ export interface ISituationThreadApi {
     addSituationThread(
         situationThread: ISituationThread
     ): Promise<void>
+
+    findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituation[]>
 
 }
 

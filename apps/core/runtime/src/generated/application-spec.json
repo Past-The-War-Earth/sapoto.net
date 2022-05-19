@@ -16,12 +16,28 @@
 							"rateSituation": {
 								"isAsync": true,
 								"parameters": []
+							},
+							"getNewSituation": {
+								"isAsync": true,
+								"parameters": []
 							}
 						}
 					},
 					"IThemeApi": {
 						"operationMap": {
 							"getAllWithTopics": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
+					"ITopicApi": {
+						"operationMap": {
+							"findAll": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"getById": {
 								"isAsync": true,
 								"parameters": []
 							}

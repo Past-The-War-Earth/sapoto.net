@@ -3,6 +3,7 @@ import { Inject, Injected } from "@airport/direction-indicator";
 import { IReply, IReplyRating, ISituationThread } from "../../generated/interfaces";
 import { IIdeaSituation } from "@votecube/votecube";
 import { SITUATION_THREAD_API } from "../common-tokens";
+import { ITopic } from "@sapoto/core";
 
 export interface ISituationThreadApi {
 
@@ -27,6 +28,10 @@ export interface ISituationThreadApi {
         reply: IReply,
         type: 'comment' | 'experience' | 'idea' | 'question'
     ): Promise<void>
+
+    findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituationThread[]>
 
 }
 
@@ -72,6 +77,13 @@ export class SituationThreadApi {
     ): Promise<void> {
         return await this.interAppApiClient.invokeApiMethod(
             SITUATION_THREAD_API, 'addReplyType', [reply, type])
+    }
+
+    async findWithListingDetailsForATopic(
+        topic: ITopic
+    ): Promise<ISituationThread[]> {
+        return await this.interAppApiClient.invokeApiMethod(
+            SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topic])
     }
 
 }

@@ -5,13 +5,6 @@ export interface ISituation extends IRepositoryEntity {
     text?: string;
     topic?: ITopic;
     ratings?: ISituationRating[];
-    counts?: {
-        experiences: number;
-        ideas: number;
-        questions: number;
-        reasons: number;
-        replies: number;
-    };
     eisenhowerMatrix?: {
         importance: number;
         urgency: number;

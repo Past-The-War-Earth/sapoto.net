@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Entity, Json, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
 import { Reply } from "./Reply";
@@ -13,5 +13,14 @@ export class SituationThread
 
     @OneToMany({ mappedBy: 'situationThread' })
     replies: Reply[]
+
+    @Json()
+    counts: {
+        experiences: number
+        ideas: number
+        questions: number
+        reasons: number
+        replies: number
+    }
 
 }

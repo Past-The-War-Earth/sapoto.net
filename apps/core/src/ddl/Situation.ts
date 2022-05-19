@@ -17,15 +17,6 @@ export class Situation extends RepositoryEntity {
     ratings: SituationRating[]
 
     @Transient()
-    counts: {
-        experiences: number
-        ideas: number
-        questions: number
-        reasons: number
-        replies: number
-    }
-
-    @Transient()
     eisenhowerMatrix: {
         importance: number
         urgency: number
