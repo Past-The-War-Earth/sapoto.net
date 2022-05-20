@@ -14,7 +14,7 @@ export const APPLICATION = {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getRepliesForSituation": {
+							"getRepliesForSituationThread": {
 								"isAsync": true,
 								"parameters": []
 							},

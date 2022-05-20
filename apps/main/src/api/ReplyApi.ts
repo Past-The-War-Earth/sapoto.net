@@ -1,7 +1,5 @@
-import { RepositoryEntityId } from "@airport/air-traffic-control"
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
-import { ISituation } from "@sapoto/core"
 import { IIdeaSituation, IIdeaSituationApi } from "@votecube/votecube"
 import { IReplyDao } from "../dao/ReplyDao"
 import { IReplyRatingDao } from "../dao/ReplyRatingDao"
@@ -16,8 +14,8 @@ export interface IReplyApi {
         reply: IReply
     ): Promise<void>
 
-    getRepliesForSituation(
-        situationId: RepositoryEntityId
+    getRepliesForSituationThread(
+        situationThreadId: string
     ): Promise<IReply[]>
 
     addIdea(
@@ -61,10 +59,10 @@ export class ReplyApi
     }
 
     @Api()
-    async getRepliesForSituation(
-        situationId: RepositoryEntityId
+    async getRepliesForSituationThread(
+        situationThreadId: string
     ): Promise<IReply[]> {
-        return await this.replyDao.findForSituation(situationId)
+        return await this.replyDao.findForSituation(situationThreadId)
     }
 
     @Api()

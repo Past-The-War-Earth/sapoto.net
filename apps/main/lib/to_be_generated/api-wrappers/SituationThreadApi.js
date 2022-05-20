@@ -10,8 +10,8 @@ let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
         return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'addSituationThread', [situationThread]);
     }
-    async findWithListingDetailsForATopic(topic) {
-        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topic]);
+    async findWithListingDetailsForATopic(topicId) {
+        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topicId]);
     }
 };
 __decorate([

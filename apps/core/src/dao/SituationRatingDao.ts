@@ -10,14 +10,15 @@ import {
     QSituationRating,
     Q
 } from "../generated/generated";
-import { and, RepositoryEntityId } from "@airport/air-traffic-control";
+import { and } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
+import { RepositoryEntityId } from "@airport/aviation-communication";
 
 export interface ISituationRatingDao
     extends IBaseSituationRatingDao {
 
     findForSituationAndUser(
-        situationId: RepositoryEntityId,
+        situationId: string | RepositoryEntityId,
         user: IUser
     ): Promise<ISituationRating>
 
@@ -29,7 +30,7 @@ export class SituationRatingDao
     implements ISituationRatingDao {
 
     async findForSituationAndUser(
-        situationId: RepositoryEntityId,
+        situationId: string | RepositoryEntityId,
         user: IUser
     ): Promise<ISituationRating> {
         let sir: QSituationRating

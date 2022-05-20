@@ -1,4 +1,3 @@
-import { RepositoryEntityId } from "@airport/air-traffic-control";
 import { IOC } from "@airport/direction-indicator";
 import { ITopic } from "../../generated/interfaces";
 import { TOPIC_API } from "../tokens";
@@ -9,7 +8,7 @@ export interface ITopicApi {
     ): Promise<ITopic[]>
 
     getById(
-        topicId: RepositoryEntityId
+        topicId: string
     ): Promise<ITopic>
 
 }
@@ -18,7 +17,7 @@ export class TopicApiClient
     implements ITopicApi {
 
     async getById(
-        topicId: RepositoryEntityId
+        topicId: string
     ): Promise<ITopic> {
         const topicApi = await IOC.get(TOPIC_API)
 

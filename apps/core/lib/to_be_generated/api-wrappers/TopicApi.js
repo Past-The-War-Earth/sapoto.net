@@ -10,6 +10,9 @@ let TopicApi = class TopicApi {
     async findAll() {
         return await this.interAppApiClient.invokeApiMethod(TOPIC_API, 'findAll', []);
     }
+    async getById(topicId) {
+        return await this.interAppApiClient.invokeApiMethod(TOPIC_API, 'getById', [topicId]);
+    }
 };
 __decorate([
     Inject()

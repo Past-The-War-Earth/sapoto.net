@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ISituationThread } from '@sapoto/main-client';
+import { Subscription } from 'rxjs';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
+import { parseId } from '@airport/aviation-communication';
 
 @Component({
   selector: 'app-situation',
@@ -21,16 +24,21 @@ export class SituationPage
 
   situationThread: ISituationThread
 
+  routeParamsSubscription: Subscription
+
   constructor(
-    private situationThreadService: SituationThreadService
+    private situationThreadService: SituationThreadService,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
-    if(this.situationThreadService.activeSituationThread) {
+    if (this.situationThreadService.activeSituationThread) {
       this.situationThread = this.situationThreadService.activeSituationThread
     } else {
-      
+      this.routeParamsSubscription = this.route.params.subscribe(params => {
+        const situationThreadId = parseId(params['situationThreadId'])
+      });
     }
   }
 

@@ -15,4 +15,11 @@ export class TopicApi {
             TOPIC_API, 'findAll', [])
     }
 
+    async getById(
+        topicId: string
+    ): Promise<ITopic> {
+        return await this.interAppApiClient.invokeApiMethod(
+            TOPIC_API, 'getById', [topicId])
+    }
+
 }

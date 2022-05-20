@@ -8,11 +8,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'situation-list/topic/:topicRepositoryId/:topicActorId/:topicActorRecordId',
+    path: 'situation-list/topic/:topicId',
     loadChildren: () => import('./pages/situation-list/situation-list.module').then(m => m.SituationListPageModule)
   },
   {
-    path: 'situation/:situationThreadRepositoryId/:situationThreadActorId/:situationThreadActorRecordId',
+    path: 'situation/:situationThreadId',
     loadChildren: () => import('./pages/situation/situation.module').then(m => m.SituationPageModule)
   },
   {
@@ -25,11 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
+    loadChildren: () => import('./pages/about/about.module').then(m => m.AboutPageModule)
   }
-
-
-
 ];
 
 @NgModule({

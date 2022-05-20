@@ -12,7 +12,7 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getRepliesForSituation: {
+                        getRepliesForSituationThread: {
                             isAsync: boolean;
                             parameters: any[];
                         };

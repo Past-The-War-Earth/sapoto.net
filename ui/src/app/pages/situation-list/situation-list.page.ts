@@ -8,6 +8,7 @@ import { SituationService } from 'src/app/services/situation.service';
 import { TopicSearchService } from 'src/app/services/topic-search.service';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 import { ISituationThread } from '@sapoto/main-client';
+import { encodeId } from '@airport/aviation-communication';
 
 @Component({
   selector: 'app-situation-list',
@@ -36,18 +37,10 @@ export class SituationListPage implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      const topic: ITopic = {
-        repository: {
-          id: parseInt(params['topicRepositoryId']),
-        },
-        actor: {
-          id: parseInt(params['topicActorId']),
-        },
-        actorRecordId: parseInt(params['topicActorRecordId']),
-      }
-      this.situationThreadService.getTopicSituationThreads(topic).then(
+      const topicId = params['topicId']
+      this.situationThreadService.getTopicSituationThreads(topicId).then(
         situationThreads => this.situationThreads = situationThreads)
-      this.topicSearchService.getById(topic).then(topic => {
+      this.topicSearchService.getById(topicId).then(topic => {
         this.topic = topic
       })
     });
@@ -62,9 +55,7 @@ export class SituationListPage implements OnInit {
     index,
     situationThread: ISituationThread
   ) {
-    return situationThread.repository.id + '|'
-    + situationThread.actor.id + '|'
-    + situationThread.actorRecordId
+    return encodeId(situationThread)
   }
 
   onActionsClose() {

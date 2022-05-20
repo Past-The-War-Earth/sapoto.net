@@ -19,7 +19,7 @@ export interface ISituationThreadDao
     ): Promise<void>
 
     findWithListingDetailsForATopic(
-        topic: ITopic
+        topicId: string
     ): Promise<ISituationThread[]>
 
 }
@@ -36,7 +36,7 @@ export class SituationThreadDao
     }
 
     async findWithListingDetailsForATopic(
-        topic: ITopic
+        topicId: string
     ): Promise<ISituationThread[]> {
         let st: QSituationThread
         let s: QSituation
@@ -64,7 +64,7 @@ export class SituationThreadDao
                 u = a.user.leftJoin()
             ],
             where: and(
-                s.topic.equals(topic)
+                s.topic.equals(topicId)
             )
         })
     }

@@ -10,8 +10,8 @@ let ReplyApi = class ReplyApi {
     async addReply(reply) {
         await this.replyDao.save(reply);
     }
-    async getRepliesForSituation(situationId) {
-        return await this.replyDao.findForSituation(situationId);
+    async getRepliesForSituationThread(situationThreadId) {
+        return await this.replyDao.findForSituation(situationThreadId);
     }
     async addIdea(reply, ideaSituation) {
         await this.ideaSituationApi.add(ideaSituation);
@@ -47,7 +47,7 @@ __decorate([
 ], ReplyApi.prototype, "addReply", null);
 __decorate([
     Api()
-], ReplyApi.prototype, "getRepliesForSituation", null);
+], ReplyApi.prototype, "getRepliesForSituationThread", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "addIdea", null);

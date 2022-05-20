@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Inject, Injected } from "@airport/direction-indicator";
 import { REPLY_API } from "../common-tokens";
 let ReplyApi = class ReplyApi {
-    async getRepliesForSituation(situation) {
-        return await this.interAppApiClient.invokeApiMethod(REPLY_API, 'getRepliesForSituation', [situation]);
+    async getRepliesForSituation(situationId) {
+        return await this.interAppApiClient.invokeApiMethod(REPLY_API, 'getRepliesForSituation', [situationId]);
     }
     async addReply(reply) {
         return await this.interAppApiClient.invokeApiMethod(REPLY_API, 'addReply', [reply]);

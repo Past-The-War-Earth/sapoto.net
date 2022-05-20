@@ -10,4 +10,3 @@ REPLY_API.setClass(ReplyApi)
 SITUATION_THREAD_API.setDependencies({
     interAppApiClient: INTER_APP_API_CLIENT
 })
-

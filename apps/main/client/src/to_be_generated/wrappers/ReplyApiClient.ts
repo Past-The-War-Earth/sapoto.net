@@ -10,8 +10,8 @@ export interface IReplyApi {
         reply: IReply
     ): Promise<void>
 
-    getRepliesForSituation(
-        situation: ISituation
+    getRepliesForSituationThread(
+        situationThreadId: string
     ): Promise<IReply[]>
 
     addIdea(
@@ -40,11 +40,11 @@ export class ReplyApi
         await replyApi.addReply(reply)
     }
 
-    async getRepliesForSituation(
-        situation: ISituation
+    async getRepliesForSituationThread(
+        situationThreadId: string
     ): Promise<IReply[]> {
         const replyApi = await IOC.get(REPLY_API)
-        return await replyApi.getRepliesForSituation(situation)
+        return await replyApi.getRepliesForSituationThread(situationThreadId)
     }
 
     async addIdea(

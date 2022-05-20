@@ -2,7 +2,6 @@ import { IInterAppAPIClient } from "@airport/ground-control";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ISituationThread } from "../../generated/interfaces";
 import { SITUATION_THREAD_API } from "../common-tokens";
-import { ITopic } from "@sapoto/core";
 
 export interface ISituationThreadApi {
 
@@ -11,7 +10,7 @@ export interface ISituationThreadApi {
     ): Promise<void>
 
     findWithListingDetailsForATopic(
-        topic: ITopic
+        topicId: string
     ): Promise<ISituationThread[]>
 
 }
@@ -30,10 +29,10 @@ export class SituationThreadApi {
     }
 
     async findWithListingDetailsForATopic(
-        topic: ITopic
+        topicId: string
     ): Promise<ISituationThread[]> {
         return await this.interAppApiClient.invokeApiMethod(
-            SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topic])
+            SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topicId])
     }
 
 }

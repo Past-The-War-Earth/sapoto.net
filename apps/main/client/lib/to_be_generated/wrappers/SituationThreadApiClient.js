@@ -9,5 +9,9 @@ export class SituationThreadApiClient {
         const situationThreadApi = await IOC.get(SITUATION_THREAD_API);
         return await situationThreadApi.findWithListingDetailsForATopic(topic);
     }
+    async findById(situationThreadId) {
+        const situationThreadApi = await IOC.get(SITUATION_THREAD_API);
+        return await situationThreadApi.findById(situationThreadId);
+    }
 }
 //# sourceMappingURL=SituationThreadApiClient.js.map

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { ITheme } from '@sapoto/core-client';
+import { Router } from '@angular/router';
+import { ITheme, ITopic } from '@sapoto/core-client';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
+import { encodeId } from '@airport/aviation-communication'
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ export class AppComponent {
   addTopic = false
 
   constructor(
+    private router: Router,
     private themeService: ThemeService
   ) {
     this.load().then()
@@ -23,6 +26,12 @@ export class AppComponent {
 
   async load() {
     this.themes = await this.themeService.getThemes()
+  }
+
+  goToTopicListing(
+    topic: ITopic
+  ) {
+    this.router.navigate(['situation-list/topic', encodeId(topic)])
   }
 
   addATopic() {

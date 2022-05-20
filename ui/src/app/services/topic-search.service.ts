@@ -22,7 +22,7 @@ export class TopicSearchService implements AutoCompleteService {
   constructor() { }
 
   async getById(
-    topicId: ITopic
+    topicId: string
   ): Promise<ITopic> {
     return await this.topicApiClient.getById(topicId);
   }

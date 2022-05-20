@@ -3,9 +3,8 @@ import { Inject, Injected } from "@airport/direction-indicator";
 import {
     ISituationThread
 } from "../generated/generated";
-import { ISituation, ITopic, SituationApi } from "@sapoto/core";
+import { ISituation, SituationApi } from "@sapoto/core";
 import { ISituationThreadDao } from "../dao/SituationThreadDao";
-import { RepositoryEntityId } from "@airport/air-traffic-control";
 
 export interface ISituationThreadApi {
 
@@ -14,7 +13,7 @@ export interface ISituationThreadApi {
     ): Promise<void>
 
     findWithListingDetailsForATopic(
-        topicId: RepositoryEntityId
+        topicId: string
     ): Promise<ISituation[]>
 
 }
@@ -62,7 +61,7 @@ export class SituationThreadApi implements ISituationThreadApi {
 
     @Api()
     async findWithListingDetailsForATopic(
-        topicId: RepositoryEntityId
+        topicId: string
     ): Promise<ISituation[]> {
         return await this.situationThreadDao.findWithListingDetailsForATopic(topicId)
     }

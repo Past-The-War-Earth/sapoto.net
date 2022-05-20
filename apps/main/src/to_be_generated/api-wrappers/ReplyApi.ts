@@ -8,7 +8,7 @@ import { ISituation } from "@sapoto/core";
 export interface IReplyApi {
 
     getRepliesForSituation(
-        situation: ISituation
+        situationId: string
     ): Promise<IReply[]>
 
     addReply(
@@ -39,10 +39,10 @@ export class ReplyApi
     interAppApiClient: IInterAppAPIClient
 
     async getRepliesForSituation(
-        situation: ISituation
+        situationId: string
     ): Promise<IReply[]> {
         return await this.interAppApiClient.invokeApiMethod(
-            REPLY_API, 'getRepliesForSituation', [situation])
+            REPLY_API, 'getRepliesForSituation', [situationId])
     }
 
     async addReply(

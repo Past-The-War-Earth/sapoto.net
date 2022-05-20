@@ -1,4 +1,3 @@
-import { RepositoryEntityId } from "@airport/air-traffic-control";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITopicDao } from "../dao/TopicDao";
@@ -9,7 +8,7 @@ export interface ITopicApi {
     findAll(): Promise<ITopic[]>
 
     getById(
-        topicId: ITopic
+        topicId: string
     ): Promise<ITopic>
 
 }
@@ -28,8 +27,9 @@ export class TopicApi
 
     @Api()
     async getById(
-        topicId: RepositoryEntityId
+        topicId: string
     ): Promise<ITopic> {
         return await this.topicDao.findById(topicId)
     }
+
 }

@@ -7,8 +7,6 @@ import { IUser } from "@airport/travel-document-checkpoint";
 import {
     ISituation,
     ISituationRating,
-    ITopic,
-    ITheme
 } from "../generated/generated";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";

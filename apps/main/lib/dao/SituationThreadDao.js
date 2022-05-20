@@ -11,7 +11,7 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
     async add(situationThread) {
         await this.save(situationThread);
     }
-    async findWithListingDetailsForATopic(topic) {
+    async findWithListingDetailsForATopic(topicId) {
         let st;
         let s;
         let sR;
@@ -30,7 +30,7 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
                 a = s.actor.leftJoin(),
                 u = a.user.leftJoin()
             ],
-            where: and(s.topic.equals(topic))
+            where: and(s.topic.equals(topicId))
         });
     }
 };

@@ -1,4 +1,4 @@
-import { ALL_FIELDS, RepositoryEntityId, Y } from "@airport/air-traffic-control";
+import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
 import { QUser } from "@airport/travel-document-checkpoint";
@@ -13,7 +13,7 @@ export interface IReplyDao
     extends IBaseReplyDao {
 
         findForSituation(
-            situationId: RepositoryEntityId
+            situationId: string
         ): Promise<IReply[]>
 
 }
@@ -24,7 +24,7 @@ export class ReplyDao
     implements IReplyDao {
 
     async findForSituation(
-        situationId: RepositoryEntityId
+        situationId: string
     ): Promise<IReply[]> {
         let r: QReply
         let a: QActor

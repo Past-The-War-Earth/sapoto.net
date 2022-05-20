@@ -5,9 +5,9 @@ export class ReplyApi {
         const replyApi = await IOC.get(REPLY_API);
         await replyApi.addReply(reply);
     }
-    async getRepliesForSituation(situation) {
+    async getRepliesForSituationThread(situationThreadId) {
         const replyApi = await IOC.get(REPLY_API);
-        return await replyApi.getRepliesForSituation(situation);
+        return await replyApi.getRepliesForSituationThread(situationThreadId);
     }
     async addIdea(reply, ideaSituation) {
         const replyApi = await IOC.get(REPLY_API);
