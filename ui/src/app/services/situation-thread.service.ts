@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ITopic } from '@sapoto/core-client';
 import { ISituationThread, SituationThreadApiClient } from '@sapoto/main-client'
 
 @Injectable({
@@ -7,6 +8,8 @@ import { ISituationThread, SituationThreadApiClient } from '@sapoto/main-client'
 export class SituationThreadService {
 
   situationThreadApi = new SituationThreadApiClient()
+
+  activeSituationThread: ISituationThread
 
   constructor() { }
 
@@ -21,4 +24,15 @@ export class SituationThreadService {
       console.log('Situation Thread added.')
     }
   }
+
+  async getSituationThreadById(
+    situationThreadId: SituationThread
+  )
+
+  async getTopicSituationThreads(
+    topic: ITopic
+  ): Promise<ISituationThread[]> {
+    return await this.situationThreadApi.findWithListingDetailsForATopic(topic)
+  }
+
 }

@@ -46,14 +46,14 @@ export class SituationThreadDao
         return await this.db.find.graph({
             select: {
                 ...ALL_FIELDS,
+                actor: {
+                    user: {
+                        username: Y
+                    }
+                },
                 situation: {
                     ...ALL_FIELDS,
-                    ratings: {},
-                    actor: {
-                        user: {
-                            username: Y
-                        }
-                    }
+                    ratings: {}
                 }
             },
             from: [

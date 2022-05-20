@@ -7,14 +7,6 @@
 		{
 			"api": {
 				"apiObjectMap": {
-					"ISituationThreadApi": {
-						"operationMap": {
-							"addSituationThread": {
-								"isAsync": true,
-								"parameters": []
-							}
-						}
-					},
 					"IReplyApi": {
 						"operationMap": {
 							"addReply": {
@@ -34,6 +26,18 @@
 								"parameters": []
 							},
 							"addReplyType": {
+								"isAsync": true,
+								"parameters": []
+							}
+						}
+					},
+					"ISituationThreadApi": {
+						"operationMap": {
+							"addSituationThread": {
+								"isAsync": true,
+								"parameters": []
+							},
+							"findWithListingDetailsForATopic": {
 								"isAsync": true,
 								"parameters": []
 							}
@@ -1014,6 +1018,20 @@
 						{
 							"index": 8,
 							"isGenerated": false,
+							"manyRelationColumnRefs": [],
+							"name": "COUNTS",
+							"notNull": false,
+							"propertyRefs": [
+								{
+									"index": 10
+								}
+							],
+							"sinceVersion": 1,
+							"type": "JSON"
+						},
+						{
+							"index": 9,
+							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
 									"manyRelationIndex": 4,
@@ -1034,7 +1052,7 @@
 							"type": "NUMBER"
 						},
 						{
-							"index": 9,
+							"index": 10,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -1056,7 +1074,7 @@
 							"type": "NUMBER"
 						},
 						{
-							"index": 10,
+							"index": 11,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [
 								{
@@ -1182,6 +1200,15 @@
 							"relationRef": {
 								"index": 5
 							},
+							"sinceVersion": 1
+						},
+						{
+							"columnRef": {
+								"index": 8
+							},
+							"index": 10,
+							"isId": false,
+							"name": "counts",
 							"sinceVersion": 1
 						}
 					],

@@ -1,9 +1,9 @@
-import { ISituation } from "@sapoto/core";
+import { RepositoryEntityId } from "@airport/air-traffic-control";
 import { BaseReplyDao, IBaseReplyDao, IReply } from "../generated/generated";
 export interface IReplyDao extends IBaseReplyDao {
-    findForSituation(situation: ISituation): Promise<IReply[]>;
+    findForSituation(situationId: RepositoryEntityId): Promise<IReply[]>;
 }
 export declare class ReplyDao extends BaseReplyDao implements IReplyDao {
-    findForSituation(situation: ISituation): Promise<IReply[]>;
+    findForSituation(situationId: RepositoryEntityId): Promise<IReply[]>;
 }
 //# sourceMappingURL=ReplyDao.d.ts.map

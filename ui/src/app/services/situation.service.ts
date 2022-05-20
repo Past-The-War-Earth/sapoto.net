@@ -14,10 +14,4 @@ export class SituationService {
     return await this.situationApiClient.getNewSituation()
   }
 
-  async getTopicSituations(
-    topic: ITopic
-  ): Promise<ISituation[]> {
-    return await this.situationApiClient.findWithListingDetailsForATopic(topic)
-  }
-
 }

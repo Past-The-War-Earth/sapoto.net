@@ -1,3 +1,4 @@
+import { RepositoryEntityId } from "@airport/air-traffic-control"
 import { IOC } from "@airport/direction-indicator"
 import { ITopic } from "@sapoto/core"
 import {
@@ -12,8 +13,12 @@ export interface ISituationThreadApi {
     ): Promise<void>
 
     findWithListingDetailsForATopic(
-        topic: ITopic
+        topicId: RepositoryEntityId
     ): Promise<ISituationThread[]>
+
+    findById(
+        situationThreadId: ISituationThread
+    ): Promise<ISituationThread>
 
 }
 
@@ -34,6 +39,14 @@ export class SituationThreadApiClient
 
         return await situationThreadApi.findWithListingDetailsForATopic(
             topic)
+    }
+
+    async findById(
+        situationThreadId: ISituationThread
+    ): Promise<ISituationThread> {
+        const situationThreadApi = await IOC.get(SITUATION_THREAD_API)
+
+        return await situationThreadApi.findById(situationThreadId)
     }
 
 }

@@ -10,8 +10,8 @@ let ReplyApi = class ReplyApi {
     async addReply(reply) {
         await this.replyDao.save(reply);
     }
-    async getRepliesForSituation(situation) {
-        return await this.replyDao.findForSituation(situation);
+    async getRepliesForSituation(situationId) {
+        return await this.replyDao.findForSituation(situationId);
     }
     async addIdea(reply, ideaSituation) {
         await this.ideaSituationApi.add(ideaSituation);

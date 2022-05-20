@@ -8,7 +8,7 @@ import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { BaseReplyDao, Q } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
-    async findForSituation(situation) {
+    async findForSituation(situationId) {
         let r;
         let a;
         let u;
@@ -32,7 +32,7 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 st = r.situationThread.innerJoin(),
                 ur = r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situation)
+            where: st.situation.equals(situationId)
         });
     }
 };

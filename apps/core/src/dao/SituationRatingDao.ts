@@ -6,19 +6,18 @@ import {
 import {
     BaseSituationRatingDao,
     IBaseSituationRatingDao,
-    ISituation,
     ISituationRating,
     QSituationRating,
     Q
 } from "../generated/generated";
-import { and } from "@airport/air-traffic-control";
+import { and, RepositoryEntityId } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
 
 export interface ISituationRatingDao
     extends IBaseSituationRatingDao {
 
     findForSituationAndUser(
-        situation: ISituation,
+        situationId: RepositoryEntityId,
         user: IUser
     ): Promise<ISituationRating>
 
@@ -30,7 +29,7 @@ export class SituationRatingDao
     implements ISituationRatingDao {
 
     async findForSituationAndUser(
-        situation: ISituation,
+        situationId: RepositoryEntityId,
         user: IUser
     ): Promise<ISituationRating> {
         let sir: QSituationRating
@@ -44,7 +43,7 @@ export class SituationRatingDao
                 qUser = actor.user.innerJoin()
             ],
             where: and(
-                sir.situation.equals(situation),
+                sir.situation.equals(situationId),
                 qUser.uuId.equals(user.uuId)
             )
         })

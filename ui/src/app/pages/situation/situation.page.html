@@ -2,7 +2,7 @@
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions || showReplyActions"
   triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onReply)="onReply($event)"
-    (onSelection)="onSituationAction($event)" [situation]="situation">
+    (onSelection)="onSituationAction($event)" [situation]="situationThread.situation">
   </app-situation-actions>
   <app-reply-actions *ngIf="showReplyActions" (onReply)="onReply($event)" (onSelection)="onReplyAction($event)"
     [reply]="activeReply">
@@ -10,7 +10,7 @@
 </app-popover>
 <ion-content id="situation-content">
   <app-situation-block (onActionsClick)="onShowSituationActions()" [action]="getSituationAction()"
-    [situation]="situation" actionsTriggerElementId="reply-actions-button">
+    [situationThread]="situationThread" actionsTriggerElementId="reply-actions-button">
   </app-situation-block>
   <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [action]="replyAction"
     actionsTriggerElementId="reply-actions-button" [replies]="replies">

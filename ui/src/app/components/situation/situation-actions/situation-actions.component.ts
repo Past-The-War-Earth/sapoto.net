@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ISituation } from '@sapoto/core-client';
 import { Clicker } from '../../../utils/Clicker';
 
 @Component({
@@ -8,7 +9,7 @@ import { Clicker } from '../../../utils/Clicker';
 })
 export class SituationActionsComponent implements OnInit {
 
-  @Input() situation
+  @Input() situation: ISituation
 
   @Output() onReply = new EventEmitter()
 

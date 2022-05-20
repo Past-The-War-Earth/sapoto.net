@@ -1,7 +1,6 @@
-import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
+import { ALL_FIELDS, RepositoryEntityId, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { ISituation } from "@sapoto/core";
 import { QUser } from "@airport/travel-document-checkpoint";
 import {
     BaseReplyDao, IBaseReplyDao, IReply,
@@ -14,7 +13,7 @@ export interface IReplyDao
     extends IBaseReplyDao {
 
         findForSituation(
-            situation: ISituation
+            situationId: RepositoryEntityId
         ): Promise<IReply[]>
 
 }
@@ -25,7 +24,7 @@ export class ReplyDao
     implements IReplyDao {
 
     async findForSituation(
-        situation: ISituation
+        situationId: RepositoryEntityId
     ): Promise<IReply[]> {
         let r: QReply
         let a: QActor
@@ -59,7 +58,7 @@ export class ReplyDao
                 st = r.situationThread.innerJoin(),
                 ur = r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situation)
+            where: st.situation.equals(situationId)
         })
     }
 }

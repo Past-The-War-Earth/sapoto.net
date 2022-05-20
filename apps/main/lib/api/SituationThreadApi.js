@@ -29,6 +29,9 @@ let SituationThreadApi = class SituationThreadApi {
         situationThread.replies = [];
         await this.situationThreadDao.add(situationThread);
     }
+    async findWithListingDetailsForATopic(topicId) {
+        return await this.situationThreadDao.findWithListingDetailsForATopic(topicId);
+    }
 };
 __decorate([
     Inject()
@@ -39,6 +42,9 @@ __decorate([
 __decorate([
     Api()
 ], SituationThreadApi.prototype, "addSituationThread", null);
+__decorate([
+    Api()
+], SituationThreadApi.prototype, "findWithListingDetailsForATopic", null);
 SituationThreadApi = __decorate([
     Injected()
 ], SituationThreadApi);

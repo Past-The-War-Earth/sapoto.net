@@ -1,3 +1,4 @@
+import { RepositoryEntityId } from "@airport/air-traffic-control"
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
 import { ISituation } from "@sapoto/core"
@@ -16,7 +17,7 @@ export interface IReplyApi {
     ): Promise<void>
 
     getRepliesForSituation(
-        situation: ISituation
+        situationId: RepositoryEntityId
     ): Promise<IReply[]>
 
     addIdea(
@@ -61,9 +62,9 @@ export class ReplyApi
 
     @Api()
     async getRepliesForSituation(
-        situation: ISituation
+        situationId: RepositoryEntityId
     ): Promise<IReply[]> {
-        return await this.replyDao.findForSituation(situation)
+        return await this.replyDao.findForSituation(situationId)
     }
 
     @Api()

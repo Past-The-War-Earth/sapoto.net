@@ -3,6 +3,10 @@ import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 import { CountsService } from 'src/app/services/counts.service';
+import { Router } from '@angular/router';
+import { ISituationThread } from '@sapoto/main-client';
+import { SituationService } from 'src/app/services/situation.service';
+import { SituationThreadService } from 'src/app/services/situation-thread.service';
 
 @Component({
   selector: 'app-situation-block',
@@ -13,7 +17,7 @@ export class SituationBlockComponent implements OnInit {
 
   @Input() action
   @Input() actionsTriggerElementId
-  @Input() situation
+  @Input() situationThread: ISituationThread
   @Input() type
 
   @Output() onActionsClick = new EventEmitter()
@@ -24,21 +28,23 @@ export class SituationBlockComponent implements OnInit {
   constructor(
     private countsService: CountsService,
     private dateUtilsService: DateUtilsService,
-    private numberUtilsService: NumberUtilsService
+    private numberUtilsService: NumberUtilsService,
+    private router: Router,
+    private situationThreadService: SituationThreadService
   ) { }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     // const situation = changes.situation.currentValue
-    if(this.situation) {
+    if (this.situationThread) {
       this.setSituationTransientState()
     }
   }
 
   private setSituationTransientState() {
     this.countsService.ensureSituationCounts(
-      this.situation
+      this.situationThread
     )
   }
 
@@ -69,6 +75,12 @@ export class SituationBlockComponent implements OnInit {
     this.sharedClicker.click(() => {
       this.onActionsClick.emit(situation)
     })
+  }
+
+  goToSituation() {
+    this.situationThreadService.activeSituationThread = this.situationThread
+    this.router.navigate(['/situation', this.situationThread.repository.id,
+      this.situationThread.actor.id, this.situationThread.actorRecordId]);
   }
 
   showMainAction() {

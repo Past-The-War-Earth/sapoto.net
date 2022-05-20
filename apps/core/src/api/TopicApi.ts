@@ -1,3 +1,4 @@
+import { RepositoryEntityId } from "@airport/air-traffic-control";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITopicDao } from "../dao/TopicDao";
@@ -27,7 +28,7 @@ export class TopicApi
 
     @Api()
     async getById(
-        topicId: ITopic
+        topicId: RepositoryEntityId
     ): Promise<ITopic> {
         return await this.topicDao.findById(topicId)
     }

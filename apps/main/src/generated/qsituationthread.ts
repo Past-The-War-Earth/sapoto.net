@@ -34,6 +34,9 @@ import {
 	QRepositoryEntity,
 } from '@airport/holding-pattern';
 import {
+	ICounts,
+} from '../ddl/icounts';
+import {
 	SituationGraph,
 	SituationEId,
 	SituationEOptionalId,
@@ -75,6 +78,7 @@ declare function require(moduleName: string): any;
 export interface SituationThreadESelect
     extends RepositoryEntityESelect, SituationThreadEOptionalId {
 	// Non-Id Properties
+	counts?: ICounts | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -111,6 +115,7 @@ export interface SituationThreadEOptionalId {
 export interface SituationThreadEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
+	counts?: ICounts | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situation?: SituationEOptionalId;
@@ -125,6 +130,7 @@ export interface SituationThreadGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
+	counts?: ICounts | IQStringField;
 
 	// Relations
 	situation?: SituationGraph;
@@ -143,6 +149,7 @@ export interface SituationThreadEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	COUNTS?: string | IQStringField;
 	SITUATIONS_RID_1?: number | IQNumberField;
 	SITUATIONS_AID_1?: number | IQNumberField;
 	SITUATIONS_ARID_1?: number | IQNumberField;
@@ -180,6 +187,7 @@ export interface QSituationThread extends QRepositoryEntity
 	// Id Relations
 
 	// Non-Id Fields
+	counts: IQStringField;
 
 	// Non-Id Relations
 	situation: QSituationQRelation;

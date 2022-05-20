@@ -2,16 +2,16 @@
 </app-page-header>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions" triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)"
-    [situation]="activeSituation">
+    [situation]="activeSituationThread.situation">
   </app-situation-actions>
 </app-popover>
 <ion-content>
   <app-situation-auto-complete (onAdd)="postASituation()" type="labels-n-situations" placeholder="Find a Situation">
   </app-situation-auto-complete>
   <ion-list>
-    <ion-item class="situation" *ngFor="let situation of situations; trackBy: trackBySituations">
-      <app-situation-block (onActionsClick)="onShowSituationActions($event)" [action]="getSituationAction(situation)"
-        [situation]="situation" type="listing"></app-situation-block>
+    <ion-item class="situation" *ngFor="let situationThread of situationThreads; trackBy: trackBySituations">
+      <app-situation-block (onActionsClick)="onShowSituationActions($event)" [action]="getSituationAction(situationThread)"
+        [situationThread]="situationThread" type="listing"></app-situation-block>
     </ion-item>
   </ion-list>
 </ion-content>

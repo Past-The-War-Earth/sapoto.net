@@ -1,19 +1,13 @@
 import { IInterAppAPIClient } from "@airport/ground-control";
-import { IReply, IReplyRating, ISituationThread } from "../../generated/interfaces";
-import { IIdeaSituation } from "@votecube/votecube";
+import { ISituationThread } from "../../generated/interfaces";
+import { ITopic } from "@sapoto/core";
 export interface ISituationThreadApi {
     addSituationThread(situationThread: ISituationThread): Promise<void>;
-    addReply(reply: IReply): Promise<void>;
-    addIdea(reply: IReply, ideaSituation: IIdeaSituation): Promise<void>;
-    rateReply(replyRating: IReplyRating): Promise<void>;
-    addReplyType(reply: IReply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
+    findWithListingDetailsForATopic(topic: ITopic): Promise<ISituationThread[]>;
 }
 export declare class SituationThreadApi {
     interAppApiClient: IInterAppAPIClient;
     addSituationThread(situationThread: ISituationThread): Promise<void>;
-    addReply(reply: IReply): Promise<void>;
-    addIdea(reply: IReply, ideaSituation: IIdeaSituation): Promise<void>;
-    rateReply(replyRating: IReplyRating): Promise<void>;
-    addReplyType(reply: IReply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
+    findWithListingDetailsForATopic(topic: ITopic): Promise<ISituationThread[]>;
 }
 //# sourceMappingURL=SituationThreadApi.d.ts.map

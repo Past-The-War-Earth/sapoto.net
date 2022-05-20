@@ -3,9 +3,11 @@ import { NavController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { SituationSearchService } from '../../services/situation-search.service';
-import { ISituation, ITopic } from '@sapoto/core-client';
+import { ITopic } from '@sapoto/core-client';
 import { SituationService } from 'src/app/services/situation.service';
 import { TopicSearchService } from 'src/app/services/topic-search.service';
+import { SituationThreadService } from 'src/app/services/situation-thread.service';
+import { ISituationThread } from '@sapoto/main-client';
 
 @Component({
   selector: 'app-situation-list',
@@ -14,197 +16,21 @@ import { TopicSearchService } from 'src/app/services/topic-search.service';
 })
 export class SituationListPage implements OnInit {
 
-  activeSituation
+  activeSituationThread
   myForm: FormGroup
   postingASituation = false
   situationAction
   showSituationActions = false
   topic: ITopic
 
-  situations: ISituation[]
-
-  mockSituations = [{
-    counts: {
-      experiences: 7,
-      ideas: 3,
-      questions: 5,
-      replies: 22
-    },
-    createdAt: new Date().getTime() - 10000000000,
-    createdBy: {
-      username: 'Awesome Mom',
-      ranking: 5000
-    },
-    eisenhowerMatrix: {
-      importance: 95,
-      urgency: 90,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 1,
-    labels: [{
-      id: 1,
-      text: 'abc label'
-    }],
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-  }, {
-    counts: {
-      experiences: 5,
-      ideas: 2,
-      questions: 3,
-      replies: 32
-    },
-    createdAt: new Date().getTime() - 20000000000,
-    createdBy: {
-      username: 'Cool Dad',
-      ranking: 5000
-    },
-    eisenhowerMatrix: {
-      importance: 65,
-      urgency: 70,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 2,
-    labels: [{
-      id: 2,
-      text: 'bcd a very, very long label, indeed.'
-    }],
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`
-  }, {
-    counts: {
-      experiences: 3,
-      ideas: 1,
-      questions: 2,
-      replies: 12
-    },
-    createdAt: new Date().getTime() - 50000000000,
-    createdBy: {
-      username: 'Super Cool Sister',
-      ranking: 5000
-    },
-    eisenhowerMatrix: {
-      importance: 25,
-      urgency: 25,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 3,
-    labels: [{
-      id: 1,
-      text: 'abc label'
-    }, {
-      id: 3,
-      text: 'cde - THE COOLEST LABEL'
-    }],
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-  }, {
-    counts: {
-      experiences: 5,
-      ideas: 3,
-      questions: 4,
-      replies: 14
-    },
-    createdBy: {
-      username: 'Good Friend',
-      ranking: 5000
-    },
-    createdAt: new Date().getTime() - 100000000000,
-    eisenhowerMatrix: {
-      importance: 45,
-      urgency: 45,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 4,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-  }, {
-    counts: {
-      experiences: 12,
-      ideas: 5,
-      questions: 9,
-      replies: 42
-    },
-    createdAt: new Date().getTime() - 200000000000,
-    createdBy: {
-      username: 'Fuzzy Aunt',
-      ranking: 5000
-    },
-    eisenhowerMatrix: {
-      importance: 85,
-      urgency: 40,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 5,
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-  }, {
-    counts: {
-      experiences: 5,
-      ideas: 4,
-      questions: 3,
-      replies: 15
-    },
-    createdAt: new Date().getTime() - 300000000000,
-    createdBy: {
-      username: 'Fuzzy Uncle',
-      ranking: 5000
-    },
-    eisenhowerMatrix: {
-      importance: 35,
-      urgency: 60,
-      votes: 20,
-      user: {
-        importance: 0,
-        urgency: 0
-      }
-    },
-    id: 6,
-    labels: [{
-      id: 4,
-      text: 'def - An Interesting Label'
-    }],
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor finibus nulla, vitae imperdiet
-  enim volutpat vitae. Phasellus porttitor venenatis enim sit amet elementum. Vivamus ultricies dui nec nulla.`,
-  }]
+  situationThreads: ISituationThread[]
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public navCtrl: NavController,
     public situationSearchService: SituationSearchService,
     public situationService: SituationService,
+    public situationThreadService: SituationThreadService,
     public topicSearchService: TopicSearchService
   ) { }
 
@@ -219,8 +45,8 @@ export class SituationListPage implements OnInit {
         },
         actorRecordId: parseInt(params['topicActorRecordId']),
       }
-      this.situationService.getTopicSituations(topic).then(
-        situations => this.situations = situations)
+      this.situationThreadService.getTopicSituationThreads(topic).then(
+        situationThreads => this.situationThreads = situationThreads)
       this.topicSearchService.getById(topic).then(topic => {
         this.topic = topic
       })
@@ -232,8 +58,13 @@ export class SituationListPage implements OnInit {
     })
   }
 
-  trackBySituations(index, situation) {
-    return situation.id
+  trackBySituations(
+    index,
+    situationThread: ISituationThread
+  ) {
+    return situationThread.repository.id + '|'
+    + situationThread.actor.id + '|'
+    + situationThread.actorRecordId
   }
 
   onActionsClose() {
@@ -241,20 +72,22 @@ export class SituationListPage implements OnInit {
   }
 
   getSituationAction(
-    situation
+    situationThread: ISituationThread
   ) {
-    if (!this.situationAction || !this.activeSituation
-      || this.activeSituation.id !== situation.id) {
+    if (!this.situationAction || !this.activeSituationThread
+      || this.activeSituationThread.repository.id !== situationThread.repository.id
+      || this.activeSituationThread.actor.id !== situationThread.actor.id
+      || this.activeSituationThread.actorRecordId !== situationThread.actorRecordId) {
       return null
     }
     return this.situationAction
   }
 
   onShowSituationActions(
-    situation
+    situationThread: ISituationThread
   ) {
     this.situationAction = null
-    this.activeSituation = situation
+    this.activeSituationThread = situationThread
     this.showSituationActions = true
   }
 

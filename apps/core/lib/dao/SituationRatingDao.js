@@ -8,7 +8,7 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseSituationRatingDao, Q } from "../generated/generated";
 import { and } from "@airport/air-traffic-control";
 let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao {
-    async findForSituationAndUser(situation, user) {
+    async findForSituationAndUser(situationId, user) {
         let sir;
         let actor;
         let qUser;
@@ -19,7 +19,7 @@ let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao
                 actor = sir.actor.innerJoin(),
                 qUser = actor.user.innerJoin()
             ],
-            where: and(sir.situation.equals(situation), qUser.uuId.equals(user.uuId))
+            where: and(sir.situation.equals(situationId), qUser.uuId.equals(user.uuId))
         });
     }
 };

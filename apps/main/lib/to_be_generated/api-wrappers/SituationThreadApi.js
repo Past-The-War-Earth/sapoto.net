@@ -10,17 +10,8 @@ let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
         return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'addSituationThread', [situationThread]);
     }
-    async addReply(reply) {
-        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'addReply', [reply]);
-    }
-    async addIdea(reply, ideaSituation) {
-        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'addIdea', [reply, ideaSituation]);
-    }
-    async rateReply(replyRating) {
-        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'rateReply', [replyRating]);
-    }
-    async addReplyType(reply, type) {
-        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'addReplyType', [reply, type]);
+    async findWithListingDetailsForATopic(topic) {
+        return await this.interAppApiClient.invokeApiMethod(SITUATION_THREAD_API, 'findWithListingDetailsForATopic', [topic]);
     }
 };
 __decorate([
