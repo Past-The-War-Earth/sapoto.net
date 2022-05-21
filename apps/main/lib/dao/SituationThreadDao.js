@@ -27,7 +27,7 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
                 sR = s.ratings.leftJoin(),
-                a = s.actor.leftJoin(),
+                a = st.actor.leftJoin(),
                 u = a.user.leftJoin()
             ],
             where: and(s.topic.equals(topicId))
