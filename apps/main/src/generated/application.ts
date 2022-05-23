@@ -8,7 +8,7 @@ export const APPLICATION = {
 		{
 			"api": {
 				"apiObjectMap": {
-					"IReplyApi": {
+					"ReplyApi": {
 						"operationMap": {
 							"addReply": {
 								"isAsync": true,
@@ -32,7 +32,7 @@ export const APPLICATION = {
 							}
 						}
 					},
-					"ISituationThreadApi": {
+					"SituationThreadApi": {
 						"operationMap": {
 							"addSituationThread": {
 								"isAsync": true,
@@ -1585,7 +1585,7 @@ export const APPLICATION = {
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1607,7 +1607,7 @@ export const APPLICATION = {
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -1629,7 +1629,7 @@ export const APPLICATION = {
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -1888,7 +1888,7 @@ export const APPLICATION = {
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 5,
+							"relationTableIndex": 6,
 							"relationTableApplicationIndex": 1,
 							"sinceVersion": 1
 						},

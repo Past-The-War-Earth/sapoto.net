@@ -6,7 +6,7 @@ export const core = app('@sapoto/core')
 export const SITUATION_API = core.token<SituationApi>({
     class: null,
     interface: 'SituationApi',
-    token: 'ISituationApi'
+    token: 'SITUATION_API'
 })
 export const THEME_API = core.token<ThemeApi>({
     class: null,

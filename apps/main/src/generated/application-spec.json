@@ -7,7 +7,7 @@
 		{
 			"api": {
 				"apiObjectMap": {
-					"IReplyApi": {
+					"ReplyApi": {
 						"operationMap": {
 							"addReply": {
 								"isAsync": true,
@@ -31,7 +31,7 @@
 							}
 						}
 					},
-					"ISituationThreadApi": {
+					"SituationThreadApi": {
 						"operationMap": {
 							"addSituationThread": {
 								"isAsync": true,
@@ -1584,7 +1584,7 @@
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 0,
 									"sinceVersion": 1
 								}
@@ -1606,7 +1606,7 @@
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 1,
 									"sinceVersion": 1
 								}
@@ -1628,7 +1628,7 @@
 								{
 									"manyRelationIndex": 7,
 									"oneApplicationIndex": 1,
-									"oneTableIndex": 5,
+									"oneTableIndex": 6,
 									"oneColumnIndex": 2,
 									"sinceVersion": 1
 								}
@@ -1887,7 +1887,7 @@
 							"propertyRef": {
 								"index": 11
 							},
-							"relationTableIndex": 5,
+							"relationTableIndex": 6,
 							"relationTableApplicationIndex": 1,
 							"sinceVersion": 1
 						},

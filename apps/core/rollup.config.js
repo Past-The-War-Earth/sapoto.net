@@ -6,12 +6,12 @@ import { terser } from 'rollup-plugin-terser';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-    input: 'src/runtime.ts',
+    input: 'lib/to_be_generated/runtime-index.js',
     output: {
         sourcemap: true,
         format: 'iife',
         name: 'app',
-        file: '../../../ui/src/AIRport/apps/@sapoto/core/bundle.js'
+        file: '../../ui/src/AIRport/apps/@sapoto/core/bundle.js'
     },
     plugins: [
         resolve({

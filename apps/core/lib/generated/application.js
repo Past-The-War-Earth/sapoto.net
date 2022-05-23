@@ -8,7 +8,7 @@ export const APPLICATION = {
         {
             "api": {
                 "apiObjectMap": {
-                    "ISituationApi": {
+                    "SituationApi": {
                         "operationMap": {
                             "save": {
                                 "isAsync": true,
@@ -24,7 +24,7 @@ export const APPLICATION = {
                             }
                         }
                     },
-                    "IThemeApi": {
+                    "ThemeApi": {
                         "operationMap": {
                             "getAllWithTopics": {
                                 "isAsync": true,
@@ -32,7 +32,7 @@ export const APPLICATION = {
                             }
                         }
                     },
-                    "ITopicApi": {
+                    "TopicApi": {
                         "operationMap": {
                             "findAll": {
                                 "isAsync": true,

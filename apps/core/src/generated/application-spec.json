@@ -7,7 +7,7 @@
 		{
 			"api": {
 				"apiObjectMap": {
-					"ISituationApi": {
+					"SituationApi": {
 						"operationMap": {
 							"save": {
 								"isAsync": true,
@@ -23,7 +23,7 @@
 							}
 						}
 					},
-					"IThemeApi": {
+					"ThemeApi": {
 						"operationMap": {
 							"getAllWithTopics": {
 								"isAsync": true,
@@ -31,7 +31,7 @@
 							}
 						}
 					},
-					"ITopicApi": {
+					"TopicApi": {
 						"operationMap": {
 							"findAll": {
 								"isAsync": true,

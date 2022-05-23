@@ -6,7 +6,7 @@ export declare const APPLICATION: {
     versions: {
         api: {
             apiObjectMap: {
-                ISituationApi: {
+                SituationApi: {
                     operationMap: {
                         save: {
                             isAsync: boolean;
@@ -22,7 +22,7 @@ export declare const APPLICATION: {
                         };
                     };
                 };
-                IThemeApi: {
+                ThemeApi: {
                     operationMap: {
                         getAllWithTopics: {
                             isAsync: boolean;
@@ -30,7 +30,7 @@ export declare const APPLICATION: {
                         };
                     };
                 };
-                ITopicApi: {
+                TopicApi: {
                     operationMap: {
                         findAll: {
                             isAsync: boolean;

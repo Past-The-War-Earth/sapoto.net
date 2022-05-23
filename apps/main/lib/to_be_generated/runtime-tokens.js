@@ -33,6 +33,7 @@ export const SITUATION_THREAD_DAO = main.token({
 });
 SITUATION_THREAD_API.setClass(SituationThreadApi);
 SITUATION_THREAD_API.setDependencies({
+    situationApi: SITUATION_API,
     situationThreadDao: SITUATION_THREAD_DAO
 });
 REPLY_API.setClass(ReplyApi);

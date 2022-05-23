@@ -1,5 +1,5 @@
 import { domain } from '@airport/direction-indicator';
-import { ReplyApi, SituationThreadApi } from '../api/api';
+import type { ReplyApi, SituationThreadApi } from '../generated/api/api';
 
 //export const main = app('main')
 export const main = domain('localhost:8080').app('@sapoto/main')

@@ -6,7 +6,7 @@ export declare const APPLICATION: {
     versions: {
         api: {
             apiObjectMap: {
-                IReplyApi: {
+                ReplyApi: {
                     operationMap: {
                         addReply: {
                             isAsync: boolean;
@@ -30,7 +30,7 @@ export declare const APPLICATION: {
                         };
                     };
                 };
-                ISituationThreadApi: {
+                SituationThreadApi: {
                     operationMap: {
                         addSituationThread: {
                             isAsync: boolean;
