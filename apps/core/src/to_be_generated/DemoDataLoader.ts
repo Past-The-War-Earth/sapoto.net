@@ -1,6 +1,6 @@
 import { Inject, Injected } from "@airport/direction-indicator";
 import { ITheme } from "../generated/generated";
-import { IThemeDao } from "./runtime-index";
+import { ThemeDao } from "./runtime-index";
 
 export interface IDemoDataLoader {
 
@@ -13,7 +13,7 @@ export class DemoDataLoader
     implements IDemoDataLoader {
 
     @Inject()
-    themeDao: IThemeDao
+    themeDao: ThemeDao
 
     async loadDemoData(): Promise<void> {
 

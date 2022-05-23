@@ -1,59 +1,32 @@
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
-import { IIdeaSituation, IIdeaSituationApi } from "@votecube/votecube"
-import { IReplyDao } from "../dao/ReplyDao"
-import { IReplyRatingDao } from "../dao/ReplyRatingDao"
-import { IReplyTypeDao } from "../dao/ReplyTypeDao"
-import { IReply } from "../generated/reply"
-import { IReplyRating } from "../generated/replyrating"
-import { IReplyType } from "../generated/replytype"
-
-export interface IReplyApi {
-
-    addReply(
-        reply: IReply
-    ): Promise<void>
-
-    getRepliesForSituationThread(
-        situationThreadId: string
-    ): Promise<IReply[]>
-
-    addIdea(
-        reply: IReply,
-        ideaSituation: IIdeaSituation
-    ): Promise<void>
-
-    rateReply(
-        replyRating: IReplyRating
-    ): Promise<void>
-
-    addReplyType(
-        reply: IReply,
-        type: 'comment' | 'experience' | 'idea' | 'question'
-    ): Promise<void>
-
-}
+import { IIdeaSituation, IdeaSituationApi } from "@votecube/votecube"
+import { ReplyDao } from "../dao/ReplyDao"
+import { ReplyRatingDao } from "../dao/ReplyRatingDao"
+import { ReplyTypeDao } from "../dao/ReplyTypeDao"
+import { Reply } from "../ddl/Reply"
+import { ReplyRating } from "../ddl/ReplyRating"
+import { ReplyType } from "../ddl/ReplyType"
 
 @Injected()
-export class ReplyApi
-    implements IReplyApi {
+export class ReplyApi {
 
     @Inject()
-    ideaSituationApi: IIdeaSituationApi
+    ideaSituationApi: IdeaSituationApi
 
     @Inject()
-    replyDao: IReplyDao
+    replyDao: ReplyDao
 
     @Inject()
-    replyRatingDao: IReplyRatingDao
+    replyRatingDao: ReplyRatingDao
 
     @Inject()
-    replyTypeDao: IReplyTypeDao
+    replyTypeDao: ReplyTypeDao
 
 
     @Api()
     async addReply(
-        reply: IReply
+        reply: Reply
     ): Promise<void> {
         await this.replyDao.save(reply)
     }
@@ -61,13 +34,13 @@ export class ReplyApi
     @Api()
     async getRepliesForSituationThread(
         situationThreadId: string
-    ): Promise<IReply[]> {
+    ): Promise<Reply[]> {
         return await this.replyDao.findForSituation(situationThreadId)
     }
 
     @Api()
     async addIdea(
-        reply: IReply,
+        reply: Reply,
         ideaSituation: IIdeaSituation
     ): Promise<void> {
         await this.ideaSituationApi.add(ideaSituation)
@@ -76,17 +49,17 @@ export class ReplyApi
 
     @Api()
     async rateReply(
-        replyRating: IReplyRating
+        replyRating: ReplyRating
     ): Promise<void> {
         this.replyRatingDao.save(replyRating)
     }
 
     @Api()
     async addReplyType(
-        reply: IReply,
+        reply: Reply,
         type: 'comment' | 'experience' | 'idea' | 'question'
     ): Promise<void> {
-        const replyType: IReplyType = {
+        const replyType: ReplyType = {
             reply,
             repository: reply.repository,
             type

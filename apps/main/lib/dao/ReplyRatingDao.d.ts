@@ -1,6 +1,4 @@
-import { BaseReplyRatingDao, IBaseReplyRatingDao } from "../generated/baseDaos";
-export interface IReplyRatingDao extends IBaseReplyRatingDao {
-}
-export declare class ReplyRatingDao extends BaseReplyRatingDao implements IReplyRatingDao {
+import { BaseReplyRatingDao } from "../generated/baseDaos";
+export declare class ReplyRatingDao extends BaseReplyRatingDao {
 }
 //# sourceMappingURL=ReplyRatingDao.d.ts.map

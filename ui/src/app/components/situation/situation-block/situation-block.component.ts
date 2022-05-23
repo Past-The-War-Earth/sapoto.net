@@ -4,8 +4,7 @@ import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 import { CountsService } from 'src/app/services/counts.service';
 import { Router } from '@angular/router';
-import { ISituationThread } from '@sapoto/main-client';
-import { SituationService } from 'src/app/services/situation.service';
+import { SituationThread } from '@sapoto/main';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 import { encodeId } from '@airport/aviation-communication'
 @Component({
@@ -17,7 +16,7 @@ export class SituationBlockComponent implements OnInit {
 
   @Input() action
   @Input() actionsTriggerElementId
-  @Input() situationThread: ISituationThread
+  @Input() situationThread: SituationThread
   @Input() type
 
   @Output() onActionsClick = new EventEmitter()
@@ -43,7 +42,7 @@ export class SituationBlockComponent implements OnInit {
   }
 
   private setSituationTransientState() {
-    this.countsService.ensureSituationCounts(
+    this.countsService.ensureSituationThreadCounts(
       this.situationThread
     )
   }

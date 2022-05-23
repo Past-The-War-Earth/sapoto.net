@@ -1,14 +1,8 @@
 import { Injected } from "@airport/direction-indicator";
-import { IBaseSituationDao, BaseSituationDao } from "../generated/baseDaos";
-
-export interface ISituationDao
-    extends IBaseSituationDao {
-
-}
+import { BaseSituationDao } from "../generated/baseDaos";
 
 @Injected()
 export class SituationDao
-    extends BaseSituationDao
-    implements ISituationDao {
+    extends BaseSituationDao {
 
 }

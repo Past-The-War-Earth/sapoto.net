@@ -40,6 +40,10 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
+                        findById: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
                     };
                 };
             };

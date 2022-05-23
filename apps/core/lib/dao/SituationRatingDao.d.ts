@@ -1,10 +1,8 @@
-import { IUser } from "@airport/travel-document-checkpoint";
-import { BaseSituationRatingDao, IBaseSituationRatingDao, ISituationRating } from "../generated/generated";
+import { User } from "@airport/travel-document-checkpoint";
+import { BaseSituationRatingDao } from "../generated/generated";
+import { SituationRating } from "../ddl/SituationRating";
 import { RepositoryEntityId } from "@airport/aviation-communication";
-export interface ISituationRatingDao extends IBaseSituationRatingDao {
-    findForSituationAndUser(situationId: string | RepositoryEntityId, user: IUser): Promise<ISituationRating>;
-}
-export declare class SituationRatingDao extends BaseSituationRatingDao implements ISituationRatingDao {
-    findForSituationAndUser(situationId: string | RepositoryEntityId, user: IUser): Promise<ISituationRating>;
+export declare class SituationRatingDao extends BaseSituationRatingDao {
+    findForSituationAndUser(situationId: string | RepositoryEntityId, user: User): Promise<SituationRating>;
 }
 //# sourceMappingURL=SituationRatingDao.d.ts.map

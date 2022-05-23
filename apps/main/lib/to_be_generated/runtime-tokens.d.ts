@@ -1,9 +1,9 @@
-import { IReplyDao } from '../dao/ReplyDao';
-import { IReplyRatingDao } from '../dao/ReplyRatingDao';
-import { ISituationThreadDao } from '../dao/SituationThreadDao';
-import { IReplyTypeDao } from '../dao/ReplyTypeDao';
-export declare const REPLY_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<IReplyDao>;
-export declare const REPLY_RATING_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<IReplyRatingDao>;
-export declare const REPLY_TYPE_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<IReplyTypeDao>;
-export declare const SITUATION_THREAD_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<ISituationThreadDao>;
+import { ReplyDao } from '../dao/ReplyDao';
+import { ReplyRatingDao } from '../dao/ReplyRatingDao';
+import { SituationThreadDao } from '../dao/SituationThreadDao';
+import { ReplyTypeDao } from '../dao/ReplyTypeDao';
+export declare const REPLY_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<ReplyDao>;
+export declare const REPLY_RATING_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<ReplyRatingDao>;
+export declare const REPLY_TYPE_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<ReplyTypeDao>;
+export declare const SITUATION_THREAD_DAO: import("@airport/direction-indicator").IDependencyInjectionToken<SituationThreadDao>;
 //# sourceMappingURL=runtime-tokens.d.ts.map

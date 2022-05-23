@@ -3,8 +3,9 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
-import { ISituation } from '@sapoto/core-client';
+import { Situation } from '@sapoto/core';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
+import { NEW_RECORD_FIELDS } from '../../../../../../apps/core/node_modules/@airport/air-traffic-control/lib';
 
 @Component({
   selector: 'app-post-situation',
@@ -17,7 +18,7 @@ export class PostSituationComponent implements OnInit {
 
   quillModules
   sharedClicker = new Clicker()
-  situation: ISituation
+  situation: Situation
   visible = true
 
   constructor(
@@ -43,9 +44,10 @@ export class PostSituationComponent implements OnInit {
 
   async createSituation(): Promise<void> {
     await this.situationThreadService.addSituationThread({
-      actor: null,
-      actorRecordId: null,
+      ...NEW_RECORD_FIELDS,
       ageSuitability: 0,
+      counts: null,
+      replies: [],
       repository: null,
       situation: this.situation
     })

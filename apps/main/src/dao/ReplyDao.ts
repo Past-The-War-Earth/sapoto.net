@@ -1,38 +1,19 @@
 import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
-import { QActor } from "@airport/holding-pattern";
-import { QUser } from "@airport/travel-document-checkpoint";
+import { Reply } from "../ddl/Reply";
 import {
-    BaseReplyDao, IBaseReplyDao, IReply,
-    Q, QIdeaUrgencyRating, QReply,
-    QReplyRating, QReplyType,
-    QSituationThread
+    BaseReplyDao,
+    Q
 } from "../generated/generated";
-
-export interface IReplyDao
-    extends IBaseReplyDao {
-
-        findForSituation(
-            situationId: string
-        ): Promise<IReply[]>
-
-}
 
 @Injected()
 export class ReplyDao
-    extends BaseReplyDao
-    implements IReplyDao {
+    extends BaseReplyDao {
 
     async findForSituation(
         situationId: string
-    ): Promise<IReply[]> {
-        let r: QReply
-        let a: QActor
-        let u: QUser
-        let rr: QReplyRating
-        let rt: QReplyType
-        let st: QSituationThread
-        let ur: QIdeaUrgencyRating
+    ): Promise<Reply[]> {
+        let alias = {} as any
         return await this.db.find.graph({
             select: {
                 ...ALL_FIELDS,
@@ -50,15 +31,15 @@ export class ReplyDao
                 urgencyRatings: {}
             },
             from: [
-                r = Q.Reply,
-                a = r.actor.leftJoin(),
-                u = a.user.leftJoin(),
-                rr = r.replyRatings.leftJoin(),
-                rt = r.replyTypes.leftJoin(),
-                st = r.situationThread.innerJoin(),
-                ur = r.urgencyRatings.leftJoin()
+                alias.r = Q.Reply,
+                alias.a = alias.r.actor.leftJoin(),
+                alias.u = alias.a.user.leftJoin(),
+                alias.rr = alias.r.replyRatings.leftJoin(),
+                alias.rt = alias.r.replyTypes.leftJoin(),
+                alias.st = alias.r.situationThread.innerJoin(),
+                alias.ur = alias.r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situationId)
+            where: alias.st.situation.equals(situationId)
         })
     }
 }

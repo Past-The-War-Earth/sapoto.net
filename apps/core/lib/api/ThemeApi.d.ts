@@ -1,10 +1,7 @@
-import { ITheme } from "../generated/interfaces";
 import { ThemeDao } from "../dao/ThemeDao";
-export interface IThemeApi {
-    getAllWithTopics(): Promise<ITheme[]>;
-}
-export declare class ThemeApi implements IThemeApi {
+import { Theme } from "../ddl/Theme";
+export declare class ThemeApi {
     themeDao: ThemeDao;
-    getAllWithTopics(): Promise<ITheme[]>;
+    getAllWithTopics(): Promise<Theme[]>;
 }
 //# sourceMappingURL=ThemeApi.d.ts.map

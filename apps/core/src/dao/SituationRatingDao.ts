@@ -1,38 +1,26 @@
 import { Injected } from "@airport/direction-indicator";
 import {
-    IUser,
+    User,
     QUser
 } from "@airport/travel-document-checkpoint";
 import {
     BaseSituationRatingDao,
-    IBaseSituationRatingDao,
-    ISituationRating,
     QSituationRating,
     Q
 } from "../generated/generated";
 import { and } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
+import { SituationRating } from "../ddl/SituationRating";
 import { RepositoryEntityId } from "@airport/aviation-communication";
-
-export interface ISituationRatingDao
-    extends IBaseSituationRatingDao {
-
-    findForSituationAndUser(
-        situationId: string | RepositoryEntityId,
-        user: IUser
-    ): Promise<ISituationRating>
-
-}
 
 @Injected()
 export class SituationRatingDao
-    extends BaseSituationRatingDao
-    implements ISituationRatingDao {
+    extends BaseSituationRatingDao {
 
     async findForSituationAndUser(
         situationId: string | RepositoryEntityId,
-        user: IUser
-    ): Promise<ISituationRating> {
+        user: User
+    ): Promise<SituationRating> {
         let sir: QSituationRating
         let actor: QActor
         let qUser: QUser

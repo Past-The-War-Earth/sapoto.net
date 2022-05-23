@@ -1,35 +1,17 @@
+import { NEW_RECORD_FIELDS } from '@airport/air-traffic-control'
 import { Api } from "@airport/check-in";
 import {
     Inject,
     Injected
 } from "@airport/direction-indicator";
-import { IUser } from "@airport/travel-document-checkpoint";
-import {
-    ISituation,
-    ISituationRating,
-} from "../generated/generated";
+import { User } from "@airport/travel-document-checkpoint";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
-
-export interface ISituationApi {
-
-    save(
-        situation: ISituation
-    ): Promise<void>
-
-    rateSituation(
-        situation: ISituation,
-        importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5,
-        user: IUser
-    ): Promise<ISituationRating>
-
-    getNewSituation(): Promise<ISituation>
-
-}
+import { Situation } from "../ddl/Situation";
+import { SituationRating } from '../ddl/SituationRating';
 
 @Injected()
-export class SituationApi implements ISituationApi {
+export class SituationApi {
 
     @Inject()
     situationDao: SituationDao
@@ -39,25 +21,24 @@ export class SituationApi implements ISituationApi {
 
     @Api()
     async save(
-        situation: ISituation
+        situation: Situation
     ): Promise<void> {
         await this.situationDao.save(situation)
     }
 
     @Api()
     async rateSituation(
-        situation: ISituation,
+        situation: Situation,
         importanceRating: 1 | 2 | 3 | 4 | 5,
         urgencyRating: 1 | 2 | 3 | 4 | 5,
-        user: IUser
-    ): Promise<ISituationRating> {
+        user: User
+    ): Promise<SituationRating> {
         let situationRating = await this.situationRatingDao
             .findForSituationAndUser(situation, user)
 
         if (!situationRating) {
             situationRating = {
-                actorRecordId: null,
-                actor: null,
+                ...NEW_RECORD_FIELDS,
                 importanceRating,
                 repository: situation.repository,
                 situation,
@@ -75,10 +56,9 @@ export class SituationApi implements ISituationApi {
     }
 
     @Api()
-    async getNewSituation(): Promise<ISituation> {
+    async getNewSituation(): Promise<Situation> {
         return {
-            actor: null,
-            actorRecordId: null,
+            ...NEW_RECORD_FIELDS,
             ageSuitability: 0,
             repository: null,
             eisenhowerMatrix: {

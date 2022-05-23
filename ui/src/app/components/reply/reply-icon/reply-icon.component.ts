@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IReply } from '@sapoto/main-client';
+import { Reply } from '@sapoto/main';
 import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.service';
 import { ReplyService } from '../../../services/reply.service';
 
@@ -12,7 +12,7 @@ export class ReplyIconComponent implements OnInit {
 
   @Input() mode: 'edit' | 'show'
 
-  @Input() reply: IReply
+  @Input() reply: Reply
 
   @Input() type: 'entry' | 'listing'
 

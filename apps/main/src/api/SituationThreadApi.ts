@@ -1,35 +1,21 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import {
-    ISituationThread
-} from "../generated/generated";
-import { ISituation, SituationApi } from "@sapoto/core";
-import { ISituationThreadDao } from "../dao/SituationThreadDao";
-
-export interface ISituationThreadApi {
-
-    addSituationThread(
-        situationThread: ISituationThread
-    ): Promise<void>
-
-    findWithListingDetailsForATopic(
-        topicId: string
-    ): Promise<ISituation[]>
-
-}
+import { SituationApi } from "@sapoto/core";
+import { SituationThreadDao } from "../dao/SituationThreadDao";
+import { SituationThread } from "../ddl/SituationThread";
 
 @Injected()
-export class SituationThreadApi implements ISituationThreadApi {
+export class SituationThreadApi {
 
     @Inject()
     situationApi: SituationApi
 
     @Inject()
-    situationThreadDao: ISituationThreadDao
+    situationThreadDao: SituationThreadDao
 
     @Api()
     async addSituationThread(
-        situationThread: ISituationThread
+        situationThread: SituationThread
     ): Promise<void> {
         const situation = situationThread.situation
 
@@ -62,8 +48,15 @@ export class SituationThreadApi implements ISituationThreadApi {
     @Api()
     async findWithListingDetailsForATopic(
         topicId: string
-    ): Promise<ISituation[]> {
+    ): Promise<SituationThread[]> {
         return await this.situationThreadDao.findWithListingDetailsForATopic(topicId)
+    }
+
+    @Api()
+    async findById(
+        situationThreadId: string
+    ): Promise<SituationThread> {
+        return await this.situationThreadDao.findById(situationThreadId)
     }
 
 }

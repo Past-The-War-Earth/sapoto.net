@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ISituation, ITopic, SituationApiClient } from '@sapoto/core-client';
+import { Situation, SituationApi } from '@sapoto/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SituationService {
 
-  situationApiClient = new SituationApiClient()
+  situationApiClient = new SituationApi()
 
   constructor() { }
 
-  async getNewSituation(): Promise<ISituation> {
+  async getNewSituation(): Promise<Situation> {
     return await this.situationApiClient.getNewSituation()
   }
 

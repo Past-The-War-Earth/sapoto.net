@@ -5,4 +5,4 @@ export interface ICounts {
     reasons: number;
     replies: number;
 }
-//# sourceMappingURL=icounts.d.ts.map
+//# sourceMappingURL=ICounts.d.ts.map

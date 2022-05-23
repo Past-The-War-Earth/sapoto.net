@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
-  ITheme,
-  ThemeApiClient,
-} from '@sapoto/core-client';
+  Theme,
+  ThemeApi,
+} from '@sapoto/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  themeApi = new ThemeApiClient()
+  themeApi = new ThemeApi()
 
   constructor() {
   }
 
-  async getThemes(): Promise<ITheme[]> {
+  async getThemes(): Promise<Theme[]> {
     const themes = await this.themeApi.getAllWithTopics()
 
     return themes

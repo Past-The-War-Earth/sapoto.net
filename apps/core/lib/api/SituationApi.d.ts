@@ -1,17 +1,13 @@
-import { IUser } from "@airport/travel-document-checkpoint";
-import { ISituation, ISituationRating } from "../generated/generated";
+import { User } from "@airport/travel-document-checkpoint";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
-export interface ISituationApi {
-    save(situation: ISituation): Promise<void>;
-    rateSituation(situation: ISituation, importanceRating: 1 | 2 | 3 | 4 | 5, urgencyRating: 1 | 2 | 3 | 4 | 5, user: IUser): Promise<ISituationRating>;
-    getNewSituation(): Promise<ISituation>;
-}
-export declare class SituationApi implements ISituationApi {
+import { Situation } from "../ddl/Situation";
+import { SituationRating } from '../ddl/SituationRating';
+export declare class SituationApi {
     situationDao: SituationDao;
     situationRatingDao: SituationRatingDao;
-    save(situation: ISituation): Promise<void>;
-    rateSituation(situation: ISituation, importanceRating: 1 | 2 | 3 | 4 | 5, urgencyRating: 1 | 2 | 3 | 4 | 5, user: IUser): Promise<ISituationRating>;
-    getNewSituation(): Promise<ISituation>;
+    save(situation: Situation): Promise<void>;
+    rateSituation(situation: Situation, importanceRating: 1 | 2 | 3 | 4 | 5, urgencyRating: 1 | 2 | 3 | 4 | 5, user: User): Promise<SituationRating>;
+    getNewSituation(): Promise<Situation>;
 }
 //# sourceMappingURL=SituationApi.d.ts.map

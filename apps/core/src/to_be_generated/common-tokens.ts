@@ -1,22 +1,20 @@
 import { app } from '@sapoto/dependency-injection'
-import type { ISituationApi } from "../api/SituationApi";
-import type { IThemeApi } from '../api/ThemeApi';
-import type { ITopicApi } from '../api/TopicApi';
+import type { SituationApi, ThemeApi, TopicApi } from "../generated/api/api";
 
 export const core = app('@sapoto/core')
 
-export const SITUATION_API = core.token<ISituationApi>({
+export const SITUATION_API = core.token<SituationApi>({
     class: null,
-    interface: 'ISituationApi',
+    interface: 'SituationApi',
     token: 'ISituationApi'
 })
-export const THEME_API = core.token<IThemeApi>({
+export const THEME_API = core.token<ThemeApi>({
     class: null,
-    interface: 'IThemeApi',
+    interface: 'ThemeApi',
     token: 'THEME_API'
 })
-export const TOPIC_API = core.token<ITopicApi>({
+export const TOPIC_API = core.token<TopicApi>({
     class: null,
-    interface: 'ITopicApi',
+    interface: 'TopicApi',
     token: 'TOPIC_API'
 })

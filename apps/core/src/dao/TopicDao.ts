@@ -1,14 +1,8 @@
 import { Injected } from "@airport/direction-indicator";
-import { BaseTopicDao, IBaseTopicDao } from "../generated/baseDaos";
-
-export interface ITopicDao
-    extends IBaseTopicDao {
-
-}
+import { BaseTopicDao } from "../generated/baseDaos";
 
 @Injected()
 export class TopicDao
-    extends BaseTopicDao
-    implements ITopicDao {
+    extends BaseTopicDao {
 
 }

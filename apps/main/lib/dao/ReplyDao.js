@@ -9,13 +9,7 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseReplyDao, Q } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
     async findForSituation(situationId) {
-        let r;
-        let a;
-        let u;
-        let rr;
-        let rt;
-        let st;
-        let ur;
+        let alias = {};
         return await this.db.find.graph({
             select: Object.assign(Object.assign({}, ALL_FIELDS), { actor: {
                     id: Y,
@@ -24,15 +18,15 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                     }
                 }, replyRatings: {}, replyTypes: {}, situationThread: Object.assign({}, ALL_FIELDS), urgencyRatings: {} }),
             from: [
-                r = Q.Reply,
-                a = r.actor.leftJoin(),
-                u = a.user.leftJoin(),
-                rr = r.replyRatings.leftJoin(),
-                rt = r.replyTypes.leftJoin(),
-                st = r.situationThread.innerJoin(),
-                ur = r.urgencyRatings.leftJoin()
+                alias.r = Q.Reply,
+                alias.a = alias.r.actor.leftJoin(),
+                alias.u = alias.a.user.leftJoin(),
+                alias.rr = alias.r.replyRatings.leftJoin(),
+                alias.rt = alias.r.replyTypes.leftJoin(),
+                alias.st = alias.r.situationThread.innerJoin(),
+                alias.ur = alias.r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situationId)
+            where: alias.st.situation.equals(situationId)
         });
     }
 };

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-	IIdeaUrgencyRating,
-} from './ideaurgencyrating';
+	IdeaUrgencyRating,
+} from '../ddl/ideaurgencyrating';
 import {
 	IdeaUrgencyRatingESelect,
 	IdeaUrgencyRatingECreateColumns,
@@ -13,8 +13,8 @@ import {
 	QIdeaUrgencyRating,
 } from './qideaurgencyrating';
 import {
-	IReply,
-} from './reply';
+	Reply,
+} from '../ddl/reply';
 import {
 	ReplyESelect,
 	ReplyECreateColumns,
@@ -26,8 +26,8 @@ import {
 	QReply,
 } from './qreply';
 import {
-	IReplyRating,
-} from './replyrating';
+	ReplyRating,
+} from '../ddl/replyrating';
 import {
 	ReplyRatingESelect,
 	ReplyRatingECreateColumns,
@@ -39,8 +39,8 @@ import {
 	QReplyRating,
 } from './qreplyrating';
 import {
-	IReplyType,
-} from './replytype';
+	ReplyType,
+} from '../ddl/replytype';
 import {
 	ReplyTypeESelect,
 	ReplyTypeECreateColumns,
@@ -52,8 +52,8 @@ import {
 	QReplyType,
 } from './qreplytype';
 import {
-	ISituationThread,
-} from './situationthread';
+	SituationThread,
+} from '../ddl/situationthread';
 import {
 	SituationThreadESelect,
 	SituationThreadECreateColumns,
@@ -113,11 +113,11 @@ export class SQDIDuo<Entity,
 
 
 export interface IBaseIdeaUrgencyRatingDuo
-  extends IDuo<IIdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
+  extends IDuo<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
 }
 
 export class BaseIdeaUrgencyRatingDuo
-  extends SQDIDuo<IIdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
+  extends SQDIDuo<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
 	implements IBaseIdeaUrgencyRatingDuo {
 
 	static diSet(): boolean {
@@ -131,11 +131,11 @@ export class BaseIdeaUrgencyRatingDuo
 
 
 export interface IBaseReplyDuo
-  extends IDuo<IReply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply> {
+  extends IDuo<Reply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply> {
 }
 
 export class BaseReplyDuo
-  extends SQDIDuo<IReply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply>
+  extends SQDIDuo<Reply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply>
 	implements IBaseReplyDuo {
 
 	static diSet(): boolean {
@@ -149,11 +149,11 @@ export class BaseReplyDuo
 
 
 export interface IBaseReplyRatingDuo
-  extends IDuo<IReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating> {
+  extends IDuo<ReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating> {
 }
 
 export class BaseReplyRatingDuo
-  extends SQDIDuo<IReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating>
+  extends SQDIDuo<ReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating>
 	implements IBaseReplyRatingDuo {
 
 	static diSet(): boolean {
@@ -167,11 +167,11 @@ export class BaseReplyRatingDuo
 
 
 export interface IBaseReplyTypeDuo
-  extends IDuo<IReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
+  extends IDuo<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
 }
 
 export class BaseReplyTypeDuo
-  extends SQDIDuo<IReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
+  extends SQDIDuo<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
 	implements IBaseReplyTypeDuo {
 
 	static diSet(): boolean {
@@ -185,11 +185,11 @@ export class BaseReplyTypeDuo
 
 
 export interface IBaseSituationThreadDuo
-  extends IDuo<ISituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
+  extends IDuo<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
 }
 
 export class BaseSituationThreadDuo
-  extends SQDIDuo<ISituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread>
+  extends SQDIDuo<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread>
 	implements IBaseSituationThreadDuo {
 
 	static diSet(): boolean {

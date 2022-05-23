@@ -1,10 +1,6 @@
 {
   "airport": {
-    "domain": "localhost:8080",
-    "schema": "@sapoto/main",
-    "daoDir": "src/dao",
-    "ddlDir": "src/ddl",
-    "generatedDir": "src/generated"
+    "domain": "localhost:8080"
   },
   "dependencies": {
     "@airport/air-traffic-control": "0.0.1",

@@ -13,22 +13,22 @@ import { ReplyApi, SituationThreadApi } from '../api/api';
 import { IDEA_SITUATION_API } from '@votecube/votecube';
 export const REPLY_DAO = main.token({
     class: ReplyDao,
-    interface: 'IReplyDao',
+    interface: 'ReplyDao',
     token: 'REPLY_DAO'
 });
 export const REPLY_RATING_DAO = main.token({
     class: ReplyRatingDao,
-    interface: 'IReplyRatingDao',
+    interface: 'ReplyRatingDao',
     token: 'REPLY_RATING_DAO'
 });
 export const REPLY_TYPE_DAO = main.token({
     class: ReplyTypeDao,
-    interface: 'IReplyTypeDao',
+    interface: 'ReplyTypeDao',
     token: 'REPLY_TYPE_DAO'
 });
 export const SITUATION_THREAD_DAO = main.token({
     class: SituationThreadDao,
-    interface: 'ISituationThreadDao',
+    interface: 'SituationThreadDao',
     token: 'SITUATION_THREAD_DAO'
 });
 SITUATION_THREAD_API.setClass(SituationThreadApi);

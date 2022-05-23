@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITheme, ITopic } from '@sapoto/core-client';
+import { ITheme, ITopic } from '@sapoto/core';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
 import { encodeId } from '@airport/aviation-communication'

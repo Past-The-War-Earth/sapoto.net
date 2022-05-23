@@ -1,0 +1,1 @@
+{"version":3,"file":"TopicApi.d.ts","sourceRoot":"","sources":["../../../src/generated/api/TopicApi.ts"],"names":[],"mappings":"AAUA,OAAO,EACN,KAAK,EACL,MAAM,iBAAiB,CAAC;AAIzB,qBACa,QAAQ;IAGjB,QAAQ,EAAE,QAAQ,CAAA;IAEX,OAAO,IAAI,OAAO,CAAC,KAAK,EAAE,CAAC;IAI3B,OAAO,CACV,OAAO,EAAE,MAAM,GAChB,OAAO,CAAC,KAAK,CAAC;CAIpB"}

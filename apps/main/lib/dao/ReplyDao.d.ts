@@ -1,8 +1,6 @@
-import { BaseReplyDao, IBaseReplyDao, IReply } from "../generated/generated";
-export interface IReplyDao extends IBaseReplyDao {
-    findForSituation(situationId: string): Promise<IReply[]>;
-}
-export declare class ReplyDao extends BaseReplyDao implements IReplyDao {
-    findForSituation(situationId: string): Promise<IReply[]>;
+import { Reply } from "../ddl/Reply";
+import { BaseReplyDao } from "../generated/generated";
+export declare class ReplyDao extends BaseReplyDao {
+    findForSituation(situationId: string): Promise<Reply[]>;
 }
 //# sourceMappingURL=ReplyDao.d.ts.map

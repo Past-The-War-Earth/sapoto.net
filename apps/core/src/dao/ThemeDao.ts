@@ -1,27 +1,18 @@
 import { ALL_FIELDS } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { Theme } from "../ddl/Theme";
 import {
     BaseThemeDao,
-    IBaseThemeDao,
-    ITheme,
     Q,
     QTheme,
     QTopic
 } from "../generated/generated";
 
-export interface IThemeDao
-    extends IBaseThemeDao {
-
-    getAllWithTopics(): Promise<ITheme[]>
-
-}
-
 @Injected()
 export class ThemeDao
-    extends BaseThemeDao
-    implements IThemeDao {
+    extends BaseThemeDao {
 
-    async getAllWithTopics(): Promise<ITheme[]> {
+    async getAllWithTopics(): Promise<Theme[]> {
         let th: QTheme
         let to: QTopic
         return await this.db.find.tree({

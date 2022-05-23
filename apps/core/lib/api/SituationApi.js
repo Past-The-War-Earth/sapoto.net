@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { NEW_RECORD_FIELDS } from '@airport/air-traffic-control';
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let SituationApi = class SituationApi {
@@ -14,14 +15,8 @@ let SituationApi = class SituationApi {
         let situationRating = await this.situationRatingDao
             .findForSituationAndUser(situation, user);
         if (!situationRating) {
-            situationRating = {
-                actorRecordId: null,
-                actor: null,
-                importanceRating,
-                repository: situation.repository,
-                situation,
-                urgencyRating
-            };
+            situationRating = Object.assign(Object.assign({}, NEW_RECORD_FIELDS), { importanceRating, repository: situation.repository, situation,
+                urgencyRating });
         }
         else {
             situationRating.importanceRating = importanceRating;
@@ -31,12 +26,7 @@ let SituationApi = class SituationApi {
         return situationRating;
     }
     async getNewSituation() {
-        return {
-            actor: null,
-            actorRecordId: null,
-            ageSuitability: 0,
-            repository: null,
-            eisenhowerMatrix: {
+        return Object.assign(Object.assign({}, NEW_RECORD_FIELDS), { ageSuitability: 0, repository: null, eisenhowerMatrix: {
                 importance: 0,
                 urgency: 0,
                 votes: 0,
@@ -44,10 +34,7 @@ let SituationApi = class SituationApi {
                     importance: 0,
                     urgency: 0
                 }
-            },
-            text: '',
-            topic: null
-        };
+            }, text: '', topic: null });
     }
 };
 __decorate([

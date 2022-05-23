@@ -12,11 +12,7 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
         await this.save(situationThread);
     }
     async findWithListingDetailsForATopic(topicId) {
-        let st;
-        let s;
-        let sR;
-        let a;
-        let u;
+        let alias = {};
         return await this.db.find.graph({
             select: Object.assign(Object.assign({}, ALL_FIELDS), { actor: {
                     user: {
@@ -24,13 +20,13 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
                     }
                 }, situation: Object.assign(Object.assign({}, ALL_FIELDS), { ratings: {} }) }),
             from: [
-                st = Q.SituationThread,
-                s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                alias.st = Q.SituationThread,
+                alias.s = alias.st.situation.innerJoin(),
+                alias.sR = alias.s.ratings.leftJoin(),
+                alias.a = alias.st.actor.leftJoin(),
+                alias.u = alias.a.user.leftJoin()
             ],
-            where: and(s.topic.equals(topicId))
+            where: and(alias.s.topic.equals(topicId))
         });
     }
 };

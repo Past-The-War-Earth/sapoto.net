@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-	ISituation,
-} from './situation';
+	Situation,
+} from '../ddl/situation';
 import {
 	SituationESelect,
 	SituationECreateColumns,
@@ -13,8 +13,8 @@ import {
 	QSituation,
 } from './qsituation';
 import {
-	ISituationRating,
-} from './situationrating';
+	SituationRating,
+} from '../ddl/situationrating';
 import {
 	SituationRatingESelect,
 	SituationRatingECreateColumns,
@@ -26,8 +26,8 @@ import {
 	QSituationRating,
 } from './qsituationrating';
 import {
-	ITheme,
-} from './theme';
+	Theme,
+} from '../ddl/theme';
 import {
 	ThemeESelect,
 	ThemeECreateColumns,
@@ -39,8 +39,8 @@ import {
 	QTheme,
 } from './qtheme';
 import {
-	ITopic,
-} from './topic';
+	Topic,
+} from '../ddl/topic';
 import {
 	TopicESelect,
 	TopicECreateColumns,
@@ -52,8 +52,8 @@ import {
 	QTopic,
 } from './qtopic';
 import {
-	IUserTopicFavorite,
-} from './usertopicfavorite';
+	UserTopicFavorite,
+} from '../ddl/usertopicfavorite';
 import {
 	UserTopicFavoriteESelect,
 	UserTopicFavoriteECreateColumns,
@@ -113,11 +113,11 @@ export class SQDIDuo<Entity,
 
 
 export interface IBaseSituationDuo
-  extends IDuo<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
+  extends IDuo<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
 }
 
 export class BaseSituationDuo
-  extends SQDIDuo<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation>
+  extends SQDIDuo<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation>
 	implements IBaseSituationDuo {
 
 	static diSet(): boolean {
@@ -131,11 +131,11 @@ export class BaseSituationDuo
 
 
 export interface IBaseSituationRatingDuo
-  extends IDuo<ISituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
+  extends IDuo<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
 }
 
 export class BaseSituationRatingDuo
-  extends SQDIDuo<ISituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating>
+  extends SQDIDuo<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating>
 	implements IBaseSituationRatingDuo {
 
 	static diSet(): boolean {
@@ -149,11 +149,11 @@ export class BaseSituationRatingDuo
 
 
 export interface IBaseThemeDuo
-  extends IDuo<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
+  extends IDuo<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
 }
 
 export class BaseThemeDuo
-  extends SQDIDuo<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme>
+  extends SQDIDuo<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme>
 	implements IBaseThemeDuo {
 
 	static diSet(): boolean {
@@ -167,11 +167,11 @@ export class BaseThemeDuo
 
 
 export interface IBaseTopicDuo
-  extends IDuo<ITopic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
+  extends IDuo<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
 }
 
 export class BaseTopicDuo
-  extends SQDIDuo<ITopic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic>
+  extends SQDIDuo<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic>
 	implements IBaseTopicDuo {
 
 	static diSet(): boolean {
@@ -185,11 +185,11 @@ export class BaseTopicDuo
 
 
 export interface IBaseUserTopicFavoriteDuo
-  extends IDuo<IUserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
+  extends IDuo<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
 }
 
 export class BaseUserTopicFavoriteDuo
-  extends SQDIDuo<IUserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite>
+  extends SQDIDuo<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite>
 	implements IBaseUserTopicFavoriteDuo {
 
 	static diSet(): boolean {

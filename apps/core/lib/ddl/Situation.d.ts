@@ -4,7 +4,7 @@ import { Topic } from "./Topic";
 export declare class Situation extends RepositoryEntity {
     text: string;
     topic: Topic;
-    ratings: SituationRating[];
+    ratings?: SituationRating[];
     eisenhowerMatrix: {
         importance: number;
         urgency: number;
@@ -15,4 +15,4 @@ export declare class Situation extends RepositoryEntity {
         };
     };
 }
-//# sourceMappingURL=Situation.d.ts.map
+//# sourceMappingURL=situation.d.ts.map

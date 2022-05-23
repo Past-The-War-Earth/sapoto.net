@@ -1,7 +1,7 @@
 import { IOC } from '@airport/direction-indicator';
 import { TRANSACTIONAL_CONNECTOR } from '@airport/ground-control';
 import { loadIframe } from '@airport/web-tower'
-import { APPLICATION_LOADER } from '@sapoto/core-runtime'
+import { APPLICATION_LOADER } from '@sapoto/core'
 
 loadIframe()
 

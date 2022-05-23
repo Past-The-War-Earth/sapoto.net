@@ -25,4 +25,4 @@ Situation = __decorate([
     Table({ name: 'SITUATIONS' })
 ], Situation);
 export { Situation };
-//# sourceMappingURL=Situation.js.map
+//# sourceMappingURL=situation.js.map

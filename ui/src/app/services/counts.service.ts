@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISituation } from '@sapoto/core-client';
+import { SituationThread } from '@sapoto/main';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,11 @@ export class CountsService {
 
   constructor() { }
 
-  ensureSituationCounts(
-    situation: ISituation
+  ensureSituationThreadCounts(
+    situationThread: SituationThread
   ): void {
-    if(!situation.counts) {
-      situation.counts = {
+    if(!situationThread.counts) {
+      situationThread.counts = {
         experiences: 0,
         ideas: 0,
         questions: 0,

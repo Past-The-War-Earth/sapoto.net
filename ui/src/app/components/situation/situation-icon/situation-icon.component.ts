@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ISituation } from '@sapoto/core-client';
+import { Situation } from '@sapoto/core';
 import { EisenhowerMatrixService } from '../../../services/eisenhower-matrix.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class SituationIconComponent implements OnInit, OnChanges {
 
   @Input() mode: 'edit' | 'show'
 
-  @Input() situation: ISituation;
+  @Input() situation: Situation;
 
   @Input() type: 'entry' | 'listing';
 

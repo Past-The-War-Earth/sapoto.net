@@ -1,34 +1,23 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { ITopicDao } from "../dao/TopicDao";
-import { ITopic } from "../generated/topic";
-
-export interface ITopicApi {
-
-    findAll(): Promise<ITopic[]>
-
-    getById(
-        topicId: string
-    ): Promise<ITopic>
-
-}
+import { TopicDao } from "../dao/TopicDao";
+import { Topic } from "../ddl/Topic";
 
 @Injected()
-export class TopicApi
-    implements ITopicApi {
+export class TopicApi {
 
     @Inject()
-    topicDao: ITopicDao
+    topicDao: TopicDao
 
     @Api()
-    async findAll(): Promise<ITopic[]> {
+    async findAll(): Promise<Topic[]> {
         return await this.topicDao.findAll()
     }
 
     @Api()
     async getById(
         topicId: string
-    ): Promise<ITopic> {
+    ): Promise<Topic> {
         return await this.topicDao.findById(topicId)
     }
 

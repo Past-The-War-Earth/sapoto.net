@@ -1,23 +1,16 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { ITheme } from "../generated/interfaces";
 import { ThemeDao } from "../dao/ThemeDao";
-
-export interface IThemeApi {
-
-    getAllWithTopics(): Promise<ITheme[]>
-
-}
+import { Theme } from "../ddl/Theme";
 
 @Injected()
-export class ThemeApi
-    implements IThemeApi {
+export class ThemeApi {
 
     @Inject()
     themeDao: ThemeDao
 
     @Api()
-    async getAllWithTopics(): Promise<ITheme[]> {
+    async getAllWithTopics(): Promise<Theme[]> {
         return await this.themeDao.getAllWithTopics()
     }
 

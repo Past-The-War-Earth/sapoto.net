@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ISituation } from '@sapoto/core-client';
-import { IReply } from '@sapoto/main-client';
+import { Situation } from '@sapoto/core';
+import { Reply } from '@sapoto/main';
 import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class EisenhowerMatrixService {
   ) { }
 
   getImportanceClassName(
-    situation: ISituation,
+    situation: Situation,
     mode: 'edit' | 'show'
   ) {
     this.ensureSituationMatrixPresent(situation)
@@ -32,7 +32,7 @@ export class EisenhowerMatrixService {
   }
 
   getImportanceDisplayValue(
-    situation: ISituation,
+    situation: Situation,
     mode: 'edit' | 'show'
   ) {
     this.ensureSituationMatrixPresent(situation)
@@ -42,7 +42,7 @@ export class EisenhowerMatrixService {
   }
 
   getApproximateImportanceNoDecimalValue(
-    situation: ISituation,
+    situation: Situation,
     mode: 'edit' | 'show'
   ) {
     this.ensureSituationMatrixPresent(situation)
@@ -52,7 +52,7 @@ export class EisenhowerMatrixService {
   }
 
   getPriorityClassName(
-    reply: IReply,
+    reply: Reply,
     mode: 'edit' | 'show'
   ) {
     this.ensureReplyMatrixPresent(reply)
@@ -71,7 +71,7 @@ export class EisenhowerMatrixService {
   }
 
   getPriorityDisplayValue(
-    reply: IReply,
+    reply: Reply,
     mode: 'edit' | 'show'
   ) {
     this.ensureReplyMatrixPresent(reply)
@@ -81,7 +81,7 @@ export class EisenhowerMatrixService {
   }
 
   getAproximatePriorityNoDecimalValue(
-    reply: IReply,
+    reply: Reply,
     mode: 'edit' | 'show'
   ) {
     this.ensureReplyMatrixPresent(reply)
@@ -91,7 +91,7 @@ export class EisenhowerMatrixService {
   }
 
   getPriorityValue(
-    reply: IReply,
+    reply: Reply,
     mode: 'edit' | 'show'
   ) {
     this.ensureReplyMatrixPresent(reply)
@@ -104,7 +104,7 @@ export class EisenhowerMatrixService {
   }
 
   getReplyUrgencyImageName(
-    replyOrSituation: ISituation | IReply,
+    replyOrSituation: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show',
     listing = false
@@ -125,7 +125,7 @@ export class EisenhowerMatrixService {
   }
 
   getUrgencyClassName(
-    replyOrSituation: ISituation | IReply,
+    replyOrSituation: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -145,7 +145,7 @@ export class EisenhowerMatrixService {
   }
 
   getReplyUrgencyDisplayValue(
-    reply: IReply,
+    reply: Reply,
     mode: 'edit' | 'show'
   ) {
     this.ensureReplyMatrixPresent(reply)
@@ -155,7 +155,7 @@ export class EisenhowerMatrixService {
   }
 
   getSituationUrgencyDisplayValue(
-    situation: ISituation,
+    situation: Situation,
     mode: 'edit' | 'show'
   ) {
     this.ensureSituationMatrixPresent(situation)
@@ -165,7 +165,7 @@ export class EisenhowerMatrixService {
   }
 
   getApproximateUrgencyNoDecimalValue(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -176,7 +176,7 @@ export class EisenhowerMatrixService {
   }
 
   isVeryLowUrgency(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -185,7 +185,7 @@ export class EisenhowerMatrixService {
   }
 
   isLowUrgency(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -194,7 +194,7 @@ export class EisenhowerMatrixService {
   }
 
   isAverageUrgency(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -203,7 +203,7 @@ export class EisenhowerMatrixService {
   }
 
   isHighUrgency(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -212,7 +212,7 @@ export class EisenhowerMatrixService {
   }
 
   isVeryHighUrgency(
-    situationOrReply: ISituation | IReply,
+    situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
   ) {
@@ -233,7 +233,7 @@ export class EisenhowerMatrixService {
   }
 
   private ensureSituationMatrixPresent(
-    situation: ISituation
+    situation: Situation
   ): void {
     if (!situation.eisenhowerMatrix) {
       situation.eisenhowerMatrix = {
@@ -249,15 +249,15 @@ export class EisenhowerMatrixService {
   }
 
   private ensureMatrixPresent(
-    replyOrSituation: ISituation | IReply,
+    replyOrSituation: Situation | Reply,
     type: 'situation' | 'reply',
   ): void {
     switch(type) {
       case 'situation':
-        this.ensureSituationMatrixPresent(replyOrSituation as ISituation)
+        this.ensureSituationMatrixPresent(replyOrSituation as Situation)
         break;
       case 'reply':
-        this.ensureReplyMatrixPresent(replyOrSituation as IReply)
+        this.ensureReplyMatrixPresent(replyOrSituation as Reply)
         break;
       default:
         throw new Error('Uknown eisenhowerMatrix: ' + type + '. Expecting "situation" or "reply"')
@@ -265,7 +265,7 @@ export class EisenhowerMatrixService {
   }
 
   private ensureReplyMatrixPresent(
-    reply: IReply
+    reply: Reply
   ): void {
     if (!reply.eisenhowerMatrix) {
       reply.eisenhowerMatrix = {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ISituationThread } from '@sapoto/main-client';
+import { SituationThread } from '@sapoto/main';
 import { Subscription } from 'rxjs';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 import { parseId } from '@airport/aviation-communication';
@@ -22,7 +22,7 @@ export class SituationPage
 
   showToolsMenu = false
 
-  situationThread: ISituationThread
+  situationThread: SituationThread
 
   routeParamsSubscription: Subscription
 

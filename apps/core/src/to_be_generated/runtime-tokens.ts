@@ -7,26 +7,26 @@ import { TopicApi } from '../api/TopicApi'
 import { ApplicationLoader } from './ApplicationLoader'
 import { core, SITUATION_API, THEME_API, TOPIC_API } from './common-tokens'
 import { DemoDataLoader, IDemoDataLoader } from './DemoDataLoader'
-import { ISituationDao, ISituationRatingDao, IThemeDao, ITopicDao, SituationDao, SituationRatingDao, ThemeDao, TopicDao } from './runtime-index'
+import { SituationDao, SituationRatingDao, ThemeDao, TopicDao } from '../dao/dao'
 
-export const SITUATION_DAO = core.token<ISituationDao>({
+export const SITUATION_DAO = core.token<SituationDao>({
     class: SituationDao,
-    interface: 'ISituationDao',
+    interface: 'SituationDao',
     token: 'SITUATION_DAO'
 })
-export const SITUATION_RATING_DAO = core.token<ISituationRatingDao>({
+export const SITUATION_RATING_DAO = core.token<SituationRatingDao>({
     class: SituationRatingDao,
-    interface: 'ISituationRatingDao',
+    interface: 'SituationRatingDao',
     token: 'SITUATION_RATING_DAO'
 })
-export const THEME_DAO = core.token<IThemeDao>({
+export const THEME_DAO = core.token<ThemeDao>({
     class: ThemeDao,
-    interface: 'IThemeDao',
+    interface: 'ThemeDao',
     token: 'THEME_DAO'
 })
-export const TOPIC_DAO = core.token<ITopicDao>({
+export const TOPIC_DAO = core.token<TopicDao>({
     class: TopicDao,
-    interface: 'ITopicDao',
+    interface: 'TopicDao',
     token: 'TOPIC_DAO'
 })
 SITUATION_API.setClass(SituationApi)

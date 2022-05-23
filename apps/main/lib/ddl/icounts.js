@@ -1,2 +1,2 @@
 export {};
-//# sourceMappingURL=icounts.js.map
+//# sourceMappingURL=ICounts.js.map

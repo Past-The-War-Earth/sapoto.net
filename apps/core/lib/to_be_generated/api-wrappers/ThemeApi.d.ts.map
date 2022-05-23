@@ -1,1 +1,0 @@
-{"version":3,"file":"ThemeApi.d.ts","sourceRoot":"","sources":["../../../src/to_be_generated/api-wrappers/ThemeApi.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,kBAAkB,EAAE,MAAM,yBAAyB,CAAA;AAC5D,OAAO,EAAE,MAAM,EAAE,MAAM,4BAA4B,CAAA;AAInD,qBACa,QAAQ;IAGjB,iBAAiB,EAAE,kBAAkB,CAAA;IAE/B,gBAAgB,IAAI,OAAO,CAAC,MAAM,EAAE,CAAC;CAK9C"}

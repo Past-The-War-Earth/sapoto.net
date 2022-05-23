@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-	ISituation,
-} from './situation';
+	Situation,
+} from '../ddl/situation';
 import {
 	SituationESelect,
 	SituationECreateColumns,
@@ -13,8 +13,8 @@ import {
 	QSituation,
 } from './qsituation';
 import {
-	ISituationRating,
-} from './situationrating';
+	SituationRating,
+} from '../ddl/situationrating';
 import {
 	SituationRatingESelect,
 	SituationRatingECreateColumns,
@@ -26,8 +26,8 @@ import {
 	QSituationRating,
 } from './qsituationrating';
 import {
-	ITheme,
-} from './theme';
+	Theme,
+} from '../ddl/theme';
 import {
 	ThemeESelect,
 	ThemeECreateColumns,
@@ -39,8 +39,8 @@ import {
 	QTheme,
 } from './qtheme';
 import {
-	ITopic,
-} from './topic';
+	Topic,
+} from '../ddl/topic';
 import {
 	TopicESelect,
 	TopicECreateColumns,
@@ -52,8 +52,8 @@ import {
 	QTopic,
 } from './qtopic';
 import {
-	IUserTopicFavorite,
-} from './usertopicfavorite';
+	UserTopicFavorite,
+} from '../ddl/usertopicfavorite';
 import {
 	UserTopicFavoriteESelect,
 	UserTopicFavoriteECreateColumns,
@@ -114,11 +114,11 @@ export class SQDIDao<Entity,
 
 
 export interface IBaseSituationDao
-  extends IDao<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
+  extends IDao<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
 }
 
 export class BaseSituationDao
-  extends SQDIDao<ISituation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation>
+  extends SQDIDao<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation>
 	implements IBaseSituationDao {
 	
 	static Find      = new DaoQueryDecorators<SituationESelect>();
@@ -142,11 +142,11 @@ export class BaseSituationDao
 
 
 export interface IBaseSituationRatingDao
-  extends IDao<ISituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
+  extends IDao<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
 }
 
 export class BaseSituationRatingDao
-  extends SQDIDao<ISituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating>
+  extends SQDIDao<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating>
 	implements IBaseSituationRatingDao {
 	
 	static Find      = new DaoQueryDecorators<SituationRatingESelect>();
@@ -170,11 +170,11 @@ export class BaseSituationRatingDao
 
 
 export interface IBaseThemeDao
-  extends IDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
+  extends IDao<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
 }
 
 export class BaseThemeDao
-  extends SQDIDao<ITheme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme>
+  extends SQDIDao<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme>
 	implements IBaseThemeDao {
 	
 	static Find      = new DaoQueryDecorators<ThemeESelect>();
@@ -198,11 +198,11 @@ export class BaseThemeDao
 
 
 export interface IBaseTopicDao
-  extends IDao<ITopic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
+  extends IDao<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
 }
 
 export class BaseTopicDao
-  extends SQDIDao<ITopic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic>
+  extends SQDIDao<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic>
 	implements IBaseTopicDao {
 	
 	static Find      = new DaoQueryDecorators<TopicESelect>();
@@ -226,11 +226,11 @@ export class BaseTopicDao
 
 
 export interface IBaseUserTopicFavoriteDao
-  extends IDao<IUserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
+  extends IDao<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
 }
 
 export class BaseUserTopicFavoriteDao
-  extends SQDIDao<IUserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite>
+  extends SQDIDao<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite>
 	implements IBaseUserTopicFavoriteDao {
 	
 	static Find      = new DaoQueryDecorators<UserTopicFavoriteESelect>();

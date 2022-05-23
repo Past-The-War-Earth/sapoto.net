@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ISituation } from '@sapoto/core-client';
+import { ISituation } from '@sapoto/core';
 import { Clicker } from '../../../utils/Clicker';
 
 @Component({

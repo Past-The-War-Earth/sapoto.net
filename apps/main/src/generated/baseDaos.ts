@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
-	IIdeaUrgencyRating,
-} from './ideaurgencyrating';
+	IdeaUrgencyRating,
+} from '../ddl/ideaurgencyrating';
 import {
 	IdeaUrgencyRatingESelect,
 	IdeaUrgencyRatingECreateColumns,
@@ -13,8 +13,8 @@ import {
 	QIdeaUrgencyRating,
 } from './qideaurgencyrating';
 import {
-	IReply,
-} from './reply';
+	Reply,
+} from '../ddl/reply';
 import {
 	ReplyESelect,
 	ReplyECreateColumns,
@@ -26,8 +26,8 @@ import {
 	QReply,
 } from './qreply';
 import {
-	IReplyRating,
-} from './replyrating';
+	ReplyRating,
+} from '../ddl/replyrating';
 import {
 	ReplyRatingESelect,
 	ReplyRatingECreateColumns,
@@ -39,8 +39,8 @@ import {
 	QReplyRating,
 } from './qreplyrating';
 import {
-	IReplyType,
-} from './replytype';
+	ReplyType,
+} from '../ddl/replytype';
 import {
 	ReplyTypeESelect,
 	ReplyTypeECreateColumns,
@@ -52,8 +52,8 @@ import {
 	QReplyType,
 } from './qreplytype';
 import {
-	ISituationThread,
-} from './situationthread';
+	SituationThread,
+} from '../ddl/situationthread';
 import {
 	SituationThreadESelect,
 	SituationThreadECreateColumns,
@@ -114,11 +114,11 @@ export class SQDIDao<Entity,
 
 
 export interface IBaseIdeaUrgencyRatingDao
-  extends IDao<IIdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
+  extends IDao<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
 }
 
 export class BaseIdeaUrgencyRatingDao
-  extends SQDIDao<IIdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
+  extends SQDIDao<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
 	implements IBaseIdeaUrgencyRatingDao {
 	
 	static Find      = new DaoQueryDecorators<IdeaUrgencyRatingESelect>();
@@ -142,11 +142,11 @@ export class BaseIdeaUrgencyRatingDao
 
 
 export interface IBaseReplyDao
-  extends IDao<IReply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply> {
+  extends IDao<Reply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply> {
 }
 
 export class BaseReplyDao
-  extends SQDIDao<IReply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply>
+  extends SQDIDao<Reply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply>
 	implements IBaseReplyDao {
 	
 	static Find      = new DaoQueryDecorators<ReplyESelect>();
@@ -170,11 +170,11 @@ export class BaseReplyDao
 
 
 export interface IBaseReplyRatingDao
-  extends IDao<IReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating> {
+  extends IDao<ReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating> {
 }
 
 export class BaseReplyRatingDao
-  extends SQDIDao<IReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating>
+  extends SQDIDao<ReplyRating, ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating>
 	implements IBaseReplyRatingDao {
 	
 	static Find      = new DaoQueryDecorators<ReplyRatingESelect>();
@@ -198,11 +198,11 @@ export class BaseReplyRatingDao
 
 
 export interface IBaseReplyTypeDao
-  extends IDao<IReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
+  extends IDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
 }
 
 export class BaseReplyTypeDao
-  extends SQDIDao<IReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
+  extends SQDIDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
 	implements IBaseReplyTypeDao {
 	
 	static Find      = new DaoQueryDecorators<ReplyTypeESelect>();
@@ -226,11 +226,11 @@ export class BaseReplyTypeDao
 
 
 export interface IBaseSituationThreadDao
-  extends IDao<ISituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
+  extends IDao<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
 }
 
 export class BaseSituationThreadDao
-  extends SQDIDao<ISituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread>
+  extends SQDIDao<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread>
 	implements IBaseSituationThreadDao {
 	
 	static Find      = new DaoQueryDecorators<SituationThreadESelect>();

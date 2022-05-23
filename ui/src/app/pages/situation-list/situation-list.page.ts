@@ -3,11 +3,11 @@ import { NavController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { SituationSearchService } from '../../services/situation-search.service';
-import { ITopic } from '@sapoto/core-client';
+import { Topic } from '@sapoto/core';
 import { SituationService } from 'src/app/services/situation.service';
 import { TopicSearchService } from 'src/app/services/topic-search.service';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
-import { ISituationThread } from '@sapoto/main-client';
+import { SituationThread } from '@sapoto/main';
 import { encodeId } from '@airport/aviation-communication';
 
 @Component({
@@ -22,9 +22,9 @@ export class SituationListPage implements OnInit {
   postingASituation = false
   situationAction
   showSituationActions = false
-  topic: ITopic
+  topic: Topic
 
-  situationThreads: ISituationThread[]
+  situationThreads: SituationThread[]
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,7 +53,7 @@ export class SituationListPage implements OnInit {
 
   trackBySituations(
     index,
-    situationThread: ISituationThread
+    situationThread: SituationThread
   ) {
     return encodeId(situationThread)
   }
@@ -63,7 +63,7 @@ export class SituationListPage implements OnInit {
   }
 
   getSituationAction(
-    situationThread: ISituationThread
+    situationThread: SituationThread
   ) {
     if (!this.situationAction || !this.activeSituationThread
       || this.activeSituationThread.repository.id !== situationThread.repository.id
@@ -75,7 +75,7 @@ export class SituationListPage implements OnInit {
   }
 
   onShowSituationActions(
-    situationThread: ISituationThread
+    situationThread: SituationThread
   ) {
     this.situationAction = null
     this.activeSituationThread = situationThread

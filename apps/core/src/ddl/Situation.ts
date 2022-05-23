@@ -14,7 +14,7 @@ export class Situation extends RepositoryEntity {
     topic: Topic
 
     @OneToMany({ mappedBy: 'situation' })
-    ratings: SituationRating[]
+    ratings?: SituationRating[]
 
     @Transient()
     eisenhowerMatrix: {

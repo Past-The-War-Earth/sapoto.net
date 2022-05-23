@@ -1,6 +1,8 @@
 import { INTER_APP_API_CLIENT } from "@airport/ground-control";
-import { ReplyApi, SituationThreadApi } from "./api-wrappers/api-wrappers";
-import { REPLY_API, SITUATION_THREAD_API } from "./common-tokens";
+import { ReplyApi, SituationThreadApi } from "../generated/api/api";
+import { main, REPLY_API, SITUATION_THREAD_API } from "./common-tokens";
+
+main.autopilot = true
 
 SITUATION_THREAD_API.setClass(SituationThreadApi)
 SITUATION_THREAD_API.setDependencies({

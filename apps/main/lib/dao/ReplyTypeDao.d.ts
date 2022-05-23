@@ -1,6 +1,4 @@
-import { BaseReplyTypeDao, IBaseReplyTypeDao } from "../generated/generated";
-export interface IReplyTypeDao extends IBaseReplyTypeDao {
-}
-export declare class ReplyTypeDao extends BaseReplyTypeDao implements IReplyTypeDao {
+import { BaseReplyTypeDao } from "../generated/generated";
+export declare class ReplyTypeDao extends BaseReplyTypeDao {
 }
 //# sourceMappingURL=ReplyTypeDao.d.ts.map

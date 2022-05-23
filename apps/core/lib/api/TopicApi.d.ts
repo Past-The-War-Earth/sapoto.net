@@ -1,12 +1,8 @@
-import { ITopicDao } from "../dao/TopicDao";
-import { ITopic } from "../generated/topic";
-export interface ITopicApi {
-    findAll(): Promise<ITopic[]>;
-    getById(topicId: string): Promise<ITopic>;
-}
-export declare class TopicApi implements ITopicApi {
-    topicDao: ITopicDao;
-    findAll(): Promise<ITopic[]>;
-    getById(topicId: string): Promise<ITopic>;
+import { TopicDao } from "../dao/TopicDao";
+import { Topic } from "../ddl/Topic";
+export declare class TopicApi {
+    topicDao: TopicDao;
+    findAll(): Promise<Topic[]>;
+    getById(topicId: string): Promise<Topic>;
 }
 //# sourceMappingURL=TopicApi.d.ts.map

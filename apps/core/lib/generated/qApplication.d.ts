@@ -1,11 +1,11 @@
-import { QApplication as AirportQApplication } from '@airport/air-traffic-control';
+import { QApplication } from '@airport/aviation-communication';
 import { DbApplication, EntityId } from '@airport/ground-control';
 import { QSituation } from './qsituation';
 import { QSituationRating } from './qsituationrating';
 import { QTheme } from './qtheme';
 import { QTopic } from './qtopic';
 import { QUserTopicFavorite } from './qusertopicfavorite';
-export interface LocalQApplication extends AirportQApplication {
+export interface LocalQApplication extends QApplication {
     db: DbApplication;
     Situation: QSituation;
     SituationRating: QSituationRating;

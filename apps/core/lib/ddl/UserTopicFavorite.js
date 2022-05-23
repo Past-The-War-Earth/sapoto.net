@@ -16,4 +16,4 @@ UserTopicFavorite = __decorate([
     Table({ name: 'USER_TOPIC_FAVORITES' })
 ], UserTopicFavorite);
 export { UserTopicFavorite };
-//# sourceMappingURL=UserTopicFavorite.js.map
+//# sourceMappingURL=usertopicfavorite.js.map

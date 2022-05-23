@@ -1,1 +1,0 @@
-export * from '@sapoto/main/lib/generated/application'

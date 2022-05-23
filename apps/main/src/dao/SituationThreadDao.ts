@@ -1,48 +1,25 @@
 import { ALL_FIELDS, and, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
-import { QActor } from "@airport/holding-pattern";
-import { QUser } from "@airport/travel-document-checkpoint";
-import { ITopic, QSituation, QSituationRating } from "@sapoto/core";
+import { SituationThread } from "../ddl/SituationThread";
 import {
     BaseSituationThreadDao,
-    IBaseSituationThreadDao,
-    ISituationThread,
-    Q,
-    QSituationThread
+    Q
 } from "../generated/generated";
-
-export interface ISituationThreadDao
-    extends IBaseSituationThreadDao {
-
-    add(
-        situationThread: ISituationThread
-    ): Promise<void>
-
-    findWithListingDetailsForATopic(
-        topicId: string
-    ): Promise<ISituationThread[]>
-
-}
 
 @Injected()
 export class SituationThreadDao
-    extends BaseSituationThreadDao
-    implements ISituationThreadDao {
+    extends BaseSituationThreadDao {
 
     async add(
-        situationThread: ISituationThread
+        situationThread: SituationThread
     ): Promise<void> {
         await this.save(situationThread)
     }
 
     async findWithListingDetailsForATopic(
         topicId: string
-    ): Promise<ISituationThread[]> {
-        let st: QSituationThread
-        let s: QSituation
-        let sR: QSituationRating
-        let a: QActor
-        let u: QUser
+    ): Promise<SituationThread[]> {
+        let alias = {} as any
         return await this.db.find.graph({
             select: {
                 ...ALL_FIELDS,
@@ -57,14 +34,14 @@ export class SituationThreadDao
                 }
             },
             from: [
-                st = Q.SituationThread,
-                s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                alias.st = Q.SituationThread,
+                alias.s = alias.st.situation.innerJoin(),
+                alias.sR = alias.s.ratings.leftJoin(),
+                alias.a = alias.st.actor.leftJoin(),
+                alias.u = alias.a.user.leftJoin()
             ],
             where: and(
-                s.topic.equals(topicId)
+                alias.s.topic.equals(topicId)
             )
         })
     }

@@ -1,14 +1,8 @@
 import { Injected } from "@airport/direction-indicator";
-import { BaseReplyRatingDao, IBaseReplyRatingDao } from "../generated/baseDaos";
-
-export interface IReplyRatingDao
-    extends IBaseReplyRatingDao {
-
-}
+import { BaseReplyRatingDao } from "../generated/baseDaos";
 
 @Injected()
 export class ReplyRatingDao
-    extends BaseReplyRatingDao
-    implements IReplyRatingDao {
+    extends BaseReplyRatingDao {
 
 }

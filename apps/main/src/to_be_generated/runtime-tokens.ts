@@ -5,32 +5,32 @@ import { SITUATION_API } from '@sapoto/core'
 import { ApplicationLoader } from './ApplicationLoader'
 import { main, REPLY_API } from './common-tokens'
 
-import { IReplyDao, ReplyDao } from '../dao/ReplyDao'
-import { IReplyRatingDao, ReplyRatingDao } from '../dao/ReplyRatingDao'
-import { ISituationThreadDao, SituationThreadDao } from '../dao/SituationThreadDao'
-import { IReplyTypeDao, ReplyTypeDao } from '../dao/ReplyTypeDao'
+import { ReplyDao } from '../dao/ReplyDao'
+import { ReplyRatingDao } from '../dao/ReplyRatingDao'
+import { SituationThreadDao } from '../dao/SituationThreadDao'
+import { ReplyTypeDao } from '../dao/ReplyTypeDao'
 import { SITUATION_THREAD_API } from './common-tokens'
 import { ReplyApi, SituationThreadApi } from '../api/api'
 import { IDEA_SITUATION_API } from '@votecube/votecube'
 
-export const REPLY_DAO = main.token<IReplyDao>({
+export const REPLY_DAO = main.token<ReplyDao>({
     class: ReplyDao,
-    interface: 'IReplyDao',
+    interface: 'ReplyDao',
     token: 'REPLY_DAO'
 })
-export const REPLY_RATING_DAO = main.token<IReplyRatingDao>({
+export const REPLY_RATING_DAO = main.token<ReplyRatingDao>({
     class: ReplyRatingDao,
-    interface: 'IReplyRatingDao',
+    interface: 'ReplyRatingDao',
     token: 'REPLY_RATING_DAO'
 })
-export const REPLY_TYPE_DAO = main.token<IReplyTypeDao>({
+export const REPLY_TYPE_DAO = main.token<ReplyTypeDao>({
     class: ReplyTypeDao,
-    interface: 'IReplyTypeDao',
+    interface: 'ReplyTypeDao',
     token: 'REPLY_TYPE_DAO'
 })
-export const SITUATION_THREAD_DAO = main.token<ISituationThreadDao>({
+export const SITUATION_THREAD_DAO = main.token<SituationThreadDao>({
     class: SituationThreadDao,
-    interface: 'ISituationThreadDao',
+    interface: 'SituationThreadDao',
     token: 'SITUATION_THREAD_DAO'
 })
 

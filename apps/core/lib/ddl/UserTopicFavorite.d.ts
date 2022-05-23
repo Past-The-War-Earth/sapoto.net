@@ -4,4 +4,4 @@ export declare class UserTopicFavorite extends RepositoryEntity {
     favorite: boolean;
     topic: Topic;
 }
-//# sourceMappingURL=UserTopicFavorite.d.ts.map
+//# sourceMappingURL=usertopicfavorite.d.ts.map
