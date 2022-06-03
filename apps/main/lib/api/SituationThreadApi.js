@@ -33,7 +33,16 @@ let SituationThreadApi = class SituationThreadApi {
         return await this.situationThreadDao.findWithListingDetailsForATopic(topicId);
     }
     async findById(situationThreadId) {
-        return await this.situationThreadDao.findById(situationThreadId);
+        const situationThread = await this.situationThreadDao
+            .findById(situationThreadId);
+        situationThread.counts = {
+            experiences: 0,
+            ideas: 0,
+            questions: 0,
+            reasons: 0,
+            replies: 0
+        };
+        return situationThread;
     }
 };
 __decorate([

@@ -56,7 +56,17 @@ export class SituationThreadApi {
     async findById(
         situationThreadId: string
     ): Promise<SituationThread> {
-        return await this.situationThreadDao.findById(situationThreadId)
+        const situationThread = await this.situationThreadDao
+            .findById(situationThreadId)
+        situationThread.counts = {
+            experiences: 0,
+            ideas: 0,
+            questions: 0,
+            reasons: 0,
+            replies: 0
+        }
+
+        return situationThread
     }
 
 }

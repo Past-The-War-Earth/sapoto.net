@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SituationThread } from '@sapoto/main';
 import { Subscription } from 'rxjs';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
-import { parseId } from '@airport/aviation-communication';
 
 @Component({
   selector: 'app-situation',
@@ -11,7 +10,7 @@ import { parseId } from '@airport/aviation-communication';
   styleUrls: ['./situation.page.scss'],
 })
 export class SituationPage
-  implements OnInit {
+  implements OnDestroy, OnInit {
 
   activeReply
   postingReplyType
@@ -37,9 +36,16 @@ export class SituationPage
       this.situationThread = this.situationThreadService.activeSituationThread
     } else {
       this.routeParamsSubscription = this.route.params.subscribe(params => {
-        const situationThreadId = parseId(params['situationThreadId'])
+        this.situationThreadService.getSituationThreadById(params['situationThreadId']).then(
+          situationThread => {
+            this.situationThread = situationThread
+          })
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.routeParamsSubscription.unsubscribe()
   }
 
   ionViewDidEnter() {
