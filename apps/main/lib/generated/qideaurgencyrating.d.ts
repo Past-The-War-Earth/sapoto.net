@@ -1,4 +1,4 @@
-import { IQNumberField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { ReplyGraph, ReplyEOptionalId, ReplyESelect, QReplyQRelation } from './qreply';
 import { IIdeaUrgencyRating } from './ideaurgencyrating';
@@ -38,6 +38,7 @@ export interface IdeaUrgencyRatingGraph extends IdeaUrgencyRatingEOptionalId, Re
  */
 export interface IdeaUrgencyRatingEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;

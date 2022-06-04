@@ -5,6 +5,7 @@ import { IReplyRating } from './replyrating';
 import { IReplyType } from './replytype';
 import { IIdeaUrgencyRating } from './ideaurgencyrating';
 export interface IReply extends IRepositoryEntity {
+    text?: string;
     situationThread?: ISituationThread;
     parentReply?: IReply;
     childReplies?: IReply[];
@@ -12,12 +13,17 @@ export interface IReply extends IRepositoryEntity {
     replyRatings?: IReplyRating[];
     replyTypes?: IReplyType[];
     urgencyRatings?: IIdeaUrgencyRating[];
-    eisenhowerMatrix?: {
-        priority: number;
-        urgency: number;
-        votes: number;
+    ratings?: {
+        down: number;
+        up: number;
         user: {
-            priority: number;
+            rating: number;
+        };
+    };
+    urgency?: {
+        votes: number;
+        total: number;
+        user: {
             urgency: number;
         };
     };

@@ -1,4 +1,4 @@
-import { IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { ICounts } from '../ddl/icounts';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
@@ -43,6 +43,7 @@ export interface SituationThreadGraph extends SituationThreadEOptionalId, Reposi
  */
 export interface SituationThreadEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;

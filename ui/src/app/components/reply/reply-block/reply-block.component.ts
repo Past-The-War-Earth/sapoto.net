@@ -3,6 +3,7 @@ import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 import { ReplyService } from '../../../services/reply.service';
+import { Reply } from '@sapoto/main';
 
 @Component({
   selector: 'app-reply-block',
@@ -13,7 +14,7 @@ export class ReplyBlockComponent implements OnInit {
 
   @Input() actionsTriggerElementId
   @Input() activeActionsReplyId
-  @Input() reply
+  @Input() reply: Reply
   @Input() type
 
   @Output() onActionsClick = new EventEmitter()

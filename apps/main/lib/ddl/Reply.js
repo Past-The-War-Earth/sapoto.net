@@ -31,7 +31,10 @@ __decorate([
 ], Reply.prototype, "urgencyRatings", void 0);
 __decorate([
     Transient()
-], Reply.prototype, "eisenhowerMatrix", void 0);
+], Reply.prototype, "ratings", void 0);
+__decorate([
+    Transient()
+], Reply.prototype, "urgency", void 0);
 Reply = __decorate([
     Entity(),
     Table({ name: 'REPLIES' })

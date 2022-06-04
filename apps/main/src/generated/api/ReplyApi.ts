@@ -52,9 +52,13 @@ export class ReplyApi {
     }
 
     async  getRepliesForSituationThread(
-        situationThreadId: string
+        situationThreadId: string,
+        userUuid: string
     ): Promise<Reply[]> {
-        return await this.replyApi.getRepliesForSituationThread(situationThreadId)
+        return await this.replyApi.getRepliesForSituationThread(
+            situationThreadId,
+            userUuid
+        )
     }
 
     async  addIdea(

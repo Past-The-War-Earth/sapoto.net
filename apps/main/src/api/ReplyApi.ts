@@ -33,9 +33,47 @@ export class ReplyApi {
 
     @Api()
     async getRepliesForSituationThread(
-        situationThreadId: string
+        situationThreadId: string,
+        userUuid: string
     ): Promise<Reply[]> {
-        return await this.replyDao.findForSituation(situationThreadId)
+        const replies = await this.replyDao.findForSituation(situationThreadId)
+
+        for(const reply of replies) {
+            reply.ratings = {
+                down: 0,
+                up: 0,
+                user: {
+                    rating: 0
+                }
+            }
+            for(const replyRating of reply.replyRatings) {
+                if(replyRating.rating > 0) {
+                    reply.ratings.up += replyRating.rating
+                } else {
+                    reply.ratings.down += replyRating.rating
+                }
+                if(replyRating.actor.user.uuId === userUuid) {
+                    reply.ratings.user.rating = replyRating.rating
+                }
+            }
+
+            reply.urgency = {
+                votes: 0,
+                total: 0,
+                user: {
+                    urgency: 0
+                }
+            }
+            reply.urgency.votes = reply.urgencyRatings.length
+            for(const urgencyRating of reply.urgencyRatings) {
+                reply.urgency.total = urgencyRating.rating
+                if(urgencyRating.actor.user.uuId === userUuid) {
+                    reply.urgency.user.urgency = urgencyRating.rating
+                }
+            }
+        }
+
+        return replies
     }
 
     @Api()

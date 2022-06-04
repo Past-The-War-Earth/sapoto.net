@@ -30,6 +30,7 @@ export interface IReply extends IRepositoryEntity {
 	// Id Relations
 
 	// Non-Id Properties
+	text?: string;
 
 	// Non-Id Relations
 	situationThread?: ISituationThread;
@@ -41,7 +42,8 @@ export interface IReply extends IRepositoryEntity {
 	urgencyRatings?: IIdeaUrgencyRating[];
 
 	// Transient Properties
-	eisenhowerMatrix?: { priority: number; urgency: number; votes: number; user: {    priority: number;    urgency: number;}; };
+	ratings?: { down: number; up: number; user: {    rating: number;}; };
+	urgency?: { votes: number; total: number; user: {    urgency: number;}; };
 
 	// Public Methods
 	

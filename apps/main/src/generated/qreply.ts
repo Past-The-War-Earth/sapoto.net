@@ -114,6 +114,7 @@ declare function require(moduleName: string): any;
 export interface ReplyESelect
     extends RepositoryEntityESelect, ReplyEOptionalId {
 	// Non-Id Properties
+	text?: string | IQStringField;
 
 	// Id Relations - full property interfaces
 
@@ -155,6 +156,7 @@ export interface ReplyEOptionalId {
 export interface ReplyEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
+	text?: string | IQStringField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationThread?: SituationThreadEOptionalId;
@@ -171,6 +173,7 @@ export interface ReplyGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
+	text?: string | IQStringField;
 
 	// Relations
 	situationThread?: SituationThreadGraph;
@@ -190,10 +193,12 @@ export interface ReplyEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	TEXT?: string | IQStringField;
 	SITUATION_THREADS_RID_1?: number | IQNumberField;
 	SITUATION_THREADS_AID_1?: number | IQNumberField;
 	SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -237,6 +242,7 @@ export interface QReply extends QRepositoryEntity
 	// Id Relations
 
 	// Non-Id Fields
+	text: IQStringField;
 
 	// Non-Id Relations
 	situationThread: QSituationThreadQRelation;

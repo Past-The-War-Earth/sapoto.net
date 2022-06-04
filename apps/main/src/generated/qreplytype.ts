@@ -129,6 +129,7 @@ export interface ReplyTypeEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;

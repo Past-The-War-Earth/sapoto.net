@@ -1,7 +1,6 @@
-import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
+import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QUser } from "@airport/travel-document-checkpoint";
 import { Reply } from "../ddl/Reply";
 import {
     BaseReplyDao,
@@ -9,8 +8,6 @@ import {
     QIdeaUrgencyRating,
     QReply,
     QReplyRating,
-    QReplyType,
-    QSituationThread,
 } from "../generated/generated";
 
 @Injected()
@@ -22,31 +19,46 @@ export class ReplyDao
     ): Promise<Reply[]> {
         let r: QReply,
             a: QActor,
-            u: QUser,
             rr: QReplyRating,
-            rt: QReplyType,
-            st: QSituationThread,
-            iur: QIdeaUrgencyRating
+            rra: QActor,
+            ur: QIdeaUrgencyRating,
+            ura: QActor
         return await this._find({
             select: {
                 '*': Y,
                 actor: {
-                    id: Y,
+                    uuId: Y,
                     user: {
                         username: Y
                     }
                 },
-                replyRatings: {},
+                replyRatings: {
+                    actor: {
+                        user: {
+                            uuId: Y,
+                        }
+                    }
+                },
                 replyTypes: {},
-                urgencyRatings: {}
+                urgencyRatings: {
+                    actor: {
+                        user: {
+                            uuId: Y,
+                        }
+                    }
+                }
             },
             from: [
                 r = Q.Reply,
                 a = r.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                a.user.leftJoin(),
                 rr = r.replyRatings.leftJoin(),
-                rt = r.replyTypes.leftJoin(),
-                iur = r.urgencyRatings.leftJoin()
+                rra = rr.actor.leftJoin(),
+                rra.user.leftJoin(),
+                r.replyTypes.leftJoin(),
+                ur = r.urgencyRatings.leftJoin(),
+                ura = ur.actor.leftJoin(),
+                ura.user.leftJoin()
             ],
             where: r.situationThread.equals(situationThreadId)
         })

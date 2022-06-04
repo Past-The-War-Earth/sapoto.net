@@ -11,42 +11,45 @@ import { SituationThread } from "./SituationThread";
 export class Reply
     extends RepositoryEntity {
 
+    text: string
+
     @ManyToOne()
     situationThread: SituationThread
 
     @ManyToOne({ optional: true })
-    parentReply: Reply
+    parentReply?: Reply
 
     @OneToMany({ mappedBy: 'parentReply' })
-    childReplies: Reply[]
+    childReplies?: Reply[]
 
     @ManyToOne({ optional: true })
-    ideaSituation: IdeaSituation
+    ideaSituation?: IdeaSituation
 
     @OneToMany({ mappedBy: 'reply' })
-    replyRatings: ReplyRating[]
+    replyRatings?: ReplyRating[]
 
     @OneToMany({ mappedBy: 'reply' })
-    replyTypes: ReplyType[]
+    replyTypes?: ReplyType[]
 
     @OneToMany({ mappedBy: 'reply' })
-    urgencyRatings: IdeaUrgencyRating[]
+    urgencyRatings?: IdeaUrgencyRating[]
 
     @Transient()
-    eisenhowerMatrix: {
-        priority: number
-        urgency: number
-        votes: number
+    ratings?: {
+        down: number,
+        up: number,
         user: {
-            priority: number
-            urgency: number
+            rating: number
         }
     }
 
     @Transient()
-    ratings: {
-        down: number,
-        up: number,
+    urgency?: {
+        votes: number,
+        total: number,
+        user: {
+            urgency: number
+        }
     }
 
 }

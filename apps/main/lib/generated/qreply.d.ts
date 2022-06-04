@@ -1,4 +1,4 @@
-import { IQNumberField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { SituationThreadGraph, SituationThreadEOptionalId, SituationThreadESelect, QSituationThreadQRelation } from './qsituationthread';
 import { IdeaSituationGraph, IdeaSituationEOptionalId, IdeaSituationESelect, QIdeaSituationQRelation } from '@votecube/votecube';
@@ -13,6 +13,7 @@ import { IReply } from './reply';
  * SELECT - All fields and relations (optional).
  */
 export interface ReplyESelect extends RepositoryEntityESelect, ReplyEOptionalId {
+    text?: string | IQStringField;
     situationThread?: SituationThreadESelect;
     parentReply?: ReplyESelect;
     childReplies?: ReplyESelect;
@@ -35,6 +36,7 @@ export interface ReplyEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ReplyEUpdateProperties extends RepositoryEntityEUpdateProperties {
+    text?: string | IQStringField;
     situationThread?: SituationThreadEOptionalId;
     parentReply?: ReplyEOptionalId;
     ideaSituation?: IdeaSituationEOptionalId;
@@ -43,6 +45,7 @@ export interface ReplyEUpdateProperties extends RepositoryEntityEUpdatePropertie
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
+    text?: string | IQStringField;
     situationThread?: SituationThreadGraph;
     parentReply?: ReplyGraph;
     childReplies?: ReplyGraph[];
@@ -56,10 +59,12 @@ export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
  */
 export interface ReplyEUpdateColumns extends RepositoryEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    TEXT?: string | IQStringField;
     SITUATION_THREADS_RID_1?: number | IQNumberField;
     SITUATION_THREADS_AID_1?: number | IQNumberField;
     SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -84,6 +89,7 @@ export interface ReplyECreateColumns extends ReplyEId, ReplyEUpdateColumns {
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QReply extends QRepositoryEntity {
+    text: IQStringField;
     situationThread: QSituationThreadQRelation;
     parentReply: QReplyQRelation;
     childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;

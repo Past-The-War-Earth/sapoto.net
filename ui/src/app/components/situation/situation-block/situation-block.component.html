@@ -7,7 +7,7 @@
       </td>
       <td>
         <div class="situation-header">
-          <div class="situation-by">{{situationThread.actor.user.username}}</div>
+          <div class="situation-by">{{situationThread.situation.createdBy.username}}</div>
           <div class="situation-age">{{ageOf(situationThread.situation.createdAt)}}</div>
           <ion-icon (click)="actionsClicked(situationThread.situation)" [id]="actionsTriggerElementId"
             class="situation-actions-button" name="ellipsis-vertical-outline">
