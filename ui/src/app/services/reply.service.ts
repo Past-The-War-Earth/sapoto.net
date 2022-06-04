@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Reply } from '@sapoto/main';
 import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
@@ -113,7 +114,7 @@ export class ReplyService {
 
   sortBy(
     sortType: 'time' | 'postRating' | 'userRanking',
-    replies
+    replies: Reply[]
   ) {
     replies.sort((
       reply1,

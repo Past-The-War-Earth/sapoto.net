@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ITheme, ITopic } from '@sapoto/core';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
-import { encodeId } from '@airport/aviation-communication'
 
 @Component({
   selector: 'app-root',
@@ -31,7 +30,7 @@ export class AppComponent {
   goToTopicListing(
     topic: ITopic
   ) {
-    this.router.navigate(['situation-list/topic', encodeId(topic)])
+    this.router.navigate(['situation-list/topic', topic.id])
   }
 
   addATopic() {

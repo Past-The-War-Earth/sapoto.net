@@ -18,7 +18,7 @@ export class ReplyDao
     extends BaseReplyDao {
 
     async findForSituation(
-        situationId: string
+        situationThreadId: string
     ): Promise<Reply[]> {
         let r: QReply,
             a: QActor,
@@ -38,7 +38,6 @@ export class ReplyDao
                 },
                 replyRatings: {},
                 replyTypes: {},
-                situationThread: {},
                 urgencyRatings: {}
             },
             from: [
@@ -47,10 +46,9 @@ export class ReplyDao
                 u = a.user.leftJoin(),
                 rr = r.replyRatings.leftJoin(),
                 rt = r.replyTypes.leftJoin(),
-                st = r.situationThread.innerJoin(),
                 iur = r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situationId)
+            where: r.situationThread.equals(situationThreadId)
         })
     }
 }

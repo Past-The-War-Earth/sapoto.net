@@ -6,7 +6,6 @@ import { CountsService } from 'src/app/services/counts.service';
 import { Router } from '@angular/router';
 import { SituationThread } from '@sapoto/main';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
-import { encodeId } from '@airport/aviation-communication'
 @Component({
   selector: 'app-situation-block',
   templateUrl: './situation-block.component.html',
@@ -78,7 +77,7 @@ export class SituationBlockComponent implements OnInit {
 
   goToSituation() {
     this.situationThreadService.activeSituationThread = this.situationThread
-    this.router.navigate(['/situation', encodeId(this.situationThread)]);
+    this.router.navigate(['/situation', this.situationThread.id]);
   }
 
   showMainAction() {

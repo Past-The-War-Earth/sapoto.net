@@ -8,7 +8,6 @@ import { SituationService } from 'src/app/services/situation.service';
 import { TopicSearchService } from 'src/app/services/topic-search.service';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 import { SituationThread } from '@sapoto/main';
-import { encodeId } from '@airport/aviation-communication';
 
 @Component({
   selector: 'app-situation-list',
@@ -55,7 +54,7 @@ export class SituationListPage implements OnInit {
     index,
     situationThread: SituationThread
   ) {
-    return encodeId(situationThread)
+    return situationThread.id
   }
 
   onActionsClose() {

@@ -8,7 +8,7 @@ import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { BaseReplyDao, Q, } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
-    async findForSituation(situationId) {
+    async findForSituation(situationThreadId) {
         let r, a, u, rr, rt, st, iur;
         return await this._find({
             select: {
@@ -21,7 +21,6 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 },
                 replyRatings: {},
                 replyTypes: {},
-                situationThread: {},
                 urgencyRatings: {}
             },
             from: [
@@ -30,10 +29,9 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 u = a.user.leftJoin(),
                 rr = r.replyRatings.leftJoin(),
                 rt = r.replyTypes.leftJoin(),
-                st = r.situationThread.innerJoin(),
                 iur = r.urgencyRatings.leftJoin()
             ],
-            where: st.situation.equals(situationId)
+            where: r.situationThread.equals(situationThreadId)
         });
     }
 };

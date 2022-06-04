@@ -43,4 +43,10 @@ export class Reply
         }
     }
 
+    @Transient()
+    ratings: {
+        down: number,
+        up: number,
+    }
+
 }
