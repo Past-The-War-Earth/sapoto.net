@@ -1,4 +1,4 @@
-import { ALL_FIELDS } from "@airport/air-traffic-control";
+import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { Theme } from "../ddl/Theme";
 import {
@@ -15,12 +15,10 @@ export class ThemeDao
     async getAllWithTopics(): Promise<Theme[]> {
         let th: QTheme
         let to: QTopic
-        return await this.db.find.tree({
+        return await this._find({
             select: {
-                ...ALL_FIELDS,
-                topics: {
-                    ...ALL_FIELDS
-                }
+                '*': Y,
+                topics: {}
             },
             from: [
                 th = Q.Theme,

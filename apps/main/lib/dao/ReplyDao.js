@@ -4,29 +4,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ALL_FIELDS, Y } from "@airport/air-traffic-control";
+import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
-import { BaseReplyDao, Q } from "../generated/generated";
+import { BaseReplyDao, Q, } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
     async findForSituation(situationId) {
-        let alias = {};
-        return await this.db.find.graph({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { actor: {
+        let r, a, u, rr, rt, st, iur;
+        return await this._find({
+            select: {
+                '*': Y,
+                actor: {
                     id: Y,
                     user: {
                         username: Y
                     }
-                }, replyRatings: {}, replyTypes: {}, situationThread: Object.assign({}, ALL_FIELDS), urgencyRatings: {} }),
+                },
+                replyRatings: {},
+                replyTypes: {},
+                situationThread: {},
+                urgencyRatings: {}
+            },
             from: [
-                alias.r = Q.Reply,
-                alias.a = alias.r.actor.leftJoin(),
-                alias.u = alias.a.user.leftJoin(),
-                alias.rr = alias.r.replyRatings.leftJoin(),
-                alias.rt = alias.r.replyTypes.leftJoin(),
-                alias.st = alias.r.situationThread.innerJoin(),
-                alias.ur = alias.r.urgencyRatings.leftJoin()
+                r = Q.Reply,
+                a = r.actor.leftJoin(),
+                u = a.user.leftJoin(),
+                rr = r.replyRatings.leftJoin(),
+                rt = r.replyTypes.leftJoin(),
+                st = r.situationThread.innerJoin(),
+                iur = r.urgencyRatings.leftJoin()
             ],
-            where: alias.st.situation.equals(situationId)
+            where: st.situation.equals(situationId)
         });
     }
 };

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SituationThread } from '@sapoto/main';
 import { NumberUtilsService } from '../../../services/number-utils.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { NumberUtilsService } from '../../../services/number-utils.service';
 })
 export class SituationStatsComponent implements OnInit {
 
-  @Input() situation
+  @Input() situationThread: SituationThread
 
   constructor(
     private numberUtils: NumberUtilsService

@@ -1,9 +1,14 @@
-import { ALL_FIELDS, and, Y } from "@airport/air-traffic-control";
+import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { QActor } from "@airport/holding-pattern";
+import { QSituation, QSituationRating } from "@sapoto/core";
+import { QUser } from "../../../core/node_modules/@airport/travel-document-checkpoint/lib/generated/quser";
 import { SituationThread } from "../ddl/SituationThread";
 import {
     BaseSituationThreadDao,
-    Q
+    Q,
+    QSituationThread,
+    SituationThreadESelect
 } from "../generated/generated";
 
 @Injected()
@@ -19,30 +24,64 @@ export class SituationThreadDao
     async findWithListingDetailsForATopic(
         topicId: string
     ): Promise<SituationThread[]> {
-        let alias = {} as any
-        return await this.db.find.graph({
+        let st: QSituationThread,
+            s: QSituation,
+            sR: QSituationRating,
+            a: QActor,
+            u: QUser
+        return await this._find({
             select: {
-                ...ALL_FIELDS,
+                '*': Y,
                 actor: {
                     user: {
                         username: Y
                     }
                 },
                 situation: {
-                    ...ALL_FIELDS,
+                    '*': Y,
+                    ratings: {}
+                }
+            } as SituationThreadESelect,
+            from: [
+                st = Q.SituationThread,
+                s = st.situation.innerJoin(),
+                sR = s.ratings.leftJoin(),
+                a = st.actor.leftJoin(),
+                u = a.user.leftJoin()
+            ],
+            where: s.topic.equals(topicId)
+        })
+    }
+
+    async findWithDetailsById(
+        situationThreadId: string
+    ): Promise<SituationThread> {
+        let st: QSituationThread,
+            s: QSituation,
+            sR: QSituationRating,
+            a: QActor,
+            u: QUser
+        return await this._findOne({
+            select: {
+                '*': Y,
+                actor: {
+                    user: {
+                        username: Y
+                    }
+                },
+                situation: {
+                    '*': Y,
                     ratings: {}
                 }
             },
             from: [
-                alias.st = Q.SituationThread,
-                alias.s = alias.st.situation.innerJoin(),
-                alias.sR = alias.s.ratings.leftJoin(),
-                alias.a = alias.st.actor.leftJoin(),
-                alias.u = alias.a.user.leftJoin()
+                st = Q.SituationThread,
+                s = st.situation.innerJoin(),
+                sR = s.ratings.leftJoin(),
+                a = st.actor.leftJoin(),
+                u = a.user.leftJoin()
             ],
-            where: and(
-                alias.s.topic.equals(topicId)
-            )
+            where: st.equals(situationThreadId)
         })
     }
 

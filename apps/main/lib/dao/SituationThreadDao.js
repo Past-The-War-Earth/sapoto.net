@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { ALL_FIELDS, and, Y } from "@airport/air-traffic-control";
+import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { BaseSituationThreadDao, Q } from "../generated/generated";
 let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao {
@@ -12,21 +12,53 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
         await this.save(situationThread);
     }
     async findWithListingDetailsForATopic(topicId) {
-        let alias = {};
-        return await this.db.find.graph({
-            select: Object.assign(Object.assign({}, ALL_FIELDS), { actor: {
+        let st, s, sR, a, u;
+        return await this._find({
+            select: {
+                '*': Y,
+                actor: {
                     user: {
                         username: Y
                     }
-                }, situation: Object.assign(Object.assign({}, ALL_FIELDS), { ratings: {} }) }),
+                },
+                situation: {
+                    '*': Y,
+                    ratings: {}
+                }
+            },
             from: [
-                alias.st = Q.SituationThread,
-                alias.s = alias.st.situation.innerJoin(),
-                alias.sR = alias.s.ratings.leftJoin(),
-                alias.a = alias.st.actor.leftJoin(),
-                alias.u = alias.a.user.leftJoin()
+                st = Q.SituationThread,
+                s = st.situation.innerJoin(),
+                sR = s.ratings.leftJoin(),
+                a = st.actor.leftJoin(),
+                u = a.user.leftJoin()
             ],
-            where: and(alias.s.topic.equals(topicId))
+            where: s.topic.equals(topicId)
+        });
+    }
+    async findWithDetailsById(situationThreadId) {
+        let st, s, sR, a, u;
+        return await this._findOne({
+            select: {
+                '*': Y,
+                actor: {
+                    user: {
+                        username: Y
+                    }
+                },
+                situation: {
+                    '*': Y,
+                    ratings: {}
+                }
+            },
+            from: [
+                st = Q.SituationThread,
+                s = st.situation.innerJoin(),
+                sR = s.ratings.leftJoin(),
+                a = st.actor.leftJoin(),
+                u = a.user.leftJoin()
+            ],
+            where: st.equals(situationThreadId)
         });
     }
 };

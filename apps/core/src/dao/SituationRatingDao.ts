@@ -21,19 +21,19 @@ export class SituationRatingDao
         situationId: string | RepositoryEntityId,
         user: User
     ): Promise<SituationRating> {
-        let sir: QSituationRating
-        let actor: QActor
-        let qUser: QUser
-        return await this.db.findOne.tree({
+        let sr: QSituationRating
+        let a: QActor
+        let u: QUser
+        return await this._findOne({
             select: {},
             from: [
-                sir = Q.SituationRating,
-                actor = sir.actor.innerJoin(),
-                qUser = actor.user.innerJoin()
+                sr = Q.SituationRating,
+                a = sr.actor.innerJoin(),
+                u = a.user.innerJoin()
             ],
             where: and(
-                sir.situation.equals(situationId),
-                qUser.uuId.equals(user.uuId)
+                sr.situation.equals(situationId),
+                u.uuId.equals(user.uuId)
             )
         })
     }

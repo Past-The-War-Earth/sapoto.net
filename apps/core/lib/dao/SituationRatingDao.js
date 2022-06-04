@@ -9,17 +9,17 @@ import { BaseSituationRatingDao, Q } from "../generated/generated";
 import { and } from "@airport/air-traffic-control";
 let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao {
     async findForSituationAndUser(situationId, user) {
-        let sir;
-        let actor;
-        let qUser;
-        return await this.db.findOne.tree({
+        let sr;
+        let a;
+        let u;
+        return await this._findOne({
             select: {},
             from: [
-                sir = Q.SituationRating,
-                actor = sir.actor.innerJoin(),
-                qUser = actor.user.innerJoin()
+                sr = Q.SituationRating,
+                a = sr.actor.innerJoin(),
+                u = a.user.innerJoin()
             ],
-            where: and(sir.situation.equals(situationId), qUser.uuId.equals(user.uuId))
+            where: and(sr.situation.equals(situationId), u.uuId.equals(user.uuId))
         });
     }
 };

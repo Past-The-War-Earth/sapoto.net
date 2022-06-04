@@ -1,16 +1,16 @@
-<div class="situation-contents">
+<div *ngIf="situationThread && situationThread.situation" class="situation-contents">
   <table class="situation-main-container">
     <tr class="situation-main">
       <td class="situation-column">
-        <app-situation-icon [situation]="situationThread" mode="show" type="listing">
+        <app-situation-icon [situation]="situationThread.situation" mode="show" type="listing">
         </app-situation-icon>
       </td>
       <td>
         <div class="situation-header">
           <div class="situation-by">{{situationThread.actor.user.username}}</div>
           <div class="situation-age">{{ageOf(situationThread.situation.createdAt)}}</div>
-          <ion-icon (click)="actionsClicked(situationThread.situation)" [id]="actionsTriggerElementId" class="situation-actions-button"
-            name="ellipsis-vertical-outline">
+          <ion-icon (click)="actionsClicked(situationThread.situation)" [id]="actionsTriggerElementId"
+            class="situation-actions-button" name="ellipsis-vertical-outline">
           </ion-icon>
         </div>
         <div>
@@ -22,7 +22,7 @@
   </table>
   <ion-row class="situation-footer">
     <ion-col size="7" class="situation-ranking">
-      <app-situation-stats [situation]="situationThread.situation"></app-situation-stats>
+      <app-situation-stats [situationThread]="situationThread"></app-situation-stats>
     </ion-col>
     <ion-col size="5" class="situation-in-thread">
       <div *ngIf="showMainAction()" class="situation-action">
@@ -33,5 +33,6 @@
     </ion-col>
   </ion-row>
 </div>
-<app-situation-matrix-modal *ngIf="showSituationMatrix()" [situation]="situationThread.situation" (onDone)="situationMatrixClosed()">
+<app-situation-matrix-modal *ngIf="showSituationMatrix()" [situation]="situationThread.situation"
+  (onDone)="situationMatrixClosed()">
 </app-situation-matrix-modal>

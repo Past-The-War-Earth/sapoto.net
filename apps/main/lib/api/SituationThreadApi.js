@@ -34,7 +34,10 @@ let SituationThreadApi = class SituationThreadApi {
     }
     async findById(situationThreadId) {
         const situationThread = await this.situationThreadDao
-            .findById(situationThreadId);
+            .findWithDetailsById(situationThreadId);
+        if (!situationThread) {
+            return null;
+        }
         situationThread.counts = {
             experiences: 0,
             ideas: 0,
