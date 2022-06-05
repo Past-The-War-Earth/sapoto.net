@@ -19,11 +19,11 @@ export class Reply
     @ManyToOne({ optional: true })
     parentReply?: Reply
 
-    @OneToMany({ mappedBy: 'parentReply' })
-    childReplies?: Reply[]
-
     @ManyToOne({ optional: true })
     ideaSituation?: IdeaSituation
+
+    @OneToMany({ mappedBy: 'parentReply' })
+    childReplies?: Reply[]
 
     @OneToMany({ mappedBy: 'reply' })
     replyRatings?: ReplyRating[]
@@ -44,7 +44,7 @@ export class Reply
     }
 
     @Transient()
-    urgency?: {
+    ideaUrgency?: {
         votes: number,
         total: number,
         user: {

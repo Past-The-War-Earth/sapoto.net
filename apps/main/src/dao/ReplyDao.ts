@@ -39,7 +39,9 @@ export class ReplyDao
                         }
                     }
                 },
-                replyTypes: {},
+                replyTypes: {
+                    type: Y
+                },
                 urgencyRatings: {
                     actor: {
                         user: {

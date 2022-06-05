@@ -26,7 +26,9 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                         }
                     }
                 },
-                replyTypes: {},
+                replyTypes: {
+                    type: Y
+                },
                 urgencyRatings: {
                     actor: {
                         user: {

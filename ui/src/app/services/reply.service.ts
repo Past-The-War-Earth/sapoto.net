@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Reply } from '@sapoto/main';
+import { IdeaSituation } from '@votecube/votecube';
 import { NumberUtilsService } from './number-utils.service';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class ReplyService {
   }
 
 
-  getNewReply() {
+  getNewReply(): Reply {
     return {
       counts: {
         experiences: 0,
@@ -54,7 +55,7 @@ export class ReplyService {
     }
   }
 
-  getQuestionTypes() {
+  getQuestionTypes(): string[] {
     return [
       'What',
       'Which',
@@ -68,41 +69,41 @@ export class ReplyService {
   }
 
   isComment(
-    reply
+    reply: Reply
   ) {
-    return reply && !reply.designations.length
+    return reply && !reply.replyTypes.length
   }
 
   isQuestion(
-    reply
+    reply: Reply
   ) {
     return this.hasADesignation('question', reply)
   }
 
   isIdea(
-    reply
+    reply: Reply
   ) {
     return this.hasADesignation('idea', reply)
   }
 
   isExperience(
-    reply
+    reply: Reply
   ) {
     return this.hasADesignation('experience', reply)
   }
 
   getAccentPercentage(
-    idea
+    ideaSituation: IdeaSituation
   ) {
-    let votes = idea.votes
+    let votes = ideaSituation.votes
     let numUsers = votes.users
     return numUsers ? Math.ceil(votes.totalPoints / numUsers) : 0
   }
 
   getAccentAverage(
-    idea
+    ideaSituation: IdeaSituation
   ) {
-    let votes = idea.votes
+    let votes = ideaSituation.votes
     let numUsers = votes.users
     let average = numUsers ? votes.totalPoints / numUsers : 0
 
@@ -134,8 +135,8 @@ export class ReplyService {
           return this.getValueSortComparison(reply2.createdBy.ranking, reply1.createdBy.ranking)
       }
 
-      const reply1IsIdea = reply1.designations.indexOf('idea') > -1
-      const reply2IsIdea = reply2.designations.indexOf('idea') > -1
+      const reply1IsIdea = reply1.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
+      const reply2IsIdea = reply2.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
 
       if (!reply1IsIdea && !reply2IsIdea) {
         return this.getValueSortComparison(value1, value2)
@@ -157,9 +158,9 @@ export class ReplyService {
   }
 
   getValueSortComparison(
-    value1,
-    value2
-  ) {
+    value1: number | string,
+    value2: number | string
+  ): -1 | 0 | 1 {
     if (value1 < value2) {
       return -1;
     }
@@ -170,8 +171,8 @@ export class ReplyService {
   }
 
   hasAnyOfDesignations(
-    designations,
-    reply
+    designations: ('comment' | 'experience' | 'idea' | 'question')[],
+    reply: Reply
   ) {
     for (let i = 0; i < designations.length; i++) {
       if (this.hasADesignation(designations[i], reply)) {
@@ -182,32 +183,32 @@ export class ReplyService {
   }
 
   hasADesignation(
-    designation,
-    reply
+    designation: 'comment' | 'experience' | 'idea' | 'question',
+    reply: Reply
   ) {
     if (!reply) {
       return false
     }
-    if (!reply.designations.length) {
+    if (!reply.replyTypes.length) {
       return false
     }
-    return reply.designations.indexOf(designation) > -1
+    return reply.replyTypes.map(replyType => replyType.type).indexOf(designation) > -1
   }
 
   canHaveIdeas(
-    parent
+    parent: Reply
   ) {
     return !parent
   }
 
   canHaveExperiences(
-    parent
+    parent: Reply
   ) {
     return !parent || this.hasADesignation('idea', parent)
   }
 
   canHaveQuestions(
-    parent
+    parent: Reply
   ) {
     return !parent
       || this.hasAnyOfDesignations(['idea', 'experience'], parent)

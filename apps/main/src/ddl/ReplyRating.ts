@@ -12,7 +12,5 @@ export class ReplyRating
 
     @DbNumber()
     rating: 1 | 0 | -1
-
-    @DbNumber()
-    urgency: 1 | 2 | 3 | 4 | 5
+    
 }
