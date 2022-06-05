@@ -1,6 +1,6 @@
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
-import { IIdeaSituation, IdeaSituationApi } from "@votecube/votecube"
+import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
 import { ReplyTypeDao } from "../dao/ReplyTypeDao"
@@ -12,7 +12,7 @@ import { ReplyType } from "../ddl/ReplyType"
 export class ReplyApi {
 
     @Inject()
-    ideaSituationApi: IdeaSituationApi
+    situationIdeaApi: SituationIdeaApi
 
     @Inject()
     replyDao: ReplyDao
@@ -33,63 +33,50 @@ export class ReplyApi {
 
     @Api()
     async getRepliesForSituationThread(
-        situationThreadId: string,
-        userUuid: string
+        situationThreadId: string
     ): Promise<Reply[]> {
-        const replies = await this.replyDao.findForSituation(situationThreadId)
-
-        for(const reply of replies) {
-            reply.ratings = {
-                down: 0,
-                up: 0,
-                user: {
-                    rating: 0
-                }
-            }
-            for(const replyRating of reply.replyRatings) {
-                if(replyRating.rating > 0) {
-                    reply.ratings.up += replyRating.rating
-                } else {
-                    reply.ratings.down += replyRating.rating
-                }
-                if(replyRating.actor.user.uuId === userUuid) {
-                    reply.ratings.user.rating = replyRating.rating
-                }
-            }
-
-            reply.urgency = {
-                votes: 0,
-                total: 0,
-                user: {
-                    urgency: 0
-                }
-            }
-            reply.urgency.votes = reply.urgencyRatings.length
-            for(const urgencyRating of reply.urgencyRatings) {
-                reply.urgency.total = urgencyRating.rating
-                if(urgencyRating.actor.user.uuId === userUuid) {
-                    reply.urgency.user.urgency = urgencyRating.rating
-                }
-            }
-        }
-
-        return replies
+        return await this.replyDao.findForSituation(situationThreadId)
     }
 
     @Api()
     async addIdea(
         reply: Reply,
-        ideaSituation: IIdeaSituation
+        situationIdea: ISituationIdea
     ): Promise<void> {
-        await this.ideaSituationApi.add(ideaSituation)
+        await this.situationIdeaApi.add(situationIdea)
         await this.addReply(reply)
     }
 
     @Api()
     async rateReply(
-        replyRating: ReplyRating
+        replyRating: ReplyRating,
+        replyId: string,
+        situationThreadId: string
     ): Promise<void> {
-        this.replyRatingDao.save(replyRating)
+        const reply = await this.replyDao.findById(replyId)
+        if(reply.id !== replyRating.reply.id) {
+            
+        }
+
+        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId)
+
+        await this.replyRatingDao.save(replyRating)
+
+        let numberOfDownRatings = 0
+        let numberOfUpRatings = 0
+
+        for (const replyRating of replyRatings) {
+            if(replyRating.rating < 0) {
+                numberOfDownRatings++
+            } else if (replyRating.rating > 0) {
+                numberOfUpRatings++
+            }
+        }
+
+        reply.numberOfDownRatings = numberOfDownRatings
+        reply.numberOfUpRatings = numberOfUpRatings
+
+        await this.replyDao.save(reply)
     }
 
     @Api()

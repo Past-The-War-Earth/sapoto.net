@@ -14,9 +14,6 @@ __decorate([
 __decorate([
     DbNumber()
 ], ReplyRating.prototype, "rating", void 0);
-__decorate([
-    DbNumber()
-], ReplyRating.prototype, "urgency", void 0);
 ReplyRating = __decorate([
     Entity(),
     Table({ name: 'REPLY_RATING' })

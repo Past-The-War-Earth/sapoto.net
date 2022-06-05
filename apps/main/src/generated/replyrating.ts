@@ -19,7 +19,6 @@ export interface IReplyRating extends IRepositoryEntity {
 
 	// Non-Id Properties
 	rating?: number;
-	urgency?: number;
 
 	// Non-Id Relations
 	reply?: IReply;

@@ -65,7 +65,6 @@ export interface ReplyRatingESelect
     extends RepositoryEntityESelect, ReplyRatingEOptionalId {
 	// Non-Id Properties
 	rating?: number | IQNumberField;
-	urgency?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -102,7 +101,6 @@ export interface ReplyRatingEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
 	rating?: number | IQNumberField;
-	urgency?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	reply?: ReplyEOptionalId;
@@ -118,7 +116,6 @@ export interface ReplyRatingGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	rating?: number | IQNumberField;
-	urgency?: number | IQNumberField;
 
 	// Relations
 	reply?: ReplyGraph;
@@ -138,7 +135,6 @@ export interface ReplyRatingEUpdateColumns
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	RATING?: number | IQNumberField;
-	URGENCY?: number | IQNumberField;
 	REPLIES_RID_1?: number | IQNumberField;
 	REPLIES_AID_1?: number | IQNumberField;
 	REPLIES_ARID_1?: number | IQNumberField;
@@ -177,7 +173,6 @@ export interface QReplyRating extends QRepositoryEntity
 
 	// Non-Id Fields
 	rating: IQNumberField;
-	urgency: IQNumberField;
 
 	// Non-Id Relations
 	reply: QReplyQRelation;

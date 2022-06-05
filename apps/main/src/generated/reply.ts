@@ -5,7 +5,7 @@ import {
 	ISituationThread,
 } from './situationthread';
 import {
-	IIdeaSituation,
+	ISituationIdea,
 } from '@votecube/votecube';
 import {
 	IReplyRating,
@@ -31,19 +31,21 @@ export interface IReply extends IRepositoryEntity {
 
 	// Non-Id Properties
 	text?: string;
+	numberOfDownRatings?: number;
+	numberOfUpRatings?: number;
+	urgencyTotal?: number;
+	numberOfUrgencyRatings?: number;
 
 	// Non-Id Relations
 	situationThread?: ISituationThread;
 	parentReply?: IReply;
+	situationIdea?: ISituationIdea;
 	childReplies?: IReply[];
-	ideaSituation?: IIdeaSituation;
 	replyRatings?: IReplyRating[];
 	replyTypes?: IReplyType[];
 	urgencyRatings?: IIdeaUrgencyRating[];
 
 	// Transient Properties
-	ratings?: { down: number; up: number; user: {    rating: number;}; };
-	urgency?: { votes: number; total: number; user: {    urgency: number;}; };
 
 	// Public Methods
 	

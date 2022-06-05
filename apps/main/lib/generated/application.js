@@ -228,20 +228,6 @@ export const APPLICATION = {
                         {
                             "index": 10,
                             "isGenerated": false,
-                            "manyRelationColumnRefs": [],
-                            "name": "URGENCY",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 11,
-                            "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
                                     "manyRelationIndex": 4,
@@ -263,7 +249,7 @@ export const APPLICATION = {
                             "type": "NUMBER"
                         },
                         {
-                            "index": 12,
+                            "index": 11,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -286,7 +272,7 @@ export const APPLICATION = {
                             "type": "NUMBER"
                         },
                         {
-                            "index": 13,
+                            "index": 12,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -422,15 +408,6 @@ export const APPLICATION = {
                             "index": 10,
                             "isId": false,
                             "name": "rating",
-                            "sinceVersion": 1
-                        },
-                        {
-                            "columnRef": {
-                                "index": 10
-                            },
-                            "index": 11,
-                            "isId": false,
-                            "name": "urgency",
                             "sinceVersion": 1
                         }
                     ],
@@ -1540,6 +1517,62 @@ export const APPLICATION = {
                         {
                             "index": 10,
                             "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NUMBER_OF_DOWN_RATINGS",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 11,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NUMBER_OF_UP_RATINGS",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 12,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "URGENCY_TOTAL",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 12
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 13,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NUMBER_OF_URGENCY_RATINGS",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 13
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 14,
+                            "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
                                     "manyRelationIndex": 4,
@@ -1554,14 +1587,14 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
                             "type": "NUMBER"
                         },
                         {
-                            "index": 11,
+                            "index": 15,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -1577,14 +1610,14 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
                             "type": "NUMBER"
                         },
                         {
-                            "index": 12,
+                            "index": 16,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -1600,98 +1633,7 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 13,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "REPLIES_RID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 14,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 1,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "REPLIES_AID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 15,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 5,
-                                    "oneApplicationIndex": null,
-                                    "oneTableIndex": 3,
-                                    "oneRelationIndex": 6,
-                                    "oneColumnIndex": 2,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "REPLIES_ARID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 11
-                                }
-                            ],
-                            "sinceVersion": 1,
-                            "type": "NUMBER"
-                        },
-                        {
-                            "index": 16,
-                            "isGenerated": false,
-                            "manyRelationColumnRefs": [
-                                {
-                                    "manyRelationIndex": 7,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 5,
-                                    "oneColumnIndex": 0,
-                                    "sinceVersion": 1
-                                }
-                            ],
-                            "name": "IDEA_SITUATIONS_RID_1",
-                            "notNull": false,
-                            "propertyRefs": [
-                                {
-                                    "index": 13
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
@@ -1702,18 +1644,19 @@ export const APPLICATION = {
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
-                                    "manyRelationIndex": 7,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 5,
-                                    "oneColumnIndex": 1,
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 3,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 0,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_SITUATIONS_AID_1",
+                            "name": "REPLIES_RID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 13
+                                    "index": 15
                                 }
                             ],
                             "sinceVersion": 1,
@@ -1724,18 +1667,108 @@ export const APPLICATION = {
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
-                                    "manyRelationIndex": 7,
-                                    "oneApplicationIndex": 1,
-                                    "oneTableIndex": 5,
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 3,
+                                    "oneRelationIndex": 7,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "REPLIES_AID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 15
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 19,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 5,
+                                    "oneApplicationIndex": null,
+                                    "oneTableIndex": 3,
+                                    "oneRelationIndex": 7,
                                     "oneColumnIndex": 2,
                                     "sinceVersion": 1
                                 }
                             ],
-                            "name": "IDEA_SITUATIONS_ARID_1",
+                            "name": "REPLIES_ARID_1",
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 13
+                                    "index": 15
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 20,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 6,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 7,
+                                    "oneColumnIndex": 0,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_RID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 16
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 21,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 6,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 7,
+                                    "oneColumnIndex": 1,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_AID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 16
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 22,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [
+                                {
+                                    "manyRelationIndex": 6,
+                                    "oneApplicationIndex": 1,
+                                    "oneTableIndex": 7,
+                                    "oneColumnIndex": 2,
+                                    "sinceVersion": 1
+                                }
+                            ],
+                            "name": "SITUATION_IDEAS_ARID_1",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 16
                                 }
                             ],
                             "sinceVersion": 1,
@@ -1849,7 +1882,43 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
+                            "columnRef": {
+                                "index": 10
+                            },
                             "index": 10,
+                            "isId": false,
+                            "name": "numberOfDownRatings",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 11
+                            },
+                            "index": 11,
+                            "isId": false,
+                            "name": "numberOfUpRatings",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 12
+                            },
+                            "index": 12,
+                            "isId": false,
+                            "name": "urgencyTotal",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 13
+                            },
+                            "index": 13,
+                            "isId": false,
+                            "name": "numberOfUrgencyRatings",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 14,
                             "isId": false,
                             "name": "situationThread",
                             "relationRef": {
@@ -1858,7 +1927,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 11,
+                            "index": 15,
                             "isId": false,
                             "name": "parentReply",
                             "relationRef": {
@@ -1867,25 +1936,25 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 12,
+                            "index": 16,
                             "isId": false,
-                            "name": "childReplies",
+                            "name": "situationIdea",
                             "relationRef": {
                                 "index": 6
                             },
                             "sinceVersion": 1
                         },
                         {
-                            "index": 13,
+                            "index": 17,
                             "isId": false,
-                            "name": "ideaSituation",
+                            "name": "childReplies",
                             "relationRef": {
                                 "index": 7
                             },
                             "sinceVersion": 1
                         },
                         {
-                            "index": 14,
+                            "index": 18,
                             "isId": false,
                             "name": "replyRatings",
                             "relationRef": {
@@ -1894,7 +1963,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 15,
+                            "index": 19,
                             "isId": false,
                             "name": "replyTypes",
                             "relationRef": {
@@ -1903,7 +1972,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 16,
+                            "index": 20,
                             "isId": false,
                             "name": "urgencyRatings",
                             "relationRef": {
@@ -1962,7 +2031,7 @@ export const APPLICATION = {
                             "isId": false,
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 10
+                                "index": 14
                             },
                             "relationTableIndex": 2,
                             "sinceVersion": 1
@@ -1975,7 +2044,7 @@ export const APPLICATION = {
                             },
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 11
+                                "index": 15
                             },
                             "relationTableIndex": 3,
                             "sinceVersion": 1
@@ -1983,28 +2052,28 @@ export const APPLICATION = {
                         {
                             "index": 6,
                             "isId": false,
-                            "oneToManyElems": {
-                                "mappedBy": "parentReply"
-                            },
-                            "relationType": "ONE_TO_MANY",
-                            "propertyRef": {
-                                "index": 12
-                            },
-                            "relationTableIndex": 3,
-                            "sinceVersion": 1
-                        },
-                        {
-                            "index": 7,
-                            "isId": false,
                             "manyToOneElems": {
                                 "optional": true
                             },
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 13
+                                "index": 16
                             },
-                            "relationTableIndex": 5,
+                            "relationTableIndex": 7,
                             "relationTableApplicationIndex": 1,
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 7,
+                            "isId": false,
+                            "oneToManyElems": {
+                                "mappedBy": "parentReply"
+                            },
+                            "relationType": "ONE_TO_MANY",
+                            "propertyRef": {
+                                "index": 17
+                            },
+                            "relationTableIndex": 3,
                             "sinceVersion": 1
                         },
                         {
@@ -2015,7 +2084,7 @@ export const APPLICATION = {
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
-                                "index": 14
+                                "index": 18
                             },
                             "relationTableIndex": 0,
                             "sinceVersion": 1
@@ -2028,7 +2097,7 @@ export const APPLICATION = {
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
-                                "index": 15
+                                "index": 19
                             },
                             "relationTableIndex": 1,
                             "sinceVersion": 1
@@ -2041,7 +2110,7 @@ export const APPLICATION = {
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
-                                "index": 16
+                                "index": 20
                             },
                             "relationTableIndex": 4,
                             "sinceVersion": 1
@@ -2474,7 +2543,8 @@ export const APPLICATION = {
                     "tableConfig": {
                         "name": "IDEA_URGENCY_RATINGS",
                         "columnIndexes": []
-                    }
+                    },
+                    "operations": {}
                 }
             ],
             "integerVersion": 1,

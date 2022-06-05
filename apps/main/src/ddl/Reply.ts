@@ -1,6 +1,6 @@
-import { Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
+import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
-import { IdeaSituation } from "@votecube/votecube";
+import { SituationIdea } from "@votecube/votecube";
 import { IdeaUrgencyRating } from "./IdeaUrgencyRating";
 import { ReplyRating } from "./ReplyRating";
 import { ReplyType } from "./ReplyType";
@@ -13,6 +13,18 @@ export class Reply
 
     text: string
 
+    @Column({ name: 'NUMBER_OF_DOWN_RATINGS'})
+    numberOfDownRatings: number;
+
+    @Column({ name: 'NUMBER_OF_UP_RATINGS'})
+    numberOfUpRatings: number;
+
+    @Column({ name: 'URGENCY_TOTAL'})
+    urgencyTotal: number;
+
+    @Column({ name: 'NUMBER_OF_URGENCY_RATINGS'})
+    numberOfUrgencyRatings: number;
+
     @ManyToOne()
     situationThread: SituationThread
 
@@ -20,7 +32,7 @@ export class Reply
     parentReply?: Reply
 
     @ManyToOne({ optional: true })
-    ideaSituation?: IdeaSituation
+    situationIdea?: SituationIdea
 
     @OneToMany({ mappedBy: 'parentReply' })
     childReplies?: Reply[]
@@ -33,23 +45,5 @@ export class Reply
 
     @OneToMany({ mappedBy: 'reply' })
     urgencyRatings?: IdeaUrgencyRating[]
-
-    @Transient()
-    ratings?: {
-        down: number,
-        up: number,
-        user: {
-            rating: number
-        }
-    }
-
-    @Transient()
-    ideaUrgency?: {
-        votes: number,
-        total: number,
-        user: {
-            urgency: number
-        }
-    }
 
 }

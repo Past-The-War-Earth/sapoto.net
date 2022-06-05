@@ -47,15 +47,15 @@ import {
 	ISituationThread,
 } from './situationthread';
 import {
-	IdeaSituationGraph,
-	IdeaSituationEId,
-	IdeaSituationEOptionalId,
-	IdeaSituationEUpdateProperties,
-	IdeaSituationESelect,
-	QIdeaSituation,
-	QIdeaSituationQId,
-	QIdeaSituationQRelation,
-	IIdeaSituation,
+	SituationIdeaGraph,
+	SituationIdeaEId,
+	SituationIdeaEOptionalId,
+	SituationIdeaEUpdateProperties,
+	SituationIdeaESelect,
+	QSituationIdea,
+	QSituationIdeaQId,
+	QSituationIdeaQRelation,
+	ISituationIdea,
 } from '@votecube/votecube';
 import {
 	ReplyRatingGraph,
@@ -115,14 +115,18 @@ export interface ReplyESelect
     extends RepositoryEntityESelect, ReplyEOptionalId {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	numberOfDownRatings?: number | IQNumberField;
+	numberOfUpRatings?: number | IQNumberField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
 	situationThread?: SituationThreadESelect;
 	parentReply?: ReplyESelect;
+	situationIdea?: SituationIdeaESelect;
 	childReplies?: ReplyESelect;
-	ideaSituation?: IdeaSituationESelect;
 	replyRatings?: ReplyRatingESelect;
 	replyTypes?: ReplyTypeESelect;
 	urgencyRatings?: IdeaUrgencyRatingESelect;
@@ -157,11 +161,15 @@ export interface ReplyEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	numberOfDownRatings?: number | IQNumberField;
+	numberOfUpRatings?: number | IQNumberField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationThread?: SituationThreadEOptionalId;
 	parentReply?: ReplyEOptionalId;
-	ideaSituation?: IdeaSituationEOptionalId;
+	situationIdea?: SituationIdeaEOptionalId;
 
 }
 
@@ -174,12 +182,16 @@ export interface ReplyGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	text?: string | IQStringField;
+	numberOfDownRatings?: number | IQNumberField;
+	numberOfUpRatings?: number | IQNumberField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Relations
 	situationThread?: SituationThreadGraph;
 	parentReply?: ReplyGraph;
+	situationIdea?: SituationIdeaGraph;
 	childReplies?: ReplyGraph[];
-	ideaSituation?: IdeaSituationGraph;
 	replyRatings?: ReplyRatingGraph[];
 	replyTypes?: ReplyTypeGraph[];
 	urgencyRatings?: IdeaUrgencyRatingGraph[];
@@ -199,15 +211,19 @@ export interface ReplyEUpdateColumns
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	TEXT?: string | IQStringField;
+	NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
+	NUMBER_OF_UP_RATINGS?: number | IQNumberField;
+	URGENCY_TOTAL?: number | IQNumberField;
+	NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
 	SITUATION_THREADS_RID_1?: number | IQNumberField;
 	SITUATION_THREADS_AID_1?: number | IQNumberField;
 	SITUATION_THREADS_ARID_1?: number | IQNumberField;
 	REPLIES_RID_1?: number | IQNumberField;
 	REPLIES_AID_1?: number | IQNumberField;
 	REPLIES_ARID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_RID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_AID_1?: number | IQNumberField;
-	IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
+	SITUATION_IDEAS_RID_1?: number | IQNumberField;
+	SITUATION_IDEAS_AID_1?: number | IQNumberField;
+	SITUATION_IDEAS_ARID_1?: number | IQNumberField;
 
 }
 
@@ -243,12 +259,16 @@ export interface QReply extends QRepositoryEntity
 
 	// Non-Id Fields
 	text: IQStringField;
+	numberOfDownRatings: IQNumberField;
+	numberOfUpRatings: IQNumberField;
+	urgencyTotal: IQNumberField;
+	numberOfUrgencyRatings: IQNumberField;
 
 	// Non-Id Relations
 	situationThread: QSituationThreadQRelation;
 	parentReply: QReplyQRelation;
+	situationIdea: QSituationIdeaQRelation;
 	childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;
-	ideaSituation: QIdeaSituationQRelation;
 	replyRatings: IQRepositoryEntityOneToManyRelation<IReplyRating, QReplyRating>;
 	replyTypes: IQRepositoryEntityOneToManyRelation<IReplyType, QReplyType>;
 	urgencyRatings: IQRepositoryEntityOneToManyRelation<IIdeaUrgencyRating, QIdeaUrgencyRating>;

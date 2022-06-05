@@ -29,6 +29,10 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 replyTypes: {
                     type: Y
                 },
+                situationIdea: {
+                    agreementTotal: Y,
+                    numberOfAgreementRatings: Y
+                },
                 urgencyRatings: {
                     actor: {
                         user: {
@@ -45,6 +49,7 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 rra = rr.actor.leftJoin(),
                 rra.user.leftJoin(),
                 r.replyTypes.leftJoin(),
+                r.situationIdea.leftJoin(),
                 ur = r.urgencyRatings.leftJoin(),
                 ura = ur.actor.leftJoin(),
                 ura.user.leftJoin()

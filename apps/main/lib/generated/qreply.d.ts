@@ -1,7 +1,7 @@
 import { IQDateField, IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
 import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
 import { SituationThreadGraph, SituationThreadEOptionalId, SituationThreadESelect, QSituationThreadQRelation } from './qsituationthread';
-import { IdeaSituationGraph, IdeaSituationEOptionalId, IdeaSituationESelect, QIdeaSituationQRelation } from '@votecube/votecube';
+import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from '@votecube/votecube';
 import { ReplyRatingGraph, ReplyRatingESelect, QReplyRating } from './qreplyrating';
 import { IReplyRating } from './replyrating';
 import { ReplyTypeGraph, ReplyTypeESelect, QReplyType } from './qreplytype';
@@ -14,10 +14,14 @@ import { IReply } from './reply';
  */
 export interface ReplyESelect extends RepositoryEntityESelect, ReplyEOptionalId {
     text?: string | IQStringField;
+    numberOfDownRatings?: number | IQNumberField;
+    numberOfUpRatings?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     situationThread?: SituationThreadESelect;
     parentReply?: ReplyESelect;
+    situationIdea?: SituationIdeaESelect;
     childReplies?: ReplyESelect;
-    ideaSituation?: IdeaSituationESelect;
     replyRatings?: ReplyRatingESelect;
     replyTypes?: ReplyTypeESelect;
     urgencyRatings?: IdeaUrgencyRatingESelect;
@@ -37,19 +41,27 @@ export interface ReplyEOptionalId {
  */
 export interface ReplyEUpdateProperties extends RepositoryEntityEUpdateProperties {
     text?: string | IQStringField;
+    numberOfDownRatings?: number | IQNumberField;
+    numberOfUpRatings?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     situationThread?: SituationThreadEOptionalId;
     parentReply?: ReplyEOptionalId;
-    ideaSituation?: IdeaSituationEOptionalId;
+    situationIdea?: SituationIdeaEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
     text?: string | IQStringField;
+    numberOfDownRatings?: number | IQNumberField;
+    numberOfUpRatings?: number | IQNumberField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
     situationThread?: SituationThreadGraph;
     parentReply?: ReplyGraph;
+    situationIdea?: SituationIdeaGraph;
     childReplies?: ReplyGraph[];
-    ideaSituation?: IdeaSituationGraph;
     replyRatings?: ReplyRatingGraph[];
     replyTypes?: ReplyTypeGraph[];
     urgencyRatings?: IdeaUrgencyRatingGraph[];
@@ -65,15 +77,19 @@ export interface ReplyEUpdateColumns extends RepositoryEntityEUpdateColumns {
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
     TEXT?: string | IQStringField;
+    NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
+    NUMBER_OF_UP_RATINGS?: number | IQNumberField;
+    URGENCY_TOTAL?: number | IQNumberField;
+    NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
     SITUATION_THREADS_RID_1?: number | IQNumberField;
     SITUATION_THREADS_AID_1?: number | IQNumberField;
     SITUATION_THREADS_ARID_1?: number | IQNumberField;
     REPLIES_RID_1?: number | IQNumberField;
     REPLIES_AID_1?: number | IQNumberField;
     REPLIES_ARID_1?: number | IQNumberField;
-    IDEA_SITUATIONS_RID_1?: number | IQNumberField;
-    IDEA_SITUATIONS_AID_1?: number | IQNumberField;
-    IDEA_SITUATIONS_ARID_1?: number | IQNumberField;
+    SITUATION_IDEAS_RID_1?: number | IQNumberField;
+    SITUATION_IDEAS_AID_1?: number | IQNumberField;
+    SITUATION_IDEAS_ARID_1?: number | IQNumberField;
 }
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
@@ -90,10 +106,14 @@ export interface ReplyECreateColumns extends ReplyEId, ReplyEUpdateColumns {
  */
 export interface QReply extends QRepositoryEntity {
     text: IQStringField;
+    numberOfDownRatings: IQNumberField;
+    numberOfUpRatings: IQNumberField;
+    urgencyTotal: IQNumberField;
+    numberOfUrgencyRatings: IQNumberField;
     situationThread: QSituationThreadQRelation;
     parentReply: QReplyQRelation;
+    situationIdea: QSituationIdeaQRelation;
     childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;
-    ideaSituation: QIdeaSituationQRelation;
     replyRatings: IQRepositoryEntityOneToManyRelation<IReplyRating, QReplyRating>;
     replyTypes: IQRepositoryEntityOneToManyRelation<IReplyType, QReplyType>;
     urgencyRatings: IQRepositoryEntityOneToManyRelation<IIdeaUrgencyRating, QIdeaUrgencyRating>;

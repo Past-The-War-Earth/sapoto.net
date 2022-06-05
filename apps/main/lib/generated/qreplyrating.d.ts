@@ -7,7 +7,6 @@ import { IReplyRating } from './replyrating';
  */
 export interface ReplyRatingESelect extends RepositoryEntityESelect, ReplyRatingEOptionalId {
     rating?: number | IQNumberField;
-    urgency?: number | IQNumberField;
     reply?: ReplyESelect;
 }
 /**
@@ -25,7 +24,6 @@ export interface ReplyRatingEOptionalId {
  */
 export interface ReplyRatingEUpdateProperties extends RepositoryEntityEUpdateProperties {
     rating?: number | IQNumberField;
-    urgency?: number | IQNumberField;
     reply?: ReplyEOptionalId;
 }
 /**
@@ -33,7 +31,6 @@ export interface ReplyRatingEUpdateProperties extends RepositoryEntityEUpdatePro
  */
 export interface ReplyRatingGraph extends ReplyRatingEOptionalId, RepositoryEntityGraph {
     rating?: number | IQNumberField;
-    urgency?: number | IQNumberField;
     reply?: ReplyGraph;
 }
 /**
@@ -47,7 +44,6 @@ export interface ReplyRatingEUpdateColumns extends RepositoryEntityEUpdateColumn
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
     RATING?: number | IQNumberField;
-    URGENCY?: number | IQNumberField;
     REPLIES_RID_1?: number | IQNumberField;
     REPLIES_AID_1?: number | IQNumberField;
     REPLIES_ARID_1?: number | IQNumberField;
@@ -67,7 +63,6 @@ export interface ReplyRatingECreateColumns extends ReplyRatingEId, ReplyRatingEU
  */
 export interface QReplyRating extends QRepositoryEntity {
     rating: IQNumberField;
-    urgency: IQNumberField;
     reply: QReplyQRelation;
 }
 export interface QReplyRatingQId extends QRepositoryEntityQId {
