@@ -6,7 +6,7 @@ export class SQDIDuo extends Duo {
         super(dbEntityId, Q);
     }
 }
-export class BaseIdeaUrgencyRatingDuo extends SQDIDuo {
+export class BaseIdeaReplyUrgencyDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(4);
     }

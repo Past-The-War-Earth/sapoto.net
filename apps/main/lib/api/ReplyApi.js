@@ -10,50 +10,64 @@ let ReplyApi = class ReplyApi {
     async addReply(reply) {
         await this.replyDao.save(reply);
     }
-    async getRepliesForSituationThread(situationThreadId, userUuid) {
-        const replies = await this.replyDao.findForSituation(situationThreadId);
-        for (const reply of replies) {
-            reply.ratings = {
-                down: 0,
-                up: 0,
-                user: {
-                    rating: 0
-                }
-            };
-            for (const replyRating of reply.replyRatings) {
-                if (replyRating.rating > 0) {
-                    reply.ratings.up += replyRating.rating;
-                }
-                else {
-                    reply.ratings.down += replyRating.rating;
-                }
-                if (replyRating.actor.user.uuId === userUuid) {
-                    reply.ratings.user.rating = replyRating.rating;
-                }
-            }
-            reply.urgency = {
-                votes: 0,
-                total: 0,
-                user: {
-                    urgency: 0
-                }
-            };
-            reply.urgency.votes = reply.urgencyRatings.length;
-            for (const urgencyRating of reply.urgencyRatings) {
-                reply.urgency.total = urgencyRating.rating;
-                if (urgencyRating.actor.user.uuId === userUuid) {
-                    reply.urgency.user.urgency = urgencyRating.rating;
-                }
-            }
-        }
-        return replies;
+    async getRepliesForSituationThread(situationThreadId) {
+        return await this.replyDao.findForSituation(situationThreadId);
     }
-    async addIdea(reply, ideaSituation) {
-        await this.ideaSituationApi.add(ideaSituation);
+    async addIdea(reply, situationIdea) {
+        await this.situationIdeaApi.add(situationIdea);
         await this.addReply(reply);
     }
-    async rateReply(replyRating) {
-        this.replyRatingDao.save(replyRating);
+    async rateReply(replyRating, replyUuId, situationThreadId) {
+        const reply = await this.replyDao.findByUuId(replyUuId);
+        if (reply.id !== replyRating.reply.id) {
+            throw new Error(`Reply doesn't match replyRating`);
+        }
+        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId);
+        if (replyRatings.length) {
+            if (reply.situationThread.id !== replyRating.reply.id) {
+                throw new Error(`Reply doesn't match replyRating`);
+            }
+        }
+        await this.replyRatingDao.save(replyRating);
+        let numberOfDownRatings = 0;
+        let numberOfUpRatings = 0;
+        for (const replyRating of replyRatings) {
+            if (replyRating.rating < 0) {
+                numberOfDownRatings++;
+            }
+            else if (replyRating.rating > 0) {
+                numberOfUpRatings++;
+            }
+        }
+        reply.numberOfDownRatings = numberOfDownRatings;
+        reply.numberOfUpRatings = numberOfUpRatings;
+        await this.replyDao.save(reply);
+    }
+    async setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId) {
+        const reply = await this.replyDao.findByUuId(replyUuId);
+        if (reply.id !== ideaReplyUrgency.reply.id) {
+            throw new Error(`Reply doesn't match replyRating`);
+        }
+        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId);
+        if (replyRatings.length) {
+            if (reply.situationThread.id !== ideaReplyUrgency.reply.id) {
+                throw new Error(`Reply doesn't match replyRating`);
+            }
+        }
+        await this.replyRatingDao.save(ideaReplyUrgency);
+        let numberOfDownRatings = 0;
+        let numberOfUpRatings = 0;
+        for (const replyRating of replyRatings) {
+            if (replyRating.rating < 0) {
+                numberOfDownRatings++;
+            }
+            else if (replyRating.rating > 0) {
+                numberOfUpRatings++;
+            }
+        }
+        reply.numberOfDownRatings = numberOfDownRatings;
+        reply.numberOfUpRatings = numberOfUpRatings;
+        await this.replyDao.save(reply);
     }
     async addReplyType(reply, type) {
         const replyType = {
@@ -67,7 +81,7 @@ let ReplyApi = class ReplyApi {
 };
 __decorate([
     Inject()
-], ReplyApi.prototype, "ideaSituationApi", void 0);
+], ReplyApi.prototype, "situationIdeaApi", void 0);
 __decorate([
     Inject()
 ], ReplyApi.prototype, "replyDao", void 0);
@@ -89,6 +103,9 @@ __decorate([
 __decorate([
     Api()
 ], ReplyApi.prototype, "rateReply", null);
+__decorate([
+    Api()
+], ReplyApi.prototype, "setReplyUrgency", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "addReplyType", null);

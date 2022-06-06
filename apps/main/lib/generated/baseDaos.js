@@ -6,7 +6,7 @@ export class SQDIDao extends Dao {
         super(dbEntityId, Q);
     }
 }
-export class BaseIdeaUrgencyRatingDao extends SQDIDao {
+export class BaseIdeaReplyUrgencyDao extends SQDIDao {
     constructor() {
         super(4);
     }
@@ -17,10 +17,10 @@ export class BaseIdeaUrgencyRatingDao extends SQDIDao {
         return duoDiSet(4);
     }
 }
-BaseIdeaUrgencyRatingDao.Find = new DaoQueryDecorators();
-BaseIdeaUrgencyRatingDao.FindOne = new DaoQueryDecorators();
-BaseIdeaUrgencyRatingDao.Search = new DaoQueryDecorators();
-BaseIdeaUrgencyRatingDao.SearchOne = new DaoQueryDecorators();
+BaseIdeaReplyUrgencyDao.Find = new DaoQueryDecorators();
+BaseIdeaReplyUrgencyDao.FindOne = new DaoQueryDecorators();
+BaseIdeaReplyUrgencyDao.Search = new DaoQueryDecorators();
+BaseIdeaReplyUrgencyDao.SearchOne = new DaoQueryDecorators();
 export class BaseReplyDao extends SQDIDao {
     constructor() {
         super(3);

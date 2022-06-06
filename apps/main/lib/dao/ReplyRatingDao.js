@@ -17,9 +17,20 @@ let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
                 u = a.user.leftJoin(),
-                rr.reply.leftJoin()
+                r = rr.reply.leftJoin()
             ],
             where: and(u.uuId.equals(userId), r.situationThread.equals(situationThreadId))
+        });
+    }
+    async findAllForSituationThread(situationThreadId) {
+        let rr, r;
+        return await this._find({
+            select: {},
+            from: [
+                rr = Q.ReplyRating,
+                r = rr.reply.leftJoin()
+            ],
+            where: r.situationThread.equals(situationThreadId)
         });
     }
 };

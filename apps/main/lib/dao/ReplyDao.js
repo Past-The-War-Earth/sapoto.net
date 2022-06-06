@@ -9,7 +9,7 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseReplyDao, Q, } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
     async findForSituation(situationThreadId) {
-        let r, a, rr, rra, ur, ura;
+        let r, a;
         return await this._find({
             select: {
                 '*': Y,
@@ -19,40 +19,20 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                         username: Y
                     }
                 },
-                replyRatings: {
-                    actor: {
-                        user: {
-                            uuId: Y,
-                        }
-                    }
-                },
                 replyTypes: {
                     type: Y
                 },
                 situationIdea: {
-                    agreementTotal: Y,
+                    agreementShareTotal: Y,
                     numberOfAgreementRatings: Y
-                },
-                urgencyRatings: {
-                    actor: {
-                        user: {
-                            uuId: Y,
-                        }
-                    }
                 }
             },
             from: [
                 r = Q.Reply,
                 a = r.actor.leftJoin(),
                 a.user.leftJoin(),
-                rr = r.replyRatings.leftJoin(),
-                rra = rr.actor.leftJoin(),
-                rra.user.leftJoin(),
                 r.replyTypes.leftJoin(),
-                r.situationIdea.leftJoin(),
-                ur = r.urgencyRatings.leftJoin(),
-                ura = ur.actor.leftJoin(),
-                ura.user.leftJoin()
+                r.situationIdea.leftJoin()
             ],
             where: r.situationThread.equals(situationThreadId)
         });

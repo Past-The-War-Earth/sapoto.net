@@ -11,14 +11,14 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface IIdeaUrgencyRating extends IRepositoryEntity {
+export interface IIdeaReplyUrgency extends IRepositoryEntity {
 	
 	// Id Properties
 
 	// Id Relations
 
 	// Non-Id Properties
-	rating?: number;
+	urgency?: number;
 
 	// Non-Id Relations
 	reply?: IReply;

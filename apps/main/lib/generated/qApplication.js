@@ -1,7 +1,7 @@
 import { airApi } from '@airport/aviation-communication';
-import { IdeaUrgencyRating, Reply, ReplyRating, ReplyType, SituationThread } from '../ddl/ddl';
+import { IdeaReplyUrgency, Reply, ReplyRating, ReplyType, SituationThread } from '../ddl/ddl';
 const __constructors__ = {
-    IdeaUrgencyRating: IdeaUrgencyRating,
+    IdeaReplyUrgency: IdeaReplyUrgency,
     Reply: Reply,
     ReplyRating: ReplyRating,
     ReplyType: ReplyType,

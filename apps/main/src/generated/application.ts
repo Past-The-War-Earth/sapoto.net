@@ -26,6 +26,10 @@ export const APPLICATION = {
 								"isAsync": true,
 								"parameters": []
 							},
+							"setReplyUrgency": {
+								"isAsync": true,
+								"parameters": []
+							},
 							"addReplyType": {
 								"isAsync": true,
 								"parameters": []
@@ -1974,7 +1978,7 @@ export const APPLICATION = {
 						{
 							"index": 20,
 							"isId": false,
-							"name": "urgencyRatings",
+							"name": "ideaReplyUrgencies",
 							"relationRef": {
 								"index": 10
 							},
@@ -2287,7 +2291,7 @@ export const APPLICATION = {
 							"index": 9,
 							"isGenerated": false,
 							"manyRelationColumnRefs": [],
-							"name": "RATING",
+							"name": "URGENCY",
 							"notNull": false,
 							"propertyRefs": [
 								{
@@ -2381,7 +2385,7 @@ export const APPLICATION = {
 					"index": 4,
 					"isLocal": false,
 					"isRepositoryEntity": true,
-					"name": "IdeaUrgencyRating",
+					"name": "IdeaReplyUrgency",
 					"properties": [
 						{
 							"index": 0,
@@ -2470,7 +2474,7 @@ export const APPLICATION = {
 							},
 							"index": 9,
 							"isId": false,
-							"name": "rating",
+							"name": "urgency",
 							"sinceVersion": 1
 						},
 						{
@@ -2541,7 +2545,7 @@ export const APPLICATION = {
 					],
 					"sinceVersion": 1,
 					"tableConfig": {
-						"name": "IDEA_URGENCY_RATINGS",
+						"name": "IDEA_REPLY_URGENCIES",
 						"columnIndexes": []
 					},
 					"operations": {}

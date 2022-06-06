@@ -30,7 +30,7 @@ export class ReplyDao
                     type: Y
                 },
                 situationIdea: {
-                    agreementTotal: Y,
+                    agreementShareTotal: Y,
                     numberOfAgreementRatings: Y
                 }
             },

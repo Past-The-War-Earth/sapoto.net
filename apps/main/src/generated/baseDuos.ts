@@ -1,17 +1,17 @@
 /* eslint-disable */
 import {
-	IdeaUrgencyRating,
-} from '../ddl/ideaurgencyrating';
+	IdeaReplyUrgency,
+} from '../ddl/ideareplyurgency';
 import {
-	IdeaUrgencyRatingESelect,
-	IdeaUrgencyRatingECreateColumns,
-	IdeaUrgencyRatingECreateProperties,
-	IdeaUrgencyRatingEUpdateColumns,
-	IdeaUrgencyRatingEUpdateProperties,
-	IdeaUrgencyRatingEId,
-	IdeaUrgencyRatingGraph,
-	QIdeaUrgencyRating,
-} from './qideaurgencyrating';
+	IdeaReplyUrgencyESelect,
+	IdeaReplyUrgencyECreateColumns,
+	IdeaReplyUrgencyECreateProperties,
+	IdeaReplyUrgencyEUpdateColumns,
+	IdeaReplyUrgencyEUpdateProperties,
+	IdeaReplyUrgencyEId,
+	IdeaReplyUrgencyGraph,
+	QIdeaReplyUrgency,
+} from './qideareplyurgency';
 import {
 	Reply,
 } from '../ddl/reply';
@@ -112,13 +112,13 @@ export class SQDIDuo<Entity,
 }
 
 
-export interface IBaseIdeaUrgencyRatingDuo
-  extends IDuo<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
+export interface IBaseIdeaReplyUrgencyDuo
+  extends IDuo<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> {
 }
 
-export class BaseIdeaUrgencyRatingDuo
-  extends SQDIDuo<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
-	implements IBaseIdeaUrgencyRatingDuo {
+export class BaseIdeaReplyUrgencyDuo
+  extends SQDIDuo<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency>
+	implements IBaseIdeaReplyUrgencyDuo {
 
 	static diSet(): boolean {
 		return duoDiSet(4)

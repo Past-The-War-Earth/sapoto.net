@@ -1,17 +1,17 @@
 /* eslint-disable */
 import {
-	IdeaUrgencyRating,
-} from '../ddl/ideaurgencyrating';
+	IdeaReplyUrgency,
+} from '../ddl/ideareplyurgency';
 import {
-	IdeaUrgencyRatingESelect,
-	IdeaUrgencyRatingECreateColumns,
-	IdeaUrgencyRatingECreateProperties,
-	IdeaUrgencyRatingEUpdateColumns,
-	IdeaUrgencyRatingEUpdateProperties,
-	IdeaUrgencyRatingEId,
-	IdeaUrgencyRatingGraph,
-	QIdeaUrgencyRating,
-} from './qideaurgencyrating';
+	IdeaReplyUrgencyESelect,
+	IdeaReplyUrgencyECreateColumns,
+	IdeaReplyUrgencyECreateProperties,
+	IdeaReplyUrgencyEUpdateColumns,
+	IdeaReplyUrgencyEUpdateProperties,
+	IdeaReplyUrgencyEId,
+	IdeaReplyUrgencyGraph,
+	QIdeaReplyUrgency,
+} from './qideareplyurgency';
 import {
 	Reply,
 } from '../ddl/reply';
@@ -113,22 +113,22 @@ export class SQDIDao<Entity,
 }
 
 
-export interface IBaseIdeaUrgencyRatingDao
-  extends IDao<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating> {
+export interface IBaseIdeaReplyUrgencyDao
+  extends IDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> {
 }
 
-export class BaseIdeaUrgencyRatingDao
-  extends SQDIDao<IdeaUrgencyRating, IdeaUrgencyRatingESelect, IdeaUrgencyRatingECreateProperties, IdeaUrgencyRatingEUpdateColumns, IdeaUrgencyRatingEUpdateProperties, IdeaUrgencyRatingEId, IdeaUrgencyRatingGraph, QIdeaUrgencyRating>
-	implements IBaseIdeaUrgencyRatingDao {
+export class BaseIdeaReplyUrgencyDao
+  extends SQDIDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency>
+	implements IBaseIdeaReplyUrgencyDao {
 	
-	static Find      = new DaoQueryDecorators<IdeaUrgencyRatingESelect>();
-	static FindOne   = new DaoQueryDecorators<IdeaUrgencyRatingESelect>();
-	static Search    = new DaoQueryDecorators<IdeaUrgencyRatingESelect>();
-	static SearchOne = new DaoQueryDecorators<IdeaUrgencyRatingESelect>();
+	static Find      = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
+	static FindOne   = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
+	static Search    = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
+	static SearchOne = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
 	static Save(
-		config: IdeaUrgencyRatingGraph
+		config: IdeaReplyUrgencyGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<IdeaUrgencyRatingGraph>(config);
+		return Dao.BaseSave<IdeaReplyUrgencyGraph>(config);
   }
 
 	static diSet(): boolean {

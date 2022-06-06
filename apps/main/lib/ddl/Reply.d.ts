@@ -1,6 +1,6 @@
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
-import { IdeaUrgencyRating } from "./IdeaUrgencyRating";
+import { IdeaReplyUrgency } from "./IdeaReplyUrgency";
 import { ReplyRating } from "./ReplyRating";
 import { ReplyType } from "./ReplyType";
 import { SituationThread } from "./SituationThread";
@@ -16,6 +16,6 @@ export declare class Reply extends RepositoryEntity {
     childReplies?: Reply[];
     replyRatings?: ReplyRating[];
     replyTypes?: ReplyType[];
-    urgencyRatings?: IdeaUrgencyRating[];
+    ideaReplyUrgencies?: IdeaReplyUrgency[];
 }
 //# sourceMappingURL=Reply.d.ts.map

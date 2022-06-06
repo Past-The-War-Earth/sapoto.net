@@ -6,8 +6,8 @@ import { ReplyRatingGraph, ReplyRatingESelect, QReplyRating } from './qreplyrati
 import { IReplyRating } from './replyrating';
 import { ReplyTypeGraph, ReplyTypeESelect, QReplyType } from './qreplytype';
 import { IReplyType } from './replytype';
-import { IdeaUrgencyRatingGraph, IdeaUrgencyRatingESelect, QIdeaUrgencyRating } from './qideaurgencyrating';
-import { IIdeaUrgencyRating } from './ideaurgencyrating';
+import { IdeaReplyUrgencyGraph, IdeaReplyUrgencyESelect, QIdeaReplyUrgency } from './qideareplyurgency';
+import { IIdeaReplyUrgency } from './ideareplyurgency';
 import { IReply } from './reply';
 /**
  * SELECT - All fields and relations (optional).
@@ -24,7 +24,7 @@ export interface ReplyESelect extends RepositoryEntityESelect, ReplyEOptionalId 
     childReplies?: ReplyESelect;
     replyRatings?: ReplyRatingESelect;
     replyTypes?: ReplyTypeESelect;
-    urgencyRatings?: IdeaUrgencyRatingESelect;
+    ideaReplyUrgencies?: IdeaReplyUrgencyESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
@@ -64,7 +64,7 @@ export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
     childReplies?: ReplyGraph[];
     replyRatings?: ReplyRatingGraph[];
     replyTypes?: ReplyTypeGraph[];
-    urgencyRatings?: IdeaUrgencyRatingGraph[];
+    ideaReplyUrgencies?: IdeaReplyUrgencyGraph[];
 }
 /**
  * UPDATE - non-id columns (optional).
@@ -116,7 +116,7 @@ export interface QReply extends QRepositoryEntity {
     childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;
     replyRatings: IQRepositoryEntityOneToManyRelation<IReplyRating, QReplyRating>;
     replyTypes: IQRepositoryEntityOneToManyRelation<IReplyType, QReplyType>;
-    urgencyRatings: IQRepositoryEntityOneToManyRelation<IIdeaUrgencyRating, QIdeaUrgencyRating>;
+    ideaReplyUrgencies: IQRepositoryEntityOneToManyRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>;
 }
 export interface QReplyQId extends QRepositoryEntityQId {
 }

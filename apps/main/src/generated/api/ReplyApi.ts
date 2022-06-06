@@ -10,8 +10,8 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
-	IIdeaSituation,
-	IdeaSituationApi,
+	ISituationIdea,
+	SituationIdeaApi,
 } from '@votecube/votecube';
 import {
 	ReplyDao,
@@ -22,6 +22,9 @@ import {
 import {
 	ReplyTypeDao,
 } from '../../dao/ReplyTypeDao';
+import {
+	IdeaReplyUrgency,
+} from '../../ddl/IdeaReplyUrgency';
 import {
 	Reply,
 } from '../../ddl/Reply';
@@ -52,29 +55,43 @@ export class ReplyApi {
     }
 
     async  getRepliesForSituationThread(
-        situationThreadId: string,
-        userUuid: string
+        situationThreadId: string
     ): Promise<Reply[]> {
-        return await this.replyApi.getRepliesForSituationThread(
-            situationThreadId,
-            userUuid
-        )
+        return await this.replyApi.getRepliesForSituationThread(situationThreadId)
     }
 
     async  addIdea(
         reply: Reply,
-        ideaSituation: IIdeaSituation
+        situationIdea: ISituationIdea
     ): Promise<void> {
         await this.replyApi.addIdea(
             reply,
-            ideaSituation
+            situationIdea
         )
     }
 
     async  rateReply(
-        replyRating: ReplyRating
+        replyRating: ReplyRating,
+        replyUuId: string,
+        situationThreadId: string
     ): Promise<void> {
-        await this.replyApi.rateReply(replyRating)
+        await this.replyApi.rateReply(
+            replyRating,
+            replyUuId,
+            situationThreadId
+        )
+    }
+
+    async  setReplyUrgency(
+        ideaReplyUrgency: IdeaReplyUrgency,
+        replyUuId: string,
+        situationThreadId: string
+    ): Promise<void> {
+        await this.replyApi.setReplyUrgency(
+            ideaReplyUrgency,
+            replyUuId,
+            situationThreadId
+        )
     }
 
     async  addReplyType(

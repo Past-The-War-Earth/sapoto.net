@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
-import { IdeaUrgencyRating } from "./IdeaUrgencyRating";
+import { IdeaReplyUrgency } from "./IdeaReplyUrgency";
 import { ReplyRating } from "./ReplyRating";
 import { ReplyType } from "./ReplyType";
 import { SituationThread } from "./SituationThread";
@@ -13,16 +13,16 @@ export class Reply
 
     text: string
 
-    @Column({ name: 'NUMBER_OF_DOWN_RATINGS'})
+    @Column({ name: 'NUMBER_OF_DOWN_RATINGS' })
     numberOfDownRatings: number;
 
-    @Column({ name: 'NUMBER_OF_UP_RATINGS'})
+    @Column({ name: 'NUMBER_OF_UP_RATINGS' })
     numberOfUpRatings: number;
 
-    @Column({ name: 'URGENCY_TOTAL'})
+    @Column({ name: 'URGENCY_TOTAL' })
     urgencyTotal: number;
 
-    @Column({ name: 'NUMBER_OF_URGENCY_RATINGS'})
+    @Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
     numberOfUrgencyRatings: number;
 
     @ManyToOne()
@@ -44,6 +44,6 @@ export class Reply
     replyTypes?: ReplyType[]
 
     @OneToMany({ mappedBy: 'reply' })
-    urgencyRatings?: IdeaUrgencyRating[]
+    ideaReplyUrgencies?: IdeaReplyUrgency[]
 
 }

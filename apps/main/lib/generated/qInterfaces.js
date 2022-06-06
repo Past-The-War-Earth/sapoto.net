@@ -1,4 +1,4 @@
-export * from './qideaurgencyrating';
+export * from './qideareplyurgency';
 export * from './qreply';
 export * from './qreplyrating';
 export * from './qreplytype';

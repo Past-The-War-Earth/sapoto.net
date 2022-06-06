@@ -40,7 +40,7 @@ __decorate([
 ], Reply.prototype, "replyTypes", void 0);
 __decorate([
     OneToMany({ mappedBy: 'reply' })
-], Reply.prototype, "urgencyRatings", void 0);
+], Reply.prototype, "ideaReplyUrgencies", void 0);
 Reply = __decorate([
     Entity(),
     Table({ name: 'REPLIES' })

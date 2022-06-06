@@ -14,14 +14,17 @@ let ReplyApi = class ReplyApi {
     async addReply(reply) {
         await this.replyApi.addReply(reply);
     }
-    async getRepliesForSituationThread(situationThreadId, userUuid) {
-        return await this.replyApi.getRepliesForSituationThread(situationThreadId, userUuid);
+    async getRepliesForSituationThread(situationThreadId) {
+        return await this.replyApi.getRepliesForSituationThread(situationThreadId);
     }
-    async addIdea(reply, ideaSituation) {
-        await this.replyApi.addIdea(reply, ideaSituation);
+    async addIdea(reply, situationIdea) {
+        await this.replyApi.addIdea(reply, situationIdea);
     }
-    async rateReply(replyRating) {
-        await this.replyApi.rateReply(replyRating);
+    async rateReply(replyRating, replyUuId, situationThreadId) {
+        await this.replyApi.rateReply(replyRating, replyUuId, situationThreadId);
+    }
+    async setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId) {
+        await this.replyApi.setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId);
     }
     async addReplyType(reply, type) {
         await this.replyApi.addReplyType(reply, type);

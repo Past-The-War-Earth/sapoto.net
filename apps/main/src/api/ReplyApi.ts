@@ -1,9 +1,11 @@
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
 import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube"
+import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
 import { ReplyTypeDao } from "../dao/ReplyTypeDao"
+import { IdeaReplyUrgency } from "../ddl/IdeaReplyUrgency"
 import { Reply } from "../ddl/Reply"
 import { ReplyRating } from "../ddl/ReplyRating"
 import { ReplyType } from "../ddl/ReplyType"
@@ -21,8 +23,10 @@ export class ReplyApi {
     replyRatingDao: ReplyRatingDao
 
     @Inject()
-    replyTypeDao: ReplyTypeDao
+    ideaReplyUrgencyDao: IdeaReplyUrgencyDao
 
+    @Inject()
+    replyTypeDao: ReplyTypeDao
 
     @Api()
     async addReply(
@@ -50,15 +54,20 @@ export class ReplyApi {
     @Api()
     async rateReply(
         replyRating: ReplyRating,
-        replyId: string,
+        replyUuId: string,
         situationThreadId: string
     ): Promise<void> {
-        const reply = await this.replyDao.findById(replyId)
-        if(reply.id !== replyRating.reply.id) {
-            
+        const reply: Reply = await this.replyDao.findByUuId(replyUuId)
+        if (reply.id !== replyRating.reply.id) {
+            throw new Error(`replyRating doesn't match replyUuId`)
         }
 
         const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId)
+        if (replyRatings.length) {
+            if (reply.id !== replyRatings[0].reply.id) {
+                throw new Error(`replyRating doesn't match situationThreadUuid`)
+            }
+        }
 
         await this.replyRatingDao.save(replyRating)
 
@@ -66,7 +75,7 @@ export class ReplyApi {
         let numberOfUpRatings = 0
 
         for (const replyRating of replyRatings) {
-            if(replyRating.rating < 0) {
+            if (replyRating.rating < 0) {
                 numberOfDownRatings++
             } else if (replyRating.rating > 0) {
                 numberOfUpRatings++
@@ -75,6 +84,59 @@ export class ReplyApi {
 
         reply.numberOfDownRatings = numberOfDownRatings
         reply.numberOfUpRatings = numberOfUpRatings
+
+        await this.replyDao.save(reply)
+    }
+
+    // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
+    // Do this only in non-server environments since the counts can be widely off across
+    // different save branches
+    @Api(
+        // { server: false }
+    )
+    async updateCounts(
+        situationThreadId: string
+    ): Promise<void> {
+        // const replies = this.replyDao.findAllForSituationThread(situationThreadId);
+
+        // const ideaReplyUrgencies = ideaReplyUrgencyDao.findAllForSituationThread(situationThreadId);
+        // const replyRatings = replyRatingDao.findAllForSituationThread(situationThreadId);
+
+        // // Recompute all counts
+
+        // await this.replyDao.save(replies)
+    }
+
+    @Api()
+    async setReplyUrgency(
+        ideaReplyUrgency: IdeaReplyUrgency,
+        replyUuId: string,
+        situationThreadId: string
+    ): Promise<void> {
+        const reply: Reply = await this.replyDao.findByUuId(replyUuId)
+        if (reply.id !== ideaReplyUrgency.reply.id) {
+            throw new Error(`replyRating doesn't match replyUuId`)
+        }
+
+        const ideaReplyUrgencies = await this.ideaReplyUrgencyDao.findAllForSituationThread(situationThreadId)
+        if (ideaReplyUrgencies.length) {
+            if (reply.id !== ideaReplyUrgencies[0].reply.id) {
+                throw new Error(`ideaReplyUrgency doesn't match situationThreadUuid`)
+            }
+        }
+
+        await this.replyRatingDao.save(ideaReplyUrgency)
+
+        let urgencyTotal = 0
+        let numberOfUrgencyRatings = 0
+
+        for (const ideaReplyUrgency of ideaReplyUrgencies) {
+            numberOfUrgencyRatings++
+            urgencyTotal += ideaReplyUrgency.urgency
+        }
+
+        reply.numberOfUrgencyRatings = numberOfUrgencyRatings
+        reply.urgencyTotal = urgencyTotal
 
         await this.replyDao.save(reply)
     }

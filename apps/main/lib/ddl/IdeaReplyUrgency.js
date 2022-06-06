@@ -6,17 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
 import { RepositoryEntity } from "@airport/holding-pattern";
-let IdeaUrgencyRating = class IdeaUrgencyRating extends RepositoryEntity {
+let IdeaReplyUrgency = class IdeaReplyUrgency extends RepositoryEntity {
 };
 __decorate([
     DbNumber()
-], IdeaUrgencyRating.prototype, "rating", void 0);
+], IdeaReplyUrgency.prototype, "urgency", void 0);
 __decorate([
     ManyToOne()
-], IdeaUrgencyRating.prototype, "reply", void 0);
-IdeaUrgencyRating = __decorate([
+], IdeaReplyUrgency.prototype, "reply", void 0);
+IdeaReplyUrgency = __decorate([
     Entity(),
-    Table({ name: 'IDEA_URGENCY_RATINGS' })
-], IdeaUrgencyRating);
-export { IdeaUrgencyRating };
-//# sourceMappingURL=IdeaUrgencyRating.js.map
+    Table({ name: 'IDEA_REPLY_URGENCIES' })
+], IdeaReplyUrgency);
+export { IdeaReplyUrgency };
+//# sourceMappingURL=IdeaReplyUrgency.js.map

@@ -84,18 +84,18 @@ import {
 	IReplyType,
 } from './replytype';
 import {
-	IdeaUrgencyRatingGraph,
-	IdeaUrgencyRatingEId,
-	IdeaUrgencyRatingEOptionalId,
-	IdeaUrgencyRatingEUpdateProperties,
-	IdeaUrgencyRatingESelect,
-	QIdeaUrgencyRating,
-	QIdeaUrgencyRatingQId,
-	QIdeaUrgencyRatingQRelation,
-} from './qideaurgencyrating';
+	IdeaReplyUrgencyGraph,
+	IdeaReplyUrgencyEId,
+	IdeaReplyUrgencyEOptionalId,
+	IdeaReplyUrgencyEUpdateProperties,
+	IdeaReplyUrgencyESelect,
+	QIdeaReplyUrgency,
+	QIdeaReplyUrgencyQId,
+	QIdeaReplyUrgencyQRelation,
+} from './qideareplyurgency';
 import {
-	IIdeaUrgencyRating,
-} from './ideaurgencyrating';
+	IIdeaReplyUrgency,
+} from './ideareplyurgency';
 import {
 	IReply,
 } from './reply';
@@ -129,7 +129,7 @@ export interface ReplyESelect
 	childReplies?: ReplyESelect;
 	replyRatings?: ReplyRatingESelect;
 	replyTypes?: ReplyTypeESelect;
-	urgencyRatings?: IdeaUrgencyRatingESelect;
+	ideaReplyUrgencies?: IdeaReplyUrgencyESelect;
 
 }
 
@@ -194,7 +194,7 @@ export interface ReplyGraph
 	childReplies?: ReplyGraph[];
 	replyRatings?: ReplyRatingGraph[];
 	replyTypes?: ReplyTypeGraph[];
-	urgencyRatings?: IdeaUrgencyRatingGraph[];
+	ideaReplyUrgencies?: IdeaReplyUrgencyGraph[];
 
 }
 
@@ -271,7 +271,7 @@ export interface QReply extends QRepositoryEntity
 	childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;
 	replyRatings: IQRepositoryEntityOneToManyRelation<IReplyRating, QReplyRating>;
 	replyTypes: IQRepositoryEntityOneToManyRelation<IReplyType, QReplyType>;
-	urgencyRatings: IQRepositoryEntityOneToManyRelation<IIdeaUrgencyRating, QIdeaUrgencyRating>;
+	ideaReplyUrgencies: IQRepositoryEntityOneToManyRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>;
 
 }
 

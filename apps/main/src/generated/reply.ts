@@ -14,8 +14,8 @@ import {
 	IReplyType,
 } from './replytype';
 import {
-	IIdeaUrgencyRating,
-} from './ideaurgencyrating';
+	IIdeaReplyUrgency,
+} from './ideareplyurgency';
 
 
 
@@ -43,7 +43,7 @@ export interface IReply extends IRepositoryEntity {
 	childReplies?: IReply[];
 	replyRatings?: IReplyRating[];
 	replyTypes?: IReplyType[];
-	urgencyRatings?: IIdeaUrgencyRating[];
+	ideaReplyUrgencies?: IIdeaReplyUrgency[];
 
 	// Transient Properties
 

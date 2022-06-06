@@ -47,8 +47,8 @@ import {
 	IReply,
 } from './reply';
 import {
-	IIdeaUrgencyRating,
-} from './ideaurgencyrating';
+	IIdeaReplyUrgency,
+} from './ideareplyurgency';
 
 
 declare function require(moduleName: string): any;
@@ -61,10 +61,10 @@ declare function require(moduleName: string): any;
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface IdeaUrgencyRatingESelect
-    extends RepositoryEntityESelect, IdeaUrgencyRatingEOptionalId {
+export interface IdeaReplyUrgencyESelect
+    extends RepositoryEntityESelect, IdeaReplyUrgencyEOptionalId {
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	urgency?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -76,7 +76,7 @@ export interface IdeaUrgencyRatingESelect
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface IdeaUrgencyRatingEId
+export interface IdeaReplyUrgencyEId
     extends RepositoryEntityEId {
 	// Id Properties
 
@@ -87,7 +87,7 @@ export interface IdeaUrgencyRatingEId
 /**
  * Ids fields and relations only (optional).
  */
-export interface IdeaUrgencyRatingEOptionalId {
+export interface IdeaReplyUrgencyEOptionalId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -97,10 +97,10 @@ export interface IdeaUrgencyRatingEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface IdeaUrgencyRatingEUpdateProperties
+export interface IdeaReplyUrgencyEUpdateProperties
 	extends RepositoryEntityEUpdateProperties {
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	urgency?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	reply?: ReplyEOptionalId;
@@ -110,12 +110,12 @@ export interface IdeaUrgencyRatingEUpdateProperties
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface IdeaUrgencyRatingGraph
-	extends IdeaUrgencyRatingEOptionalId, RepositoryEntityGraph {
+export interface IdeaReplyUrgencyGraph
+	extends IdeaReplyUrgencyEOptionalId, RepositoryEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	urgency?: number | IQNumberField;
 
 	// Relations
 	reply?: ReplyGraph;
@@ -125,7 +125,7 @@ export interface IdeaUrgencyRatingGraph
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface IdeaUrgencyRatingEUpdateColumns
+export interface IdeaReplyUrgencyEUpdateColumns
 	extends RepositoryEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
@@ -134,7 +134,7 @@ export interface IdeaUrgencyRatingEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	RATING?: number | IQNumberField;
+	URGENCY?: number | IQNumberField;
 	REPLIES_RID_1?: number | IQNumberField;
 	REPLIES_AID_1?: number | IQNumberField;
 	REPLIES_ARID_1?: number | IQNumberField;
@@ -144,15 +144,15 @@ export interface IdeaUrgencyRatingEUpdateColumns
 /**
  * CREATE - id fields and relations (required) and non-id fields and relations (optional).
  */
-export interface IdeaUrgencyRatingECreateProperties
-extends Partial<IdeaUrgencyRatingEId>, IdeaUrgencyRatingEUpdateProperties {
+export interface IdeaReplyUrgencyECreateProperties
+extends Partial<IdeaReplyUrgencyEId>, IdeaReplyUrgencyEUpdateProperties {
 }
 
 /**
  * CREATE - id columns (required) and non-id columns (optional).
  */
-export interface IdeaUrgencyRatingECreateColumns
-extends IdeaUrgencyRatingEId, IdeaUrgencyRatingEUpdateColumns {
+export interface IdeaReplyUrgencyECreateColumns
+extends IdeaReplyUrgencyEId, IdeaReplyUrgencyEUpdateColumns {
 }
 
 
@@ -165,14 +165,14 @@ extends IdeaUrgencyRatingEId, IdeaUrgencyRatingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaUrgencyRating extends QRepositoryEntity
+export interface QIdeaReplyUrgency extends QRepositoryEntity
 {
 	// Id Fields
 
 	// Id Relations
 
 	// Non-Id Fields
-	rating: IQNumberField;
+	urgency: IQNumberField;
 
 	// Non-Id Relations
 	reply: QReplyQRelation;
@@ -181,7 +181,7 @@ export interface QIdeaUrgencyRating extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QIdeaUrgencyRatingQId extends QRepositoryEntityQId
+export interface QIdeaReplyUrgencyQId extends QRepositoryEntityQId
 {
 	
 	// Id Fields
@@ -192,7 +192,7 @@ export interface QIdeaUrgencyRatingQId extends QRepositoryEntityQId
 }
 
 // Entity Relation Interface
-export interface QIdeaUrgencyRatingQRelation
-	extends QRepositoryEntityQRelation<IIdeaUrgencyRating, QIdeaUrgencyRating>, QIdeaUrgencyRatingQId {
+export interface QIdeaReplyUrgencyQRelation
+	extends QRepositoryEntityQRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>, QIdeaReplyUrgencyQId {
 }
 

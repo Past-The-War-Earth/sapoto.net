@@ -10,7 +10,7 @@ import { SituationThreadDao } from '../dao/SituationThreadDao';
 import { ReplyTypeDao } from '../dao/ReplyTypeDao';
 import { SITUATION_THREAD_API } from './common-tokens';
 import { ReplyApi, SituationThreadApi } from '../api/api';
-import { IDEA_SITUATION_API } from '@votecube/votecube';
+import { SITUATION_IDEA_API } from '@votecube/votecube';
 export const REPLY_DAO = main.token({
     class: ReplyDao,
     interface: 'ReplyDao',
@@ -38,7 +38,7 @@ SITUATION_THREAD_API.setDependencies({
 });
 REPLY_API.setClass(ReplyApi);
 REPLY_API.setDependencies({
-    ideaSituationApi: IDEA_SITUATION_API,
+    situationIdeaApi: SITUATION_IDEA_API,
     replyDao: REPLY_DAO,
     replyRatingDao: REPLY_RATING_DAO,
     replyTypeDao: REPLY_TYPE_DAO,

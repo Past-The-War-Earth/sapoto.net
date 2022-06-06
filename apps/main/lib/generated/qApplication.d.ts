@@ -1,13 +1,13 @@
 import { QApplication } from '@airport/aviation-communication';
 import { DbApplication, EntityId } from '@airport/ground-control';
-import { QIdeaUrgencyRating } from './qideaurgencyrating';
+import { QIdeaReplyUrgency } from './qideareplyurgency';
 import { QReply } from './qreply';
 import { QReplyRating } from './qreplyrating';
 import { QReplyType } from './qreplytype';
 import { QSituationThread } from './qsituationthread';
 export interface LocalQApplication extends QApplication {
     db: DbApplication;
-    IdeaUrgencyRating: QIdeaUrgencyRating;
+    IdeaReplyUrgency: QIdeaReplyUrgency;
     Reply: QReply;
     ReplyRating: QReplyRating;
     ReplyType: QReplyType;

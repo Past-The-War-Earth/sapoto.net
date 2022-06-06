@@ -3,7 +3,7 @@ import { ISituationThread } from './situationthread';
 import { ISituationIdea } from '@votecube/votecube';
 import { IReplyRating } from './replyrating';
 import { IReplyType } from './replytype';
-import { IIdeaUrgencyRating } from './ideaurgencyrating';
+import { IIdeaReplyUrgency } from './ideareplyurgency';
 export interface IReply extends IRepositoryEntity {
     text?: string;
     numberOfDownRatings?: number;
@@ -16,6 +16,6 @@ export interface IReply extends IRepositoryEntity {
     childReplies?: IReply[];
     replyRatings?: IReplyRating[];
     replyTypes?: IReplyType[];
-    urgencyRatings?: IIdeaUrgencyRating[];
+    ideaReplyUrgencies?: IIdeaReplyUrgency[];
 }
 //# sourceMappingURL=reply.d.ts.map
