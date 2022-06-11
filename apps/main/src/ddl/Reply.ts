@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
 import { IdeaReplyUrgency } from "./IdeaReplyUrgency";
 import { ReplyRating } from "./ReplyRating";
@@ -9,7 +9,7 @@ import { SituationThread } from "./SituationThread";
 @Entity()
 @Table({ name: 'REPLIES' })
 export class Reply
-    extends RepositoryEntity {
+    extends AirEntity {
 
     text: string
 

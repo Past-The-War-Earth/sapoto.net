@@ -1,10 +1,10 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ISituationThread } from './situationthread';
 import { ISituationIdea } from '@votecube/votecube';
 import { IReplyRating } from './replyrating';
 import { IReplyType } from './replytype';
 import { IIdeaReplyUrgency } from './ideareplyurgency';
-export interface IReply extends IRepositoryEntity {
+export interface IReply extends IAirEntity {
     text?: string;
     numberOfDownRatings?: number;
     numberOfUpRatings?: number;

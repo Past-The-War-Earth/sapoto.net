@@ -1,7 +1,7 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ITopic } from './topic';
 import { ISituationRating } from './situationrating';
-export interface ISituation extends IRepositoryEntity {
+export interface ISituation extends IAirEntity {
     text?: string;
     topic?: ITopic;
     ratings?: ISituationRating[];

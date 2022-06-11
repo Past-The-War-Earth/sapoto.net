@@ -9,6 +9,7 @@ export declare class ReplyApi {
     getRepliesForSituationThread(situationThreadId: string): Promise<Reply[]>;
     addIdea(reply: Reply, situationIdea: ISituationIdea): Promise<void>;
     rateReply(replyRating: ReplyRating, replyUuId: string, situationThreadId: string): Promise<void>;
+    updateCounts(situationThreadId: string): Promise<void>;
     setReplyUrgency(ideaReplyUrgency: IdeaReplyUrgency, replyUuId: string, situationThreadId: string): Promise<void>;
     addReplyType(reply: Reply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
 }

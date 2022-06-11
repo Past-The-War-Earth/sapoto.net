@@ -1,6 +1,6 @@
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Topic } from "./Topic";
-export declare class Theme extends RepositoryEntity {
+export declare class Theme extends AirEntity {
     name: string;
     imageName: string;
     topics: Topic[];

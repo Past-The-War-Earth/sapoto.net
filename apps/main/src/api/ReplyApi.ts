@@ -37,9 +37,9 @@ export class ReplyApi {
 
     @Api()
     async getRepliesForSituationThread(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<Reply[]> {
-        return await this.replyDao.findForSituation(situationThreadId)
+        return await this.replyDao.findForSituationThread(situationThreadUuId)
     }
 
     @Api()
@@ -55,16 +55,16 @@ export class ReplyApi {
     async rateReply(
         replyRating: ReplyRating,
         replyUuId: string,
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<void> {
         const reply: Reply = await this.replyDao.findByUuId(replyUuId)
-        if (reply.id !== replyRating.reply.id) {
+        if (reply.uuId !== replyRating.reply.uuId) {
             throw new Error(`replyRating doesn't match replyUuId`)
         }
 
-        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId)
+        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadUuId)
         if (replyRatings.length) {
-            if (reply.id !== replyRatings[0].reply.id) {
+            if (reply.uuId !== replyRatings[0].reply.uuId) {
                 throw new Error(`replyRating doesn't match situationThreadUuid`)
             }
         }
@@ -95,12 +95,12 @@ export class ReplyApi {
         // { server: false }
     )
     async updateCounts(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<void> {
-        // const replies = this.replyDao.findAllForSituationThread(situationThreadId);
+        // const replies = this.replyDao.findAllForSituationThread(situationThreadUuId);
 
-        // const ideaReplyUrgencies = ideaReplyUrgencyDao.findAllForSituationThread(situationThreadId);
-        // const replyRatings = replyRatingDao.findAllForSituationThread(situationThreadId);
+        // const ideaReplyUrgencies = ideaReplyUrgencyDao.findAllForSituationThread(situationThreadUuId);
+        // const replyRatings = replyRatingDao.findAllForSituationThread(situationThreadUuId);
 
         // // Recompute all counts
 
@@ -114,13 +114,13 @@ export class ReplyApi {
         situationThreadId: string
     ): Promise<void> {
         const reply: Reply = await this.replyDao.findByUuId(replyUuId)
-        if (reply.id !== ideaReplyUrgency.reply.id) {
+        if (reply.uuId !== ideaReplyUrgency.reply.uuId) {
             throw new Error(`replyRating doesn't match replyUuId`)
         }
 
         const ideaReplyUrgencies = await this.ideaReplyUrgencyDao.findAllForSituationThread(situationThreadId)
         if (ideaReplyUrgencies.length) {
-            if (reply.id !== ideaReplyUrgencies[0].reply.id) {
+            if (reply.uuId !== ideaReplyUrgencies[0].reply.uuId) {
                 throw new Error(`ideaReplyUrgency doesn't match situationThreadUuid`)
             }
         }

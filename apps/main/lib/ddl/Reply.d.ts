@@ -1,10 +1,10 @@
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
 import { IdeaReplyUrgency } from "./IdeaReplyUrgency";
 import { ReplyRating } from "./ReplyRating";
 import { ReplyType } from "./ReplyType";
 import { SituationThread } from "./SituationThread";
-export declare class Reply extends RepositoryEntity {
+export declare class Reply extends AirEntity {
     text: string;
     numberOfDownRatings: number;
     numberOfUpRatings: number;

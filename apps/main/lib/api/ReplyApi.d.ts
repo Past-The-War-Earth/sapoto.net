@@ -1,4 +1,5 @@
 import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube";
+import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao";
 import { ReplyDao } from "../dao/ReplyDao";
 import { ReplyRatingDao } from "../dao/ReplyRatingDao";
 import { ReplyTypeDao } from "../dao/ReplyTypeDao";
@@ -9,11 +10,13 @@ export declare class ReplyApi {
     situationIdeaApi: SituationIdeaApi;
     replyDao: ReplyDao;
     replyRatingDao: ReplyRatingDao;
+    ideaReplyUrgencyDao: IdeaReplyUrgencyDao;
     replyTypeDao: ReplyTypeDao;
     addReply(reply: Reply): Promise<void>;
-    getRepliesForSituationThread(situationThreadId: string): Promise<Reply[]>;
+    getRepliesForSituationThread(situationThreadUuId: string): Promise<Reply[]>;
     addIdea(reply: Reply, situationIdea: ISituationIdea): Promise<void>;
-    rateReply(replyRating: ReplyRating, replyUuId: string, situationThreadId: string): Promise<void>;
+    rateReply(replyRating: ReplyRating, replyUuId: string, situationThreadUuId: string): Promise<void>;
+    updateCounts(situationThreadUuId: string): Promise<void>;
     setReplyUrgency(ideaReplyUrgency: IdeaReplyUrgency, replyUuId: string, situationThreadId: string): Promise<void>;
     addReplyType(reply: Reply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
 }

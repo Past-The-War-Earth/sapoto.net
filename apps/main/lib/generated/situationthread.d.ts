@@ -1,8 +1,8 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ICounts } from '../ddl/icounts';
 import { ISituation } from '@sapoto/core';
 import { IReply } from './reply';
-export interface ISituationThread extends IRepositoryEntity {
+export interface ISituationThread extends IAirEntity {
     counts?: ICounts;
     situation?: ISituation;
     replies?: IReply[];

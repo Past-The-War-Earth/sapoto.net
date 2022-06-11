@@ -1,5 +1,5 @@
-import { IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { ThemeGraph, ThemeEOptionalId, ThemeESelect, QThemeQRelation } from './qtheme';
 import { SituationGraph, SituationESelect, QSituation } from './qsituation';
 import { ISituation } from './situation';
@@ -7,7 +7,7 @@ import { ITopic } from './topic';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface TopicESelect extends RepositoryEntityESelect, TopicEOptionalId {
+export interface TopicESelect extends AirEntityESelect, TopicEOptionalId {
     name?: string | IQStringField;
     imagePath?: string | IQStringField;
     theme?: ThemeESelect;
@@ -16,7 +16,7 @@ export interface TopicESelect extends RepositoryEntityESelect, TopicEOptionalId 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface TopicEId extends RepositoryEntityEId {
+export interface TopicEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -26,7 +26,7 @@ export interface TopicEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface TopicEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface TopicEUpdateProperties extends AirEntityEUpdateProperties {
     name?: string | IQStringField;
     imagePath?: string | IQStringField;
     theme?: ThemeEOptionalId;
@@ -34,7 +34,7 @@ export interface TopicEUpdateProperties extends RepositoryEntityEUpdatePropertie
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface TopicGraph extends TopicEOptionalId, RepositoryEntityGraph {
+export interface TopicGraph extends TopicEOptionalId, AirEntityGraph {
     name?: string | IQStringField;
     imagePath?: string | IQStringField;
     theme?: ThemeGraph;
@@ -43,8 +43,9 @@ export interface TopicGraph extends TopicEOptionalId, RepositoryEntityGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface TopicEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface TopicEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -68,14 +69,14 @@ export interface TopicECreateColumns extends TopicEId, TopicEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTopic extends QRepositoryEntity {
+export interface QTopic extends QAirEntity {
     name: IQStringField;
     imagePath: IQStringField;
     theme: QThemeQRelation;
-    situations: IQRepositoryEntityOneToManyRelation<ISituation, QSituation>;
+    situations: IQAirEntityOneToManyRelation<ISituation, QSituation>;
 }
-export interface QTopicQId extends QRepositoryEntityQId {
+export interface QTopicQId extends QAirEntityQId {
 }
-export interface QTopicQRelation extends QRepositoryEntityQRelation<ITopic, QTopic>, QTopicQId {
+export interface QTopicQRelation extends QAirEntityQRelation<ITopic, QTopic>, QTopicQId {
 }
 //# sourceMappingURL=qtopic.d.ts.map

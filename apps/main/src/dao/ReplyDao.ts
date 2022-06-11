@@ -6,22 +6,24 @@ import {
     BaseReplyDao,
     Q,
     QReply,
+    QSituationThread
 } from "../generated/generated";
 
 @Injected()
 export class ReplyDao
     extends BaseReplyDao {
 
-    async findForSituation(
-        situationThreadId: string
+    async findForSituationThread(
+        situationThreadUuId: string
     ): Promise<Reply[]> {
         let r: QReply,
-            a: QActor
+            a: QActor,
+            st: QSituationThread
         return await this._find({
             select: {
                 '*': Y,
+                uuId: Y,
                 actor: {
-                    uuId: Y,
                     user: {
                         username: Y
                     }
@@ -31,7 +33,7 @@ export class ReplyDao
                 },
                 situationIdea: {
                     agreementShareTotal: Y,
-                    numberOfAgreementRatings: Y
+                    numberOfAgreements: Y
                 }
             },
             from: [
@@ -39,9 +41,10 @@ export class ReplyDao
                 a = r.actor.leftJoin(),
                 a.user.leftJoin(),
                 r.replyTypes.leftJoin(),
-                r.situationIdea.leftJoin()
+                r.situationIdea.leftJoin(),
+                st = r.situationThread.leftJoin()
             ],
-            where: r.situationThread.equals(situationThreadId)
+            where: st.equals(situationThreadUuId)
         })
     }
 }

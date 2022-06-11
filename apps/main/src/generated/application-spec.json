@@ -25,6 +25,10 @@
 								"isAsync": true,
 								"parameters": []
 							},
+							"updateCounts": {
+								"isAsync": true,
+								"parameters": []
+							},
 							"setReplyUrgency": {
 								"isAsync": true,
 								"parameters": []
@@ -311,7 +315,7 @@
 					],
 					"index": 0,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ReplyRating",
 					"properties": [
 						{
@@ -734,7 +738,7 @@
 					],
 					"index": 1,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ReplyType",
 					"properties": [
 						{
@@ -1154,7 +1158,7 @@
 					],
 					"index": 2,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "SituationThread",
 					"properties": [
 						{
@@ -1791,7 +1795,7 @@
 					],
 					"index": 3,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Reply",
 					"properties": [
 						{
@@ -2383,7 +2387,7 @@
 					],
 					"index": 4,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "IdeaReplyUrgency",
 					"properties": [
 						{

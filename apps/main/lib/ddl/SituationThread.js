@@ -5,8 +5,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Entity, Json, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
-let SituationThread = class SituationThread extends RepositoryEntity {
+import { AirEntity } from "@airport/holding-pattern";
+let SituationThread = class SituationThread extends AirEntity {
 };
 __decorate([
     ManyToOne()

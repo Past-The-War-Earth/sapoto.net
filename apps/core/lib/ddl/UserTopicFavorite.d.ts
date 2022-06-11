@@ -1,6 +1,6 @@
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Topic } from "./Topic";
-export declare class UserTopicFavorite extends RepositoryEntity {
+export declare class UserTopicFavorite extends AirEntity {
     favorite: boolean;
     topic: Topic;
 }

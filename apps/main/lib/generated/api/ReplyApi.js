@@ -23,6 +23,9 @@ let ReplyApi = class ReplyApi {
     async rateReply(replyRating, replyUuId, situationThreadId) {
         await this.replyApi.rateReply(replyRating, replyUuId, situationThreadId);
     }
+    async updateCounts(situationThreadId) {
+        await this.replyApi.updateCounts(situationThreadId);
+    }
     async setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId) {
         await this.replyApi.setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId);
     }

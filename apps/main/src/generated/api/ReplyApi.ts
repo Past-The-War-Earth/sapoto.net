@@ -14,6 +14,9 @@ import {
 	SituationIdeaApi,
 } from '@votecube/votecube';
 import {
+	IdeaReplyUrgencyDao,
+} from '../../dao/IdeaReplyUrgencyDao';
+import {
 	ReplyDao,
 } from '../../dao/ReplyDao';
 import {
@@ -80,6 +83,12 @@ export class ReplyApi {
             replyUuId,
             situationThreadId
         )
+    }
+
+    async  updateCounts(
+        situationThreadId: string
+    ): Promise<void> {
+        await this.replyApi.updateCounts(situationThreadId)
     }
 
     async  setReplyUrgency(

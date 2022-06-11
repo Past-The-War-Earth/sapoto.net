@@ -1,6 +1,6 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ITopic } from './topic';
-export interface ITheme extends IRepositoryEntity {
+export interface ITheme extends IAirEntity {
     name?: string;
     imageName?: string;
     topics?: ITopic[];

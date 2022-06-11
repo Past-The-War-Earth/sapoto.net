@@ -1,6 +1,6 @@
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Reply } from "./Reply";
-export declare class ReplyType extends RepositoryEntity {
+export declare class ReplyType extends AirEntity {
     reply: Reply;
     type: 'comment' | 'experience' | 'idea' | 'question';
 }

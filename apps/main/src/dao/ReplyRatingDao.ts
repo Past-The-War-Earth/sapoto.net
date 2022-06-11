@@ -7,6 +7,7 @@ import { BaseReplyRatingDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 import { QReply } from "../generated/qreply";
 import { QReplyRating } from "../generated/qreplyrating";
+import { QSituationThread } from "../generated/qsituationthread";
 
 @Injected()
 export class ReplyRatingDao
@@ -14,12 +15,13 @@ export class ReplyRatingDao
 
         async findAllForUserAndSituationThread(
             userId: string,
-            situationThreadId: string
+            situationThreadUuId: string
         ): Promise<ReplyRating[]> {
             let rr: QReplyRating,
                 a: QActor,
                 u: QUser,
-                r: QReply
+                r: QReply,
+                st: QSituationThread
             return await this._find({
                 select: {},
                 from: [
@@ -30,23 +32,25 @@ export class ReplyRatingDao
                 ],
                 where: and(
                     u.uuId.equals(userId),
-                    r.situationThread.equals(situationThreadId)
+                    st.equals(situationThreadUuId)
                 )
             })
         }
 
         async findAllForSituationThread(
-            situationThreadId: string
+            situationThreadUuId: string
         ): Promise<ReplyRating[]> {
             let rr: QReplyRating,
-                r: QReply
+                r: QReply,
+                st: QSituationThread
             return await this._find({
                 select: {},
                 from: [
                     rr = Q.ReplyRating,
-                    r = rr.reply.leftJoin()
+                    r = rr.reply.leftJoin(),
+                    st = r.situationThread.leftJoin()
                 ],
-                where: r.situationThread.equals(situationThreadId)
+                where: st.equals(situationThreadUuId)
             })
         }
 

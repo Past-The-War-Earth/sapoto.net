@@ -1,12 +1,12 @@
 import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "./Situation";
 import { Theme } from "./Theme";
 
 @Entity()
 @Table({ name: 'TOPIC' })
 export class Topic
-    extends RepositoryEntity {
+    extends AirEntity {
 
     name: string
 

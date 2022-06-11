@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	ThemeGraph,
@@ -75,7 +75,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface TopicESelect
-    extends RepositoryEntityESelect, TopicEOptionalId {
+    extends AirEntityESelect, TopicEOptionalId {
 	// Non-Id Properties
 	name?: string | IQStringField;
 	imagePath?: string | IQStringField;
@@ -92,7 +92,7 @@ export interface TopicESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface TopicEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -113,7 +113,7 @@ export interface TopicEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface TopicEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	name?: string | IQStringField;
 	imagePath?: string | IQStringField;
@@ -127,7 +127,7 @@ export interface TopicEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface TopicGraph
-	extends TopicEOptionalId, RepositoryEntityGraph {
+	extends TopicEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -144,9 +144,10 @@ export interface TopicGraph
  * UPDATE - non-id columns (optional).
  */
 export interface TopicEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -183,7 +184,7 @@ extends TopicEId, TopicEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTopic extends QRepositoryEntity
+export interface QTopic extends QAirEntity
 {
 	// Id Fields
 
@@ -195,13 +196,13 @@ export interface QTopic extends QRepositoryEntity
 
 	// Non-Id Relations
 	theme: QThemeQRelation;
-	situations: IQRepositoryEntityOneToManyRelation<ISituation, QSituation>;
+	situations: IQAirEntityOneToManyRelation<ISituation, QSituation>;
 
 }
 
 
 // Entity Id Interface
-export interface QTopicQId extends QRepositoryEntityQId
+export interface QTopicQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -213,6 +214,6 @@ export interface QTopicQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QTopicQRelation
-	extends QRepositoryEntityQRelation<ITopic, QTopic>, QTopicQId {
+	extends QAirEntityQRelation<ITopic, QTopic>, QTopicQId {
 }
 

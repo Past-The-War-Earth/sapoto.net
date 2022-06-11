@@ -1,7 +1,7 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ITheme } from './theme';
 import { ISituation } from './situation';
-export interface ITopic extends IRepositoryEntity {
+export interface ITopic extends IAirEntity {
     name?: string;
     imagePath?: string;
     theme?: ITheme;

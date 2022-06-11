@@ -6,45 +6,50 @@ import { BaseIdeaReplyUrgencyDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 import { QIdeaReplyUrgency } from "../generated/qideareplyurgency";
 import { QReply } from "../generated/qreply";
+import { QSituationThread } from "../generated/qsituationthread";
 
 export class IdeaReplyUrgencyDao
     extends BaseIdeaReplyUrgencyDao {
 
     async findAllForUserAndSituationThread(
-        userId: string,
-        situationThreadId: string
+        userUuId: string,
+        situationThreadUuId: string
     ): Promise<IdeaReplyUrgency[]> {
         let iru: QIdeaReplyUrgency,
             a: QActor,
             u: QUser,
-            r: QReply
+            r: QReply,
+            st: QSituationThread
         return await this._find({
             select: {},
             from: [
                 iru = Q.IdeaUrgencyRating,
                 a = iru.actor.leftJoin(),
                 u = a.user.leftJoin(),
-                r = iru.reply.leftJoin()
+                r = iru.reply.leftJoin(),
+                st = r.situationThread.leftJoin()
             ],
             where: and(
-                u.uuId.equals(userId),
-                r.situationThread.equals(situationThreadId)
+                u.uuId.equals(userUuId),
+                st.equals(situationThreadUuId)
             )
         })
     }
 
     async findAllForSituationThread(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<IdeaReplyUrgency[]> {
         let iru: QIdeaReplyUrgency,
-            r: QReply
+            r: QReply,
+            st: QSituationThread
         return await this._find({
             select: {},
             from: [
                 iru = Q.IdeaUrgencyRating,
-                r = iru.reply.leftJoin()
+                r = iru.reply.leftJoin(),
+                st = r.situationThread.leftJoin()
             ],
-            where: r.situationThread.equals(situationThreadId)
+            where: st.equals(situationThreadUuId)
         })
     }
 }
