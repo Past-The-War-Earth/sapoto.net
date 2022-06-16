@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Reply } from '@sapoto/main';
 import { IdeaSituation } from '@votecube/votecube';
 import { NumberUtilsService } from './number-utils.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class ReplyService {
   newReplyId = 1000
 
   constructor(
-    private numberUtilsService: NumberUtilsService
+    private numberUtilsService: NumberUtilsService,
+    private userService: UserService
   ) {
   }
 
@@ -25,10 +27,9 @@ export class ReplyService {
         reasons: 0,
         replies: 0
       },
-      createdAt: new Date().getTime(),
-      createdBy: {
-        username: 'You',
-        ranking: 100
+      createdAt: new Date(),
+      actor: {
+        user: this.userService.getUser()
       },
       designations: [],
       eisenhowerMatrix: {
@@ -126,11 +127,11 @@ export class ReplyService {
 
       switch (sortType) {
         case 'postRating':
-          value1 = reply2.ratings.up - reply2.ratings.down
-          value2 = reply1.ratings.up - reply1.ratings.down
+          value1 = reply2.numberOfUpRatings - reply2.numberOfDownRatings
+          value2 = reply1.numberOfUpRatings - reply1.numberOfDownRatings
           break;
         case 'time':
-          return this.getValueSortComparison(reply2.createdAt, reply1.createdAt)
+          return this.getValueSortComparison(reply2.createdAt.getTime(), reply1.createdAt.getTime())
         case 'userRanking':
           return this.getValueSortComparison(reply2.createdBy.ranking, reply1.createdBy.ranking)
       }
@@ -142,11 +143,11 @@ export class ReplyService {
         return this.getValueSortComparison(value1, value2)
       }
       if (reply1IsIdea && reply2IsIdea) {
-        let value1 = reply2.votes.users ? reply2.votes.totalPoints / reply2.votes.users : 0
-        let value2 = reply1.votes.users ? reply1.votes.totalPoints / reply1.votes.users : 0
+        let value1 = reply2.numberOfUrgencyRatings ? reply2.urgencyTotal / reply2.numberOfUrgencyRatings : 0
+        let value2 = reply1.numberOfUrgencyRatings ? reply1.urgencyTotal / reply1.numberOfUrgencyRatings : 0
         let result = this.getValueSortComparison(value1, value2)
         if (result == 0) {
-          return this.getValueSortComparison(reply2.votes.users, reply1.votes.users)
+          return this.getValueSortComparison(reply2.numberOfUrgencyRatings, reply1.numberOfUrgencyRatings)
         }
         return result
       }

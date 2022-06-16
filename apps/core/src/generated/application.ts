@@ -38,7 +38,7 @@ export const APPLICATION = {
 								"isAsync": true,
 								"parameters": []
 							},
-							"getById": {
+							"findByUuId": {
 								"isAsync": true,
 								"parameters": []
 							}

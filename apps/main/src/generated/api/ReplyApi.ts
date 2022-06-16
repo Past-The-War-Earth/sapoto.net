@@ -58,9 +58,9 @@ export class ReplyApi {
     }
 
     async  getRepliesForSituationThread(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<Reply[]> {
-        return await this.replyApi.getRepliesForSituationThread(situationThreadId)
+        return await this.replyApi.getRepliesForSituationThread(situationThreadUuId)
     }
 
     async  addIdea(
@@ -76,19 +76,19 @@ export class ReplyApi {
     async  rateReply(
         replyRating: ReplyRating,
         replyUuId: string,
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<void> {
         await this.replyApi.rateReply(
             replyRating,
             replyUuId,
-            situationThreadId
+            situationThreadUuId
         )
     }
 
     async  updateCounts(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<void> {
-        await this.replyApi.updateCounts(situationThreadId)
+        await this.replyApi.updateCounts(situationThreadUuId)
     }
 
     async  setReplyUrgency(

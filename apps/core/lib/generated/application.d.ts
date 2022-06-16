@@ -36,7 +36,7 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        getById: {
+                        findByUuId: {
                             isAsync: boolean;
                             parameters: any[];
                         };
