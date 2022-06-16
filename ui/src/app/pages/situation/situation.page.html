@@ -18,9 +18,10 @@
 </ion-content>
 <app-enter-reply></app-enter-reply>
 <!--
-  <app-reply-entry-bar></app-reply-entry-bar>
+  <app-reply-entry-bar [situationThread]="situationThread"></app-reply-entry-bar>
 -->
-<app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [replyType]="getPostingReplyType()">
+<app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [replyType]="getPostingReplyType()"
+  [situationThread]="situationThread">
 </app-post-reply>
 <app-tools-menu *ngIf="showToolsMenu" (onFilterChange)="filter($event)" (onPostReply)="postAReply($event)"
   contentId="situation-content" menuId="situation-menu" title="Situation Tools"></app-tools-menu>

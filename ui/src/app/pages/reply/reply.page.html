@@ -10,8 +10,8 @@
     [action]="replyAction" [parent]="reply" [replies]="replies" actionsTriggerElementId="reply-actions-button">
   </app-reply-listing>
 </ion-content>
-<app-reply-entry-bar></app-reply-entry-bar>
+<app-reply-entry-bar [situationThread]="reply.situationThread"></app-reply-entry-bar>
 <app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [parent]="reply"
-  [replyType]="getPostingReplyType()"></app-post-reply>
+  [replyType]="getPostingReplyType()" [situationThread]="reply.situationThread"></app-post-reply>
 <app-tools-menu *ngIf="showToolsMenu" (onFilterChange)="filter($event)" (onPostReply)="postAReply($event)"
   [parent]="reply" contentId="reply-content" menuId="reply-menu" title="Reply Tools"></app-tools-menu>

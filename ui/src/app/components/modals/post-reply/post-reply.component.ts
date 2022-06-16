@@ -3,6 +3,7 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { ReplyService } from '../../../services/reply.service';
+import { Reply, ReplyType, SituationThread } from '@sapoto/main';
 
 @Component({
   selector: 'app-post-reply',
@@ -11,13 +12,14 @@ import { ReplyService } from '../../../services/reply.service';
 })
 export class PostReplyComponent implements OnInit {
 
-  @Input() replyType
-  @Input() parent
+  @Input() replyType: ReplyType
+  @Input() parent: ReplyType
+  @Input() situationThread: SituationThread
 
   @Output() onDone = new EventEmitter()
 
   quillModules
-  reply
+  reply: Reply
   sharedClicker = new Clicker()
   visible = true
 
@@ -25,13 +27,13 @@ export class PostReplyComponent implements OnInit {
     replyService: ReplyService,
     private quillService: QuillService
   ) {
-    this.reply = replyService.getNewReply()
+    this.reply = replyService.getNewReply(this.situationThread)
     this.quillModules = this.quillService.quillModules
   }
 
   ngOnInit() {
     if (this.replyType) {
-      this.reply.designations.push(this.replyType)
+      this.reply.replyTypes.push(this.replyType)
     }
   }
 

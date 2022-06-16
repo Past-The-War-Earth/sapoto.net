@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Reply } from '@sapoto/main';
-import { IdeaSituation } from '@votecube/votecube';
+import { Reply, SituationThread } from '@sapoto/main';
+import { SituationIdea } from '@votecube/votecube';
 import { NumberUtilsService } from './number-utils.service';
 import { UserService } from './user.service';
 
@@ -9,50 +9,30 @@ import { UserService } from './user.service';
 })
 export class ReplyService {
 
-  newReplyId = 1000
-
   constructor(
     private numberUtilsService: NumberUtilsService,
     private userService: UserService
   ) {
   }
+getNewReply
 
-
-  getNewReply(): Reply {
+  (
+    situationThread: SituationThread
+  ): Reply {
     return {
-      counts: {
-        experiences: 0,
-        ideas: 0,
-        questions: 0,
-        reasons: 0,
-        replies: 0
-      },
-      createdAt: new Date(),
       actor: {
         user: this.userService.getUser()
       },
-      designations: [],
-      eisenhowerMatrix: {
-        importance: 0,
-        urgency: 0,
-        votes: 0,
-        user: {
-          importance: 0,
-          urgency: 0
-        }
-      },
-      id: ++this.newReplyId,
-      questionTypes: [],
-      ratings: {
-        down: 0,
-        user: 0,
-        up: 0,
-      },
+      createdAt: new Date(),
+      ideaReplyUrgencies: [],
+      numberOfDownRatings: 0,
+      numberOfUpRatings: 0,
+      numberOfUrgencyRatings: 0,
+      replyTypes: [],
+      replyRatings: [],
+      situationThread,
       text: '',
-      votes: {
-        totalPoints: 0,
-        users: 0,
-      },
+      urgencyTotal: 0
     }
   }
 
@@ -94,7 +74,7 @@ export class ReplyService {
   }
 
   getAccentPercentage(
-    ideaSituation: IdeaSituation
+    ideaSituation: SituationIdea
   ) {
     let votes = ideaSituation.votes
     let numUsers = votes.users
@@ -102,7 +82,7 @@ export class ReplyService {
   }
 
   getAccentAverage(
-    ideaSituation: IdeaSituation
+    ideaSituation: SituationIdea
   ) {
     let votes = ideaSituation.votes
     let numUsers = votes.users
@@ -133,7 +113,7 @@ export class ReplyService {
         case 'time':
           return this.getValueSortComparison(reply2.createdAt.getTime(), reply1.createdAt.getTime())
         case 'userRanking':
-          return this.getValueSortComparison(reply2.createdBy.ranking, reply1.createdBy.ranking)
+          return this.getValueSortComparison(reply2.actor.user.ranking, reply1.actor.user.ranking)
       }
 
       const reply1IsIdea = reply1.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
