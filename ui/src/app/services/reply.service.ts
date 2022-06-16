@@ -14,9 +14,8 @@ export class ReplyService {
     private userService: UserService
   ) {
   }
-getNewReply
 
-  (
+  getNewReply(
     situationThread: SituationThread
   ): Reply {
     return {
@@ -51,42 +50,42 @@ getNewReply
 
   isComment(
     reply: Reply
-  ) {
+  ): boolean {
     return reply && !reply.replyTypes.length
   }
 
   isQuestion(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('question', reply)
   }
 
   isIdea(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('idea', reply)
   }
 
   isExperience(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('experience', reply)
   }
 
   getAccentPercentage(
     ideaSituation: SituationIdea
-  ) {
-    let votes = ideaSituation.votes
-    let numUsers = votes.users
-    return numUsers ? Math.ceil(votes.totalPoints / numUsers) : 0
+  ): number {
+    return ideaSituation.numberOfAgreements
+      ? Math.ceil(ideaSituation.agreementShareTotal / ideaSituation.numberOfAgreements)
+      : 0
   }
 
   getAccentAverage(
     ideaSituation: SituationIdea
-  ) {
-    let votes = ideaSituation.votes
-    let numUsers = votes.users
-    let average = numUsers ? votes.totalPoints / numUsers : 0
+  ): string {
+    let average = ideaSituation.numberOfAgreements
+      ? Math.ceil(ideaSituation.agreementShareTotal / ideaSituation.numberOfAgreements)
+      : 0
 
     if (!average) {
       return ""
@@ -95,9 +94,9 @@ getNewReply
   }
 
   sortBy(
-    sortType: 'time' | 'postRating' | 'userRanking',
+    sortType: 'time' | 'postRating' | 'userRanking' | 'urgency',
     replies: Reply[]
-  ) {
+  ): void {
     replies.sort((
       reply1,
       reply2
@@ -154,7 +153,7 @@ getNewReply
   hasAnyOfDesignations(
     designations: ('comment' | 'experience' | 'idea' | 'question')[],
     reply: Reply
-  ) {
+  ): boolean {
     for (let i = 0; i < designations.length; i++) {
       if (this.hasADesignation(designations[i], reply)) {
         return true
@@ -166,7 +165,7 @@ getNewReply
   hasADesignation(
     designation: 'comment' | 'experience' | 'idea' | 'question',
     reply: Reply
-  ) {
+  ): boolean {
     if (!reply) {
       return false
     }
@@ -178,19 +177,19 @@ getNewReply
 
   canHaveIdeas(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent
   }
 
   canHaveExperiences(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent || this.hasADesignation('idea', parent)
   }
 
   canHaveQuestions(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent
       || this.hasAnyOfDesignations(['idea', 'experience'], parent)
   }

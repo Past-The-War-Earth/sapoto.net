@@ -13,7 +13,7 @@ import { Reply, ReplyType, SituationThread } from '@sapoto/main';
 export class PostReplyComponent implements OnInit {
 
   @Input() replyType: ReplyType
-  @Input() parent: ReplyType
+  @Input() parent: Reply
   @Input() situationThread: SituationThread
 
   @Output() onDone = new EventEmitter()
