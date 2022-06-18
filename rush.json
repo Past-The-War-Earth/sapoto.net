@@ -77,30 +77,30 @@
       "projectFolder": "../../AIR/AIRport/apis/terminal-map",
       "shouldPublish": true
     },
-    // "db" folder (alphabetical order)
+    // "databases" folder (alphabetical order)
     {
       "packageName": "@airport/mysql",
-      "projectFolder": "../../AIR/AIRport/db/mysql",
+      "projectFolder": "../../AIR/AIRport/databases/mysql",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/postgres",
-      "projectFolder": "../../AIR/AIRport/db/postgres",
+      "projectFolder": "../../AIR/AIRport/databases/postgres",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/sequence",
-      "projectFolder": "../../AIR/AIRport/db/sequence",
+      "projectFolder": "../../AIR/AIRport/databases/sequence",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/sqlite",
-      "projectFolder": "../../AIR/AIRport/db/sqlite",
+      "projectFolder": "../../AIR/AIRport/databases/sqlite",
       "shouldPublish": true
     },
     {
       "packageName": "@airport/sqljs",
-      "projectFolder": "../../AIR/AIRport/db/sqljs",
+      "projectFolder": "../../AIR/AIRport/databases/sqljs",
       "shouldPublish": true
     },
     // "engines" folder (alphabetical order)
@@ -114,15 +114,9 @@
       "projectFolder": "../../AIR/AIRport/engines/tower",
       "shouldPublish": true
     },
-    // "execs" folder (alphabetical order)
-    {
-      "packageName": "@airport/web-terminal",
-      "projectFolder": "../../AIR/AIRport/execs/web-terminal",
-      "shouldPublish": true
-    },
     {
       "packageName": "@airport/web-tower",
-      "projectFolder": "../../AIR/AIRport/execs/web-tower",
+      "projectFolder": "../../AIR/AIRport/platforms/web-tower",
       "shouldPublish": true
     },
     // "generators" folder (alphabetical order)
@@ -212,6 +206,12 @@
     {
       "packageName": "@airport/processor-common",
       "projectFolder": "../../AIR/AIRport/nonhub/processor-common",
+      "shouldPublish": true
+    },
+    // "platforms" folder (alphabetical order)
+    {
+      "packageName": "@airport/web-terminal",
+      "projectFolder": "../../AIR/AIRport/platforms/web-terminal",
       "shouldPublish": true
     },
     // "schemas" folder (alphabetical order)
