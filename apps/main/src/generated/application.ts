@@ -26,6 +26,10 @@ export const APPLICATION = {
 								"isAsync": true,
 								"parameters": []
 							},
+							"updateCounts": {
+								"isAsync": true,
+								"parameters": []
+							},
 							"setReplyUrgency": {
 								"isAsync": true,
 								"parameters": []
@@ -312,7 +316,7 @@ export const APPLICATION = {
 					],
 					"index": 0,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ReplyRating",
 					"properties": [
 						{
@@ -735,7 +739,7 @@ export const APPLICATION = {
 					],
 					"index": 1,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "ReplyType",
 					"properties": [
 						{
@@ -1155,7 +1159,7 @@ export const APPLICATION = {
 					],
 					"index": 2,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "SituationThread",
 					"properties": [
 						{
@@ -1792,7 +1796,7 @@ export const APPLICATION = {
 					],
 					"index": 3,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "Reply",
 					"properties": [
 						{
@@ -2384,7 +2388,7 @@ export const APPLICATION = {
 					],
 					"index": 4,
 					"isLocal": false,
-					"isRepositoryEntity": true,
+					"isAirEntity": true,
 					"name": "IdeaReplyUrgency",
 					"properties": [
 						{

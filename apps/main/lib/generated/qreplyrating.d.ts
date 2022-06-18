@@ -1,18 +1,18 @@
 import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { ReplyGraph, ReplyEOptionalId, ReplyESelect, QReplyQRelation } from './qreply';
 import { IReplyRating } from './replyrating';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface ReplyRatingESelect extends RepositoryEntityESelect, ReplyRatingEOptionalId {
+export interface ReplyRatingESelect extends AirEntityESelect, ReplyRatingEOptionalId {
     rating?: number | IQNumberField;
     reply?: ReplyESelect;
 }
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface ReplyRatingEId extends RepositoryEntityEId {
+export interface ReplyRatingEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -22,21 +22,21 @@ export interface ReplyRatingEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface ReplyRatingEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface ReplyRatingEUpdateProperties extends AirEntityEUpdateProperties {
     rating?: number | IQNumberField;
     reply?: ReplyEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ReplyRatingGraph extends ReplyRatingEOptionalId, RepositoryEntityGraph {
+export interface ReplyRatingGraph extends ReplyRatingEOptionalId, AirEntityGraph {
     rating?: number | IQNumberField;
     reply?: ReplyGraph;
 }
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface ReplyRatingEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface ReplyRatingEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -61,12 +61,12 @@ export interface ReplyRatingECreateColumns extends ReplyRatingEId, ReplyRatingEU
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QReplyRating extends QRepositoryEntity {
+export interface QReplyRating extends QAirEntity {
     rating: IQNumberField;
     reply: QReplyQRelation;
 }
-export interface QReplyRatingQId extends QRepositoryEntityQId {
+export interface QReplyRatingQId extends QAirEntityQId {
 }
-export interface QReplyRatingQRelation extends QRepositoryEntityQRelation<IReplyRating, QReplyRating>, QReplyRatingQId {
+export interface QReplyRatingQRelation extends QAirEntityQRelation<IReplyRating, QReplyRating>, QReplyRatingQId {
 }
 //# sourceMappingURL=qreplyrating.d.ts.map

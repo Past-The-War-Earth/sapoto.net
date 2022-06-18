@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SituationThread } from '@sapoto/main';
+import { Reply, SituationThread } from '@sapoto/main';
 import { Subscription } from 'rxjs';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
 
@@ -12,7 +12,7 @@ import { SituationThreadService } from 'src/app/services/situation-thread.servic
 export class SituationPage
   implements OnDestroy, OnInit {
 
-  activeReply
+  activeReply: Reply
   postingReplyType
   replyAction
   situationAction

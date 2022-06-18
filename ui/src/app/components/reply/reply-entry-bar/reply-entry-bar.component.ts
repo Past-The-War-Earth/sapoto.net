@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Reply, SituationThread } from '@sapoto/main';
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { ReplyService } from '../../../services/reply.service';
 })
 export class ReplyEntryBarComponent implements OnInit, OnDestroy {
 
-  reply
+  @Input() situationThread: SituationThread
+
+  reply: Reply
 
   // resizeHandle = () => {
   //   this.windowResized()
@@ -76,7 +79,7 @@ export class ReplyEntryBarComponent implements OnInit, OnDestroy {
   constructor(
     private replyService: ReplyService
   ) {
-    this.reply = replyService.getNewReply()
+    this.reply = replyService.getNewReply(this.situationThread)
   }
 
   windowResized() {

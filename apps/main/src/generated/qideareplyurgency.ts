@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	ReplyGraph,
@@ -62,7 +62,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface IdeaReplyUrgencyESelect
-    extends RepositoryEntityESelect, IdeaReplyUrgencyEOptionalId {
+    extends AirEntityESelect, IdeaReplyUrgencyEOptionalId {
 	// Non-Id Properties
 	urgency?: number | IQNumberField;
 
@@ -77,7 +77,7 @@ export interface IdeaReplyUrgencyESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface IdeaReplyUrgencyEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -98,7 +98,7 @@ export interface IdeaReplyUrgencyEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface IdeaReplyUrgencyEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	urgency?: number | IQNumberField;
 
@@ -111,7 +111,7 @@ export interface IdeaReplyUrgencyEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface IdeaReplyUrgencyGraph
-	extends IdeaReplyUrgencyEOptionalId, RepositoryEntityGraph {
+	extends IdeaReplyUrgencyEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -126,7 +126,7 @@ export interface IdeaReplyUrgencyGraph
  * UPDATE - non-id columns (optional).
  */
 export interface IdeaReplyUrgencyEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
@@ -165,7 +165,7 @@ extends IdeaReplyUrgencyEId, IdeaReplyUrgencyEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QIdeaReplyUrgency extends QRepositoryEntity
+export interface QIdeaReplyUrgency extends QAirEntity
 {
 	// Id Fields
 
@@ -181,7 +181,7 @@ export interface QIdeaReplyUrgency extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QIdeaReplyUrgencyQId extends QRepositoryEntityQId
+export interface QIdeaReplyUrgencyQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -193,6 +193,6 @@ export interface QIdeaReplyUrgencyQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QIdeaReplyUrgencyQRelation
-	extends QRepositoryEntityQRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>, QIdeaReplyUrgencyQId {
+	extends QAirEntityQRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>, QIdeaReplyUrgencyQId {
 }
 

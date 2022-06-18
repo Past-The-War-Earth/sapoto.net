@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Reply, ReplyType } from '@sapoto/main';
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
@@ -9,14 +10,14 @@ import { ReplyService } from '../../../services/reply.service';
 export class ReplyListingComponent implements OnInit {
 
   @Input() action;
-  @Input() parent;
-  @Input() replies;
+  @Input() parent: Reply;
+  @Input() replies: Reply[];
   @Input() actionsTriggerElementId;
 
   @Output() onActionsClick = new EventEmitter()
 
-  activeReply
-  filteredReplies = []
+  activeReply: Reply
+  filteredReplies: Reply[] = []
 
   constructor(
     private replyService: ReplyService
@@ -27,14 +28,14 @@ export class ReplyListingComponent implements OnInit {
   }
 
   setReplyTypeFilters(
-    replyTypeDesignations
-  ) {
-    if (!replyTypeDesignations.length) {
+    replyTypes: ('comment' | 'experience' | 'idea' | 'question')[]
+  ): void {
+    if (!replyTypes.length) {
       this.filteredReplies = this.replies
     } else {
       this.filteredReplies = this.replies.filter(reply => {
-        return !!reply.designations.filter(designation => {
-          return replyTypeDesignations.indexOf(designation) > -1
+        return !!reply.replyTypes.filter(replyType => {
+          return replyTypes.indexOf(replyType.type) > -1
         }).length
       })
     }

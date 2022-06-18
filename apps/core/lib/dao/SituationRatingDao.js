@@ -8,18 +8,20 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseSituationRatingDao, Q } from "../generated/generated";
 import { and } from "@airport/air-traffic-control";
 let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao {
-    async findForSituationAndUser(situationId, user) {
+    async findForSituationAndUser(situationUuId, user) {
         let sr;
         let a;
         let u;
+        let s;
         return await this._findOne({
             select: {},
             from: [
                 sr = Q.SituationRating,
                 a = sr.actor.innerJoin(),
-                u = a.user.innerJoin()
+                u = a.user.innerJoin(),
+                s = sr.situation.innerJoin()
             ],
-            where: and(sr.situation.equals(situationId), u.uuId.equals(user.uuId))
+            where: and(s.equals(situationUuId), u.uuId.equals(user.uuId))
         });
     }
 };

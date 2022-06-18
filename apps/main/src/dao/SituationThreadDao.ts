@@ -1,8 +1,8 @@
 import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QSituation, QSituationRating } from "@sapoto/core";
-import { QUser } from "../../../core/node_modules/@airport/travel-document-checkpoint/lib/generated/quser";
+import { QSituation, QSituationRating, QTopic } from "@sapoto/core";
+import { QUser } from "@airport/travel-document-checkpoint";
 import { SituationThread } from "../ddl/SituationThread";
 import {
     BaseSituationThreadDao,
@@ -22,13 +22,12 @@ export class SituationThreadDao
     }
 
     async findWithListingDetailsForATopic(
-        topicId: string
+        topicUuId: string
     ): Promise<SituationThread[]> {
         let st: QSituationThread,
             s: QSituation,
-            sR: QSituationRating,
             a: QActor,
-            u: QUser
+            t: QTopic
         return await this._find({
             select: {
                 '*': Y,
@@ -45,11 +44,12 @@ export class SituationThreadDao
             from: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
+                s.ratings.leftJoin(),
                 a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                a.user.leftJoin(),
+                t = s.topic.leftJoin()
             ],
-            where: s.topic.equals(topicId)
+            where: t.equals(topicUuId)
         })
     }
 

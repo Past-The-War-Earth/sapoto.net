@@ -29,12 +29,12 @@ let SituationThreadApi = class SituationThreadApi {
         situationThread.replies = [];
         await this.situationThreadDao.add(situationThread);
     }
-    async findWithListingDetailsForATopic(topicId) {
-        return await this.situationThreadDao.findWithListingDetailsForATopic(topicId);
+    async findWithListingDetailsForATopic(topicUuId) {
+        return await this.situationThreadDao.findWithListingDetailsForATopic(topicUuId);
     }
-    async findById(situationThreadId) {
+    async findById(situationThreadUuId) {
         const situationThread = await this.situationThreadDao
-            .findWithDetailsById(situationThreadId);
+            .findWithDetailsById(situationThreadUuId);
         if (!situationThread) {
             return null;
         }

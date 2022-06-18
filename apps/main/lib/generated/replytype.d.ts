@@ -1,6 +1,6 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { IReply } from './reply';
-export interface IReplyType extends IRepositoryEntity {
+export interface IReplyType extends IAirEntity {
     type?: string;
     reply?: IReply;
 }

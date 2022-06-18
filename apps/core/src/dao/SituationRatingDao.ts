@@ -5,34 +5,37 @@ import {
 } from "@airport/travel-document-checkpoint";
 import {
     BaseSituationRatingDao,
+    QSituation,
     QSituationRating,
     Q
 } from "../generated/generated";
 import { and } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
 import { SituationRating } from "../ddl/SituationRating";
-import { RepositoryEntityId } from "@airport/aviation-communication";
+import { AirEntityUuId } from "@airport/aviation-communication";
 
 @Injected()
 export class SituationRatingDao
     extends BaseSituationRatingDao {
 
     async findForSituationAndUser(
-        situationId: string | RepositoryEntityId,
+        situationUuId: string | AirEntityUuId,
         user: User
     ): Promise<SituationRating> {
         let sr: QSituationRating
         let a: QActor
         let u: QUser
+        let s: QSituation
         return await this._findOne({
             select: {},
             from: [
                 sr = Q.SituationRating,
                 a = sr.actor.innerJoin(),
-                u = a.user.innerJoin()
+                u = a.user.innerJoin(),
+                s = sr.situation.innerJoin()
             ],
             where: and(
-                sr.situation.equals(situationId),
+                s.equals(situationUuId),
                 u.uuId.equals(user.uuId)
             )
         })

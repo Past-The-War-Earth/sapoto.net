@@ -10,22 +10,22 @@ let ReplyApi = class ReplyApi {
     async addReply(reply) {
         await this.replyDao.save(reply);
     }
-    async getRepliesForSituationThread(situationThreadId) {
-        return await this.replyDao.findForSituation(situationThreadId);
+    async getRepliesForSituationThread(situationThreadUuId) {
+        return await this.replyDao.findForSituationThread(situationThreadUuId);
     }
     async addIdea(reply, situationIdea) {
         await this.situationIdeaApi.add(situationIdea);
         await this.addReply(reply);
     }
-    async rateReply(replyRating, replyUuId, situationThreadId) {
+    async rateReply(replyRating, replyUuId, situationThreadUuId) {
         const reply = await this.replyDao.findByUuId(replyUuId);
-        if (reply.id !== replyRating.reply.id) {
-            throw new Error(`Reply doesn't match replyRating`);
+        if (reply.uuId !== replyRating.reply.uuId) {
+            throw new Error(`replyRating doesn't match replyUuId`);
         }
-        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId);
+        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadUuId);
         if (replyRatings.length) {
-            if (reply.situationThread.id !== replyRating.reply.id) {
-                throw new Error(`Reply doesn't match replyRating`);
+            if (reply.uuId !== replyRatings[0].reply.uuId) {
+                throw new Error(`replyRating doesn't match situationThreadUuid`);
             }
         }
         await this.replyRatingDao.save(replyRating);
@@ -43,30 +43,36 @@ let ReplyApi = class ReplyApi {
         reply.numberOfUpRatings = numberOfUpRatings;
         await this.replyDao.save(reply);
     }
+    // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
+    // Do this only in non-server environments since the counts can be widely off across
+    // different save branches
+    async updateCounts(situationThreadUuId) {
+        // const replies = this.replyDao.findAllForSituationThread(situationThreadUuId);
+        // const ideaReplyUrgencies = ideaReplyUrgencyDao.findAllForSituationThread(situationThreadUuId);
+        // const replyRatings = replyRatingDao.findAllForSituationThread(situationThreadUuId);
+        // // Recompute all counts
+        // await this.replyDao.save(replies)
+    }
     async setReplyUrgency(ideaReplyUrgency, replyUuId, situationThreadId) {
         const reply = await this.replyDao.findByUuId(replyUuId);
-        if (reply.id !== ideaReplyUrgency.reply.id) {
-            throw new Error(`Reply doesn't match replyRating`);
+        if (reply.uuId !== ideaReplyUrgency.reply.uuId) {
+            throw new Error(`replyRating doesn't match replyUuId`);
         }
-        const replyRatings = await this.replyRatingDao.findAllForSituationThread(situationThreadId);
-        if (replyRatings.length) {
-            if (reply.situationThread.id !== ideaReplyUrgency.reply.id) {
-                throw new Error(`Reply doesn't match replyRating`);
+        const ideaReplyUrgencies = await this.ideaReplyUrgencyDao.findAllForSituationThread(situationThreadId);
+        if (ideaReplyUrgencies.length) {
+            if (reply.uuId !== ideaReplyUrgencies[0].reply.uuId) {
+                throw new Error(`ideaReplyUrgency doesn't match situationThreadUuid`);
             }
         }
         await this.replyRatingDao.save(ideaReplyUrgency);
-        let numberOfDownRatings = 0;
-        let numberOfUpRatings = 0;
-        for (const replyRating of replyRatings) {
-            if (replyRating.rating < 0) {
-                numberOfDownRatings++;
-            }
-            else if (replyRating.rating > 0) {
-                numberOfUpRatings++;
-            }
+        let urgencyTotal = 0;
+        let numberOfUrgencyRatings = 0;
+        for (const ideaReplyUrgency of ideaReplyUrgencies) {
+            numberOfUrgencyRatings++;
+            urgencyTotal += ideaReplyUrgency.urgency;
         }
-        reply.numberOfDownRatings = numberOfDownRatings;
-        reply.numberOfUpRatings = numberOfUpRatings;
+        reply.numberOfUrgencyRatings = numberOfUrgencyRatings;
+        reply.urgencyTotal = urgencyTotal;
         await this.replyDao.save(reply);
     }
     async addReplyType(reply, type) {
@@ -90,6 +96,9 @@ __decorate([
 ], ReplyApi.prototype, "replyRatingDao", void 0);
 __decorate([
     Inject()
+], ReplyApi.prototype, "ideaReplyUrgencyDao", void 0);
+__decorate([
+    Inject()
 ], ReplyApi.prototype, "replyTypeDao", void 0);
 __decorate([
     Api()
@@ -103,6 +112,11 @@ __decorate([
 __decorate([
     Api()
 ], ReplyApi.prototype, "rateReply", null);
+__decorate([
+    Api(
+    // { server: false }
+    )
+], ReplyApi.prototype, "updateCounts", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "setReplyUrgency", null);

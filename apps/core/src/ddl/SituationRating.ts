@@ -1,11 +1,11 @@
 import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
-import { RepositoryEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "./Situation";
 
 @Entity()
 @Table({ name: 'SITUATION_RATINGS' })
 export class SituationRating
-    extends RepositoryEntity {
+    extends AirEntity {
 
     @Column({ name: 'IMPORTANCE_RATING' })
     @DbNumber()

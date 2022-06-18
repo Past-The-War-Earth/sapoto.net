@@ -1,57 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Reply } from '@sapoto/main';
-import { IdeaSituation } from '@votecube/votecube';
+import { Reply, SituationThread } from '@sapoto/main';
+import { SituationIdea } from '@votecube/votecube';
 import { NumberUtilsService } from './number-utils.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReplyService {
 
-  newReplyId = 1000
-
   constructor(
-    private numberUtilsService: NumberUtilsService
+    private numberUtilsService: NumberUtilsService,
+    private userService: UserService
   ) {
   }
 
-
-  getNewReply(): Reply {
+  getNewReply(
+    situationThread: SituationThread
+  ): Reply {
     return {
-      counts: {
-        experiences: 0,
-        ideas: 0,
-        questions: 0,
-        reasons: 0,
-        replies: 0
+      actor: {
+        user: this.userService.getUser()
       },
-      createdAt: new Date().getTime(),
-      createdBy: {
-        username: 'You',
-        ranking: 100
-      },
-      designations: [],
-      eisenhowerMatrix: {
-        importance: 0,
-        urgency: 0,
-        votes: 0,
-        user: {
-          importance: 0,
-          urgency: 0
-        }
-      },
-      id: ++this.newReplyId,
-      questionTypes: [],
-      ratings: {
-        down: 0,
-        user: 0,
-        up: 0,
-      },
+      createdAt: new Date(),
+      ideaReplyUrgencies: [],
+      numberOfDownRatings: 0,
+      numberOfUpRatings: 0,
+      numberOfUrgencyRatings: 0,
+      replyTypes: [],
+      replyRatings: [],
+      situationThread,
       text: '',
-      votes: {
-        totalPoints: 0,
-        users: 0,
-      },
+      urgencyTotal: 0
     }
   }
 
@@ -70,42 +50,42 @@ export class ReplyService {
 
   isComment(
     reply: Reply
-  ) {
+  ): boolean {
     return reply && !reply.replyTypes.length
   }
 
   isQuestion(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('question', reply)
   }
 
   isIdea(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('idea', reply)
   }
 
   isExperience(
     reply: Reply
-  ) {
+  ): boolean {
     return this.hasADesignation('experience', reply)
   }
 
   getAccentPercentage(
-    ideaSituation: IdeaSituation
-  ) {
-    let votes = ideaSituation.votes
-    let numUsers = votes.users
-    return numUsers ? Math.ceil(votes.totalPoints / numUsers) : 0
+    ideaSituation: SituationIdea
+  ): number {
+    return ideaSituation.numberOfAgreements
+      ? Math.ceil(ideaSituation.agreementShareTotal / ideaSituation.numberOfAgreements)
+      : 0
   }
 
   getAccentAverage(
-    ideaSituation: IdeaSituation
-  ) {
-    let votes = ideaSituation.votes
-    let numUsers = votes.users
-    let average = numUsers ? votes.totalPoints / numUsers : 0
+    ideaSituation: SituationIdea
+  ): string {
+    let average = ideaSituation.numberOfAgreements
+      ? Math.ceil(ideaSituation.agreementShareTotal / ideaSituation.numberOfAgreements)
+      : 0
 
     if (!average) {
       return ""
@@ -114,9 +94,9 @@ export class ReplyService {
   }
 
   sortBy(
-    sortType: 'time' | 'postRating' | 'userRanking',
+    sortType: 'time' | 'postRating' | 'userRanking' | 'urgency',
     replies: Reply[]
-  ) {
+  ): void {
     replies.sort((
       reply1,
       reply2
@@ -126,13 +106,13 @@ export class ReplyService {
 
       switch (sortType) {
         case 'postRating':
-          value1 = reply2.ratings.up - reply2.ratings.down
-          value2 = reply1.ratings.up - reply1.ratings.down
+          value1 = reply2.numberOfUpRatings - reply2.numberOfDownRatings
+          value2 = reply1.numberOfUpRatings - reply1.numberOfDownRatings
           break;
         case 'time':
-          return this.getValueSortComparison(reply2.createdAt, reply1.createdAt)
+          return this.getValueSortComparison(reply2.createdAt.getTime(), reply1.createdAt.getTime())
         case 'userRanking':
-          return this.getValueSortComparison(reply2.createdBy.ranking, reply1.createdBy.ranking)
+          return this.getValueSortComparison(reply2.actor.user.ranking, reply1.actor.user.ranking)
       }
 
       const reply1IsIdea = reply1.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
@@ -142,11 +122,11 @@ export class ReplyService {
         return this.getValueSortComparison(value1, value2)
       }
       if (reply1IsIdea && reply2IsIdea) {
-        let value1 = reply2.votes.users ? reply2.votes.totalPoints / reply2.votes.users : 0
-        let value2 = reply1.votes.users ? reply1.votes.totalPoints / reply1.votes.users : 0
+        let value1 = reply2.numberOfUrgencyRatings ? reply2.urgencyTotal / reply2.numberOfUrgencyRatings : 0
+        let value2 = reply1.numberOfUrgencyRatings ? reply1.urgencyTotal / reply1.numberOfUrgencyRatings : 0
         let result = this.getValueSortComparison(value1, value2)
         if (result == 0) {
-          return this.getValueSortComparison(reply2.votes.users, reply1.votes.users)
+          return this.getValueSortComparison(reply2.numberOfUrgencyRatings, reply1.numberOfUrgencyRatings)
         }
         return result
       }
@@ -173,7 +153,7 @@ export class ReplyService {
   hasAnyOfDesignations(
     designations: ('comment' | 'experience' | 'idea' | 'question')[],
     reply: Reply
-  ) {
+  ): boolean {
     for (let i = 0; i < designations.length; i++) {
       if (this.hasADesignation(designations[i], reply)) {
         return true
@@ -185,7 +165,7 @@ export class ReplyService {
   hasADesignation(
     designation: 'comment' | 'experience' | 'idea' | 'question',
     reply: Reply
-  ) {
+  ): boolean {
     if (!reply) {
       return false
     }
@@ -197,19 +177,19 @@ export class ReplyService {
 
   canHaveIdeas(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent
   }
 
   canHaveExperiences(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent || this.hasADesignation('idea', parent)
   }
 
   canHaveQuestions(
     parent: Reply
-  ) {
+  ): boolean {
     return !parent
       || this.hasAnyOfDesignations(['idea', 'experience'], parent)
   }

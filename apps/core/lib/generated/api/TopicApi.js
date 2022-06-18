@@ -14,8 +14,8 @@ let TopicApi = class TopicApi {
     async findAll() {
         return await this.topicApi.findAll();
     }
-    async getById(topicId) {
-        return await this.topicApi.getById(topicId);
+    async findByUuId(topicUuId) {
+        return await this.topicApi.findByUuId(topicUuId);
     }
 };
 __decorate([

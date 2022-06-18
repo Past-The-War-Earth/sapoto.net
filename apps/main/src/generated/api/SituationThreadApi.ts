@@ -39,15 +39,15 @@ export class SituationThreadApi {
     }
 
     async  findWithListingDetailsForATopic(
-        topicId: string
+        topicUuId: string
     ): Promise<SituationThread[]> {
-        return await this.situationThreadApi.findWithListingDetailsForATopic(topicId)
+        return await this.situationThreadApi.findWithListingDetailsForATopic(topicUuId)
     }
 
     async  findById(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<SituationThread> {
-        return await this.situationThreadApi.findById(situationThreadId)
+        return await this.situationThreadApi.findById(situationThreadUuId)
     }
 
 }

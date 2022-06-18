@@ -1,5 +1,5 @@
-import { IQDateField, IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationThreadGraph, SituationThreadEOptionalId, SituationThreadESelect, QSituationThreadQRelation } from './qsituationthread';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from '@votecube/votecube';
 import { ReplyRatingGraph, ReplyRatingESelect, QReplyRating } from './qreplyrating';
@@ -12,7 +12,7 @@ import { IReply } from './reply';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface ReplyESelect extends RepositoryEntityESelect, ReplyEOptionalId {
+export interface ReplyESelect extends AirEntityESelect, ReplyEOptionalId {
     text?: string | IQStringField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
@@ -29,7 +29,7 @@ export interface ReplyESelect extends RepositoryEntityESelect, ReplyEOptionalId 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface ReplyEId extends RepositoryEntityEId {
+export interface ReplyEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -39,7 +39,7 @@ export interface ReplyEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface ReplyEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface ReplyEUpdateProperties extends AirEntityEUpdateProperties {
     text?: string | IQStringField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
@@ -52,7 +52,7 @@ export interface ReplyEUpdateProperties extends RepositoryEntityEUpdatePropertie
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
+export interface ReplyGraph extends ReplyEOptionalId, AirEntityGraph {
     text?: string | IQStringField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
@@ -69,7 +69,7 @@ export interface ReplyGraph extends ReplyEOptionalId, RepositoryEntityGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface ReplyEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface ReplyEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
@@ -104,7 +104,7 @@ export interface ReplyECreateColumns extends ReplyEId, ReplyEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QReply extends QRepositoryEntity {
+export interface QReply extends QAirEntity {
     text: IQStringField;
     numberOfDownRatings: IQNumberField;
     numberOfUpRatings: IQNumberField;
@@ -113,13 +113,13 @@ export interface QReply extends QRepositoryEntity {
     situationThread: QSituationThreadQRelation;
     parentReply: QReplyQRelation;
     situationIdea: QSituationIdeaQRelation;
-    childReplies: IQRepositoryEntityOneToManyRelation<IReply, QReply>;
-    replyRatings: IQRepositoryEntityOneToManyRelation<IReplyRating, QReplyRating>;
-    replyTypes: IQRepositoryEntityOneToManyRelation<IReplyType, QReplyType>;
-    ideaReplyUrgencies: IQRepositoryEntityOneToManyRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>;
+    childReplies: IQAirEntityOneToManyRelation<IReply, QReply>;
+    replyRatings: IQAirEntityOneToManyRelation<IReplyRating, QReplyRating>;
+    replyTypes: IQAirEntityOneToManyRelation<IReplyType, QReplyType>;
+    ideaReplyUrgencies: IQAirEntityOneToManyRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>;
 }
-export interface QReplyQId extends QRepositoryEntityQId {
+export interface QReplyQId extends QAirEntityQId {
 }
-export interface QReplyQRelation extends QRepositoryEntityQRelation<IReply, QReply>, QReplyQId {
+export interface QReplyQRelation extends QAirEntityQRelation<IReply, QReply>, QReplyQId {
 }
 //# sourceMappingURL=qreply.d.ts.map

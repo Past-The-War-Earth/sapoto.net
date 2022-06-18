@@ -11,8 +11,8 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
     async add(situationThread) {
         await this.save(situationThread);
     }
-    async findWithListingDetailsForATopic(topicId) {
-        let st, s, sR, a, u;
+    async findWithListingDetailsForATopic(topicUuId) {
+        let st, s, a, t;
         return await this._find({
             select: {
                 '*': Y,
@@ -29,11 +29,12 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
             from: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
+                s.ratings.leftJoin(),
                 a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                a.user.leftJoin(),
+                t = s.topic.leftJoin()
             ],
-            where: s.topic.equals(topicId)
+            where: t.equals(topicUuId)
         });
     }
     async findWithDetailsById(situationThreadId) {

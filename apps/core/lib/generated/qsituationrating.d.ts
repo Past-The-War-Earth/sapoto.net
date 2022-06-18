@@ -1,11 +1,11 @@
-import { IQNumberField } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from './qsituation';
 import { ISituationRating } from './situationrating';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface SituationRatingESelect extends RepositoryEntityESelect, SituationRatingEOptionalId {
+export interface SituationRatingESelect extends AirEntityESelect, SituationRatingEOptionalId {
     importanceRating?: number | IQNumberField;
     urgencyRating?: number | IQNumberField;
     situation?: SituationESelect;
@@ -13,7 +13,7 @@ export interface SituationRatingESelect extends RepositoryEntityESelect, Situati
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface SituationRatingEId extends RepositoryEntityEId {
+export interface SituationRatingEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -23,7 +23,7 @@ export interface SituationRatingEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface SituationRatingEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface SituationRatingEUpdateProperties extends AirEntityEUpdateProperties {
     importanceRating?: number | IQNumberField;
     urgencyRating?: number | IQNumberField;
     situation?: SituationEOptionalId;
@@ -31,7 +31,7 @@ export interface SituationRatingEUpdateProperties extends RepositoryEntityEUpdat
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface SituationRatingGraph extends SituationRatingEOptionalId, RepositoryEntityGraph {
+export interface SituationRatingGraph extends SituationRatingEOptionalId, AirEntityGraph {
     importanceRating?: number | IQNumberField;
     urgencyRating?: number | IQNumberField;
     situation?: SituationGraph;
@@ -39,8 +39,9 @@ export interface SituationRatingGraph extends SituationRatingEOptionalId, Reposi
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface SituationRatingEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface SituationRatingEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -64,13 +65,13 @@ export interface SituationRatingECreateColumns extends SituationRatingEId, Situa
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSituationRating extends QRepositoryEntity {
+export interface QSituationRating extends QAirEntity {
     importanceRating: IQNumberField;
     urgencyRating: IQNumberField;
     situation: QSituationQRelation;
 }
-export interface QSituationRatingQId extends QRepositoryEntityQId {
+export interface QSituationRatingQId extends QAirEntityQId {
 }
-export interface QSituationRatingQRelation extends QRepositoryEntityQRelation<ISituationRating, QSituationRating>, QSituationRatingQId {
+export interface QSituationRatingQRelation extends QAirEntityQRelation<ISituationRating, QSituationRating>, QSituationRatingQId {
 }
 //# sourceMappingURL=qsituationrating.d.ts.map

@@ -1,6 +1,6 @@
-import { IRepositoryEntity } from '@airport/holding-pattern';
+import { IAirEntity } from '@airport/holding-pattern';
 import { ITopic } from './topic';
-export interface IUserTopicFavorite extends IRepositoryEntity {
+export interface IUserTopicFavorite extends IAirEntity {
     favorite?: boolean;
     topic?: ITopic;
 }

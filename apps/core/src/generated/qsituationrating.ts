@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	SituationGraph,
@@ -62,7 +62,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface SituationRatingESelect
-    extends RepositoryEntityESelect, SituationRatingEOptionalId {
+    extends AirEntityESelect, SituationRatingEOptionalId {
 	// Non-Id Properties
 	importanceRating?: number | IQNumberField;
 	urgencyRating?: number | IQNumberField;
@@ -78,7 +78,7 @@ export interface SituationRatingESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface SituationRatingEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -99,7 +99,7 @@ export interface SituationRatingEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface SituationRatingEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	importanceRating?: number | IQNumberField;
 	urgencyRating?: number | IQNumberField;
@@ -113,7 +113,7 @@ export interface SituationRatingEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface SituationRatingGraph
-	extends SituationRatingEOptionalId, RepositoryEntityGraph {
+	extends SituationRatingEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -129,9 +129,10 @@ export interface SituationRatingGraph
  * UPDATE - non-id columns (optional).
  */
 export interface SituationRatingEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -168,7 +169,7 @@ extends SituationRatingEId, SituationRatingEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QSituationRating extends QRepositoryEntity
+export interface QSituationRating extends QAirEntity
 {
 	// Id Fields
 
@@ -185,7 +186,7 @@ export interface QSituationRating extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QSituationRatingQId extends QRepositoryEntityQId
+export interface QSituationRatingQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -197,6 +198,6 @@ export interface QSituationRatingQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QSituationRatingQRelation
-	extends QRepositoryEntityQRelation<ISituationRating, QSituationRating>, QSituationRatingQId {
+	extends QAirEntityQRelation<ISituationRating, QSituationRating>, QSituationRatingQId {
 }
 

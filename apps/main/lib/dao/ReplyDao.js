@@ -6,15 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
-import { BaseReplyDao, Q, } from "../generated/generated";
+import { BaseReplyDao, Q } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
-    async findForSituation(situationThreadId) {
-        let r, a;
+    async findForSituationThread(situationThreadUuId) {
+        let r, a, st;
         return await this._find({
             select: {
                 '*': Y,
+                uuId: Y,
                 actor: {
-                    uuId: Y,
                     user: {
                         username: Y
                     }
@@ -24,7 +24,7 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 },
                 situationIdea: {
                     agreementShareTotal: Y,
-                    numberOfAgreementRatings: Y
+                    numberOfAgreements: Y
                 }
             },
             from: [
@@ -32,9 +32,10 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 a = r.actor.leftJoin(),
                 a.user.leftJoin(),
                 r.replyTypes.leftJoin(),
-                r.situationIdea.leftJoin()
+                r.situationIdea.leftJoin(),
+                st = r.situationThread.leftJoin()
             ],
-            where: r.situationThread.equals(situationThreadId)
+            where: st.equals(situationThreadUuId)
         });
     }
 };

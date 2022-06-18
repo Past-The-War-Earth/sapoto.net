@@ -5,7 +5,7 @@ export declare class SituationThreadApi {
     situationApi: SituationApi;
     situationThreadDao: SituationThreadDao;
     addSituationThread(situationThread: SituationThread): Promise<void>;
-    findWithListingDetailsForATopic(topicId: string): Promise<SituationThread[]>;
-    findById(situationThreadId: string): Promise<SituationThread>;
+    findWithListingDetailsForATopic(topicUuId: string): Promise<SituationThread[]>;
+    findById(situationThreadUuId: string): Promise<SituationThread>;
 }
 //# sourceMappingURL=SituationThreadApi.d.ts.map

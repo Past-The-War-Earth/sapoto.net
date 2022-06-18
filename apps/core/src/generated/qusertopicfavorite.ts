@@ -18,20 +18,20 @@ import {
 	IQUntypedField,
 	IQEntity,
 	IQRelation,
-	IQRepositoryEntityOneToManyRelation,
-	IQRepositoryEntityRelation,
+	IQAirEntityOneToManyRelation,
+	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
 } from '@airport/air-traffic-control';
 import {
-	RepositoryEntityGraph,
-	RepositoryEntityEId,
-	RepositoryEntityEUpdateColumns,
-	RepositoryEntityEUpdateProperties,
-	RepositoryEntityESelect,
-	QRepositoryEntityQId,
-	QRepositoryEntityQRelation,
-	QRepositoryEntity,
+	AirEntityGraph,
+	AirEntityEId,
+	AirEntityEUpdateColumns,
+	AirEntityEUpdateProperties,
+	AirEntityESelect,
+	QAirEntityQId,
+	QAirEntityQRelation,
+	QAirEntity,
 } from '@airport/holding-pattern';
 import {
 	TopicGraph,
@@ -62,7 +62,7 @@ declare function require(moduleName: string): any;
  * SELECT - All fields and relations (optional).
  */
 export interface UserTopicFavoriteESelect
-    extends RepositoryEntityESelect, UserTopicFavoriteEOptionalId {
+    extends AirEntityESelect, UserTopicFavoriteEOptionalId {
 	// Non-Id Properties
 	favorite?: boolean | IQBooleanField;
 
@@ -77,7 +77,7 @@ export interface UserTopicFavoriteESelect
  * DELETE - Ids fields and relations only (required).
  */
 export interface UserTopicFavoriteEId
-    extends RepositoryEntityEId {
+    extends AirEntityEId {
 	// Id Properties
 
 	// Id Relations - Ids only
@@ -98,7 +98,7 @@ export interface UserTopicFavoriteEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface UserTopicFavoriteEUpdateProperties
-	extends RepositoryEntityEUpdateProperties {
+	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	favorite?: boolean | IQBooleanField;
 
@@ -111,7 +111,7 @@ export interface UserTopicFavoriteEUpdateProperties
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface UserTopicFavoriteGraph
-	extends UserTopicFavoriteEOptionalId, RepositoryEntityGraph {
+	extends UserTopicFavoriteEOptionalId, AirEntityGraph {
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
@@ -126,9 +126,10 @@ export interface UserTopicFavoriteGraph
  * UPDATE - non-id columns (optional).
  */
 export interface UserTopicFavoriteEUpdateColumns
-	extends RepositoryEntityEUpdateColumns {
+	extends AirEntityEUpdateColumns {
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
+	CREATED_AT?: Date | IQDateField;
 	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -164,7 +165,7 @@ extends UserTopicFavoriteEId, UserTopicFavoriteEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QUserTopicFavorite extends QRepositoryEntity
+export interface QUserTopicFavorite extends QAirEntity
 {
 	// Id Fields
 
@@ -180,7 +181,7 @@ export interface QUserTopicFavorite extends QRepositoryEntity
 
 
 // Entity Id Interface
-export interface QUserTopicFavoriteQId extends QRepositoryEntityQId
+export interface QUserTopicFavoriteQId extends QAirEntityQId
 {
 	
 	// Id Fields
@@ -192,6 +193,6 @@ export interface QUserTopicFavoriteQId extends QRepositoryEntityQId
 
 // Entity Relation Interface
 export interface QUserTopicFavoriteQRelation
-	extends QRepositoryEntityQRelation<IUserTopicFavorite, QUserTopicFavorite>, QUserTopicFavoriteQId {
+	extends QAirEntityQRelation<IUserTopicFavorite, QUserTopicFavorite>, QUserTopicFavoriteQId {
 }
 

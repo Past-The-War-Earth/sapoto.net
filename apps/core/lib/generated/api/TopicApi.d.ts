@@ -3,6 +3,6 @@ export declare class TopicApi {
     constructor();
     topicApi: TopicApi;
     findAll(): Promise<Topic[]>;
-    getById(topicId: string): Promise<Topic>;
+    findByUuId(topicUuId: string): Promise<Topic>;
 }
 //# sourceMappingURL=TopicApi.d.ts.map

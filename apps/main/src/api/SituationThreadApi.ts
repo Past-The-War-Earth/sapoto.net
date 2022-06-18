@@ -47,17 +47,17 @@ export class SituationThreadApi {
 
     @Api()
     async findWithListingDetailsForATopic(
-        topicId: string
+        topicUuId: string
     ): Promise<SituationThread[]> {
-        return await this.situationThreadDao.findWithListingDetailsForATopic(topicId)
+        return await this.situationThreadDao.findWithListingDetailsForATopic(topicUuId)
     }
 
     @Api()
     async findById(
-        situationThreadId: string
+        situationThreadUuId: string
     ): Promise<SituationThread> {
         const situationThread = await this.situationThreadDao
-            .findWithDetailsById(situationThreadId)
+            .findWithDetailsById(situationThreadUuId)
         if (!situationThread) {
             return null
         }

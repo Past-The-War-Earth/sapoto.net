@@ -2,7 +2,7 @@
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions || showReplyActions"
   triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onReply)="onReply($event)"
-    (onSelection)="onSituationAction($event)" [situation]="situationThread.situation">
+    (onSelection)="onSituationAction($event)" [situationThread]="situationThread">
   </app-situation-actions>
   <app-reply-actions *ngIf="showReplyActions" (onReply)="onReply($event)" (onSelection)="onReplyAction($event)"
     [reply]="activeReply">
@@ -13,14 +13,15 @@
     [situationThread]="situationThread" actionsTriggerElementId="reply-actions-button">
   </app-situation-block>
   <app-reply-listing (onActionsClick)="onShowReplyActions($event)" [action]="replyAction"
-    actionsTriggerElementId="reply-actions-button" [replies]="replies">
+    actionsTriggerElementId="reply-actions-button" [replies]="situationThread.replies">
   </app-reply-listing>
 </ion-content>
 <app-enter-reply></app-enter-reply>
 <!--
-  <app-reply-entry-bar></app-reply-entry-bar>
+  <app-reply-entry-bar [situationThread]="situationThread"></app-reply-entry-bar>
 -->
-<app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [replyType]="getPostingReplyType()">
+<app-post-reply *ngIf="isPostingAReply()" (onDone)="donePostingAReply()" [replyType]="getPostingReplyType()"
+  [situationThread]="situationThread">
 </app-post-reply>
 <app-tools-menu *ngIf="showToolsMenu" (onFilterChange)="filter($event)" (onPostReply)="postAReply($event)"
   contentId="situation-content" menuId="situation-menu" title="Situation Tools"></app-tools-menu>

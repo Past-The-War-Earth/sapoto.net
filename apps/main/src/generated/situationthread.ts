@@ -1,5 +1,5 @@
 import {
-	IRepositoryEntity,
+	IAirEntity,
 } from '@airport/holding-pattern';
 import {
 	ICounts,
@@ -17,7 +17,7 @@ import {
 //     ENTITY INTERFACE     //
 //////////////////////////////
 
-export interface ISituationThread extends IRepositoryEntity {
+export interface ISituationThread extends IAirEntity {
 	
 	// Id Properties
 

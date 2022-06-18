@@ -9,8 +9,8 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseReplyRatingDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
-    async findAllForUserAndSituationThread(userId, situationThreadId) {
-        let rr, a, u, r;
+    async findAllForUserAndSituationThread(userId, situationThreadUuId) {
+        let rr, a, u, r, st;
         return await this._find({
             select: {},
             from: [
@@ -19,18 +19,19 @@ let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
                 u = a.user.leftJoin(),
                 r = rr.reply.leftJoin()
             ],
-            where: and(u.uuId.equals(userId), r.situationThread.equals(situationThreadId))
+            where: and(u.uuId.equals(userId), st.equals(situationThreadUuId))
         });
     }
-    async findAllForSituationThread(situationThreadId) {
-        let rr, r;
+    async findAllForSituationThread(situationThreadUuId) {
+        let rr, r, st;
         return await this._find({
             select: {},
             from: [
                 rr = Q.ReplyRating,
-                r = rr.reply.leftJoin()
+                r = rr.reply.leftJoin(),
+                st = r.situationThread.leftJoin()
             ],
-            where: r.situationThread.equals(situationThreadId)
+            where: st.equals(situationThreadUuId)
         });
     }
 };

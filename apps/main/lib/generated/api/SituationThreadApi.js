@@ -14,11 +14,11 @@ let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
         await this.situationThreadApi.addSituationThread(situationThread);
     }
-    async findWithListingDetailsForATopic(topicId) {
-        return await this.situationThreadApi.findWithListingDetailsForATopic(topicId);
+    async findWithListingDetailsForATopic(topicUuId) {
+        return await this.situationThreadApi.findWithListingDetailsForATopic(topicUuId);
     }
-    async findById(situationThreadId) {
-        return await this.situationThreadApi.findById(situationThreadId);
+    async findById(situationThreadUuId) {
+        return await this.situationThreadApi.findById(situationThreadUuId);
     }
 };
 __decorate([

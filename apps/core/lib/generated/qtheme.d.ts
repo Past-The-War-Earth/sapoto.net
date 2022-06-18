@@ -1,12 +1,12 @@
-import { IQNumberField, IQStringField, IQRepositoryEntityOneToManyRelation } from '@airport/air-traffic-control';
-import { RepositoryEntityGraph, RepositoryEntityEId, RepositoryEntityEUpdateColumns, RepositoryEntityEUpdateProperties, RepositoryEntityESelect, QRepositoryEntityQId, QRepositoryEntityQRelation, QRepositoryEntity } from '@airport/holding-pattern';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { TopicGraph, TopicESelect, QTopic } from './qtopic';
 import { ITopic } from './topic';
 import { ITheme } from './theme';
 /**
  * SELECT - All fields and relations (optional).
  */
-export interface ThemeESelect extends RepositoryEntityESelect, ThemeEOptionalId {
+export interface ThemeESelect extends AirEntityESelect, ThemeEOptionalId {
     name?: string | IQStringField;
     imageName?: string | IQStringField;
     topics?: TopicESelect;
@@ -14,7 +14,7 @@ export interface ThemeESelect extends RepositoryEntityESelect, ThemeEOptionalId 
 /**
  * DELETE - Ids fields and relations only (required).
  */
-export interface ThemeEId extends RepositoryEntityEId {
+export interface ThemeEId extends AirEntityEId {
 }
 /**
  * Ids fields and relations only (optional).
@@ -24,14 +24,14 @@ export interface ThemeEOptionalId {
 /**
  * UPDATE - non-id fields and relations (optional).
  */
-export interface ThemeEUpdateProperties extends RepositoryEntityEUpdateProperties {
+export interface ThemeEUpdateProperties extends AirEntityEUpdateProperties {
     name?: string | IQStringField;
     imageName?: string | IQStringField;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
-export interface ThemeGraph extends ThemeEOptionalId, RepositoryEntityGraph {
+export interface ThemeGraph extends ThemeEOptionalId, AirEntityGraph {
     name?: string | IQStringField;
     imageName?: string | IQStringField;
     topics?: TopicGraph[];
@@ -39,8 +39,9 @@ export interface ThemeGraph extends ThemeEOptionalId, RepositoryEntityGraph {
 /**
  * UPDATE - non-id columns (optional).
  */
-export interface ThemeEUpdateColumns extends RepositoryEntityEUpdateColumns {
+export interface ThemeEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
+    CREATED_AT?: Date | IQDateField;
     SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
@@ -61,13 +62,13 @@ export interface ThemeECreateColumns extends ThemeEId, ThemeEUpdateColumns {
 /**
  * Query Entity Query Definition (used for Q.EntityName).
  */
-export interface QTheme extends QRepositoryEntity {
+export interface QTheme extends QAirEntity {
     name: IQStringField;
     imageName: IQStringField;
-    topics: IQRepositoryEntityOneToManyRelation<ITopic, QTopic>;
+    topics: IQAirEntityOneToManyRelation<ITopic, QTopic>;
 }
-export interface QThemeQId extends QRepositoryEntityQId {
+export interface QThemeQId extends QAirEntityQId {
 }
-export interface QThemeQRelation extends QRepositoryEntityQRelation<ITheme, QTheme>, QThemeQId {
+export interface QThemeQRelation extends QAirEntityQRelation<ITheme, QTheme>, QThemeQId {
 }
 //# sourceMappingURL=qtheme.d.ts.map
