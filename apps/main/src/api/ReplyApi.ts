@@ -1,7 +1,7 @@
 import { AirRequest } from "@airport/arrivals-n-departures"
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
-import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube"
+import { SituationIdeaApi } from "@votecube/votecube"
 import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
@@ -48,10 +48,9 @@ export class ReplyApi {
 
     @Api()
     async addIdea(
-        reply: Reply,
-        situationIdea: ISituationIdea
+        reply: Reply
     ): Promise<void> {
-        await this.situationIdeaApi.add(situationIdea)
+        await this.situationIdeaApi.add(reply.situationIdea)
         await this.addReply(reply)
     }
 
@@ -59,10 +58,6 @@ export class ReplyApi {
     async rateReply(
         replyRating: ReplyRating
     ): Promise<void> {
-        if (replyRating.actor.user.uuId !== this.airRequest.user.uuId) {
-            throw new Error(`ReplyRating does not belong to the request user: "${this.airRequest.user.uuId}"`)
-        }
-
         if (replyRating.rating > 0) {
             replyRating.rating = 1
         } else if (replyRating.rating < 0) {
@@ -97,10 +92,9 @@ export class ReplyApi {
             }
         }
 
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId)
-
         await this.replyRatingDao.save(replyRating)
 
+        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId)
         reply.numberOfDownRatings = numberOfDownRatings
         reply.numberOfUpRatings = numberOfUpRatings
 
@@ -130,24 +124,32 @@ export class ReplyApi {
     async setReplyUrgency(
         ideaReplyUrgency: IdeaReplyUrgency
     ): Promise<void> {
-        // if(ideaReplyUrgency.urgency < )
-        const reply: Reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId)
+        if (ideaReplyUrgency.urgency < 1) {
+            ideaReplyUrgency.urgency = 1
+        } else if (ideaReplyUrgency.urgency > 5) {
+            ideaReplyUrgency.urgency = 5
+        }
+        ideaReplyUrgency.urgency = Math.floor(ideaReplyUrgency.urgency) as 1 | 2 | 3 | 4 | 5
 
         const ideaReplyUrgencies = await this.ideaReplyUrgencyDao
             .findAllForReply(ideaReplyUrgency.reply.uuId)
 
-        await this.replyRatingDao.save(ideaReplyUrgency)
-
         let urgencyTotal = 0
         let numberOfUrgencyRatings = 0
 
+        for (const existingIdeaReplyUrgency of ideaReplyUrgencies) {
+            if (existingIdeaReplyUrgency.actor.user.uuId === ideaReplyUrgency.actor.user.uuId) {
+                existingIdeaReplyUrgency.urgency = ideaReplyUrgency.urgency
+                ideaReplyUrgency = existingIdeaReplyUrgency
+            }
+            numberOfUrgencyRatings++
+            urgencyTotal += existingIdeaReplyUrgency.urgency
+        }
+        await this.replyRatingDao.save(ideaReplyUrgency)
+
+        const reply: Reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId)
         reply.numberOfUrgencyRatings = numberOfUrgencyRatings
         reply.urgencyTotal = urgencyTotal
-
-        for (const ideaReplyUrgency of ideaReplyUrgencies) {
-            numberOfUrgencyRatings++
-            urgencyTotal += ideaReplyUrgency.urgency
-        }
 
         await this.replyDao.save(reply)
     }
@@ -157,7 +159,14 @@ export class ReplyApi {
         reply: Reply,
         type: 'comment' | 'experience' | 'idea' | 'question'
     ): Promise<void> {
+        const existingReplyTypes = await this.replyTypeDao.getAllForReply(reply.uuId)
+        for (const existingReplyType of existingReplyTypes) {
+            if (existingReplyType.type === type) {
+                return
+            }
+        }
         const replyType: ReplyType = {
+            actor: this.airRequest.actor,
             reply,
             repository: reply.repository,
             type

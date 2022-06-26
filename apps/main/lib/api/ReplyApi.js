@@ -13,14 +13,11 @@ let ReplyApi = class ReplyApi {
     async getRepliesForSituationThread(situationThreadUuId) {
         return await this.replyDao.findForSituationThread(situationThreadUuId);
     }
-    async addIdea(reply, situationIdea) {
-        await this.situationIdeaApi.add(situationIdea);
+    async addIdea(reply) {
+        await this.situationIdeaApi.add(reply.situationIdea);
         await this.addReply(reply);
     }
     async rateReply(replyRating) {
-        if (replyRating.actor.user.uuId !== this.airRequest.user.uuId) {
-            throw new Error(`ReplyRating does not belong to the request user: "${this.airRequest.user.uuId}"`);
-        }
         if (replyRating.rating > 0) {
             replyRating.rating = 1;
         }
@@ -55,8 +52,8 @@ let ReplyApi = class ReplyApi {
                 numberOfUpRatings++;
             }
         }
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId);
         await this.replyRatingDao.save(replyRating);
+        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId);
         reply.numberOfDownRatings = numberOfDownRatings;
         reply.numberOfUpRatings = numberOfUpRatings;
         await this.replyDao.save(reply);
@@ -72,23 +69,40 @@ let ReplyApi = class ReplyApi {
         // await this.replyDao.save(replies)
     }
     async setReplyUrgency(ideaReplyUrgency) {
-        // if(ideaReplyUrgency.urgency < )
-        const reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId);
+        if (ideaReplyUrgency.urgency < 1) {
+            ideaReplyUrgency.urgency = 1;
+        }
+        else if (ideaReplyUrgency.urgency > 5) {
+            ideaReplyUrgency.urgency = 5;
+        }
+        ideaReplyUrgency.urgency = Math.floor(ideaReplyUrgency.urgency);
         const ideaReplyUrgencies = await this.ideaReplyUrgencyDao
             .findAllForReply(ideaReplyUrgency.reply.uuId);
-        await this.replyRatingDao.save(ideaReplyUrgency);
         let urgencyTotal = 0;
         let numberOfUrgencyRatings = 0;
+        for (const existingIdeaReplyUrgency of ideaReplyUrgencies) {
+            if (existingIdeaReplyUrgency.actor.user.uuId === ideaReplyUrgency.actor.user.uuId) {
+                existingIdeaReplyUrgency.urgency = ideaReplyUrgency.urgency;
+                ideaReplyUrgency = existingIdeaReplyUrgency;
+            }
+            numberOfUrgencyRatings++;
+            urgencyTotal += existingIdeaReplyUrgency.urgency;
+        }
+        await this.replyRatingDao.save(ideaReplyUrgency);
+        const reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId);
         reply.numberOfUrgencyRatings = numberOfUrgencyRatings;
         reply.urgencyTotal = urgencyTotal;
-        for (const ideaReplyUrgency of ideaReplyUrgencies) {
-            numberOfUrgencyRatings++;
-            urgencyTotal += ideaReplyUrgency.urgency;
-        }
         await this.replyDao.save(reply);
     }
     async addReplyType(reply, type) {
+        const existingReplyTypes = await this.replyTypeDao.getAllForReply(reply.uuId);
+        for (const existingReplyType of existingReplyTypes) {
+            if (existingReplyType.type === type) {
+                return;
+            }
+        }
         const replyType = {
+            actor: this.airRequest.actor,
             reply,
             repository: reply.repository,
             type

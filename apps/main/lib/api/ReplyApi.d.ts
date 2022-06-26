@@ -1,5 +1,5 @@
 import { AirRequest } from "@airport/arrivals-n-departures";
-import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube";
+import { SituationIdeaApi } from "@votecube/votecube";
 import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao";
 import { ReplyDao } from "../dao/ReplyDao";
 import { ReplyRatingDao } from "../dao/ReplyRatingDao";
@@ -16,7 +16,7 @@ export declare class ReplyApi {
     airRequest: AirRequest;
     addReply(reply: Reply): Promise<void>;
     getRepliesForSituationThread(situationThreadUuId: string): Promise<Reply[]>;
-    addIdea(reply: Reply, situationIdea: ISituationIdea): Promise<void>;
+    addIdea(reply: Reply): Promise<void>;
     rateReply(replyRating: ReplyRating): Promise<void>;
     updateCounts(situationThreadUuId: string): Promise<void>;
     setReplyUrgency(ideaReplyUrgency: IdeaReplyUrgency): Promise<void>;

@@ -13,29 +13,6 @@ import { QSituationThread } from "../generated/qsituationthread";
 export class ReplyRatingDao
     extends BaseReplyRatingDao {
 
-        async findAllForUserAndSituationThread(
-            userId: string,
-            situationThreadUuId: string
-        ): Promise<ReplyRating[]> {
-            let rr: QReplyRating,
-                a: QActor,
-                u: QUser,
-                st: QSituationThread
-            return await this._find({
-                select: {},
-                from: [
-                    rr = Q.ReplyRating,
-                    a = rr.actor.leftJoin(),
-                    u = a.user.leftJoin(),
-                    r = rr.reply.leftJoin(),
-                ],
-                where: and(
-                    u.uuId.equals(userId),
-                    st.equals(situationThreadUuId)
-                )
-            })
-        }
-
         async findAllForReply(
             replyUuId: string
         ): Promise<ReplyRating[]> {

@@ -9,8 +9,9 @@ import { Inject, Injected } from "@airport/direction-indicator";
 let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
         const situation = situationThread.situation;
+        // TODO: move Age Suitability validation to AIRport
         if (situation.ageSuitability < 0 || situation.ageSuitability > 25) {
-            throw new Error(`Invalid importance, must be between 0 & 25`);
+            throw new Error(`Invalid Age Suitability, must be between 0 & 25`);
         }
         let eMatrix = situation.eisenhowerMatrix;
         if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {
@@ -19,8 +20,10 @@ let SituationThreadApi = class SituationThreadApi {
         if (eMatrix.user.urgency < 1 || eMatrix.user.urgency > 5) {
             throw new Error(`Invalid urgency, must be between 1 & 5`);
         }
+        eMatrix.user.importance = Math.floor(eMatrix.user.importance);
+        eMatrix.user.urgency = Math.floor(eMatrix.user.urgency);
         const topic = situation.topic;
-        if (!topic || !topic.repository.id || !topic.actor.id
+        if (!topic || !topic.repository.uuId || !topic.actor.uuId
             || !topic.actorRecordId) {
             throw new Error(`No topic provided - missing topic or an id`);
         }
