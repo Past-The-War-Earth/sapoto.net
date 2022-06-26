@@ -1,3 +1,4 @@
+import { AirRequest } from "@airport/arrivals-n-departures";
 import { ISituationIdea, SituationIdeaApi } from "@votecube/votecube";
 import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao";
 import { ReplyDao } from "../dao/ReplyDao";
@@ -12,12 +13,13 @@ export declare class ReplyApi {
     replyRatingDao: ReplyRatingDao;
     ideaReplyUrgencyDao: IdeaReplyUrgencyDao;
     replyTypeDao: ReplyTypeDao;
+    airRequest: AirRequest;
     addReply(reply: Reply): Promise<void>;
     getRepliesForSituationThread(situationThreadUuId: string): Promise<Reply[]>;
     addIdea(reply: Reply, situationIdea: ISituationIdea): Promise<void>;
-    rateReply(replyRating: ReplyRating, replyUuId: string, situationThreadUuId: string): Promise<void>;
+    rateReply(replyRating: ReplyRating): Promise<void>;
     updateCounts(situationThreadUuId: string): Promise<void>;
-    setReplyUrgency(ideaReplyUrgency: IdeaReplyUrgency, replyUuId: string, situationThreadId: string): Promise<void>;
+    setReplyUrgency(ideaReplyUrgency: IdeaReplyUrgency): Promise<void>;
     addReplyType(reply: Reply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
 }
 //# sourceMappingURL=ReplyApi.d.ts.map

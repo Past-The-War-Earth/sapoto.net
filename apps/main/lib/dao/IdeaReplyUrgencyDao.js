@@ -1,4 +1,4 @@
-import { and } from "@airport/air-traffic-control";
+import { and, Y } from "@airport/air-traffic-control";
 import { BaseIdeaReplyUrgencyDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 export class IdeaReplyUrgencyDao extends BaseIdeaReplyUrgencyDao {
@@ -16,16 +16,22 @@ export class IdeaReplyUrgencyDao extends BaseIdeaReplyUrgencyDao {
             where: and(u.uuId.equals(userUuId), st.equals(situationThreadUuId))
         });
     }
-    async findAllForSituationThread(situationThreadUuId) {
-        let iru, r, st;
+    async findAllForReply(replyUuId) {
+        let iru, r;
         return await this._find({
-            select: {},
+            select: {
+                '*': Y,
+                actor: {
+                    user: {
+                        uuId: Y
+                    }
+                }
+            },
             from: [
                 iru = Q.IdeaUrgencyRating,
-                r = iru.reply.leftJoin(),
-                st = r.situationThread.leftJoin()
+                r = iru.reply.leftJoin()
             ],
-            where: st.equals(situationThreadUuId)
+            where: r.equals(replyUuId)
         });
     }
 }

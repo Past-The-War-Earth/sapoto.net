@@ -1,4 +1,4 @@
-import { and } from "@airport/air-traffic-control";
+import { and, Y } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
 import { QUser } from "@airport/travel-document-checkpoint";
 import { IdeaReplyUrgency } from "../ddl/IdeaReplyUrgency";
@@ -36,20 +36,25 @@ export class IdeaReplyUrgencyDao
         })
     }
 
-    async findAllForSituationThread(
-        situationThreadUuId: string
+    async findAllForReply(
+        replyUuId: string
     ): Promise<IdeaReplyUrgency[]> {
         let iru: QIdeaReplyUrgency,
-            r: QReply,
-            st: QSituationThread
+            r: QReply
         return await this._find({
-            select: {},
+            select: {
+                '*': Y,
+                actor: {
+                    user: {
+                        uuId: Y
+                    }
+                }
+            },
             from: [
                 iru = Q.IdeaUrgencyRating,
-                r = iru.reply.leftJoin(),
-                st = r.situationThread.leftJoin()
+                r = iru.reply.leftJoin()
             ],
-            where: st.equals(situationThreadUuId)
+            where: r.equals(replyUuId)
         })
     }
 }
