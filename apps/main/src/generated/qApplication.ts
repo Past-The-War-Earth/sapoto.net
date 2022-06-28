@@ -6,13 +6,11 @@ import {
     DbApplication,
     EntityId,
 }                      from '@airport/ground-control';
-import { QIdeaReplyUrgency } from './qideareplyurgency';
 import { QReply } from './qreply';
 import { QReplyRating } from './qreplyrating';
 import { QReplyType } from './qreplytype';
 import { QSituationThread } from './qsituationthread';
 import {
-  IdeaReplyUrgency,
   Reply,
   ReplyRating,
   ReplyType,
@@ -23,8 +21,7 @@ export interface LocalQApplication extends QApplication {
 
     db: DbApplication;
 
-  IdeaReplyUrgency: QIdeaReplyUrgency;
-	Reply: QReply;
+  Reply: QReply;
 	ReplyRating: QReplyRating;
 	ReplyType: QReplyType;
 	SituationThread: QSituationThread;
@@ -32,7 +29,6 @@ export interface LocalQApplication extends QApplication {
 }
 
 const __constructors__ = {
-	IdeaReplyUrgency: IdeaReplyUrgency,
 	Reply: Reply,
 	ReplyRating: ReplyRating,
 	ReplyType: ReplyType,

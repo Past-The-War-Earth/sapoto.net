@@ -6,21 +6,6 @@ export class SQDIDao extends Dao {
         super(dbEntityId, Q);
     }
 }
-export class BaseIdeaReplyUrgencyDao extends SQDIDao {
-    constructor() {
-        super(4);
-    }
-    static Save(config) {
-        return Dao.BaseSave(config);
-    }
-    static diSet() {
-        return duoDiSet(4);
-    }
-}
-BaseIdeaReplyUrgencyDao.Find = new DaoQueryDecorators();
-BaseIdeaReplyUrgencyDao.FindOne = new DaoQueryDecorators();
-BaseIdeaReplyUrgencyDao.Search = new DaoQueryDecorators();
-BaseIdeaReplyUrgencyDao.SearchOne = new DaoQueryDecorators();
 export class BaseReplyDao extends SQDIDao {
     constructor() {
         super(3);

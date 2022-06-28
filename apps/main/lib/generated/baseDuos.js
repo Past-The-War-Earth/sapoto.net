@@ -6,14 +6,6 @@ export class SQDIDuo extends Duo {
         super(dbEntityId, Q);
     }
 }
-export class BaseIdeaReplyUrgencyDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(4);
-    }
-    constructor() {
-        super(4);
-    }
-}
 export class BaseReplyDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(3);

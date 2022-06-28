@@ -1,4 +1,3 @@
-export * from './ideareplyurgency';
 export * from './reply';
 export * from './replyrating';
 export * from './replytype';

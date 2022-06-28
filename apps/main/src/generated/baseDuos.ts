@@ -1,18 +1,5 @@
 /* eslint-disable */
 import {
-	IdeaReplyUrgency,
-} from '../ddl/ideareplyurgency';
-import {
-	IdeaReplyUrgencyESelect,
-	IdeaReplyUrgencyECreateColumns,
-	IdeaReplyUrgencyECreateProperties,
-	IdeaReplyUrgencyEUpdateColumns,
-	IdeaReplyUrgencyEUpdateProperties,
-	IdeaReplyUrgencyEId,
-	IdeaReplyUrgencyGraph,
-	QIdeaReplyUrgency,
-} from './qideareplyurgency';
-import {
 	Reply,
 } from '../ddl/reply';
 import {
@@ -108,24 +95,6 @@ export class SQDIDuo<Entity,
 		dbEntityId: DbEntityId
 	) {
 		super(dbEntityId, Q)
-	}
-}
-
-
-export interface IBaseIdeaReplyUrgencyDuo
-  extends IDuo<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> {
-}
-
-export class BaseIdeaReplyUrgencyDuo
-  extends SQDIDuo<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency>
-	implements IBaseIdeaReplyUrgencyDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(4)
-	}
-	
-	constructor() {
-		super(4)
 	}
 }
 

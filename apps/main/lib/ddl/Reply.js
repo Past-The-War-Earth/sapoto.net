@@ -15,12 +15,6 @@ __decorate([
     Column({ name: 'NUMBER_OF_UP_RATINGS' })
 ], Reply.prototype, "numberOfUpRatings", void 0);
 __decorate([
-    Column({ name: 'URGENCY_TOTAL' })
-], Reply.prototype, "urgencyTotal", void 0);
-__decorate([
-    Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
-], Reply.prototype, "numberOfUrgencyRatings", void 0);
-__decorate([
     ManyToOne()
 ], Reply.prototype, "situationThread", void 0);
 __decorate([
@@ -39,17 +33,11 @@ __decorate([
     OneToMany({ mappedBy: 'reply' })
 ], Reply.prototype, "replyTypes", void 0);
 __decorate([
-    OneToMany({ mappedBy: 'reply' })
-], Reply.prototype, "ideaReplyUrgencies", void 0);
-__decorate([
     Transient()
 ], Reply.prototype, "userRelyRating", void 0);
-__decorate([
-    Transient()
-], Reply.prototype, "userIdeaReplyUrgency", void 0);
 Reply = __decorate([
     Entity(),
     Table({ name: 'REPLIES' })
 ], Reply);
 export { Reply };
-//# sourceMappingURL=Reply.js.map
+//# sourceMappingURL=reply.js.map

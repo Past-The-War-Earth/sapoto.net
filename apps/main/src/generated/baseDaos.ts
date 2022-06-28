@@ -1,18 +1,5 @@
 /* eslint-disable */
 import {
-	IdeaReplyUrgency,
-} from '../ddl/ideareplyurgency';
-import {
-	IdeaReplyUrgencyESelect,
-	IdeaReplyUrgencyECreateColumns,
-	IdeaReplyUrgencyECreateProperties,
-	IdeaReplyUrgencyEUpdateColumns,
-	IdeaReplyUrgencyEUpdateProperties,
-	IdeaReplyUrgencyEId,
-	IdeaReplyUrgencyGraph,
-	QIdeaReplyUrgency,
-} from './qideareplyurgency';
-import {
 	Reply,
 } from '../ddl/reply';
 import {
@@ -109,34 +96,6 @@ export class SQDIDao<Entity,
 		dbEntityId: DbEntityId
 	) {
 		super(dbEntityId, Q)
-	}
-}
-
-
-export interface IBaseIdeaReplyUrgencyDao
-  extends IDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> {
-}
-
-export class BaseIdeaReplyUrgencyDao
-  extends SQDIDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency>
-	implements IBaseIdeaReplyUrgencyDao {
-	
-	static Find      = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
-	static FindOne   = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
-	static Search    = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
-	static SearchOne = new DaoQueryDecorators<IdeaReplyUrgencyESelect>();
-	static Save(
-		config: IdeaReplyUrgencyGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<IdeaReplyUrgencyGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(4)
-	}
-	
-	constructor() {
-		super(4)
 	}
 }
 

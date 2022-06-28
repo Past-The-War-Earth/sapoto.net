@@ -1,4 +1,3 @@
-export * from './IdeaReplyUrgency'
 export * from './Reply'
 export * from './ReplyRating'
 export * from './ReplyType'

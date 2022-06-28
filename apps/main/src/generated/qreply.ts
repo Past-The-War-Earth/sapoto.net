@@ -84,19 +84,6 @@ import {
 	IReplyType,
 } from './replytype';
 import {
-	IdeaReplyUrgencyGraph,
-	IdeaReplyUrgencyEId,
-	IdeaReplyUrgencyEOptionalId,
-	IdeaReplyUrgencyEUpdateProperties,
-	IdeaReplyUrgencyESelect,
-	QIdeaReplyUrgency,
-	QIdeaReplyUrgencyQId,
-	QIdeaReplyUrgencyQRelation,
-} from './qideareplyurgency';
-import {
-	IIdeaReplyUrgency,
-} from './ideareplyurgency';
-import {
 	IReply,
 } from './reply';
 
@@ -117,8 +104,6 @@ export interface ReplyESelect
 	text?: string | IQStringField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	urgencyTotal?: number | IQNumberField;
-	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -129,7 +114,6 @@ export interface ReplyESelect
 	childReplies?: ReplyESelect;
 	replyRatings?: ReplyRatingESelect;
 	replyTypes?: ReplyTypeESelect;
-	ideaReplyUrgencies?: IdeaReplyUrgencyESelect;
 
 }
 
@@ -163,8 +147,6 @@ export interface ReplyEUpdateProperties
 	text?: string | IQStringField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	urgencyTotal?: number | IQNumberField;
-	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationThread?: SituationThreadEOptionalId;
@@ -184,8 +166,6 @@ export interface ReplyGraph
 	text?: string | IQStringField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	urgencyTotal?: number | IQNumberField;
-	numberOfUrgencyRatings?: number | IQNumberField;
 
 	// Relations
 	situationThread?: SituationThreadGraph;
@@ -194,7 +174,6 @@ export interface ReplyGraph
 	childReplies?: ReplyGraph[];
 	replyRatings?: ReplyRatingGraph[];
 	replyTypes?: ReplyTypeGraph[];
-	ideaReplyUrgencies?: IdeaReplyUrgencyGraph[];
 
 }
 
@@ -213,8 +192,6 @@ export interface ReplyEUpdateColumns
 	TEXT?: string | IQStringField;
 	NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
 	NUMBER_OF_UP_RATINGS?: number | IQNumberField;
-	URGENCY_TOTAL?: number | IQNumberField;
-	NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
 	SITUATION_THREADS_RID_1?: number | IQNumberField;
 	SITUATION_THREADS_AID_1?: number | IQNumberField;
 	SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -261,8 +238,6 @@ export interface QReply extends QAirEntity
 	text: IQStringField;
 	numberOfDownRatings: IQNumberField;
 	numberOfUpRatings: IQNumberField;
-	urgencyTotal: IQNumberField;
-	numberOfUrgencyRatings: IQNumberField;
 
 	// Non-Id Relations
 	situationThread: QSituationThreadQRelation;
@@ -271,7 +246,6 @@ export interface QReply extends QAirEntity
 	childReplies: IQAirEntityOneToManyRelation<IReply, QReply>;
 	replyRatings: IQAirEntityOneToManyRelation<IReplyRating, QReplyRating>;
 	replyTypes: IQAirEntityOneToManyRelation<IReplyType, QReplyType>;
-	ideaReplyUrgencies: IQAirEntityOneToManyRelation<IIdeaReplyUrgency, QIdeaReplyUrgency>;
 
 }
 

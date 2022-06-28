@@ -1,5 +1,3 @@
-import { IdeaReplyUrgency } from '../ddl/ideareplyurgency';
-import { IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency } from './qideareplyurgency';
 import { Reply } from '../ddl/reply';
 import { ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply } from './qreply';
 import { ReplyRating } from '../ddl/replyrating';
@@ -13,17 +11,6 @@ import { Dao, DaoQueryDecorators } from '@airport/check-in';
 import { EntityId as DbEntityId } from '@airport/ground-control';
 export declare class SQDIDao<Entity, EntitySelect extends IEntitySelectProperties, EntityCreate extends IEntityCreateProperties, EntityUpdateColumns extends IEntityUpdateColumns, EntityUpdateProperties extends IEntityUpdateProperties, EntityId extends IEntityIdProperties, EntityCascadeGraph extends IEntityCascadeGraph, IQE extends IQEntity> extends Dao<Entity, EntitySelect, EntityCreate, EntityUpdateColumns, EntityUpdateProperties, EntityId, EntityCascadeGraph, IQE> {
     constructor(dbEntityId: DbEntityId);
-}
-export interface IBaseIdeaReplyUrgencyDao extends IDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> {
-}
-export declare class BaseIdeaReplyUrgencyDao extends SQDIDao<IdeaReplyUrgency, IdeaReplyUrgencyESelect, IdeaReplyUrgencyECreateProperties, IdeaReplyUrgencyEUpdateColumns, IdeaReplyUrgencyEUpdateProperties, IdeaReplyUrgencyEId, IdeaReplyUrgencyGraph, QIdeaReplyUrgency> implements IBaseIdeaReplyUrgencyDao {
-    static Find: DaoQueryDecorators<IdeaReplyUrgencyESelect>;
-    static FindOne: DaoQueryDecorators<IdeaReplyUrgencyESelect>;
-    static Search: DaoQueryDecorators<IdeaReplyUrgencyESelect>;
-    static SearchOne: DaoQueryDecorators<IdeaReplyUrgencyESelect>;
-    static Save(config: IdeaReplyUrgencyGraph): PropertyDecorator;
-    static diSet(): boolean;
-    constructor();
 }
 export interface IBaseReplyDao extends IDao<Reply, ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply> {
 }

@@ -5,7 +5,6 @@ import { ReplyRating } from '../ddl/ReplyRating';
 import { ReplyType } from '../ddl/ReplyType';
 import { SituationThread } from '../ddl/SituationThread';
 import { Reply } from '../ddl/Reply';
-import { IdeaReplyUrgency } from '../ddl/IdeaReplyUrgency';
 
 DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
   const accumulator = airDb.getAccumulator('localhost:8080', 'undefined');
@@ -13,5 +12,4 @@ DEPENDENCY_INJECTION.db().get(AIRPORT_DATABASE).then(airDb => {
   accumulator.add(ReplyType, 1);
   accumulator.add(SituationThread, 2);
   accumulator.add(Reply, 3);
-  accumulator.add(IdeaReplyUrgency, 4);
 });

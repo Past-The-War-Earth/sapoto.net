@@ -1,1 +1,0 @@
-{"version":3,"file":"IdeaReplyUrgency.d.ts","sourceRoot":"","sources":["../../src/ddl/IdeaReplyUrgency.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAC;AACrD,OAAO,EAAE,KAAK,EAAE,MAAM,SAAS,CAAC;AAEhC,qBAEa,gBACT,SAAQ,SAAS;IAGjB,OAAO,EAAE,CAAC,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,CAAA;IAG1B,KAAK,EAAE,KAAK,CAAA;CAEf"}

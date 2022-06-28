@@ -5,9 +5,6 @@ import {
 	ReplyRating,
 } from '../ddl/ReplyRating';
 import {
-	IdeaReplyUrgency,
-} from '../ddl/IdeaReplyUrgency';
-import {
 	ISituationThread,
 } from './situationthread';
 import {
@@ -19,9 +16,6 @@ import {
 import {
 	IReplyType,
 } from './replytype';
-import {
-	IIdeaReplyUrgency,
-} from './ideareplyurgency';
 
 
 
@@ -39,8 +33,6 @@ export interface IReply extends IAirEntity {
 	text?: string;
 	numberOfDownRatings?: number;
 	numberOfUpRatings?: number;
-	urgencyTotal?: number;
-	numberOfUrgencyRatings?: number;
 
 	// Non-Id Relations
 	situationThread?: ISituationThread;
@@ -49,11 +41,9 @@ export interface IReply extends IAirEntity {
 	childReplies?: IReply[];
 	replyRatings?: IReplyRating[];
 	replyTypes?: IReplyType[];
-	ideaReplyUrgencies?: IIdeaReplyUrgency[];
 
 	// Transient Properties
 	userRelyRating?: ReplyRating;
-	userIdeaReplyUrgency?: IdeaReplyUrgency;
 
 	// Public Methods
 	
