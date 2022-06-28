@@ -24,7 +24,7 @@ export class TopicSearchService implements AutoCompleteService {
   async getById(
     topicId: string
   ): Promise<Topic> {
-    return await this.topicApiClient.getById(topicId);
+    return await this.topicApiClient.findByUuId(topicId);
   }
 
   async addTopic(

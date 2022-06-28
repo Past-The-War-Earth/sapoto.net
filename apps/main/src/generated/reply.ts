@@ -2,6 +2,12 @@ import {
 	IAirEntity,
 } from '@airport/holding-pattern';
 import {
+	ReplyRating,
+} from '../ddl/ReplyRating';
+import {
+	IdeaReplyUrgency,
+} from '../ddl/IdeaReplyUrgency';
+import {
 	ISituationThread,
 } from './situationthread';
 import {
@@ -46,6 +52,8 @@ export interface IReply extends IAirEntity {
 	ideaReplyUrgencies?: IIdeaReplyUrgency[];
 
 	// Transient Properties
+	userRelyRating?: ReplyRating;
+	userIdeaReplyUrgency?: IdeaReplyUrgency;
 
 	// Public Methods
 	

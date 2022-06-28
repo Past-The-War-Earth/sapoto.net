@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Reply } from '@sapoto/main';
 import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { ReplyService } from 'src/app/services/reply.service';
 })
 export class ReplyTypesComponent implements OnInit {
 
-  @Input() parent
+  @Input() parent: Reply
 
-  @Input() reply
+  @Input() reply: Reply
 
   @Input() type
 

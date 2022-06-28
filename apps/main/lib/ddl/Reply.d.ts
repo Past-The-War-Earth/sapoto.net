@@ -17,5 +17,7 @@ export declare class Reply extends AirEntity {
     replyRatings?: ReplyRating[];
     replyTypes?: ReplyType[];
     ideaReplyUrgencies?: IdeaReplyUrgency[];
+    userRelyRating?: ReplyRating;
+    userIdeaReplyUrgency?: IdeaReplyUrgency;
 }
 //# sourceMappingURL=Reply.d.ts.map

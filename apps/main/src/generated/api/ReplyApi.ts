@@ -7,10 +7,12 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
+	AirRequest,
+} from '@airport/arrivals-n-departures';
+import {
 	Api,
 } from '@airport/check-in';
 import {
-	ISituationIdea,
 	SituationIdeaApi,
 } from '@votecube/votecube';
 import {
@@ -64,25 +66,15 @@ export class ReplyApi {
     }
 
     async  addIdea(
-        reply: Reply,
-        situationIdea: ISituationIdea
+        reply: Reply
     ): Promise<void> {
-        await this.replyApi.addIdea(
-            reply,
-            situationIdea
-        )
+        await this.replyApi.addIdea(reply)
     }
 
     async  rateReply(
-        replyRating: ReplyRating,
-        replyUuId: string,
-        situationThreadUuId: string
+        replyRating: ReplyRating
     ): Promise<void> {
-        await this.replyApi.rateReply(
-            replyRating,
-            replyUuId,
-            situationThreadUuId
-        )
+        await this.replyApi.rateReply(replyRating)
     }
 
     async  updateCounts(
@@ -92,15 +84,9 @@ export class ReplyApi {
     }
 
     async  setReplyUrgency(
-        ideaReplyUrgency: IdeaReplyUrgency,
-        replyUuId: string,
-        situationThreadId: string
+        ideaReplyUrgency: IdeaReplyUrgency
     ): Promise<void> {
-        await this.replyApi.setReplyUrgency(
-            ideaReplyUrgency,
-            replyUuId,
-            situationThreadId
-        )
+        await this.replyApi.setReplyUrgency(ideaReplyUrgency)
     }
 
     async  addReplyType(

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
 import { IdeaReplyUrgency } from "./IdeaReplyUrgency";
@@ -45,5 +45,11 @@ export class Reply
 
     @OneToMany({ mappedBy: 'reply' })
     ideaReplyUrgencies?: IdeaReplyUrgency[]
+
+    @Transient()
+    userRelyRating?: ReplyRating
+
+    @Transient()
+    userIdeaReplyUrgency?: IdeaReplyUrgency
 
 }

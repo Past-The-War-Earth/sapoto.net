@@ -175,7 +175,16 @@ export class EisenhowerMatrixService {
     return this.numberUtilsService.get1to5WithNoDecimalValue(value)
   }
 
-  isVeryLowUrgency(
+  isVeryLowSituationUrgency(
+    situationOrReply: Situation,
+    type: 'situation' | 'reply',
+    mode: 'edit' | 'show'
+  ) {
+    this.ensureMatrixPresent(situationOrReply, type)
+    return this.urgencyEquals(situationOrReply.eisenhowerMatrix, mode, 1)
+  }
+
+  isVeryLowReplyUrgency(
     situationOrReply: Situation | Reply,
     type: 'situation' | 'reply',
     mode: 'edit' | 'show'
