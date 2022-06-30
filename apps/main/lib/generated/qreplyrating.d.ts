@@ -6,7 +6,7 @@ import { IReplyRating } from './replyrating';
  * SELECT - All fields and relations (optional).
  */
 export interface ReplyRatingESelect extends AirEntityESelect, ReplyRatingEOptionalId {
-    rating?: number | IQNumberField;
+    upOrDownRating?: number | IQNumberField;
     reply?: ReplyESelect;
 }
 /**
@@ -23,14 +23,14 @@ export interface ReplyRatingEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface ReplyRatingEUpdateProperties extends AirEntityEUpdateProperties {
-    rating?: number | IQNumberField;
+    upOrDownRating?: number | IQNumberField;
     reply?: ReplyEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface ReplyRatingGraph extends ReplyRatingEOptionalId, AirEntityGraph {
-    rating?: number | IQNumberField;
+    upOrDownRating?: number | IQNumberField;
     reply?: ReplyGraph;
 }
 /**
@@ -43,7 +43,7 @@ export interface ReplyRatingEUpdateColumns extends AirEntityEUpdateColumns {
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
-    RATING?: number | IQNumberField;
+    UP_OR_DOWN_RATING?: number | IQNumberField;
     REPLIES_RID_1?: number | IQNumberField;
     REPLIES_AID_1?: number | IQNumberField;
     REPLIES_ARID_1?: number | IQNumberField;
@@ -62,7 +62,7 @@ export interface ReplyRatingECreateColumns extends ReplyRatingEId, ReplyRatingEU
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QReplyRating extends QAirEntity {
-    rating: IQNumberField;
+    upOrDownRating: IQNumberField;
     reply: QReplyQRelation;
 }
 export interface QReplyRatingQId extends QAirEntityQId {

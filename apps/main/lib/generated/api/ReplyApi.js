@@ -26,8 +26,8 @@ let ReplyApi = class ReplyApi {
     async updateCounts(situationThreadUuId) {
         await this.replyApi.updateCounts(situationThreadUuId);
     }
-    async addReplyType(reply, type) {
-        await this.replyApi.addReplyType(reply, type);
+    async setReplyType(reply, type) {
+        await this.replyApi.setReplyType(reply, type);
     }
 };
 __decorate([

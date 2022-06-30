@@ -2,7 +2,6 @@ import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport
 import { AirEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
 import { ReplyRating } from "./ReplyRating";
-import { ReplyType } from "./ReplyType";
 import { SituationThread } from "./SituationThread";
 
 @Entity()
@@ -12,11 +11,20 @@ export class Reply
 
     text: string
 
+    @Column({ name: 'IS_IDEA' })
+    isIdea: boolean
+
+    @Column({ name: 'IS_EXPERIENCE' })
+    isExperience: boolean
+
+    @Column({ name: 'IS_QUESTION' })
+    isQuestion: boolean
+
     @Column({ name: 'NUMBER_OF_DOWN_RATINGS' })
-    numberOfDownRatings: number;
+    numberOfDownRatings: number
 
     @Column({ name: 'NUMBER_OF_UP_RATINGS' })
-    numberOfUpRatings: number;
+    numberOfUpRatings: number
 
     @ManyToOne()
     situationThread: SituationThread
@@ -32,9 +40,6 @@ export class Reply
 
     @OneToMany({ mappedBy: 'reply' })
     replyRatings?: ReplyRating[]
-
-    @OneToMany({ mappedBy: 'reply' })
-    replyTypes?: ReplyType[]
 
     @Transient()
     userRelyRating?: ReplyRating

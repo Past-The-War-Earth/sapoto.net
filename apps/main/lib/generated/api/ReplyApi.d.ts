@@ -8,6 +8,6 @@ export declare class ReplyApi {
     addIdea(reply: Reply): Promise<void>;
     rateReply(replyRating: ReplyRating): Promise<void>;
     updateCounts(situationThreadUuId: string): Promise<void>;
-    addReplyType(reply: Reply, type: 'comment' | 'experience' | 'idea' | 'question'): Promise<void>;
+    setReplyType(reply: Reply, type: 'experience' | 'idea' | 'question'): Promise<void>;
 }
 //# sourceMappingURL=ReplyApi.d.ts.map

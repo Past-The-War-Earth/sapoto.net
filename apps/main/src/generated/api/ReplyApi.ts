@@ -23,17 +23,14 @@ import {
 	ReplyRatingDao,
 } from '../../dao/ReplyRatingDao';
 import {
-	ReplyTypeDao,
-} from '../../dao/ReplyTypeDao';
+	SituationThreadDao,
+} from '../../dao/SituationThreadDao';
 import {
 	Reply,
 } from '../../ddl/Reply';
 import {
 	ReplyRating,
 } from '../../ddl/ReplyRating';
-import {
-	ReplyType,
-} from '../../ddl/ReplyType';
 
 
 
@@ -78,11 +75,11 @@ export class ReplyApi {
         await this.replyApi.updateCounts(situationThreadUuId)
     }
 
-    async  addReplyType(
+    async  setReplyType(
         reply: Reply,
-        type: 'comment' | 'experience' | 'idea' | 'question'
+        type: 'experience' | 'idea' | 'question'
     ): Promise<void> {
-        await this.replyApi.addReplyType(
+        await this.replyApi.setReplyType(
             reply,
             type
         )

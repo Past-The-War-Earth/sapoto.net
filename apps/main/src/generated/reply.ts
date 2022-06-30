@@ -13,9 +13,6 @@ import {
 import {
 	IReplyRating,
 } from './replyrating';
-import {
-	IReplyType,
-} from './replytype';
 
 
 
@@ -31,8 +28,13 @@ export interface IReply extends IAirEntity {
 
 	// Non-Id Properties
 	text?: string;
+	isIdea?: boolean;
+	isExperience?: boolean;
+	isQuestion?: boolean;
 	numberOfDownRatings?: number;
 	numberOfUpRatings?: number;
+	numberOfExperiences?: number;
+	numberOfQuestions?: number;
 
 	// Non-Id Relations
 	situationThread?: ISituationThread;
@@ -40,7 +42,6 @@ export interface IReply extends IAirEntity {
 	situationIdea?: ISituationIdea;
 	childReplies?: IReply[];
 	replyRatings?: IReplyRating[];
-	replyTypes?: IReplyType[];
 
 	// Transient Properties
 	userRelyRating?: ReplyRating;

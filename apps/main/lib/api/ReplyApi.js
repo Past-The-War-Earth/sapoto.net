@@ -8,33 +8,44 @@ import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let ReplyApi = class ReplyApi {
     async addReply(reply) {
+        const existingSituationThread = await this.situationThreadDao
+            .findByUuId(reply.situationThread, true);
+        if (!existingSituationThread) {
+            return;
+        }
+        let existingParentReply;
+        if (reply.parentReply) {
+            existingParentReply = await this.replyDao.findByUuId(reply);
+            if (!existingParentReply) {
+                return;
+            }
+        }
+        reply.numberOfDownRatings = 0;
+        reply.numberOfUpRatings = 0;
+        this.situationThreadDao.updateReplyTypeTotals(reply.isIdea ? 1 : 0, reply.isExperience ? 1 : 0, reply.isQuestion ? 1 : 0, existingSituationThread);
         await this.replyDao.save(reply);
     }
     async getRepliesForSituationThread(situationThreadUuId) {
         return await this.replyDao.findForSituationThread(situationThreadUuId);
     }
-    async addIdea(reply) {
-        await this.situationIdeaApi.add(reply.situationIdea);
-        await this.addReply(reply);
-    }
     async rateReply(replyRating) {
-        if (replyRating.rating > 0) {
-            replyRating.rating = 1;
+        if (replyRating.upOrDownRating > 0) {
+            replyRating.upOrDownRating = 1;
         }
-        else if (replyRating.rating < 0) {
-            replyRating.rating = -1;
+        else if (replyRating.upOrDownRating < 0) {
+            replyRating.upOrDownRating = -1;
         }
         else {
-            replyRating.rating = 0;
+            replyRating.upOrDownRating = 0;
         }
         const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true);
         const existingReplyRating = await this.replyRatingDao.findForReplyAndUser(replyRating.reply, (await this.requestManager.getRequest()).user);
         let numberOfDownRatingsDelta = 0;
         let numberOfUpRatingsDelta = 0;
         if (existingReplyRating) {
-            switch (existingReplyRating.rating) {
+            switch (existingReplyRating.upOrDownRating) {
                 case -1:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             break;
                         case 0:
@@ -47,7 +58,7 @@ let ReplyApi = class ReplyApi {
                     }
                     break;
                 case 0:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             numberOfDownRatingsDelta = 1;
                             break;
@@ -59,7 +70,7 @@ let ReplyApi = class ReplyApi {
                     }
                     break;
                 case 1:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             numberOfDownRatingsDelta = 1;
                             numberOfUpRatingsDelta = -1;
@@ -72,11 +83,11 @@ let ReplyApi = class ReplyApi {
                     }
                     break;
             }
-            existingReplyRating.rating = replyRating.rating;
+            existingReplyRating.upOrDownRating = replyRating.upOrDownRating;
             replyRating = existingReplyRating;
         }
         await this.replyRatingDao.save(replyRating);
-        await this.replyDao.updateRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply);
+        await this.replyDao.updateUpOrDownRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply);
     }
     // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
     // Do this only in non-server environments since the counts can be widely off across
@@ -88,21 +99,47 @@ let ReplyApi = class ReplyApi {
         // // Recompute all counts
         // await this.replyDao.save(replies)
     }
-    async addReplyType(reply, type) {
-        const existingReplyTypes = await this.replyTypeDao.getAllForReply(reply.uuId);
-        for (const existingReplyType of existingReplyTypes) {
-            if (existingReplyType.type === type) {
-                return;
-            }
+    async setReplyType(reply, type) {
+        const existingSituationThread = await this.situationThreadDao
+            .findByUuId(reply.situationThread, true);
+        if (!existingSituationThread) {
+            return;
         }
-        const replyType = {
-            actor: this.airRequest.actor,
-            reply,
-            repository: reply.repository,
-            type
-        };
-        await this.replyTypeDao.save(replyType);
-        reply.replyTypes.push(replyType);
+        const existingReply = await this.replyDao.findByUuId(reply, true);
+        if (!existingReply) {
+            return;
+        }
+        let isExperience = existingReply.isExperience;
+        let isIdea = existingReply.isIdea;
+        let isQuestion = existingReply.isQuestion;
+        let numberOfIdeasDelta = 0;
+        let numberOfExperiencesDelta = 0;
+        let numberOfQuestionsDelta = 0;
+        switch (type) {
+            case 'experience':
+                if (isExperience) {
+                    return;
+                }
+                isExperience = true;
+                numberOfExperiencesDelta = 1;
+                break;
+            case 'idea':
+                if (isIdea) {
+                    return;
+                }
+                isIdea = true;
+                numberOfIdeasDelta = 1;
+                break;
+            case 'question':
+                if (isQuestion) {
+                    return;
+                }
+                isQuestion = true;
+                numberOfQuestionsDelta = 1;
+                break;
+        }
+        await this.replyDao.setReplyType(isIdea, isExperience, isQuestion, reply);
+        await this.situationThreadDao.updateReplyTypeTotals(numberOfIdeasDelta, numberOfExperiencesDelta, numberOfQuestionsDelta, existingSituationThread);
     }
 };
 __decorate([
@@ -116,22 +153,19 @@ __decorate([
 ], ReplyApi.prototype, "replyRatingDao", void 0);
 __decorate([
     Inject()
-], ReplyApi.prototype, "replyTypeDao", void 0);
-__decorate([
-    Inject()
 ], ReplyApi.prototype, "airRequest", void 0);
 __decorate([
     Inject()
 ], ReplyApi.prototype, "requestManager", void 0);
+__decorate([
+    Inject()
+], ReplyApi.prototype, "situationThreadDao", void 0);
 __decorate([
     Api()
 ], ReplyApi.prototype, "addReply", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "getRepliesForSituationThread", null);
-__decorate([
-    Api()
-], ReplyApi.prototype, "addIdea", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "rateReply", null);
@@ -142,7 +176,7 @@ __decorate([
 ], ReplyApi.prototype, "updateCounts", null);
 __decorate([
     Api()
-], ReplyApi.prototype, "addReplyType", null);
+], ReplyApi.prototype, "setReplyType", null);
 ReplyApi = __decorate([
     Injected()
 ], ReplyApi);

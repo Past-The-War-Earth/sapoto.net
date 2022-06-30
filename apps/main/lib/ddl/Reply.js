@@ -9,6 +9,15 @@ import { AirEntity } from "@airport/holding-pattern";
 let Reply = class Reply extends AirEntity {
 };
 __decorate([
+    Column({ name: 'IS_IDEA' })
+], Reply.prototype, "isIdea", void 0);
+__decorate([
+    Column({ name: 'IS_EXPERIENCE' })
+], Reply.prototype, "isExperience", void 0);
+__decorate([
+    Column({ name: 'IS_QUESTION' })
+], Reply.prototype, "isQuestion", void 0);
+__decorate([
     Column({ name: 'NUMBER_OF_DOWN_RATINGS' })
 ], Reply.prototype, "numberOfDownRatings", void 0);
 __decorate([
@@ -29,9 +38,6 @@ __decorate([
 __decorate([
     OneToMany({ mappedBy: 'reply' })
 ], Reply.prototype, "replyRatings", void 0);
-__decorate([
-    OneToMany({ mappedBy: 'reply' })
-], Reply.prototype, "replyTypes", void 0);
 __decorate([
     Transient()
 ], Reply.prototype, "userRelyRating", void 0);

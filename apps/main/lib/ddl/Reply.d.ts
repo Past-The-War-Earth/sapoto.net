@@ -1,10 +1,12 @@
 import { AirEntity } from "@airport/holding-pattern";
 import { SituationIdea } from "@votecube/votecube";
 import { ReplyRating } from "./ReplyRating";
-import { ReplyType } from "./ReplyType";
 import { SituationThread } from "./SituationThread";
 export declare class Reply extends AirEntity {
     text: string;
+    isIdea: boolean;
+    isExperience: boolean;
+    isQuestion: boolean;
     numberOfDownRatings: number;
     numberOfUpRatings: number;
     situationThread: SituationThread;
@@ -12,7 +14,6 @@ export declare class Reply extends AirEntity {
     situationIdea?: SituationIdea;
     childReplies?: Reply[];
     replyRatings?: ReplyRating[];
-    replyTypes?: ReplyType[];
     userRelyRating?: ReplyRating;
 }
 //# sourceMappingURL=Reply.d.ts.map

@@ -26,19 +26,6 @@ import {
 	QReplyRating,
 } from './qreplyrating';
 import {
-	ReplyType,
-} from '../ddl/replytype';
-import {
-	ReplyTypeESelect,
-	ReplyTypeECreateColumns,
-	ReplyTypeECreateProperties,
-	ReplyTypeEUpdateColumns,
-	ReplyTypeEUpdateProperties,
-	ReplyTypeEId,
-	ReplyTypeGraph,
-	QReplyType,
-} from './qreplytype';
-import {
 	SituationThread,
 } from '../ddl/situationthread';
 import {
@@ -119,11 +106,11 @@ export class BaseReplyDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 
@@ -156,34 +143,6 @@ export class BaseReplyRatingDao
 }
 
 
-export interface IBaseReplyTypeDao
-  extends IDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
-}
-
-export class BaseReplyTypeDao
-  extends SQDIDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
-	implements IBaseReplyTypeDao {
-	
-	static Find      = new DaoQueryDecorators<ReplyTypeESelect>();
-	static FindOne   = new DaoQueryDecorators<ReplyTypeESelect>();
-	static Search    = new DaoQueryDecorators<ReplyTypeESelect>();
-	static SearchOne = new DaoQueryDecorators<ReplyTypeESelect>();
-	static Save(
-		config: ReplyTypeGraph
-	): PropertyDecorator {
-		return Dao.BaseSave<ReplyTypeGraph>(config);
-  }
-
-	static diSet(): boolean {
-		return duoDiSet(1)
-	}
-	
-	constructor() {
-		super(1)
-	}
-}
-
-
 export interface IBaseSituationThreadDao
   extends IDao<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
 }
@@ -203,10 +162,10 @@ export class BaseSituationThreadDao
   }
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
 	}
 }

@@ -64,7 +64,7 @@ declare function require(moduleName: string): any;
 export interface ReplyRatingESelect
     extends AirEntityESelect, ReplyRatingEOptionalId {
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	upOrDownRating?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -100,7 +100,7 @@ export interface ReplyRatingEOptionalId {
 export interface ReplyRatingEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	upOrDownRating?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	reply?: ReplyEOptionalId;
@@ -115,7 +115,7 @@ export interface ReplyRatingGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	rating?: number | IQNumberField;
+	upOrDownRating?: number | IQNumberField;
 
 	// Relations
 	reply?: ReplyGraph;
@@ -134,7 +134,7 @@ export interface ReplyRatingEUpdateColumns
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
-	RATING?: number | IQNumberField;
+	UP_OR_DOWN_RATING?: number | IQNumberField;
 	REPLIES_RID_1?: number | IQNumberField;
 	REPLIES_AID_1?: number | IQNumberField;
 	REPLIES_ARID_1?: number | IQNumberField;
@@ -172,7 +172,7 @@ export interface QReplyRating extends QAirEntity
 	// Id Relations
 
 	// Non-Id Fields
-	rating: IQNumberField;
+	upOrDownRating: IQNumberField;
 
 	// Non-Id Relations
 	reply: QReplyQRelation;

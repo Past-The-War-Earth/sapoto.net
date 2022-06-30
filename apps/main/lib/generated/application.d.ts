@@ -28,7 +28,7 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        addReplyType: {
+                        setReplyType: {
                             isAsync: boolean;
                             parameters: any[];
                         };

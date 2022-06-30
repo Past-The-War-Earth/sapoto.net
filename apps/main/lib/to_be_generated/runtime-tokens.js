@@ -7,7 +7,6 @@ import { main, REPLY_API } from './common-tokens';
 import { ReplyDao } from '../dao/ReplyDao';
 import { ReplyRatingDao } from '../dao/ReplyRatingDao';
 import { SituationThreadDao } from '../dao/SituationThreadDao';
-import { ReplyTypeDao } from '../dao/ReplyTypeDao';
 import { SITUATION_THREAD_API } from './common-tokens';
 import { ReplyApi, SituationThreadApi } from '../api/api';
 import { SITUATION_IDEA_API } from '@votecube/votecube';
@@ -20,11 +19,6 @@ export const REPLY_RATING_DAO = main.token({
     class: ReplyRatingDao,
     interface: 'ReplyRatingDao',
     token: 'REPLY_RATING_DAO'
-});
-export const REPLY_TYPE_DAO = main.token({
-    class: ReplyTypeDao,
-    interface: 'ReplyTypeDao',
-    token: 'REPLY_TYPE_DAO'
 });
 export const SITUATION_THREAD_DAO = main.token({
     class: SituationThreadDao,
@@ -41,8 +35,8 @@ REPLY_API.setDependencies({
     situationIdeaApi: SITUATION_IDEA_API,
     replyDao: REPLY_DAO,
     replyRatingDao: REPLY_RATING_DAO,
-    replyTypeDao: REPLY_TYPE_DAO,
     situationApi: SITUATION_API,
+    situationThreadDao: SITUATION_THREAD_DAO,
 });
 APPLICATION_LOADER.setClass(ApplicationLoader);
 APPLICATION_LOADER.setDependencies({

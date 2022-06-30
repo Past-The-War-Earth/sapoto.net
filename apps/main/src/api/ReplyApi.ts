@@ -4,10 +4,9 @@ import { Inject, Injected } from "@airport/direction-indicator"
 import { SituationIdeaApi } from "@votecube/votecube"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
-import { ReplyTypeDao } from "../dao/ReplyTypeDao"
+import { SituationThreadDao } from "../dao/SituationThreadDao"
 import { Reply } from "../ddl/Reply"
 import { ReplyRating } from "../ddl/ReplyRating"
-import { ReplyType } from "../ddl/ReplyType"
 
 @Injected()
 export class ReplyApi {
@@ -22,18 +21,36 @@ export class ReplyApi {
     replyRatingDao: ReplyRatingDao
 
     @Inject()
-    replyTypeDao: ReplyTypeDao
-
-    @Inject()
     airRequest: AirRequest
 
     @Inject()
     requestManager: IRequestManager
 
+    @Inject()
+    situationThreadDao: SituationThreadDao
+
     @Api()
     async addReply(
         reply: Reply
     ): Promise<void> {
+        const existingSituationThread = await this.situationThreadDao
+            .findByUuId(reply.situationThread, true)
+        if (!existingSituationThread) {
+            return
+        }
+        let existingParentReply
+        if (reply.parentReply) {
+            existingParentReply = await this.replyDao.findByUuId(reply)
+            if (!existingParentReply) {
+                return
+            }
+        }
+        reply.numberOfDownRatings = 0
+        reply.numberOfUpRatings = 0
+        this.situationThreadDao.updateReplyTypeTotals(reply.isIdea ? 1 : 0,
+            reply.isExperience ? 1 : 0, reply.isQuestion ? 1 : 0,
+            existingSituationThread)
+
         await this.replyDao.save(reply)
     }
 
@@ -45,23 +62,15 @@ export class ReplyApi {
     }
 
     @Api()
-    async addIdea(
-        reply: Reply
-    ): Promise<void> {
-        await this.situationIdeaApi.add(reply.situationIdea)
-        await this.addReply(reply)
-    }
-
-    @Api()
     async rateReply(
         replyRating: ReplyRating
     ): Promise<void> {
-        if (replyRating.rating > 0) {
-            replyRating.rating = 1
-        } else if (replyRating.rating < 0) {
-            replyRating.rating = -1
+        if (replyRating.upOrDownRating > 0) {
+            replyRating.upOrDownRating = 1
+        } else if (replyRating.upOrDownRating < 0) {
+            replyRating.upOrDownRating = -1
         } else {
-            replyRating.rating = 0
+            replyRating.upOrDownRating = 0
         }
 
         const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true)
@@ -72,9 +81,9 @@ export class ReplyApi {
         let numberOfDownRatingsDelta = 0
         let numberOfUpRatingsDelta = 0
         if (existingReplyRating) {
-            switch (existingReplyRating.rating) {
+            switch (existingReplyRating.upOrDownRating) {
                 case -1:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             break
                         case 0:
@@ -87,7 +96,7 @@ export class ReplyApi {
                     }
                     break
                 case 0:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             numberOfDownRatingsDelta = 1
                             break
@@ -99,7 +108,7 @@ export class ReplyApi {
                     }
                     break
                 case 1:
-                    switch (replyRating.rating) {
+                    switch (replyRating.upOrDownRating) {
                         case -1:
                             numberOfDownRatingsDelta = 1
                             numberOfUpRatingsDelta = -1
@@ -112,14 +121,14 @@ export class ReplyApi {
                     }
                     break
             }
-            existingReplyRating.rating = replyRating.rating
+            existingReplyRating.upOrDownRating = replyRating.upOrDownRating
             replyRating = existingReplyRating
         }
 
 
         await this.replyRatingDao.save(replyRating)
 
-        await this.replyDao.updateRatingTotals(
+        await this.replyDao.updateUpOrDownRatingTotals(
             numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply)
     }
 
@@ -144,25 +153,53 @@ export class ReplyApi {
 
 
     @Api()
-    async addReplyType(
+    async setReplyType(
         reply: Reply,
-        type: 'comment' | 'experience' | 'idea' | 'question'
+        type: 'experience' | 'idea' | 'question'
     ): Promise<void> {
-        const existingReplyTypes = await this.replyTypeDao.getAllForReply(reply.uuId)
-        for (const existingReplyType of existingReplyTypes) {
-            if (existingReplyType.type === type) {
-                return
-            }
+        const existingSituationThread = await this.situationThreadDao
+            .findByUuId(reply.situationThread, true)
+        if (!existingSituationThread) {
+            return
         }
-        const replyType: ReplyType = {
-            actor: this.airRequest.actor,
-            reply,
-            repository: reply.repository,
-            type
-        } as any
+        const existingReply = await this.replyDao.findByUuId(reply, true)
+        if (!existingReply) {
+            return
+        }
+        let isExperience = existingReply.isExperience
+        let isIdea = existingReply.isIdea
+        let isQuestion = existingReply.isQuestion
+        let numberOfIdeasDelta = 0
+        let numberOfExperiencesDelta = 0
+        let numberOfQuestionsDelta = 0
+        switch (type) {
+            case 'experience':
+                if (isExperience) {
+                    return
+                }
+                isExperience = true
+                numberOfExperiencesDelta = 1
+                break
+            case 'idea':
+                if (isIdea) {
+                    return
+                }
+                isIdea = true
+                numberOfIdeasDelta = 1
+                break
+            case 'question':
+                if (isQuestion) {
+                    return
+                }
+                isQuestion = true
+                numberOfQuestionsDelta = 1
+                break
+        }
 
-        await this.replyTypeDao.save(replyType)
-        reply.replyTypes.push(replyType as any)
+        await this.replyDao.setReplyType(isIdea, isExperience, isQuestion, reply)
+        await this.situationThreadDao.updateReplyTypeTotals(numberOfIdeasDelta,
+            numberOfExperiencesDelta, numberOfQuestionsDelta,
+            existingSituationThread)
     }
 
 }

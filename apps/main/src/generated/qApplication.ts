@@ -8,12 +8,10 @@ import {
 }                      from '@airport/ground-control';
 import { QReply } from './qreply';
 import { QReplyRating } from './qreplyrating';
-import { QReplyType } from './qreplytype';
 import { QSituationThread } from './qsituationthread';
 import {
   Reply,
   ReplyRating,
-  ReplyType,
   SituationThread
 } from '../ddl/ddl';
 
@@ -23,7 +21,6 @@ export interface LocalQApplication extends QApplication {
 
   Reply: QReply;
 	ReplyRating: QReplyRating;
-	ReplyType: QReplyType;
 	SituationThread: QSituationThread;
 
 }
@@ -31,7 +28,6 @@ export interface LocalQApplication extends QApplication {
 const __constructors__ = {
 	Reply: Reply,
 	ReplyRating: ReplyRating,
-	ReplyType: ReplyType,
 	SituationThread: SituationThread
 };
 

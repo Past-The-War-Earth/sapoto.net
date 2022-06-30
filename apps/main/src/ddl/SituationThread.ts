@@ -10,19 +10,16 @@ export class SituationThread
     extends AirEntity {
 
     @Column({ name: 'NUMBER_OF_EXPERIENCES' })
-    numExperiences: number
+    numberOfExperiences: number
 
     @Column({ name: 'NUMBER_OF_IDEAS' })
-    numIdeas: number
+    numberOfIdeas: number
 
     @Column({ name: 'NUMBER_OF_QUESTIONS' })
-    numQuestions: number
-
-    @Column({ name: 'NUMBER_OF_REASONS' })
-    numReasons: number
+    numberOfQuestions: number
 
     @Column({ name: 'NUMBER_OF_REPLIES' })
-    numReplies: number
+    numberOfReplies: number
 
     @ManyToOne()
     situation: Situation

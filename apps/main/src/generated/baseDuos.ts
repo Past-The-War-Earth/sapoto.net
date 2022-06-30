@@ -26,19 +26,6 @@ import {
 	QReplyRating,
 } from './qreplyrating';
 import {
-	ReplyType,
-} from '../ddl/replytype';
-import {
-	ReplyTypeESelect,
-	ReplyTypeECreateColumns,
-	ReplyTypeECreateProperties,
-	ReplyTypeEUpdateColumns,
-	ReplyTypeEUpdateProperties,
-	ReplyTypeEId,
-	ReplyTypeGraph,
-	QReplyType,
-} from './qreplytype';
-import {
 	SituationThread,
 } from '../ddl/situationthread';
 import {
@@ -108,11 +95,11 @@ export class BaseReplyDuo
 	implements IBaseReplyDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return duoDiSet(2)
 	}
 	
 	constructor() {
-		super(3)
+		super(2)
 	}
 }
 
@@ -135,24 +122,6 @@ export class BaseReplyRatingDuo
 }
 
 
-export interface IBaseReplyTypeDuo
-  extends IDuo<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
-}
-
-export class BaseReplyTypeDuo
-  extends SQDIDuo<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType>
-	implements IBaseReplyTypeDuo {
-
-	static diSet(): boolean {
-		return duoDiSet(1)
-	}
-	
-	constructor() {
-		super(1)
-	}
-}
-
-
 export interface IBaseSituationThreadDuo
   extends IDuo<SituationThread, SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread> {
 }
@@ -162,10 +131,10 @@ export class BaseSituationThreadDuo
 	implements IBaseSituationThreadDuo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return duoDiSet(1)
 	}
 	
 	constructor() {
-		super(2)
+		super(1)
 	}
 }

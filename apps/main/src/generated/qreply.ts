@@ -71,19 +71,6 @@ import {
 	IReplyRating,
 } from './replyrating';
 import {
-	ReplyTypeGraph,
-	ReplyTypeEId,
-	ReplyTypeEOptionalId,
-	ReplyTypeEUpdateProperties,
-	ReplyTypeESelect,
-	QReplyType,
-	QReplyTypeQId,
-	QReplyTypeQRelation,
-} from './qreplytype';
-import {
-	IReplyType,
-} from './replytype';
-import {
 	IReply,
 } from './reply';
 
@@ -102,8 +89,13 @@ export interface ReplyESelect
     extends AirEntityESelect, ReplyEOptionalId {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	isIdea?: boolean | IQBooleanField;
+	isExperience?: boolean | IQBooleanField;
+	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -113,7 +105,6 @@ export interface ReplyESelect
 	situationIdea?: SituationIdeaESelect;
 	childReplies?: ReplyESelect;
 	replyRatings?: ReplyRatingESelect;
-	replyTypes?: ReplyTypeESelect;
 
 }
 
@@ -145,8 +136,13 @@ export interface ReplyEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	isIdea?: boolean | IQBooleanField;
+	isExperience?: boolean | IQBooleanField;
+	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situationThread?: SituationThreadEOptionalId;
@@ -164,8 +160,13 @@ export interface ReplyGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	text?: string | IQStringField;
+	isIdea?: boolean | IQBooleanField;
+	isExperience?: boolean | IQBooleanField;
+	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
 
 	// Relations
 	situationThread?: SituationThreadGraph;
@@ -173,7 +174,6 @@ export interface ReplyGraph
 	situationIdea?: SituationIdeaGraph;
 	childReplies?: ReplyGraph[];
 	replyRatings?: ReplyRatingGraph[];
-	replyTypes?: ReplyTypeGraph[];
 
 }
 
@@ -190,8 +190,13 @@ export interface ReplyEUpdateColumns
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	TEXT?: string | IQStringField;
+	IS_IDEA?: boolean | IQBooleanField;
+	IS_EXPERIENCE?: boolean | IQBooleanField;
+	IS_QUESTION?: boolean | IQBooleanField;
 	NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
 	NUMBER_OF_UP_RATINGS?: number | IQNumberField;
+	NUMBER_OF_EXPERIENCES?: number | IQNumberField;
+	NUMBER_OF_QUESTIONS?: number | IQNumberField;
 	SITUATION_THREADS_RID_1?: number | IQNumberField;
 	SITUATION_THREADS_AID_1?: number | IQNumberField;
 	SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -236,8 +241,13 @@ export interface QReply extends QAirEntity
 
 	// Non-Id Fields
 	text: IQStringField;
+	isIdea: IQBooleanField;
+	isExperience: IQBooleanField;
+	isQuestion: IQBooleanField;
 	numberOfDownRatings: IQNumberField;
 	numberOfUpRatings: IQNumberField;
+	numberOfExperiences: IQNumberField;
+	numberOfQuestions: IQNumberField;
 
 	// Non-Id Relations
 	situationThread: QSituationThreadQRelation;
@@ -245,7 +255,6 @@ export interface QReply extends QAirEntity
 	situationIdea: QSituationIdeaQRelation;
 	childReplies: IQAirEntityOneToManyRelation<IReply, QReply>;
 	replyRatings: IQAirEntityOneToManyRelation<IReplyRating, QReplyRating>;
-	replyTypes: IQAirEntityOneToManyRelation<IReplyType, QReplyType>;
 
 }
 

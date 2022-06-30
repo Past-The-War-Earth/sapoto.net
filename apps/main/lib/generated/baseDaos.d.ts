@@ -2,8 +2,6 @@ import { Reply } from '../ddl/reply';
 import { ReplyESelect, ReplyECreateProperties, ReplyEUpdateColumns, ReplyEUpdateProperties, ReplyEId, ReplyGraph, QReply } from './qreply';
 import { ReplyRating } from '../ddl/replyrating';
 import { ReplyRatingESelect, ReplyRatingECreateProperties, ReplyRatingEUpdateColumns, ReplyRatingEUpdateProperties, ReplyRatingEId, ReplyRatingGraph, QReplyRating } from './qreplyrating';
-import { ReplyType } from '../ddl/replytype';
-import { ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType } from './qreplytype';
 import { SituationThread } from '../ddl/situationthread';
 import { SituationThreadESelect, SituationThreadECreateProperties, SituationThreadEUpdateColumns, SituationThreadEUpdateProperties, SituationThreadEId, SituationThreadGraph, QSituationThread } from './qsituationthread';
 import { IDao, IEntityCascadeGraph, IEntityCreateProperties, IEntityIdProperties, IEntitySelectProperties, IEntityUpdateColumns, IEntityUpdateProperties, IQEntity } from '@airport/air-traffic-control';
@@ -31,17 +29,6 @@ export declare class BaseReplyRatingDao extends SQDIDao<ReplyRating, ReplyRating
     static Search: DaoQueryDecorators<ReplyRatingESelect>;
     static SearchOne: DaoQueryDecorators<ReplyRatingESelect>;
     static Save(config: ReplyRatingGraph): PropertyDecorator;
-    static diSet(): boolean;
-    constructor();
-}
-export interface IBaseReplyTypeDao extends IDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> {
-}
-export declare class BaseReplyTypeDao extends SQDIDao<ReplyType, ReplyTypeESelect, ReplyTypeECreateProperties, ReplyTypeEUpdateColumns, ReplyTypeEUpdateProperties, ReplyTypeEId, ReplyTypeGraph, QReplyType> implements IBaseReplyTypeDao {
-    static Find: DaoQueryDecorators<ReplyTypeESelect>;
-    static FindOne: DaoQueryDecorators<ReplyTypeESelect>;
-    static Search: DaoQueryDecorators<ReplyTypeESelect>;
-    static SearchOne: DaoQueryDecorators<ReplyTypeESelect>;
-    static Save(config: ReplyTypeGraph): PropertyDecorator;
     static diSet(): boolean;
     constructor();
 }

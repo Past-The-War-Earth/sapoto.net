@@ -8,11 +8,10 @@ import { ISituationThread } from './situationthread';
  * SELECT - All fields and relations (optional).
  */
 export interface SituationThreadESelect extends AirEntityESelect, SituationThreadEOptionalId {
-    numExperiences?: number | IQNumberField;
-    numIdeas?: number | IQNumberField;
-    numQuestions?: number | IQNumberField;
-    numReasons?: number | IQNumberField;
-    numReplies?: number | IQNumberField;
+    numberOfExperiences?: number | IQNumberField;
+    numberOfIdeas?: number | IQNumberField;
+    numberOfQuestions?: number | IQNumberField;
+    numberOfReplies?: number | IQNumberField;
     situation?: SituationESelect;
     replies?: ReplyESelect;
 }
@@ -30,22 +29,20 @@ export interface SituationThreadEOptionalId {
  * UPDATE - non-id fields and relations (optional).
  */
 export interface SituationThreadEUpdateProperties extends AirEntityEUpdateProperties {
-    numExperiences?: number | IQNumberField;
-    numIdeas?: number | IQNumberField;
-    numQuestions?: number | IQNumberField;
-    numReasons?: number | IQNumberField;
-    numReplies?: number | IQNumberField;
+    numberOfExperiences?: number | IQNumberField;
+    numberOfIdeas?: number | IQNumberField;
+    numberOfQuestions?: number | IQNumberField;
+    numberOfReplies?: number | IQNumberField;
     situation?: SituationEOptionalId;
 }
 /**
  * PERSIST CASCADE - non-id relations (optional).
  */
 export interface SituationThreadGraph extends SituationThreadEOptionalId, AirEntityGraph {
-    numExperiences?: number | IQNumberField;
-    numIdeas?: number | IQNumberField;
-    numQuestions?: number | IQNumberField;
-    numReasons?: number | IQNumberField;
-    numReplies?: number | IQNumberField;
+    numberOfExperiences?: number | IQNumberField;
+    numberOfIdeas?: number | IQNumberField;
+    numberOfQuestions?: number | IQNumberField;
+    numberOfReplies?: number | IQNumberField;
     situation?: SituationGraph;
     replies?: ReplyGraph[];
 }
@@ -62,7 +59,6 @@ export interface SituationThreadEUpdateColumns extends AirEntityEUpdateColumns {
     NUMBER_OF_EXPERIENCES?: number | IQNumberField;
     NUMBER_OF_IDEAS?: number | IQNumberField;
     NUMBER_OF_QUESTIONS?: number | IQNumberField;
-    NUMBER_OF_REASONS?: number | IQNumberField;
     NUMBER_OF_REPLIES?: number | IQNumberField;
     SITUATIONS_RID_1?: number | IQNumberField;
     SITUATIONS_AID_1?: number | IQNumberField;
@@ -82,11 +78,10 @@ export interface SituationThreadECreateColumns extends SituationThreadEId, Situa
  * Query Entity Query Definition (used for Q.EntityName).
  */
 export interface QSituationThread extends QAirEntity {
-    numExperiences: IQNumberField;
-    numIdeas: IQNumberField;
-    numQuestions: IQNumberField;
-    numReasons: IQNumberField;
-    numReplies: IQNumberField;
+    numberOfExperiences: IQNumberField;
+    numberOfIdeas: IQNumberField;
+    numberOfQuestions: IQNumberField;
+    numberOfReplies: IQNumberField;
     situation: QSituationQRelation;
     replies: IQAirEntityOneToManyRelation<IReply, QReply>;
 }

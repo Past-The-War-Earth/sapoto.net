@@ -21,11 +21,10 @@ export interface ISituationThread extends IAirEntity {
 	// Id Relations
 
 	// Non-Id Properties
-	numExperiences?: number;
-	numIdeas?: number;
-	numQuestions?: number;
-	numReasons?: number;
-	numReplies?: number;
+	numberOfExperiences?: number;
+	numberOfIdeas?: number;
+	numberOfQuestions?: number;
+	numberOfReplies?: number;
 
 	// Non-Id Relations
 	situation?: ISituation;

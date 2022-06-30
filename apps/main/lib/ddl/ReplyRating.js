@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
+import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
 let ReplyRating = class ReplyRating extends AirEntity {
 };
@@ -12,11 +12,12 @@ __decorate([
     ManyToOne()
 ], ReplyRating.prototype, "reply", void 0);
 __decorate([
+    Column({ name: 'UP_OR_DOWN_RATING' }),
     DbNumber()
-], ReplyRating.prototype, "rating", void 0);
+], ReplyRating.prototype, "upOrDownRating", void 0);
 ReplyRating = __decorate([
     Entity(),
-    Table({ name: 'REPLY_RATING' })
+    Table({ name: 'REPLY_RATINGS' })
 ], ReplyRating);
 export { ReplyRating };
 //# sourceMappingURL=ReplyRating.js.map

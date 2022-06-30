@@ -18,7 +18,7 @@ export interface IReplyRating extends IAirEntity {
 	// Id Relations
 
 	// Non-Id Properties
-	rating?: number;
+	upOrDownRating?: number;
 
 	// Non-Id Relations
 	reply?: IReply;

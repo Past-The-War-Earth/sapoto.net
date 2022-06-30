@@ -28,9 +28,6 @@ export class ReplyDao
                         username: Y
                     }
                 },
-                replyTypes: {
-                    type: Y
-                },
                 situationIdea: {
                     agreementShareTotal: Y,
                     numberOfAgreements: Y
@@ -40,7 +37,6 @@ export class ReplyDao
                 r = Q.Reply,
                 a = r.actor.leftJoin(),
                 a.user.leftJoin(),
-                r.replyTypes.leftJoin(),
                 r.situationIdea.leftJoin(),
                 st = r.situationThread.leftJoin()
             ],
@@ -48,7 +44,7 @@ export class ReplyDao
         })
     }
 
-    async updateRatingTotals(
+    async updateUpOrDownRatingTotals(
         numberOfUpRatingsDelta: number,
         numberOfDownRatingsDelta: number,
         reply: Reply
@@ -59,6 +55,24 @@ export class ReplyDao
             set: {
                 numberOfDownRatings: plus(r.numberOfDownRatings, numberOfDownRatingsDelta),
                 numberOfUpRatings: plus(r.numberOfUpRatings, numberOfUpRatingsDelta)
+            },
+            where: r.equals(reply)
+        })
+    }
+
+    async setReplyType(
+        isIdea: boolean,
+        isExperience: boolean,
+        isQuestion: boolean,
+        reply: Reply
+    ): Promise<void> {
+        const r = Q.Reply
+        await this.db.updateWhere({
+            update: r,
+            set: {
+                isIdea,
+                isExperience,
+                isQuestion,
             },
             where: r.equals(reply)
         })

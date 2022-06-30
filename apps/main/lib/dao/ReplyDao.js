@@ -19,9 +19,6 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                         username: Y
                     }
                 },
-                replyTypes: {
-                    type: Y
-                },
                 situationIdea: {
                     agreementShareTotal: Y,
                     numberOfAgreements: Y
@@ -31,20 +28,31 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
                 r = Q.Reply,
                 a = r.actor.leftJoin(),
                 a.user.leftJoin(),
-                r.replyTypes.leftJoin(),
                 r.situationIdea.leftJoin(),
                 st = r.situationThread.leftJoin()
             ],
             where: st.equals(situationThreadUuId)
         });
     }
-    async updateRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply) {
+    async updateUpOrDownRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply) {
         const r = Q.Reply;
         await this.db.updateWhere({
             update: r,
             set: {
                 numberOfDownRatings: plus(r.numberOfDownRatings, numberOfDownRatingsDelta),
                 numberOfUpRatings: plus(r.numberOfUpRatings, numberOfUpRatingsDelta)
+            },
+            where: r.equals(reply)
+        });
+    }
+    async setReplyType(isIdea, isExperience, isQuestion, reply) {
+        const r = Q.Reply;
+        await this.db.updateWhere({
+            update: r,
+            set: {
+                isIdea,
+                isExperience,
+                isQuestion,
             },
             where: r.equals(reply)
         });

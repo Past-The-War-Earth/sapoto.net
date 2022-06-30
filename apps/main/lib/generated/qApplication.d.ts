@@ -2,13 +2,11 @@ import { QApplication } from '@airport/aviation-communication';
 import { DbApplication, EntityId } from '@airport/ground-control';
 import { QReply } from './qreply';
 import { QReplyRating } from './qreplyrating';
-import { QReplyType } from './qreplytype';
 import { QSituationThread } from './qsituationthread';
 export interface LocalQApplication extends QApplication {
     db: DbApplication;
     Reply: QReply;
     ReplyRating: QReplyRating;
-    ReplyType: QReplyType;
     SituationThread: QSituationThread;
 }
 export declare const Q_APPLICATION: LocalQApplication;

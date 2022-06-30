@@ -75,11 +75,10 @@ declare function require(moduleName: string): any;
 export interface SituationThreadESelect
     extends AirEntityESelect, SituationThreadEOptionalId {
 	// Non-Id Properties
-	numExperiences?: number | IQNumberField;
-	numIdeas?: number | IQNumberField;
-	numQuestions?: number | IQNumberField;
-	numReasons?: number | IQNumberField;
-	numReplies?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfIdeas?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
+	numberOfReplies?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -116,11 +115,10 @@ export interface SituationThreadEOptionalId {
 export interface SituationThreadEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
-	numExperiences?: number | IQNumberField;
-	numIdeas?: number | IQNumberField;
-	numQuestions?: number | IQNumberField;
-	numReasons?: number | IQNumberField;
-	numReplies?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfIdeas?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
+	numberOfReplies?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	situation?: SituationEOptionalId;
@@ -135,11 +133,10 @@ export interface SituationThreadGraph
 // NOT USED: Cascading Relations
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
-	numExperiences?: number | IQNumberField;
-	numIdeas?: number | IQNumberField;
-	numQuestions?: number | IQNumberField;
-	numReasons?: number | IQNumberField;
-	numReplies?: number | IQNumberField;
+	numberOfExperiences?: number | IQNumberField;
+	numberOfIdeas?: number | IQNumberField;
+	numberOfQuestions?: number | IQNumberField;
+	numberOfReplies?: number | IQNumberField;
 
 	// Relations
 	situation?: SituationGraph;
@@ -162,7 +159,6 @@ export interface SituationThreadEUpdateColumns
 	NUMBER_OF_EXPERIENCES?: number | IQNumberField;
 	NUMBER_OF_IDEAS?: number | IQNumberField;
 	NUMBER_OF_QUESTIONS?: number | IQNumberField;
-	NUMBER_OF_REASONS?: number | IQNumberField;
 	NUMBER_OF_REPLIES?: number | IQNumberField;
 	SITUATIONS_RID_1?: number | IQNumberField;
 	SITUATIONS_AID_1?: number | IQNumberField;
@@ -201,11 +197,10 @@ export interface QSituationThread extends QAirEntity
 	// Id Relations
 
 	// Non-Id Fields
-	numExperiences: IQNumberField;
-	numIdeas: IQNumberField;
-	numQuestions: IQNumberField;
-	numReasons: IQNumberField;
-	numReplies: IQNumberField;
+	numberOfExperiences: IQNumberField;
+	numberOfIdeas: IQNumberField;
+	numberOfQuestions: IQNumberField;
+	numberOfReplies: IQNumberField;
 
 	// Non-Id Relations
 	situation: QSituationQRelation;

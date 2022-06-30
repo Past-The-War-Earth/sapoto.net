@@ -10,19 +10,16 @@ let SituationThread = class SituationThread extends AirEntity {
 };
 __decorate([
     Column({ name: 'NUMBER_OF_EXPERIENCES' })
-], SituationThread.prototype, "numExperiences", void 0);
+], SituationThread.prototype, "numberOfExperiences", void 0);
 __decorate([
     Column({ name: 'NUMBER_OF_IDEAS' })
-], SituationThread.prototype, "numIdeas", void 0);
+], SituationThread.prototype, "numberOfIdeas", void 0);
 __decorate([
     Column({ name: 'NUMBER_OF_QUESTIONS' })
-], SituationThread.prototype, "numQuestions", void 0);
-__decorate([
-    Column({ name: 'NUMBER_OF_REASONS' })
-], SituationThread.prototype, "numReasons", void 0);
+], SituationThread.prototype, "numberOfQuestions", void 0);
 __decorate([
     Column({ name: 'NUMBER_OF_REPLIES' })
-], SituationThread.prototype, "numReplies", void 0);
+], SituationThread.prototype, "numberOfReplies", void 0);
 __decorate([
     ManyToOne()
 ], SituationThread.prototype, "situation", void 0);

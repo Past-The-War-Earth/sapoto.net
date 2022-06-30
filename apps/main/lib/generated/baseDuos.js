@@ -8,10 +8,10 @@ export class SQDIDuo extends Duo {
 }
 export class BaseReplyDuo extends SQDIDuo {
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(2);
     }
     constructor() {
-        super(3);
+        super(2);
     }
 }
 export class BaseReplyRatingDuo extends SQDIDuo {
@@ -22,20 +22,12 @@ export class BaseReplyRatingDuo extends SQDIDuo {
         super(0);
     }
 }
-export class BaseReplyTypeDuo extends SQDIDuo {
+export class BaseSituationThreadDuo extends SQDIDuo {
     static diSet() {
         return duoDiSet(1);
     }
     constructor() {
         super(1);
-    }
-}
-export class BaseSituationThreadDuo extends SQDIDuo {
-    static diSet() {
-        return duoDiSet(2);
-    }
-    constructor() {
-        super(2);
     }
 }
 //# sourceMappingURL=baseDuos.js.map

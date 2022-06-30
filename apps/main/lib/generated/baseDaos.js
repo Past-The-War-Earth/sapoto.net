@@ -8,13 +8,13 @@ export class SQDIDao extends Dao {
 }
 export class BaseReplyDao extends SQDIDao {
     constructor() {
-        super(3);
+        super(2);
     }
     static Save(config) {
         return Dao.BaseSave(config);
     }
     static diSet() {
-        return duoDiSet(3);
+        return duoDiSet(2);
     }
 }
 BaseReplyDao.Find = new DaoQueryDecorators();
@@ -36,7 +36,7 @@ BaseReplyRatingDao.Find = new DaoQueryDecorators();
 BaseReplyRatingDao.FindOne = new DaoQueryDecorators();
 BaseReplyRatingDao.Search = new DaoQueryDecorators();
 BaseReplyRatingDao.SearchOne = new DaoQueryDecorators();
-export class BaseReplyTypeDao extends SQDIDao {
+export class BaseSituationThreadDao extends SQDIDao {
     constructor() {
         super(1);
     }
@@ -45,21 +45,6 @@ export class BaseReplyTypeDao extends SQDIDao {
     }
     static diSet() {
         return duoDiSet(1);
-    }
-}
-BaseReplyTypeDao.Find = new DaoQueryDecorators();
-BaseReplyTypeDao.FindOne = new DaoQueryDecorators();
-BaseReplyTypeDao.Search = new DaoQueryDecorators();
-BaseReplyTypeDao.SearchOne = new DaoQueryDecorators();
-export class BaseSituationThreadDao extends SQDIDao {
-    constructor() {
-        super(2);
-    }
-    static Save(config) {
-        return Dao.BaseSave(config);
-    }
-    static diSet() {
-        return duoDiSet(2);
     }
 }
 BaseSituationThreadDao.Find = new DaoQueryDecorators();
