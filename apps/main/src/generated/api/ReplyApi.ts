@@ -8,6 +8,7 @@ import {
 } from '@airport/direction-indicator';
 import {
 	AirRequest,
+	IRequestManager,
 } from '@airport/arrivals-n-departures';
 import {
 	Api,
@@ -15,9 +16,6 @@ import {
 import {
 	SituationIdeaApi,
 } from '@votecube/votecube';
-import {
-	IdeaReplyUrgencyDao,
-} from '../../dao/IdeaReplyUrgencyDao';
 import {
 	ReplyDao,
 } from '../../dao/ReplyDao';
@@ -27,9 +25,6 @@ import {
 import {
 	ReplyTypeDao,
 } from '../../dao/ReplyTypeDao';
-import {
-	IdeaReplyUrgency,
-} from '../../ddl/IdeaReplyUrgency';
 import {
 	Reply,
 } from '../../ddl/Reply';
@@ -81,12 +76,6 @@ export class ReplyApi {
         situationThreadUuId: string
     ): Promise<void> {
         await this.replyApi.updateCounts(situationThreadUuId)
-    }
-
-    async  setReplyUrgency(
-        ideaReplyUrgency: IdeaReplyUrgency
-    ): Promise<void> {
-        await this.replyApi.setReplyUrgency(ideaReplyUrgency)
     }
 
     async  addReplyType(

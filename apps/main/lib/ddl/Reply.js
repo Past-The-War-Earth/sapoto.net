@@ -40,4 +40,4 @@ Reply = __decorate([
     Table({ name: 'REPLIES' })
 ], Reply);
 export { Reply };
-//# sourceMappingURL=reply.js.map
+//# sourceMappingURL=Reply.js.map

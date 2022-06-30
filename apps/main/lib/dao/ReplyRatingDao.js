@@ -9,9 +9,9 @@ import { Injected } from "@airport/direction-indicator";
 import { BaseReplyRatingDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
-    async findAllForReply(replyUuId) {
-        let rr, r;
-        return await this._find({
+    async findForReplyAndUser(reply, user) {
+        let rr, a, u, r;
+        return await this._findUnique({
             select: {
                 '*': Y,
                 actor: {
@@ -22,9 +22,11 @@ let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
             },
             from: [
                 rr = Q.ReplyRating,
+                a = rr.actor.leftJoin(),
+                u = a.user.leftJoin(),
                 r = rr.reply.leftJoin()
             ],
-            where: r.equals(replyUuId)
+            where: and(r.equals(reply), u.equals(user))
         });
     }
     async findAllForSituationThreadAndUser(situationThreadId, userId) {

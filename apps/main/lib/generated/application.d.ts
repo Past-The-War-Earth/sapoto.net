@@ -28,10 +28,6 @@ export declare const APPLICATION: {
                             isAsync: boolean;
                             parameters: any[];
                         };
-                        setReplyUrgency: {
-                            isAsync: boolean;
-                            parameters: any[];
-                        };
                         addReplyType: {
                             isAsync: boolean;
                             parameters: any[];

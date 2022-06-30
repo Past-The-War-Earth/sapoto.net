@@ -27,36 +27,56 @@ let ReplyApi = class ReplyApi {
         else {
             replyRating.rating = 0;
         }
-        const replyRatings = await this.replyRatingDao.findAllForReply(replyRating.reply.uuId);
-        let numberOfDownRatings = 0;
-        let numberOfUpRatings = 0;
-        let userPreviouslyRated = false;
-        for (const existingReplyRating of replyRatings) {
-            if (replyRating.actor.user.uuId === existingReplyRating.actor.user.uuId) {
-                existingReplyRating.rating = replyRating.rating;
-                replyRating = existingReplyRating;
-                userPreviouslyRated = true;
+        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true);
+        const existingReplyRating = await this.replyRatingDao.findForReplyAndUser(replyRating.reply, (await this.requestManager.getRequest()).user);
+        let numberOfDownRatingsDelta = 0;
+        let numberOfUpRatingsDelta = 0;
+        if (existingReplyRating) {
+            switch (existingReplyRating.rating) {
+                case -1:
+                    switch (replyRating.rating) {
+                        case -1:
+                            break;
+                        case 0:
+                            numberOfDownRatingsDelta = -1;
+                            break;
+                        case 1:
+                            numberOfDownRatingsDelta = -1;
+                            numberOfUpRatingsDelta = 1;
+                            break;
+                    }
+                    break;
+                case 0:
+                    switch (replyRating.rating) {
+                        case -1:
+                            numberOfDownRatingsDelta = 1;
+                            break;
+                        case 0:
+                            break;
+                        case 1:
+                            numberOfUpRatingsDelta = 1;
+                            break;
+                    }
+                    break;
+                case 1:
+                    switch (replyRating.rating) {
+                        case -1:
+                            numberOfDownRatingsDelta = 1;
+                            numberOfUpRatingsDelta = -1;
+                            break;
+                        case 0:
+                            numberOfUpRatingsDelta = -1;
+                            break;
+                        case 1:
+                            break;
+                    }
+                    break;
             }
-            if (existingReplyRating.rating < 0) {
-                numberOfDownRatings++;
-            }
-            else if (existingReplyRating.rating > 0) {
-                numberOfUpRatings++;
-            }
-        }
-        if (!userPreviouslyRated) {
-            if (replyRating.rating < 0) {
-                numberOfDownRatings++;
-            }
-            else if (replyRating.rating > 0) {
-                numberOfUpRatings++;
-            }
+            existingReplyRating.rating = replyRating.rating;
+            replyRating = existingReplyRating;
         }
         await this.replyRatingDao.save(replyRating);
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId);
-        reply.numberOfDownRatings = numberOfDownRatings;
-        reply.numberOfUpRatings = numberOfUpRatings;
-        await this.replyDao.save(reply);
+        await this.replyDao.updateRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply);
     }
     // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
     // Do this only in non-server environments since the counts can be widely off across
@@ -67,32 +87,6 @@ let ReplyApi = class ReplyApi {
         // const replyRatings = replyRatingDao.findAllForSituationThread(situationThreadUuId);
         // // Recompute all counts
         // await this.replyDao.save(replies)
-    }
-    async setReplyUrgency(ideaReplyUrgency) {
-        if (ideaReplyUrgency.urgency < 1) {
-            ideaReplyUrgency.urgency = 1;
-        }
-        else if (ideaReplyUrgency.urgency > 5) {
-            ideaReplyUrgency.urgency = 5;
-        }
-        ideaReplyUrgency.urgency = Math.floor(ideaReplyUrgency.urgency);
-        const ideaReplyUrgencies = await this.ideaReplyUrgencyDao
-            .findAllForReply(ideaReplyUrgency.reply.uuId);
-        let urgencyTotal = 0;
-        let numberOfUrgencyRatings = 0;
-        for (const existingIdeaReplyUrgency of ideaReplyUrgencies) {
-            if (existingIdeaReplyUrgency.actor.user.uuId === ideaReplyUrgency.actor.user.uuId) {
-                existingIdeaReplyUrgency.urgency = ideaReplyUrgency.urgency;
-                ideaReplyUrgency = existingIdeaReplyUrgency;
-            }
-            numberOfUrgencyRatings++;
-            urgencyTotal += existingIdeaReplyUrgency.urgency;
-        }
-        await this.replyRatingDao.save(ideaReplyUrgency);
-        const reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId);
-        reply.numberOfUrgencyRatings = numberOfUrgencyRatings;
-        reply.urgencyTotal = urgencyTotal;
-        await this.replyDao.save(reply);
     }
     async addReplyType(reply, type) {
         const existingReplyTypes = await this.replyTypeDao.getAllForReply(reply.uuId);
@@ -122,13 +116,13 @@ __decorate([
 ], ReplyApi.prototype, "replyRatingDao", void 0);
 __decorate([
     Inject()
-], ReplyApi.prototype, "ideaReplyUrgencyDao", void 0);
-__decorate([
-    Inject()
 ], ReplyApi.prototype, "replyTypeDao", void 0);
 __decorate([
     Inject()
 ], ReplyApi.prototype, "airRequest", void 0);
+__decorate([
+    Inject()
+], ReplyApi.prototype, "requestManager", void 0);
 __decorate([
     Api()
 ], ReplyApi.prototype, "addReply", null);
@@ -146,9 +140,6 @@ __decorate([
     // { server: false }
     )
 ], ReplyApi.prototype, "updateCounts", null);
-__decorate([
-    Api()
-], ReplyApi.prototype, "setReplyUrgency", null);
 __decorate([
     Api()
 ], ReplyApi.prototype, "addReplyType", null);

@@ -1,7 +1,6 @@
-import { Y } from "@airport/air-traffic-control";
+import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QSituationIdea } from "@votecube/votecube";
 import { Reply } from "../ddl/Reply";
 import {
     BaseReplyDao,
@@ -48,4 +47,21 @@ export class ReplyDao
             where: st.equals(situationThreadUuId)
         })
     }
+
+    async updateRatingTotals(
+        numberOfUpRatingsDelta: number,
+        numberOfDownRatingsDelta: number,
+        reply: Reply
+    ): Promise<void> {
+        const r = Q.Reply
+        await this.db.updateWhere({
+            update: r,
+            set: {
+                numberOfDownRatings: plus(r.numberOfDownRatings, numberOfDownRatingsDelta),
+                numberOfUpRatings: plus(r.numberOfUpRatings, numberOfUpRatingsDelta)
+            },
+            where: r.equals(reply)
+        })
+    }
+
 }

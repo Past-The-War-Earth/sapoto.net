@@ -2,9 +2,6 @@ import {
 	IAirEntity,
 } from '@airport/holding-pattern';
 import {
-	ICounts,
-} from '../ddl/icounts';
-import {
 	ISituation,
 } from '@sapoto/core';
 import {
@@ -24,7 +21,11 @@ export interface ISituationThread extends IAirEntity {
 	// Id Relations
 
 	// Non-Id Properties
-	counts?: ICounts;
+	numExperiences?: number;
+	numIdeas?: number;
+	numQuestions?: number;
+	numReasons?: number;
+	numReplies?: number;
 
 	// Non-Id Relations
 	situation?: ISituation;

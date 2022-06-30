@@ -1,12 +1,10 @@
-import { AirRequest } from "@airport/arrivals-n-departures"
+import { AirRequest, IRequestManager } from "@airport/arrivals-n-departures"
 import { Api } from "@airport/check-in"
 import { Inject, Injected } from "@airport/direction-indicator"
 import { SituationIdeaApi } from "@votecube/votecube"
-import { IdeaReplyUrgencyDao } from "../dao/IdeaReplyUrgencyDao"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
 import { ReplyTypeDao } from "../dao/ReplyTypeDao"
-import { IdeaReplyUrgency } from "../ddl/IdeaReplyUrgency"
 import { Reply } from "../ddl/Reply"
 import { ReplyRating } from "../ddl/ReplyRating"
 import { ReplyType } from "../ddl/ReplyType"
@@ -24,13 +22,13 @@ export class ReplyApi {
     replyRatingDao: ReplyRatingDao
 
     @Inject()
-    ideaReplyUrgencyDao: IdeaReplyUrgencyDao
-
-    @Inject()
     replyTypeDao: ReplyTypeDao
 
     @Inject()
     airRequest: AirRequest
+
+    @Inject()
+    requestManager: IRequestManager
 
     @Api()
     async addReply(
@@ -66,39 +64,63 @@ export class ReplyApi {
             replyRating.rating = 0
         }
 
-        const replyRatings: ReplyRating[] = await this.replyRatingDao.findAllForReply(replyRating.reply.uuId)
+        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true)
 
-        let numberOfDownRatings = 0
-        let numberOfUpRatings = 0
-        let userPreviouslyRated = false
+        const existingReplyRating: ReplyRating = await this.replyRatingDao.findForReplyAndUser(
+            replyRating.reply, (await this.requestManager.getRequest()).user)
 
-        for (const existingReplyRating of replyRatings) {
-            if (replyRating.actor.user.uuId === existingReplyRating.actor.user.uuId) {
-                existingReplyRating.rating = replyRating.rating
-                replyRating = existingReplyRating
-                userPreviouslyRated = true
+        let numberOfDownRatingsDelta = 0
+        let numberOfUpRatingsDelta = 0
+        if (existingReplyRating) {
+            switch (existingReplyRating.rating) {
+                case -1:
+                    switch (replyRating.rating) {
+                        case -1:
+                            break
+                        case 0:
+                            numberOfDownRatingsDelta = -1
+                            break
+                        case 1:
+                            numberOfDownRatingsDelta = -1
+                            numberOfUpRatingsDelta = 1
+                            break
+                    }
+                    break
+                case 0:
+                    switch (replyRating.rating) {
+                        case -1:
+                            numberOfDownRatingsDelta = 1
+                            break
+                        case 0:
+                            break
+                        case 1:
+                            numberOfUpRatingsDelta = 1
+                            break
+                    }
+                    break
+                case 1:
+                    switch (replyRating.rating) {
+                        case -1:
+                            numberOfDownRatingsDelta = 1
+                            numberOfUpRatingsDelta = -1
+                            break
+                        case 0:
+                            numberOfUpRatingsDelta = -1
+                            break
+                        case 1:
+                            break
+                    }
+                    break
             }
-            if (existingReplyRating.rating < 0) {
-                numberOfDownRatings++
-            } else if (existingReplyRating.rating > 0) {
-                numberOfUpRatings++
-            }
+            existingReplyRating.rating = replyRating.rating
+            replyRating = existingReplyRating
         }
-        if (!userPreviouslyRated) {
-            if (replyRating.rating < 0) {
-                numberOfDownRatings++
-            } else if (replyRating.rating > 0) {
-                numberOfUpRatings++
-            }
-        }
+
 
         await this.replyRatingDao.save(replyRating)
 
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId)
-        reply.numberOfDownRatings = numberOfDownRatings
-        reply.numberOfUpRatings = numberOfUpRatings
-
-        await this.replyDao.save(reply)
+        await this.replyDao.updateRatingTotals(
+            numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply)
     }
 
     // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
@@ -120,39 +142,6 @@ export class ReplyApi {
         // await this.replyDao.save(replies)
     }
 
-    @Api()
-    async setReplyUrgency(
-        ideaReplyUrgency: IdeaReplyUrgency
-    ): Promise<void> {
-        if (ideaReplyUrgency.urgency < 1) {
-            ideaReplyUrgency.urgency = 1
-        } else if (ideaReplyUrgency.urgency > 5) {
-            ideaReplyUrgency.urgency = 5
-        }
-        ideaReplyUrgency.urgency = Math.floor(ideaReplyUrgency.urgency) as 1 | 2 | 3 | 4 | 5
-
-        const ideaReplyUrgencies = await this.ideaReplyUrgencyDao
-            .findAllForReply(ideaReplyUrgency.reply.uuId)
-
-        let urgencyTotal = 0
-        let numberOfUrgencyRatings = 0
-
-        for (const existingIdeaReplyUrgency of ideaReplyUrgencies) {
-            if (existingIdeaReplyUrgency.actor.user.uuId === ideaReplyUrgency.actor.user.uuId) {
-                existingIdeaReplyUrgency.urgency = ideaReplyUrgency.urgency
-                ideaReplyUrgency = existingIdeaReplyUrgency
-            }
-            numberOfUrgencyRatings++
-            urgencyTotal += existingIdeaReplyUrgency.urgency
-        }
-        await this.replyRatingDao.save(ideaReplyUrgency)
-
-        const reply: Reply = await this.replyDao.findByUuId(ideaReplyUrgency.reply.uuId)
-        reply.numberOfUrgencyRatings = numberOfUrgencyRatings
-        reply.urgencyTotal = urgencyTotal
-
-        await this.replyDao.save(reply)
-    }
 
     @Api()
     async addReplyType(
