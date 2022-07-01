@@ -26,7 +26,7 @@ export class SituationRatingDao
         let a: QActor
         let u: QUser
         let s: QSituation
-        return await this._findOne({
+        return await this._findUnique({
             select: {},
             from: [
                 sr = Q.SituationRating,

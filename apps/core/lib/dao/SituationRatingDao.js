@@ -13,7 +13,7 @@ let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao
         let a;
         let u;
         let s;
-        return await this._findOne({
+        return await this._findUnique({
             select: {},
             from: [
                 sr = Q.SituationRating,
