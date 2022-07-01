@@ -15,13 +15,13 @@ import { ITotalDelta } from '../ddl/TotalDelta';
 export class SituationApi {
 
     @Inject()
+    requestManager: RequestManager
+
+    @Inject()
     situationDao: SituationDao
 
     @Inject()
     situationRatingDao: SituationRatingDao
-
-    @Inject()
-    requestManager: RequestManager
 
     @Api()
     async save(

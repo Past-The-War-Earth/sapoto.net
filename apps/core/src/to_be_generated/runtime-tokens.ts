@@ -8,6 +8,7 @@ import { ApplicationLoader } from './ApplicationLoader'
 import { core, SITUATION_API, THEME_API, TOPIC_API } from './common-tokens'
 import { DemoDataLoader, IDemoDataLoader } from './DemoDataLoader'
 import { SituationDao, SituationRatingDao, ThemeDao, TopicDao } from '../dao/dao'
+import { REQUEST_MANAGER } from '@airport/arrivals-n-departures'
 
 export const SITUATION_DAO = core.token<SituationDao>({
     class: SituationDao,
@@ -31,6 +32,7 @@ export const TOPIC_DAO = core.token<TopicDao>({
 })
 SITUATION_API.setClass(SituationApi)
 SITUATION_API.setDependencies({
+    requestManager: REQUEST_MANAGER,
     situationDao: SITUATION_DAO,
     situationRatingDao: SITUATION_RATING_DAO
 })

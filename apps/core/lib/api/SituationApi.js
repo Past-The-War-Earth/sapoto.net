@@ -75,13 +75,13 @@ let SituationApi = class SituationApi {
 };
 __decorate([
     Inject()
+], SituationApi.prototype, "requestManager", void 0);
+__decorate([
+    Inject()
 ], SituationApi.prototype, "situationDao", void 0);
 __decorate([
     Inject()
 ], SituationApi.prototype, "situationRatingDao", void 0);
-__decorate([
-    Inject()
-], SituationApi.prototype, "requestManager", void 0);
 __decorate([
     Api()
 ], SituationApi.prototype, "save", null);
