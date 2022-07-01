@@ -13,8 +13,8 @@ import {
 	Api,
 } from '@airport/check-in';
 import {
-	User,
-} from '@airport/travel-document-checkpoint';
+	RequestManager,
+} from '@airport/arrivals-n-departures';
 import {
 	SituationDao,
 } from '../../dao/SituationDao';
@@ -27,6 +27,9 @@ import {
 import {
 	SituationRating,
 } from '../../ddl/SituationRating';
+import {
+	ITotalDelta,
+} from '../../ddl/TotalDelta';
 
 
 
@@ -50,14 +53,12 @@ export class SituationApi {
     async  rateSituation(
         situation: Situation,
         importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5,
-        user: User
+        urgencyRating: 1 | 2 | 3 | 4 | 5
     ): Promise<SituationRating> {
         return await this.situationApi.rateSituation(
             situation,
             importanceRating,
-            urgencyRating,
-            user
+            urgencyRating
         )
     }
 

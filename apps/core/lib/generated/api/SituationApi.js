@@ -14,8 +14,8 @@ let SituationApi = class SituationApi {
     async save(situation) {
         await this.situationApi.save(situation);
     }
-    async rateSituation(situation, importanceRating, urgencyRating, user) {
-        return await this.situationApi.rateSituation(situation, importanceRating, urgencyRating, user);
+    async rateSituation(situation, importanceRating, urgencyRating) {
+        return await this.situationApi.rateSituation(situation, importanceRating, urgencyRating);
     }
     async getNewSituation() {
         return await this.situationApi.getNewSituation();

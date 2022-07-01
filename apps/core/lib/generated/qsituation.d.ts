@@ -9,6 +9,10 @@ import { ISituation } from './situation';
  */
 export interface SituationESelect extends AirEntityESelect, SituationEOptionalId {
     text?: string | IQStringField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
+    importanceTotal?: number | IQNumberField;
+    numberOfImportanceRatings?: number | IQNumberField;
     topic?: TopicESelect;
     ratings?: SituationRatingESelect;
 }
@@ -27,6 +31,10 @@ export interface SituationEOptionalId {
  */
 export interface SituationEUpdateProperties extends AirEntityEUpdateProperties {
     text?: string | IQStringField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
+    importanceTotal?: number | IQNumberField;
+    numberOfImportanceRatings?: number | IQNumberField;
     topic?: TopicEOptionalId;
 }
 /**
@@ -34,6 +42,10 @@ export interface SituationEUpdateProperties extends AirEntityEUpdateProperties {
  */
 export interface SituationGraph extends SituationEOptionalId, AirEntityGraph {
     text?: string | IQStringField;
+    urgencyTotal?: number | IQNumberField;
+    numberOfUrgencyRatings?: number | IQNumberField;
+    importanceTotal?: number | IQNumberField;
+    numberOfImportanceRatings?: number | IQNumberField;
     topic?: TopicGraph;
     ratings?: SituationRatingGraph[];
 }
@@ -48,6 +60,10 @@ export interface SituationEUpdateColumns extends AirEntityEUpdateColumns {
     ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
     ORIGINAL_ACTOR_ID?: number | IQNumberField;
     TEXT?: string | IQStringField;
+    URGENCY_TOTAL?: number | IQNumberField;
+    NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
+    IMPORTANCE_TOTAL?: number | IQNumberField;
+    NUMBER_OF_IMPORTANCE_RATINGS?: number | IQNumberField;
     TOPIC_RID_1?: number | IQNumberField;
     TOPIC_AID_1?: number | IQNumberField;
     TOPIC_ARID_1?: number | IQNumberField;
@@ -67,6 +83,10 @@ export interface SituationECreateColumns extends SituationEId, SituationEUpdateC
  */
 export interface QSituation extends QAirEntity {
     text: IQStringField;
+    urgencyTotal: IQNumberField;
+    numberOfUrgencyRatings: IQNumberField;
+    importanceTotal: IQNumberField;
+    numberOfImportanceRatings: IQNumberField;
     topic: QTopicQRelation;
     ratings: IQAirEntityOneToManyRelation<ISituationRating, QSituationRating>;
 }

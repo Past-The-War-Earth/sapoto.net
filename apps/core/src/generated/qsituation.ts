@@ -78,6 +78,10 @@ export interface SituationESelect
     extends AirEntityESelect, SituationEOptionalId {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
+	importanceTotal?: number | IQNumberField;
+	numberOfImportanceRatings?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -115,6 +119,10 @@ export interface SituationEUpdateProperties
 	extends AirEntityEUpdateProperties {
 	// Non-Id Properties
 	text?: string | IQStringField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
+	importanceTotal?: number | IQNumberField;
+	numberOfImportanceRatings?: number | IQNumberField;
 
 	// Non-Id Relations - ids only & no OneToMany's
 	topic?: TopicEOptionalId;
@@ -130,6 +138,10 @@ export interface SituationGraph
 // NOT USED: ${relationsForCascadeGraph}
 	// Non-Id Properties
 	text?: string | IQStringField;
+	urgencyTotal?: number | IQNumberField;
+	numberOfUrgencyRatings?: number | IQNumberField;
+	importanceTotal?: number | IQNumberField;
+	numberOfImportanceRatings?: number | IQNumberField;
 
 	// Relations
 	topic?: TopicGraph;
@@ -150,6 +162,10 @@ export interface SituationEUpdateColumns
 	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
 	ORIGINAL_ACTOR_ID?: number | IQNumberField;
 	TEXT?: string | IQStringField;
+	URGENCY_TOTAL?: number | IQNumberField;
+	NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
+	IMPORTANCE_TOTAL?: number | IQNumberField;
+	NUMBER_OF_IMPORTANCE_RATINGS?: number | IQNumberField;
 	TOPIC_RID_1?: number | IQNumberField;
 	TOPIC_AID_1?: number | IQNumberField;
 	TOPIC_ARID_1?: number | IQNumberField;
@@ -188,6 +204,10 @@ export interface QSituation extends QAirEntity
 
 	// Non-Id Fields
 	text: IQStringField;
+	urgencyTotal: IQNumberField;
+	numberOfUrgencyRatings: IQNumberField;
+	importanceTotal: IQNumberField;
+	numberOfImportanceRatings: IQNumberField;
 
 	// Non-Id Relations
 	topic: QTopicQRelation;

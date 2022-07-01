@@ -4,11 +4,12 @@ import {
     Inject,
     Injected
 } from "@airport/direction-indicator";
-import { User } from "@airport/travel-document-checkpoint";
+import { RequestManager } from "@airport/arrivals-n-departures";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
 import { Situation } from "../ddl/Situation";
 import { SituationRating } from '../ddl/SituationRating';
+import { ITotalDelta } from '../ddl/TotalDelta';
 
 @Injected()
 export class SituationApi {
@@ -18,6 +19,9 @@ export class SituationApi {
 
     @Inject()
     situationRatingDao: SituationRatingDao
+
+    @Inject()
+    requestManager: RequestManager
 
     @Api()
     async save(
@@ -30,25 +34,54 @@ export class SituationApi {
     async rateSituation(
         situation: Situation,
         importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5,
-        user: User
+        urgencyRating: 1 | 2 | 3 | 4 | 5
     ): Promise<SituationRating> {
-        let situationRating = await this.situationRatingDao
-            .findForSituationAndUser(situation, user)
+        if (importanceRating < 1) {
+            throw new Error(`Invalid Importance Rating`);
+        } else if (importanceRating > 5) {
+            throw new Error(`Invalid Importance Rating`);
+        }
+        if (urgencyRating < 1) {
+            throw new Error(`Invalid Urgency Rating`);
+        } else if (urgencyRating > 5) {
+            throw new Error(`Invalid Urgency Rating`);
+        }
+        importanceRating = Math.floor(importanceRating) as 1 | 2 | 3 | 4 | 5
+        urgencyRating = Math.floor(urgencyRating) as 1 | 2 | 3 | 4 | 5
 
-        if (!situationRating) {
+        const existingSituation: Situation = await this.situationDao.findByUuId(situation, true)
+        if (!existingSituation) {
+            throw new Error(`Situation ${situation.uuId} does not exist`);
+        }
+        let situationRating: SituationRating = await this.situationRatingDao
+            .findForSituationAndUser(situation, this.requestManager.getUser())
+        let importanceDelta: ITotalDelta = {
+            totalDelta: importanceRating,
+            numberDelta: 1
+        }
+        let urgencyDelta: ITotalDelta = {
+            totalDelta: urgencyRating,
+            numberDelta: 1
+        }
+        if (situationRating) {
+            importanceDelta.totalDelta = importanceRating - situationRating.importanceRating
+            importanceDelta.numberDelta = 0
+            urgencyDelta.totalDelta = urgencyRating - situationRating.urgencyRating
+            urgencyDelta.numberDelta = 0
+            situationRating.importanceRating = importanceRating
+            situationRating.urgencyRating = urgencyRating
+        } else {
             situationRating = {
-                ...NEW_RECORD_FIELDS,
                 importanceRating,
                 repository: situation.repository,
                 situation,
-                urgencyRating
+                urgencyRating,
+                actor: this.requestManager.getActor()
             }
-        } else {
-            situationRating.importanceRating = importanceRating
-            situationRating.urgencyRating = urgencyRating
         }
 
+        await this.situationDao.updateShareTotal(situation,
+            importanceDelta, urgencyDelta)
 
         await this.situationRatingDao.save(situationRating)
 
@@ -57,22 +90,26 @@ export class SituationApi {
 
     @Api()
     async getNewSituation(): Promise<Situation> {
-        return {
+        const situation: Situation = {
             ...NEW_RECORD_FIELDS,
             ageSuitability: 0,
             repository: null,
-            eisenhowerMatrix: {
-                importance: 0,
-                urgency: 0,
-                votes: 0,
-                user: {
-                    importance: 0,
-                    urgency: 0
-                }
-            },
             text: '',
-            topic: null
-        };
+            topic: null,
+            urgencyTotal: 0,
+            numberOfUrgencyRatings: 0,
+            importanceTotal: 0,
+            numberOfImportanceRatings: 0
+        }
+        const userRating: SituationRating = {
+            importanceRating: 3,
+            urgencyRating: 3,
+            situation
+        }
+        situation.userRating = userRating
+        situation.ratings = [userRating]
+
+        return situation
     }
 
 }

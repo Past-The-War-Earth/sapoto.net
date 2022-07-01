@@ -1518,6 +1518,62 @@ export const APPLICATION = {
                         {
                             "index": 10,
                             "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "URGENCY_TOTAL",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 10
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 11,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NUMBER_OF_URGENCY_RATINGS",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 11
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 12,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "IMPORTANCE_TOTAL",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 12
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 13,
+                            "isGenerated": false,
+                            "manyRelationColumnRefs": [],
+                            "name": "NUMBER_OF_IMPORTANCE_RATINGS",
+                            "notNull": false,
+                            "propertyRefs": [
+                                {
+                                    "index": 13
+                                }
+                            ],
+                            "sinceVersion": 1,
+                            "type": "NUMBER"
+                        },
+                        {
+                            "index": 14,
+                            "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
                                     "manyRelationIndex": 4,
@@ -1532,14 +1588,14 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
                             "type": "NUMBER"
                         },
                         {
-                            "index": 11,
+                            "index": 15,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -1555,14 +1611,14 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
                             "type": "NUMBER"
                         },
                         {
-                            "index": 12,
+                            "index": 16,
                             "isGenerated": false,
                             "manyRelationColumnRefs": [
                                 {
@@ -1578,7 +1634,7 @@ export const APPLICATION = {
                             "notNull": false,
                             "propertyRefs": [
                                 {
-                                    "index": 10
+                                    "index": 14
                                 }
                             ],
                             "sinceVersion": 1,
@@ -1692,7 +1748,43 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
+                            "columnRef": {
+                                "index": 10
+                            },
                             "index": 10,
+                            "isId": false,
+                            "name": "urgencyTotal",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 11
+                            },
+                            "index": 11,
+                            "isId": false,
+                            "name": "numberOfUrgencyRatings",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 12
+                            },
+                            "index": 12,
+                            "isId": false,
+                            "name": "importanceTotal",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "columnRef": {
+                                "index": 13
+                            },
+                            "index": 13,
+                            "isId": false,
+                            "name": "numberOfImportanceRatings",
+                            "sinceVersion": 1
+                        },
+                        {
+                            "index": 14,
                             "isId": false,
                             "name": "topic",
                             "relationRef": {
@@ -1701,7 +1793,7 @@ export const APPLICATION = {
                             "sinceVersion": 1
                         },
                         {
-                            "index": 11,
+                            "index": 15,
                             "isId": false,
                             "name": "ratings",
                             "relationRef": {
@@ -1760,7 +1852,7 @@ export const APPLICATION = {
                             "isId": false,
                             "relationType": "MANY_TO_ONE",
                             "propertyRef": {
-                                "index": 10
+                                "index": 14
                             },
                             "relationTableIndex": 2,
                             "sinceVersion": 1
@@ -1773,7 +1865,7 @@ export const APPLICATION = {
                             },
                             "relationType": "ONE_TO_MANY",
                             "propertyRef": {
-                                "index": 11
+                                "index": 15
                             },
                             "relationTableIndex": 0,
                             "sinceVersion": 1

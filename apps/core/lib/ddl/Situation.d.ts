@@ -3,16 +3,12 @@ import { SituationRating } from "./SituationRating";
 import { Topic } from "./Topic";
 export declare class Situation extends AirEntity {
     text: string;
+    urgencyTotal?: number;
+    numberOfUrgencyRatings?: number;
+    importanceTotal?: number;
+    numberOfImportanceRatings?: number;
     topic: Topic;
     ratings?: SituationRating[];
-    eisenhowerMatrix: {
-        importance: number;
-        urgency: number;
-        votes: number;
-        user: {
-            importance: number;
-            urgency: number;
-        };
-    };
+    userRating?: SituationRating;
 }
 //# sourceMappingURL=situation.d.ts.map

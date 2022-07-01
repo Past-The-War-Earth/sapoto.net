@@ -10,6 +10,18 @@ export class Situation extends AirEntity {
     @Column({ name: 'TEXT', nullable: false })
     text: string
 
+    @Column({ name: 'URGENCY_TOTAL' })
+    urgencyTotal?: number
+
+    @Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
+    numberOfUrgencyRatings?: number
+
+    @Column({ name: 'IMPORTANCE_TOTAL' })
+    importanceTotal?: number
+
+    @Column({ name: 'NUMBER_OF_IMPORTANCE_RATINGS' })
+    numberOfImportanceRatings?: number
+
     @ManyToOne()
     topic: Topic
 
@@ -17,14 +29,6 @@ export class Situation extends AirEntity {
     ratings?: SituationRating[]
 
     @Transient()
-    eisenhowerMatrix: {
-        importance: number
-        urgency: number
-        votes: number
-        user: {
-            importance: number
-            urgency: number
-        }
-    }
+    userRating?: SituationRating
 
 }

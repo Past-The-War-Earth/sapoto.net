@@ -2,6 +2,9 @@ import {
 	IAirEntity,
 } from '@airport/holding-pattern';
 import {
+	SituationRating,
+} from '../ddl/SituationRating';
+import {
 	ITopic,
 } from './topic';
 import {
@@ -22,13 +25,17 @@ export interface ISituation extends IAirEntity {
 
 	// Non-Id Properties
 	text?: string;
+	urgencyTotal?: number;
+	numberOfUrgencyRatings?: number;
+	importanceTotal?: number;
+	numberOfImportanceRatings?: number;
 
 	// Non-Id Relations
 	topic?: ITopic;
 	ratings?: ISituationRating[];
 
 	// Transient Properties
-	eisenhowerMatrix?: { importance: number; urgency: number; votes: number; user: {    importance: number;    urgency: number;}; };
+	userRating?: SituationRating;
 
 	// Public Methods
 	
