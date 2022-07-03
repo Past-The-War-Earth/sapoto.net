@@ -7,8 +7,10 @@ export declare class SituationApi {
     requestManager: RequestManager;
     situationDao: SituationDao;
     situationRatingDao: SituationRatingDao;
+    findById(situation: Situation | string): Promise<Situation>;
     save(situation: Situation): Promise<void>;
-    rateSituation(situation: Situation, importanceRating: 1 | 2 | 3 | 4 | 5, urgencyRating: 1 | 2 | 3 | 4 | 5): Promise<SituationRating>;
+    rateSituation(situation: Situation, situationRating: SituationRating): Promise<SituationRating>;
+    private doRateSituation;
     getNewSituation(): Promise<Situation>;
 }
 //# sourceMappingURL=SituationApi.d.ts.map

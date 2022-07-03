@@ -44,6 +44,12 @@ export class SituationApi {
     @Inject()
     situationApi: SituationApi
             
+    async  findById(
+        uuId: string
+    ): Promise<Situation> {
+        return await this.situationApi.findById(uuId)
+    }
+
     async  save(
         situation: Situation
     ): Promise<void> {
@@ -52,13 +58,11 @@ export class SituationApi {
 
     async  rateSituation(
         situation: Situation,
-        importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5
+        situationRating: SituationRating
     ): Promise<SituationRating> {
         return await this.situationApi.rateSituation(
             situation,
-            importanceRating,
-            urgencyRating
+            situationRating
         )
     }
 

@@ -24,66 +24,100 @@ export class SituationApi {
     situationRatingDao: SituationRatingDao
 
     @Api()
+    async findById(
+        situation: Situation | string
+    ): Promise<Situation> {
+        return await this.situationDao.findByUuId(situation)
+    }
+
+    @Api()
     async save(
         situation: Situation
     ): Promise<void> {
+        const situationRating = await this.doRateSituation(
+            situation,
+            situation.userRating,
+            false
+        )
         await this.situationDao.save(situation)
+        await this.situationRatingDao.save(situationRating)
     }
 
     @Api()
     async rateSituation(
         situation: Situation,
-        importanceRating: 1 | 2 | 3 | 4 | 5,
-        urgencyRating: 1 | 2 | 3 | 4 | 5
+        situationRating: SituationRating,
     ): Promise<SituationRating> {
-        if (importanceRating < 1) {
-            throw new Error(`Invalid Importance Rating`);
-        } else if (importanceRating > 5) {
-            throw new Error(`Invalid Importance Rating`);
-        }
-        if (urgencyRating < 1) {
-            throw new Error(`Invalid Urgency Rating`);
-        } else if (urgencyRating > 5) {
-            throw new Error(`Invalid Urgency Rating`);
-        }
-        importanceRating = Math.floor(importanceRating) as 1 | 2 | 3 | 4 | 5
-        urgencyRating = Math.floor(urgencyRating) as 1 | 2 | 3 | 4 | 5
+        return await this.doRateSituation(
+            situation,
+            situationRating,
+            false
+        )
+    }
 
-        const existingSituation: Situation = await this.situationDao.findByUuId(situation, true)
-        if (!existingSituation) {
-            throw new Error(`Situation ${situation.uuId} does not exist`);
+    private async doRateSituation(
+        situation: Situation,
+        situationRating: SituationRating,
+        isNewSituation: boolean
+    ): Promise<SituationRating> {
+        if (situationRating.importanceRating < 1) {
+            throw new Error(`Invalid Importance Rating`);
+        } else if (situationRating.importanceRating > 5) {
+            throw new Error(`Invalid Importance Rating`);
         }
-        let situationRating: SituationRating = await this.situationRatingDao
-            .findForSituationAndUser(situation, this.requestManager.getUser())
+        if (situationRating.urgencyRating < 1) {
+            throw new Error(`Invalid Urgency Rating`);
+        } else if (situationRating.urgencyRating > 5) {
+            throw new Error(`Invalid Urgency Rating`);
+        }
+        situationRating.importanceRating = Math.floor(situationRating.importanceRating) as 1 | 2 | 3 | 4 | 5
+        situationRating.urgencyRating = Math.floor(situationRating.urgencyRating) as 1 | 2 | 3 | 4 | 5
+
+        let foundSituation: Situation
+        let foundSituationRating: SituationRating
+        if (isNewSituation) {
+            foundSituation = situation
+        } else {
+            foundSituation = await this.situationDao.findByUuId(situation, true)
+            if (!foundSituation) {
+                throw new Error(`Situation ${situation.uuId} does not exist`);
+            }
+            situationRating = await this.situationRatingDao
+                .findForSituationAndUser(situation, this.requestManager.getUser())
+        }
         let importanceDelta: ITotalDelta = {
-            totalDelta: importanceRating,
+            totalDelta: situationRating.importanceRating,
             numberDelta: 1
         }
         let urgencyDelta: ITotalDelta = {
-            totalDelta: urgencyRating,
+            totalDelta: situationRating.urgencyRating,
             numberDelta: 1
         }
-        if (situationRating) {
-            importanceDelta.totalDelta = importanceRating - situationRating.importanceRating
+        if (foundSituationRating) {
+            importanceDelta.totalDelta = situationRating.importanceRating
+                - situationRating.importanceRating
             importanceDelta.numberDelta = 0
-            urgencyDelta.totalDelta = urgencyRating - situationRating.urgencyRating
+            urgencyDelta.totalDelta = situationRating.urgencyRating
+                - situationRating.urgencyRating
             urgencyDelta.numberDelta = 0
-            situationRating.importanceRating = importanceRating
-            situationRating.urgencyRating = urgencyRating
+            foundSituationRating.importanceRating = situationRating.importanceRating
+            foundSituationRating.urgencyRating = situationRating.urgencyRating
         } else {
-            situationRating = {
-                importanceRating,
-                repository: situation.repository,
-                situation,
-                urgencyRating,
-                actor: this.requestManager.getActor()
-            }
+            situationRating.repository = situation.repository,
+                situationRating.situation = situation
+            situationRating.actor = this.requestManager.getActor()
         }
 
-        await this.situationDao.updateShareTotal(situation,
-            importanceDelta, urgencyDelta)
-
-        await this.situationRatingDao.save(situationRating)
+        if (isNewSituation) {
+            situation.importanceTotal = situationRating.importanceRating
+            situation.numberOfImportanceRatings = 1
+            situation.urgencyTotal = situationRating.urgencyRating
+            situation.numberOfUrgencyRatings = 1
+        } else {
+            await this.situationDao.updateShareTotal(situation,
+                importanceDelta, urgencyDelta)
+            await this.situationRatingDao.save(situationRating)
+        }
 
         return situationRating
     }

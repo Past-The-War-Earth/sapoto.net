@@ -8,57 +8,78 @@ import { NEW_RECORD_FIELDS } from '@airport/air-traffic-control';
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let SituationApi = class SituationApi {
-    async save(situation) {
-        await this.situationDao.save(situation);
+    async findById(situation) {
+        return await this.situationDao.findByUuId(situation);
     }
-    async rateSituation(situation, importanceRating, urgencyRating) {
-        if (importanceRating < 1) {
+    async save(situation) {
+        const situationRating = await this.doRateSituation(situation, situation.userRating, false);
+        await this.situationDao.save(situation);
+        await this.situationRatingDao.save(situationRating);
+    }
+    async rateSituation(situation, situationRating) {
+        return await this.doRateSituation(situation, situationRating, false);
+    }
+    async doRateSituation(situation, situationRating, isNewSituation) {
+        if (situationRating.importanceRating < 1) {
             throw new Error(`Invalid Importance Rating`);
         }
-        else if (importanceRating > 5) {
+        else if (situationRating.importanceRating > 5) {
             throw new Error(`Invalid Importance Rating`);
         }
-        if (urgencyRating < 1) {
+        if (situationRating.urgencyRating < 1) {
             throw new Error(`Invalid Urgency Rating`);
         }
-        else if (urgencyRating > 5) {
+        else if (situationRating.urgencyRating > 5) {
             throw new Error(`Invalid Urgency Rating`);
         }
-        importanceRating = Math.floor(importanceRating);
-        urgencyRating = Math.floor(urgencyRating);
-        const existingSituation = await this.situationDao.findByUuId(situation, true);
-        if (!existingSituation) {
-            throw new Error(`Situation ${situation.uuId} does not exist`);
+        situationRating.importanceRating = Math.floor(situationRating.importanceRating);
+        situationRating.urgencyRating = Math.floor(situationRating.urgencyRating);
+        let foundSituation;
+        let foundSituationRating;
+        if (isNewSituation) {
+            foundSituation = situation;
         }
-        let situationRating = await this.situationRatingDao
-            .findForSituationAndUser(situation, this.requestManager.getUser());
+        else {
+            foundSituation = await this.situationDao.findByUuId(situation, true);
+            if (!foundSituation) {
+                throw new Error(`Situation ${situation.uuId} does not exist`);
+            }
+            situationRating = await this.situationRatingDao
+                .findForSituationAndUser(situation, this.requestManager.getUser());
+        }
         let importanceDelta = {
-            totalDelta: importanceRating,
+            totalDelta: situationRating.importanceRating,
             numberDelta: 1
         };
         let urgencyDelta = {
-            totalDelta: urgencyRating,
+            totalDelta: situationRating.urgencyRating,
             numberDelta: 1
         };
-        if (situationRating) {
-            importanceDelta.totalDelta = importanceRating - situationRating.importanceRating;
+        if (foundSituationRating) {
+            importanceDelta.totalDelta = situationRating.importanceRating
+                - situationRating.importanceRating;
             importanceDelta.numberDelta = 0;
-            urgencyDelta.totalDelta = urgencyRating - situationRating.urgencyRating;
+            urgencyDelta.totalDelta = situationRating.urgencyRating
+                - situationRating.urgencyRating;
             urgencyDelta.numberDelta = 0;
-            situationRating.importanceRating = importanceRating;
-            situationRating.urgencyRating = urgencyRating;
+            foundSituationRating.importanceRating = situationRating.importanceRating;
+            foundSituationRating.urgencyRating = situationRating.urgencyRating;
         }
         else {
-            situationRating = {
-                importanceRating,
-                repository: situation.repository,
-                situation,
-                urgencyRating,
-                actor: this.requestManager.getActor()
-            };
+            situationRating.repository = situation.repository,
+                situationRating.situation = situation;
+            situationRating.actor = this.requestManager.getActor();
         }
-        await this.situationDao.updateShareTotal(situation, importanceDelta, urgencyDelta);
-        await this.situationRatingDao.save(situationRating);
+        if (isNewSituation) {
+            situation.importanceTotal = situationRating.importanceRating;
+            situation.numberOfImportanceRatings = 1;
+            situation.urgencyTotal = situationRating.urgencyRating;
+            situation.numberOfUrgencyRatings = 1;
+        }
+        else {
+            await this.situationDao.updateShareTotal(situation, importanceDelta, urgencyDelta);
+            await this.situationRatingDao.save(situationRating);
+        }
         return situationRating;
     }
     async getNewSituation() {
@@ -82,6 +103,9 @@ __decorate([
 __decorate([
     Inject()
 ], SituationApi.prototype, "situationRatingDao", void 0);
+__decorate([
+    Api()
+], SituationApi.prototype, "findById", null);
 __decorate([
     Api()
 ], SituationApi.prototype, "save", null);

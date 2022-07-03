@@ -8,6 +8,10 @@ export declare const APPLICATION: {
             apiObjectMap: {
                 SituationApi: {
                     operationMap: {
+                        findById: {
+                            isAsync: boolean;
+                            parameters: any[];
+                        };
                         save: {
                             isAsync: boolean;
                             parameters: any[];

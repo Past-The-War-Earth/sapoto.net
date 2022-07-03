@@ -3,8 +3,9 @@ import { SituationRating } from '../../ddl/SituationRating';
 export declare class SituationApi {
     constructor();
     situationApi: SituationApi;
+    findById(uuId: string): Promise<Situation>;
     save(situation: Situation): Promise<void>;
-    rateSituation(situation: Situation, importanceRating: 1 | 2 | 3 | 4 | 5, urgencyRating: 1 | 2 | 3 | 4 | 5): Promise<SituationRating>;
+    rateSituation(situation: Situation, situationRating: SituationRating): Promise<SituationRating>;
     getNewSituation(): Promise<Situation>;
 }
 //# sourceMappingURL=SituationApi.d.ts.map

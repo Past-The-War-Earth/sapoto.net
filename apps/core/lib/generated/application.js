@@ -10,6 +10,10 @@ export const APPLICATION = {
                 "apiObjectMap": {
                     "SituationApi": {
                         "operationMap": {
+                            "findById": {
+                                "isAsync": true,
+                                "parameters": []
+                            },
                             "save": {
                                 "isAsync": true,
                                 "parameters": []

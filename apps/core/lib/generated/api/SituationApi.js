@@ -11,11 +11,14 @@ let SituationApi = class SituationApi {
     constructor() {
         DEPENDENCY_INJECTION.db().manualInject(this, SITUATION_API);
     }
+    async findById(uuId) {
+        return await this.situationApi.findById(uuId);
+    }
     async save(situation) {
         await this.situationApi.save(situation);
     }
-    async rateSituation(situation, importanceRating, urgencyRating) {
-        return await this.situationApi.rateSituation(situation, importanceRating, urgencyRating);
+    async rateSituation(situation, situationRating) {
+        return await this.situationApi.rateSituation(situation, situationRating);
     }
     async getNewSituation() {
         return await this.situationApi.getNewSituation();
