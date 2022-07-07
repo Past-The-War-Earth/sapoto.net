@@ -1,7 +1,7 @@
 import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QSituation, QSituationRating, QTopic } from "@sapoto/core";
+import { QSituation, QSituationRating, QTopic, Topic } from "@sapoto/core";
 import { QUser } from "@airport/travel-document-checkpoint";
 import { SituationThread } from "../ddl/SituationThread";
 import {
@@ -22,7 +22,7 @@ export class SituationThreadDao
     }
 
     async findWithListingDetailsForATopic(
-        topicUuId: string
+        topic: Topic
     ): Promise<SituationThread[]> {
         let st: QSituationThread,
             s: QSituation,
@@ -31,11 +31,6 @@ export class SituationThreadDao
         return await this._find({
             select: {
                 '*': Y,
-                actor: {
-                    user: {
-                        username: Y
-                    }
-                },
                 situation: {
                     '*': Y,
                     ratings: {}
@@ -45,16 +40,14 @@ export class SituationThreadDao
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
                 s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                a.user.leftJoin(),
                 t = s.topic.leftJoin()
             ],
-            where: t.equals(topicUuId)
+            where: t.equals(topic)
         })
     }
 
-    async findWithDetailsById(
-        situationThreadId: string
+    async findWithSituation(
+        situationThread: SituationThread
     ): Promise<SituationThread> {
         let st: QSituationThread,
             s: QSituation,
@@ -77,11 +70,9 @@ export class SituationThreadDao
             from: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                sR = s.ratings.leftJoin()
             ],
-            where: st.equals(situationThreadId)
+            where: st.equals(situationThread)
         })
     }
 

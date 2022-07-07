@@ -37,7 +37,7 @@ let SituationThreadApi = class SituationThreadApi {
     }
     async findById(situationThreadUuId) {
         return await this.situationThreadDao
-            .findWithDetailsById(situationThreadUuId);
+            .findWithSituation(situationThreadUuId);
     }
 };
 __decorate([

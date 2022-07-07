@@ -60,7 +60,7 @@ export class SituationThreadApi {
         situationThreadUuId: string
     ): Promise<SituationThread> {
         return await this.situationThreadDao
-            .findWithDetailsById(situationThreadUuId)
+            .findWithSituation(situationThreadUuId)
     }
 
 }

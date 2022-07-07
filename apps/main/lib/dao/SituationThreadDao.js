@@ -37,7 +37,7 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
             where: t.equals(topicUuId)
         });
     }
-    async findWithDetailsById(situationThreadId) {
+    async findWithSituation(situationThreadId) {
         let st, s, sR, a, u;
         return await this._findOne({
             select: {

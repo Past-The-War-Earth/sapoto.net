@@ -4,6 +4,7 @@ import { QActor } from "@airport/holding-pattern";
 import { QUser, User } from "@airport/travel-document-checkpoint";
 import { Reply } from "../ddl/Reply";
 import { ReplyRating } from "../ddl/ReplyRating";
+import { SituationThread } from "../ddl/SituationThread";
 import { BaseReplyRatingDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 import { QReply } from "../generated/qreply";
@@ -15,22 +16,15 @@ export class ReplyRatingDao
     extends BaseReplyRatingDao {
 
     async findForReplyAndUser(
-        reply: Reply | string,
-        user: User | string
+        reply: Reply,
+        user: User
     ): Promise<ReplyRating> {
         let rr: QReplyRating,
             a: QActor,
             u: QUser,
             r: QReply
         return await this._findUnique({
-            select: {
-                '*': Y,
-                actor: {
-                    user: {
-                        uuId: Y
-                    }
-                }
-            },
+            select: {},
             from: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
@@ -39,14 +33,14 @@ export class ReplyRatingDao
             ],
             where: and(
                 r.equals(reply),
-                u.equals(user)
+                u.GUID.equals(user.GUID)
             )
         })
     }
 
     async findAllForSituationThreadAndUser(
-        situationThreadId: string,
-        userId: string
+        situationThread: SituationThread,
+        user: User
     ): Promise<ReplyRating[]> {
         let rr: QReplyRating,
             a: QActor,
@@ -54,14 +48,7 @@ export class ReplyRatingDao
             r: QReply,
             st: QSituationThread
         return await this._find({
-            select: {
-                '*': Y,
-                actor: {
-                    user: {
-                        uuId: Y
-                    }
-                }
-            },
+            select: {},
             from: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
@@ -71,8 +58,8 @@ export class ReplyRatingDao
 
             ],
             where: and(
-                st.equals(situationThreadId),
-                u.equals(userId)
+                st.equals(situationThread),
+                u.GUID.equals(user.GUID)
             )
         })
     }

@@ -2,6 +2,7 @@ import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
 import { Reply } from "../ddl/Reply";
+import { SituationThread } from "../ddl/SituationThread";
 import {
     BaseReplyDao,
     Q,
@@ -14,7 +15,7 @@ export class ReplyDao
     extends BaseReplyDao {
 
     async findForSituationThread(
-        situationThreadUuId: string
+        situationThread: SituationThread
     ): Promise<Reply[]> {
         let r: QReply,
             a: QActor,
@@ -22,12 +23,6 @@ export class ReplyDao
         return await this._find({
             select: {
                 '*': Y,
-                uuId: Y,
-                actor: {
-                    user: {
-                        username: Y
-                    }
-                },
                 situationIdea: {
                     agreementShareTotal: Y,
                     numberOfAgreements: Y
@@ -35,12 +30,10 @@ export class ReplyDao
             },
             from: [
                 r = Q.Reply,
-                a = r.actor.leftJoin(),
-                a.user.leftJoin(),
                 r.situationIdea.leftJoin(),
                 st = r.situationThread.leftJoin()
             ],
-            where: st.equals(situationThreadUuId)
+            where: st.equals(situationThread)
         })
     }
 
