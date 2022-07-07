@@ -22,6 +22,7 @@ dependencies:
   '@rush-temp/dependency-injection': 'file:projects/dependency-injection.tgz'
   '@rush-temp/dependency-injection-1': 'file:projects/dependency-injection-1.tgz'
   '@rush-temp/direction-indicator': 'file:projects/direction-indicator.tgz_typescript@4.6.4'
+  '@rush-temp/flight-number': 'file:projects/flight-number.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:projects/fuel-hydrant-system.tgz'
   '@rush-temp/ground-control': 'file:projects/ground-control.tgz'
   '@rush-temp/ground-transport': 'file:projects/ground-transport.tgz'
@@ -2621,14 +2622,14 @@ packages:
     dev: false
     name: '@rush-temp/airport-code'
     resolution:
-      integrity: sha512-gB45jD7MdxwS532aVJ94AlGjtNVgPqDPWj8IgmkUkvaIFGOhITcrRf1ko9mPx5sjufB1qudBUMRXpAtvw8qlRg==
+      integrity: sha512-j3K5p99A2IAXyN6wq37Po9TK6UqRypUW2IeFj7ElgwpcohiOKFbFN6y7PviMlvUs/yoNVNfoLTARfZSUFdHSlw==
       tarball: 'file:projects/airport-code.tgz'
     version: 0.0.0
   'file:projects/airspace.tgz':
     dev: false
     name: '@rush-temp/airspace'
     resolution:
-      integrity: sha512-m8JLsvzWifMYvNyS6dmj3BAwtbghhXky76QKasT1hQeTu4DUW9Rx5KzhOQG3+WfoAlW6bJMpTUe0iuwOacl+xg==
+      integrity: sha512-HxpJlW1yrbYQsp4EcKa1NmaYIBwE3tyuEJU/S740jYensett9I9okLId4Vam7pmznWaJ5Y/10zFR6RhoflzwWg==
       tarball: 'file:projects/airspace.tgz'
     version: 0.0.0
   'file:projects/apron.tgz':
@@ -2664,7 +2665,7 @@ packages:
     dev: false
     name: '@rush-temp/aviation-communication'
     resolution:
-      integrity: sha512-0+0A2t68NCiO8/F86An4XjxQ7dWujTyrBjtu8rGXHBryhKBs1IUvEq06MaBDaARDbE4nLN4vNdSeZQ/eEcm4Tg==
+      integrity: sha512-3ZcVPoX+CH1esrRyVmje7XLUAOdPTks5qdlbIj2H6hYnG0mgRSj78iejbaqRi5yYmmQnJ+JEgE7z2SUTxH6WFQ==
       tarball: 'file:projects/aviation-communication.tgz'
     version: 0.0.0
   'file:projects/blueprint.tgz_typescript@4.6.4':
@@ -2690,12 +2691,18 @@ packages:
     version: 0.0.0
   'file:projects/core.tgz':
     dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.74.1
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.74.1
+      '@rollup/plugin-typescript': 8.3.2_259b674e2843eb0fd9f2d7fd95b5b7a6
+      rollup: 2.74.1
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.74.1
       tslib: 2.4.0
       typescript: 4.6.4
     dev: false
     name: '@rush-temp/core'
     resolution:
-      integrity: sha512-l2/ZH3PQVbE8LTzvHKVUfncKos8nJST5kQRUHaNTLABT0ZP45D6hJYvSnd4G5+F25QsoudCRiyNT4hiFW1VdtQ==
+      integrity: sha512-hFpiOB17dZFRTnvy7OQniOoEcni0GUK5jpOukLfrt2kfrcUDSf8mf2kdYpJN8B/sYuYQyWakglPgo37EjdhS7Q==
       tarball: 'file:projects/core.tgz'
     version: 0.0.0
   'file:projects/dependency-injection-1.tgz':
@@ -2730,6 +2737,15 @@ packages:
       integrity: sha512-aGqSq5pOo6zDaV5Z+wbdY/cTEqtOTb86iGhx+OGt2KriPLDDuUN+eWJviu9t/cbb94LmYsgJwkoZGuSWYscUZg==
       tarball: 'file:projects/direction-indicator.tgz'
     version: 0.0.0
+  'file:projects/flight-number.tgz':
+    dependencies:
+      rxjs: 7.4.0
+    dev: false
+    name: '@rush-temp/flight-number'
+    resolution:
+      integrity: sha512-myfRtZMYW3v/bKljwJ9FJd9cAIPAvAG0/EmSa0FWp84+LBEieBaPLbf1UfERBrbEgAUfy+SgwX3Aq0DknpCGxA==
+      tarball: 'file:projects/flight-number.tgz'
+    version: 0.0.0
   'file:projects/fuel-hydrant-system.tgz':
     dependencies:
       rxjs: 7.4.0
@@ -2737,7 +2753,7 @@ packages:
     dev: false
     name: '@rush-temp/fuel-hydrant-system'
     resolution:
-      integrity: sha512-OHsvC3PsvFouckVEbk7wrc3YzmoOR+lk+LOQkYN7H1+qknGXR7k9LzwAx48vleo7voBRT8RrgJ20Rxpmfx5jmg==
+      integrity: sha512-esmG+0/rIjNGfZ8lnecBF0286S9u7rE/QCnSGpZ3r4p7gP68CKHLjXR7z4HQzuJY5gU/oBaSWiVlQ8BpHFHliw==
       tarball: 'file:projects/fuel-hydrant-system.tgz'
     version: 0.0.0
   'file:projects/ground-control.tgz':
@@ -2764,7 +2780,7 @@ packages:
     dev: false
     name: '@rush-temp/holding-pattern'
     resolution:
-      integrity: sha512-dAGLqhT2zlmYdRN8ViSH5sJVQ9hPHib5DJ5rElNs3BC2JvQnjr8dHNFmThkHbr5RB1J2fo5L7AUJbDi0TXLKrw==
+      integrity: sha512-f+Yxc+LPa4wUcHJOobzcqT7tpyZHhcrpncMwB7Xp564oy7D4JllHdk+455TFXg175AsFQWEOD5e6JpHXFGY+Zg==
       tarball: 'file:projects/holding-pattern.tgz'
     version: 0.0.0
   'file:projects/host.tgz':
@@ -2845,12 +2861,18 @@ packages:
     version: 0.0.0
   'file:projects/main.tgz':
     dependencies:
+      '@rollup/plugin-commonjs': 17.1.0_rollup@2.74.1
+      '@rollup/plugin-node-resolve': 11.2.1_rollup@2.74.1
+      '@rollup/plugin-typescript': 8.3.2_259b674e2843eb0fd9f2d7fd95b5b7a6
+      rollup: 2.74.1
+      rollup-plugin-livereload: 2.0.5
+      rollup-plugin-terser: 7.0.2_rollup@2.74.1
       tslib: 2.4.0
       typescript: 4.6.4
     dev: false
     name: '@rush-temp/main'
     resolution:
-      integrity: sha512-juEG9tMDg6zDeGi+kw9iblz3N511o+aIWnfxsNIHxqZyusHTjSyWAKkj5tu/Wf/kKcJhiXz/dG46+OYyomy23g==
+      integrity: sha512-cvAFmF/qtJMZq3ENObYe39E/6XE539HwVhaBtHtnlV7sfJHxMr1qj7rFe/bcw8ekxIC2G2qzRIScYmGqjPplow==
       tarball: 'file:projects/main.tgz'
     version: 0.0.0
   'file:projects/moving-walkway.tgz':
@@ -2859,7 +2881,7 @@ packages:
     dev: false
     name: '@rush-temp/moving-walkway'
     resolution:
-      integrity: sha512-SC010B0jLVMM3mIzgnB++7kg3oeKXmvmY2lisejfCIJ5idHDF1/SGuln+MNQW+MP2FXt1854VHBp1wtTikgNmA==
+      integrity: sha512-WNLl4ABhVJgvwbLhG3KaZO9LKYU/BGyM7C5EwGqr3y6QaTfZjlJK7QnkCIhBCz+B0UtRcMWQPtY/2qwx1Dir+w==
       tarball: 'file:projects/moving-walkway.tgz'
     version: 0.0.0
   'file:projects/mysql.tgz':
@@ -2937,7 +2959,7 @@ packages:
     peerDependencies:
       typescript: '*'
     resolution:
-      integrity: sha512-s40jbDRhAk9qZ6hjQsGMCKJk8yTdVlB0bd/Mq28WFVSSqpslVW+6nNOQIYrRStgi+VTNWa6iojmq/75NyP3m7w==
+      integrity: sha512-2KNDOxt660EUlFA0Ub5AyEm5Ss0syyhfXgQgvkLwiN5vNV/DdmO1gipvAjOdgbWMVL5JW//7rb8EicsYTj7ISg==
       tarball: 'file:projects/pressurization.tgz'
     version: 0.0.0
   'file:projects/processor-common.tgz':
@@ -3017,7 +3039,7 @@ packages:
     dev: false
     name: '@rush-temp/terminal'
     resolution:
-      integrity: sha512-7uJPutgwYnBmFOmRZh/KrQXWYKpOB8hAQr1Edit68M6v32FSSEzhDf6/FSdN5UGKyqBIg1HwT8DNQCU0cG0O9Q==
+      integrity: sha512-Tq6TSnFstK0JV/Zgp/CHLzef7nzd0ykVayOG4uFLymzB/NizdLg3ItlwozwVIlh6DowXjn0lbcdWmtQvuOrA8w==
       tarball: 'file:projects/terminal.tgz'
     version: 0.0.0
   'file:projects/tower.tgz':
@@ -3035,7 +3057,7 @@ packages:
     dev: false
     name: '@rush-temp/travel-document-checkpoint'
     resolution:
-      integrity: sha512-BU1uYGUQV0RwMvRw7D5xyC32or4iiBz94UjbW538klr7iVMFaGKfJ60Z/OXyFlq7HSHPD+vLxloqr8jwumxYtg==
+      integrity: sha512-t3z1CJZ01CgX3LEUz/ilpGsG627ObVZHVxFIADamehhFBNf35sirdHfNjOT6ieUXzmnea3LwpoNKN5XZ8/Yxvw==
       tarball: 'file:projects/travel-document-checkpoint.tgz'
     version: 0.0.0
   'file:projects/votecube.tgz':
@@ -3051,7 +3073,7 @@ packages:
     dev: false
     name: '@rush-temp/votecube'
     resolution:
-      integrity: sha512-4iFOMYpI2Hco7PWXJPNoupAYhrfLSS93eJRWiq5thTKSzvZ3jBTuxfg31kFqkytKK3JVV+aD8yjV4ewXCTQTCg==
+      integrity: sha512-jwh8ankwJPN6ygRaXT7sM2EAHBbdWCGYkGc3Pkur4ecSvyh51hzLIz0edBxCqKss8lC3gq0b8L0/nuHFVh4NuA==
       tarball: 'file:projects/votecube.tgz'
     version: 0.0.0
   'file:projects/web-terminal.tgz':
@@ -3075,6 +3097,7 @@ packages:
       integrity: sha512-72wrPjUTisT0+mZEBawVS+Q0LeMHn9xTB4FKjQhgdvBDt0/cnz3TNNOrqiNKJE9GQXueYO3sNM33J9KvfrvJYQ==
       tarball: 'file:projects/web-tower.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@node-ts/bus-core': ^0.6.3
   '@node-ts/bus-messages': ^0.3.0
@@ -3099,6 +3122,7 @@ specifiers:
   '@rush-temp/dependency-injection': 'file:./projects/dependency-injection.tgz'
   '@rush-temp/dependency-injection-1': 'file:./projects/dependency-injection-1.tgz'
   '@rush-temp/direction-indicator': 'file:./projects/direction-indicator.tgz'
+  '@rush-temp/flight-number': 'file:./projects/flight-number.tgz'
   '@rush-temp/fuel-hydrant-system': 'file:./projects/fuel-hydrant-system.tgz'
   '@rush-temp/ground-control': 'file:./projects/ground-control.tgz'
   '@rush-temp/ground-transport': 'file:./projects/ground-transport.tgz'
