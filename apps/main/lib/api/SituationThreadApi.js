@@ -23,8 +23,7 @@ let SituationThreadApi = class SituationThreadApi {
         eMatrix.user.importance = Math.floor(eMatrix.user.importance);
         eMatrix.user.urgency = Math.floor(eMatrix.user.urgency);
         const topic = situation.topic;
-        if (!topic || !topic.repository.uuId || !topic.actor.uuId
-            || !topic.actorRecordId) {
+        if (!topic || !topic.id) {
             throw new Error(`No topic provided - missing topic or an id`);
         }
         await this.situationApi.save(situation);
@@ -32,12 +31,12 @@ let SituationThreadApi = class SituationThreadApi {
         situationThread.replies = [];
         await this.situationThreadDao.add(situationThread);
     }
-    async findWithListingDetailsForATopic(topicUuId) {
-        return await this.situationThreadDao.findWithListingDetailsForATopic(topicUuId);
+    async findWithListingDetailsForATopic(topicId) {
+        return await this.situationThreadDao.findWithListingDetailsForATopic(topicId);
     }
-    async findById(situationThreadUuId) {
+    async findById(situationThreadId) {
         return await this.situationThreadDao
-            .findWithSituation(situationThreadUuId);
+            .findWithSituation(situationThreadId);
     }
 };
 __decorate([

@@ -213,6 +213,22 @@
       "projectFolder": "../../BD/AIRport/nonhub/processor-common",
       "shouldPublish": true
     },
+    // "ORMs" folder (alphabetical order)
+    {
+      "packageName": "@airport/tarmaq-dao",
+      "projectFolder": "../../BD/AIRport/ORMs/tarmaq/dao",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/tarmaq-entity",
+      "projectFolder": "../../BD/AIRport/ORMs/tarmaq/entity",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@airport/tarmaq-query",
+      "projectFolder": "../../BD/AIRport/ORMs/tarmaq/query",
+      "shouldPublish": true
+    },
     // "platforms" folder (alphabetical order)
     {
       "packageName": "@airport/web-terminal",
@@ -236,8 +252,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@airport/moving-walkway",
-      "projectFolder": "../../BD/AIRport/schemas/moving-walkway",
+      "packageName": "@airport/layover",
+      "projectFolder": "../../BD/AIRport/schemas/layover",
       "shouldPublish": true
     },
     {

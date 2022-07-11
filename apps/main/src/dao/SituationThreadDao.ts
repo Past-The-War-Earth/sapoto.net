@@ -1,8 +1,8 @@
-import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
+import { plus, Y } from "@airport/tarmaq-query";
 import { QSituation, QSituationRating, QTopic, Topic } from "@sapoto/core";
-import { QUser } from "@airport/travel-document-checkpoint";
+import { QUserAccount } from "@airport/travel-document-checkpoint";
 import { SituationThread } from "../ddl/SituationThread";
 import {
     BaseSituationThreadDao,
@@ -22,7 +22,7 @@ export class SituationThreadDao
     }
 
     async findWithListingDetailsForATopic(
-        topic: Topic
+        topic: Topic | string
     ): Promise<SituationThread[]> {
         let st: QSituationThread,
             s: QSituation,
@@ -47,18 +47,18 @@ export class SituationThreadDao
     }
 
     async findWithSituation(
-        situationThread: SituationThread
+        situationThread: SituationThread | string
     ): Promise<SituationThread> {
         let st: QSituationThread,
             s: QSituation,
             sR: QSituationRating,
             a: QActor,
-            u: QUser
+            u: QUserAccount
         return await this._findOne({
             select: {
                 '*': Y,
                 actor: {
-                    user: {
+                    userAccount: {
                         username: Y
                     }
                 },

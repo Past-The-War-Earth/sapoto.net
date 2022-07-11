@@ -5,11 +5,6 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
-	IEntityDatabaseFacade,
-	IEntityFind,
-	IEntityFindOne,
-	IEntitySearch,
-	IEntitySearchOne,
 	IQBooleanField,
 	IQDateField,
 	IQNumberField,
@@ -22,7 +17,7 @@ import {
 	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
 	AirEntityGraph,
 	AirEntityEId,
@@ -94,8 +89,6 @@ export interface ReplyESelect
 	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	numberOfExperiences?: number | IQNumberField;
-	numberOfQuestions?: number | IQNumberField;
 
 	// Id Relations - full property interfaces
 
@@ -141,10 +134,8 @@ export interface ReplyEUpdateProperties
 	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	numberOfExperiences?: number | IQNumberField;
-	numberOfQuestions?: number | IQNumberField;
 
-	// Non-Id Relations - ids only & no OneToMany's
+	// Non-Id Relations - _localIds only & no OneToMany's
 	situationThread?: SituationThreadEOptionalId;
 	parentReply?: ReplyEOptionalId;
 	situationIdea?: SituationIdeaEOptionalId;
@@ -165,8 +156,6 @@ export interface ReplyGraph
 	isQuestion?: boolean | IQBooleanField;
 	numberOfDownRatings?: number | IQNumberField;
 	numberOfUpRatings?: number | IQNumberField;
-	numberOfExperiences?: number | IQNumberField;
-	numberOfQuestions?: number | IQNumberField;
 
 	// Relations
 	situationThread?: SituationThreadGraph;
@@ -185,18 +174,16 @@ export interface ReplyEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
-	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_LID?: number | IQNumberField;
 	TEXT?: string | IQStringField;
 	IS_IDEA?: boolean | IQBooleanField;
 	IS_EXPERIENCE?: boolean | IQBooleanField;
 	IS_QUESTION?: boolean | IQBooleanField;
 	NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
 	NUMBER_OF_UP_RATINGS?: number | IQNumberField;
-	NUMBER_OF_EXPERIENCES?: number | IQNumberField;
-	NUMBER_OF_QUESTIONS?: number | IQNumberField;
 	SITUATION_THREADS_RID_1?: number | IQNumberField;
 	SITUATION_THREADS_AID_1?: number | IQNumberField;
 	SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -231,7 +218,7 @@ extends ReplyEId, ReplyEUpdateColumns {
 ///////////////////////////////////////////////
 
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QReply extends QAirEntity
 {
@@ -246,8 +233,6 @@ export interface QReply extends QAirEntity
 	isQuestion: IQBooleanField;
 	numberOfDownRatings: IQNumberField;
 	numberOfUpRatings: IQNumberField;
-	numberOfExperiences: IQNumberField;
-	numberOfQuestions: IQNumberField;
 
 	// Non-Id Relations
 	situationThread: QSituationThreadQRelation;

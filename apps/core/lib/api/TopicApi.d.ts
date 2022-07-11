@@ -3,6 +3,6 @@ import { Topic } from "../ddl/Topic";
 export declare class TopicApi {
     topicDao: TopicDao;
     findAll(): Promise<Topic[]>;
-    findByUuId(topicUuId: string): Promise<Topic>;
+    findOne(topicId: string | Topic): Promise<Topic>;
 }
 //# sourceMappingURL=TopicApi.d.ts.map

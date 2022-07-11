@@ -9,13 +9,13 @@ import { Inject, Injected } from "@airport/direction-indicator";
 let ReplyApi = class ReplyApi {
     async addReply(reply) {
         const existingSituationThread = await this.situationThreadDao
-            .findByUuId(reply.situationThread, true);
+            .findOne(reply.situationThread, true);
         if (!existingSituationThread) {
             return;
         }
         let existingParentReply;
         if (reply.parentReply) {
-            existingParentReply = await this.replyDao.findByUuId(reply);
+            existingParentReply = await this.replyDao.findOne(reply);
             if (!existingParentReply) {
                 return;
             }
@@ -25,8 +25,8 @@ let ReplyApi = class ReplyApi {
         this.situationThreadDao.updateReplyTypeTotals(reply.isIdea ? 1 : 0, reply.isExperience ? 1 : 0, reply.isQuestion ? 1 : 0, existingSituationThread);
         await this.replyDao.save(reply);
     }
-    async getRepliesForSituationThread(situationThreadUuId) {
-        return await this.replyDao.findForSituationThread(situationThreadUuId);
+    async getRepliesForSituationThread(situationThreadId) {
+        return await this.replyDao.findForSituationThread(situationThreadId);
     }
     async rateReply(replyRating) {
         if (replyRating.upOrDownRating > 0) {
@@ -38,8 +38,8 @@ let ReplyApi = class ReplyApi {
         else {
             replyRating.upOrDownRating = 0;
         }
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true);
-        const existingReplyRating = await this.replyRatingDao.findForReplyAndUser(replyRating.reply, (await this.requestManager.getRequest()).user);
+        const reply = await this.replyDao.findOne(replyRating.reply, true);
+        const existingReplyRating = await this.replyRatingDao.findForReplyAndUser(replyRating.reply, this.requestManager.userAccount);
         let numberOfDownRatingsDelta = 0;
         let numberOfUpRatingsDelta = 0;
         if (existingReplyRating) {
@@ -101,11 +101,11 @@ let ReplyApi = class ReplyApi {
     }
     async setReplyType(reply, type) {
         const existingSituationThread = await this.situationThreadDao
-            .findByUuId(reply.situationThread, true);
+            .findOne(reply.situationThread, true);
         if (!existingSituationThread) {
             return;
         }
-        const existingReply = await this.replyDao.findByUuId(reply, true);
+        const existingReply = await this.replyDao.findOne(reply, true);
         if (!existingReply) {
             return;
         }

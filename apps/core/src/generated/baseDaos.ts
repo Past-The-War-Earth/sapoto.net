@@ -65,7 +65,6 @@ import {
 	QUserTopicFavorite,
 } from './qusertopicfavorite';
 import {
-	IDao,
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
 	IEntityIdProperties,
@@ -73,13 +72,14 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IQEntity,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
+	IDao,
 	Dao,
 	DaoQueryDecorators,
-} from '@airport/check-in';
+} from '@airport/tarmaq-dao';
 import {
-	EntityId as DbEntityId,
+	ApplicationEntity_LocalId as DbEntityId,
 } from '@airport/ground-control';
 import {
 	Q,
@@ -93,7 +93,7 @@ export class SQDIDao<Entity,
 	EntityCreate extends IEntityCreateProperties,
 	EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
-	EntityId extends IEntityIdProperties,
+	ApplicationEntity_LocalId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
 	IQE extends IQEntity>
 	extends Dao<Entity,
@@ -101,7 +101,7 @@ export class SQDIDao<Entity,
 		EntityCreate,
 		EntityUpdateColumns,
 		EntityUpdateProperties,
-		EntityId,
+		ApplicationEntity_LocalId,
 		EntityCascadeGraph,
 		IQE> {
 

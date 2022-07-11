@@ -7,9 +7,6 @@ import {
 	Injected,
 } from '@airport/direction-indicator';
 import {
-	NEW_RECORD_FIELDS,
-} from '@airport/air-traffic-control';
-import {
 	Api,
 } from '@airport/check-in';
 import {
@@ -30,6 +27,9 @@ import {
 import {
 	ITotalDelta,
 } from '../../ddl/TotalDelta';
+import {
+	NEW_RECORD_FIELDS,
+} from '@airport/tarmaq-query';
 
 
 
@@ -45,9 +45,9 @@ export class SituationApi {
     situationApi: SituationApi
             
     async  findById(
-        uuId: string
+        situation: Situation | string
     ): Promise<Situation> {
-        return await this.situationApi.findById(uuId)
+        return await this.situationApi.findById(situation)
     }
 
     async  save(

@@ -1,11 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
+import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/tarmaq-entity";
 import { SituationRating } from "./SituationRating";
 import { Topic } from "./Topic";
 
 @Entity()
 @Table({ name: 'SITUATIONS' })
-export class Situation extends AirEntity {
+export class Situation
+    extends AirEntity {
 
     @Column({ name: 'TEXT', nullable: false })
     text: string

@@ -1,5 +1,5 @@
-import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
+import { Column, DbNumber, Entity, ManyToOne, Table } from "@airport/tarmaq-entity";
 import { Situation } from "./Situation";
 
 @Entity()

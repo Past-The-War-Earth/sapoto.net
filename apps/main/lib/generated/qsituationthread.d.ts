@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQAirEntityOneToManyRelation } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from '@sapoto/core';
 import { ReplyGraph, ReplyESelect, QReply } from './qreply';
@@ -52,10 +52,10 @@ export interface SituationThreadGraph extends SituationThreadEOptionalId, AirEnt
 export interface SituationThreadEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     NUMBER_OF_EXPERIENCES?: number | IQNumberField;
     NUMBER_OF_IDEAS?: number | IQNumberField;
     NUMBER_OF_QUESTIONS?: number | IQNumberField;
@@ -75,7 +75,7 @@ export interface SituationThreadECreateProperties extends Partial<SituationThrea
 export interface SituationThreadECreateColumns extends SituationThreadEId, SituationThreadEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QSituationThread extends QAirEntity {
     numberOfExperiences: IQNumberField;

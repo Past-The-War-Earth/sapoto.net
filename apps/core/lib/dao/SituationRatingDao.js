@@ -6,22 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Injected } from "@airport/direction-indicator";
 import { BaseSituationRatingDao, Q } from "../generated/generated";
-import { and } from "@airport/air-traffic-control";
+import { and } from "@airport/tarmaq-query";
 let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao {
     async findForSituationAndUser(situationUuId, user) {
-        let sr;
-        let a;
-        let u;
-        let s;
+        let sr, a, u, s;
         return await this._findUnique({
             select: {},
             from: [
                 sr = Q.SituationRating,
                 a = sr.actor.innerJoin(),
-                u = a.user.innerJoin(),
+                u = a.userAccount.innerJoin(),
                 s = sr.situation.innerJoin()
             ],
-            where: and(s.equals(situationUuId), u.uuId.equals(user.uuId))
+            where: and(s.equals(situationUuId), u.equals(user))
         });
     }
 };

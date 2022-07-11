@@ -10,8 +10,8 @@ let TopicApi = class TopicApi {
     async findAll() {
         return await this.topicDao.findAll();
     }
-    async findByUuId(topicUuId) {
-        return await this.topicDao.findByUuId(topicUuId);
+    async findOne(topicId) {
+        return await this.topicDao.findOne(topicId);
     }
 };
 __decorate([
@@ -22,7 +22,7 @@ __decorate([
 ], TopicApi.prototype, "findAll", null);
 __decorate([
     Api()
-], TopicApi.prototype, "findByUuId", null);
+], TopicApi.prototype, "findOne", null);
 TopicApi = __decorate([
     Injected()
 ], TopicApi);

@@ -1,7 +1,12 @@
-import { Column, Entity, Json, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
+import {
+    Column,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    Table
+} from "@airport/tarmaq-entity";
 import { AirEntity } from "@airport/holding-pattern";
 import { Situation } from "@sapoto/core";
-import { ICounts } from "./ICounts";
 import { Reply } from "./Reply";
 
 @Entity()

@@ -1,7 +1,10 @@
-import { and, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { QUser, User } from "@airport/travel-document-checkpoint";
+import { and } from "@airport/tarmaq-query";
+import {
+    QUserAccount,
+    UserAccount
+} from "@airport/travel-document-checkpoint";
 import { Reply } from "../ddl/Reply";
 import { ReplyRating } from "../ddl/ReplyRating";
 import { SituationThread } from "../ddl/SituationThread";
@@ -17,18 +20,18 @@ export class ReplyRatingDao
 
     async findForReplyAndUser(
         reply: Reply,
-        user: User
+        user: UserAccount
     ): Promise<ReplyRating> {
         let rr: QReplyRating,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             r: QReply
         return await this._findUnique({
             select: {},
             from: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 r = rr.reply.leftJoin()
             ],
             where: and(
@@ -40,11 +43,11 @@ export class ReplyRatingDao
 
     async findAllForSituationThreadAndUser(
         situationThread: SituationThread,
-        user: User
+        user: UserAccount
     ): Promise<ReplyRating[]> {
         let rr: QReplyRating,
             a: QActor,
-            u: QUser,
+            u: QUserAccount,
             r: QReply,
             st: QSituationThread
         return await this._find({
@@ -52,7 +55,7 @@ export class ReplyRatingDao
             from: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
-                u = a.user.leftJoin(),
+                u = a.userAccount.leftJoin(),
                 r = rr.reply.leftJoin(),
                 st = r.situationThread.leftJoin(),
 

@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { ReplyGraph, ReplyEOptionalId, ReplyESelect, QReplyQRelation } from './qreply';
 import { IReplyRating } from './replyrating';
@@ -39,10 +39,10 @@ export interface ReplyRatingGraph extends ReplyRatingEOptionalId, AirEntityGraph
 export interface ReplyRatingEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     UP_OR_DOWN_RATING?: number | IQNumberField;
     REPLIES_RID_1?: number | IQNumberField;
     REPLIES_AID_1?: number | IQNumberField;
@@ -59,7 +59,7 @@ export interface ReplyRatingECreateProperties extends Partial<ReplyRatingEId>, R
 export interface ReplyRatingECreateColumns extends ReplyRatingEId, ReplyRatingEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QReplyRating extends QAirEntity {
     upOrDownRating: IQNumberField;

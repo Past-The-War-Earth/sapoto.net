@@ -11,6 +11,7 @@ import {
 } from '@airport/check-in';
 import {
 	SituationApi,
+	Topic,
 } from '@sapoto/core';
 import {
 	SituationThreadDao,
@@ -39,15 +40,15 @@ export class SituationThreadApi {
     }
 
     async  findWithListingDetailsForATopic(
-        topicUuId: string
+        topicId: string | Topic
     ): Promise<SituationThread[]> {
-        return await this.situationThreadApi.findWithListingDetailsForATopic(topicUuId)
+        return await this.situationThreadApi.findWithListingDetailsForATopic(topicId)
     }
 
     async  findById(
-        situationThreadUuId: string
+        situationThreadId: string | SituationThread
     ): Promise<SituationThread> {
-        return await this.situationThreadApi.findById(situationThreadUuId)
+        return await this.situationThreadApi.findById(situationThreadId)
     }
 
 }

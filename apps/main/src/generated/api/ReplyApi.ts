@@ -8,7 +8,7 @@ import {
 } from '@airport/direction-indicator';
 import {
 	AirRequest,
-	IRequestManager,
+	RequestManager,
 } from '@airport/arrivals-n-departures';
 import {
 	Api,
@@ -31,6 +31,9 @@ import {
 import {
 	ReplyRating,
 } from '../../ddl/ReplyRating';
+import {
+	SituationThread,
+} from '../../ddl/SituationThread';
 
 
 
@@ -52,15 +55,9 @@ export class ReplyApi {
     }
 
     async  getRepliesForSituationThread(
-        situationThreadUuId: string
+        situationThreadId: string | SituationThread
     ): Promise<Reply[]> {
-        return await this.replyApi.getRepliesForSituationThread(situationThreadUuId)
-    }
-
-    async  addIdea(
-        reply: Reply
-    ): Promise<void> {
-        await this.replyApi.addIdea(reply)
+        return await this.replyApi.getRepliesForSituationThread(situationThreadId)
     }
 
     async  rateReply(

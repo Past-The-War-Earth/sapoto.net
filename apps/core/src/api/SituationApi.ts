@@ -1,4 +1,3 @@
-import { NEW_RECORD_FIELDS } from '@airport/air-traffic-control'
 import { Api } from "@airport/check-in";
 import {
     Inject,
@@ -10,6 +9,7 @@ import { SituationRatingDao } from "../dao/SituationRatingDao";
 import { Situation } from "../ddl/Situation";
 import { SituationRating } from '../ddl/SituationRating';
 import { ITotalDelta } from '../ddl/TotalDelta';
+import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
 
 @Injected()
 export class SituationApi {
@@ -27,7 +27,7 @@ export class SituationApi {
     async findById(
         situation: Situation | string
     ): Promise<Situation> {
-        return await this.situationDao.findByUuId(situation)
+        return await this.situationDao.findOne(situation)
     }
 
     @Api()
@@ -78,12 +78,12 @@ export class SituationApi {
         if (isNewSituation) {
             foundSituation = situation
         } else {
-            foundSituation = await this.situationDao.findByUuId(situation, true)
+            foundSituation = await this.situationDao.findOne(situation, true)
             if (!foundSituation) {
-                throw new Error(`Situation ${situation.uuId} does not exist`);
+                throw new Error(`Situation ${situation.id} does not exist`);
             }
             situationRating = await this.situationRatingDao
-                .findForSituationAndUser(situation, this.requestManager.getUser())
+                .findForSituationAndUser(situation, this.requestManager.userAccount)
         }
         let importanceDelta: ITotalDelta = {
             totalDelta: situationRating.importanceRating,
@@ -105,7 +105,7 @@ export class SituationApi {
         } else {
             situationRating.repository = situation.repository,
                 situationRating.situation = situation
-            situationRating.actor = this.requestManager.getActor()
+            situationRating.actor = this.requestManager.actor
         }
 
         if (isNewSituation) {

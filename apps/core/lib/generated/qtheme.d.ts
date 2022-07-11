@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { TopicGraph, TopicESelect, QTopic } from './qtopic';
 import { ITopic } from './topic';
@@ -42,10 +42,10 @@ export interface ThemeGraph extends ThemeEOptionalId, AirEntityGraph {
 export interface ThemeEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     NAME?: string | IQStringField;
     IMAGENAME?: string | IQStringField;
 }
@@ -60,7 +60,7 @@ export interface ThemeECreateProperties extends Partial<ThemeEId>, ThemeEUpdateP
 export interface ThemeECreateColumns extends ThemeEId, ThemeEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QTheme extends QAirEntity {
     name: IQStringField;

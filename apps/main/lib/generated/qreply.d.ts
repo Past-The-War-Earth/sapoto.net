@@ -1,4 +1,4 @@
-import { IQBooleanField, IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQBooleanField, IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationThreadGraph, SituationThreadEOptionalId, SituationThreadESelect, QSituationThreadQRelation } from './qsituationthread';
 import { SituationIdeaGraph, SituationIdeaEOptionalId, SituationIdeaESelect, QSituationIdeaQRelation } from '@votecube/votecube';
@@ -15,8 +15,6 @@ export interface ReplyESelect extends AirEntityESelect, ReplyEOptionalId {
     isQuestion?: boolean | IQBooleanField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
-    numberOfExperiences?: number | IQNumberField;
-    numberOfQuestions?: number | IQNumberField;
     situationThread?: SituationThreadESelect;
     parentReply?: ReplyESelect;
     situationIdea?: SituationIdeaESelect;
@@ -43,8 +41,6 @@ export interface ReplyEUpdateProperties extends AirEntityEUpdateProperties {
     isQuestion?: boolean | IQBooleanField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
-    numberOfExperiences?: number | IQNumberField;
-    numberOfQuestions?: number | IQNumberField;
     situationThread?: SituationThreadEOptionalId;
     parentReply?: ReplyEOptionalId;
     situationIdea?: SituationIdeaEOptionalId;
@@ -59,8 +55,6 @@ export interface ReplyGraph extends ReplyEOptionalId, AirEntityGraph {
     isQuestion?: boolean | IQBooleanField;
     numberOfDownRatings?: number | IQNumberField;
     numberOfUpRatings?: number | IQNumberField;
-    numberOfExperiences?: number | IQNumberField;
-    numberOfQuestions?: number | IQNumberField;
     situationThread?: SituationThreadGraph;
     parentReply?: ReplyGraph;
     situationIdea?: SituationIdeaGraph;
@@ -73,18 +67,16 @@ export interface ReplyGraph extends ReplyEOptionalId, AirEntityGraph {
 export interface ReplyEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     TEXT?: string | IQStringField;
     IS_IDEA?: boolean | IQBooleanField;
     IS_EXPERIENCE?: boolean | IQBooleanField;
     IS_QUESTION?: boolean | IQBooleanField;
     NUMBER_OF_DOWN_RATINGS?: number | IQNumberField;
     NUMBER_OF_UP_RATINGS?: number | IQNumberField;
-    NUMBER_OF_EXPERIENCES?: number | IQNumberField;
-    NUMBER_OF_QUESTIONS?: number | IQNumberField;
     SITUATION_THREADS_RID_1?: number | IQNumberField;
     SITUATION_THREADS_AID_1?: number | IQNumberField;
     SITUATION_THREADS_ARID_1?: number | IQNumberField;
@@ -106,7 +98,7 @@ export interface ReplyECreateProperties extends Partial<ReplyEId>, ReplyEUpdateP
 export interface ReplyECreateColumns extends ReplyEId, ReplyEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QReply extends QAirEntity {
     text: IQStringField;
@@ -115,8 +107,6 @@ export interface QReply extends QAirEntity {
     isQuestion: IQBooleanField;
     numberOfDownRatings: IQNumberField;
     numberOfUpRatings: IQNumberField;
-    numberOfExperiences: IQNumberField;
-    numberOfQuestions: IQNumberField;
     situationThread: QSituationThreadQRelation;
     parentReply: QReplyQRelation;
     situationIdea: QSituationIdeaQRelation;

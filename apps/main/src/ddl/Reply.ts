@@ -1,5 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, Table, Transient } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
+import {
+    Column,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    Table,
+    Transient
+} from "@airport/tarmaq-entity";
 import { SituationIdea } from "@votecube/votecube";
 import { ReplyRating } from "./ReplyRating";
 import { SituationThread } from "./SituationThread";

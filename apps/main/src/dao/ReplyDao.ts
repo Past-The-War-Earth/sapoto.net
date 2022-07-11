@@ -1,6 +1,6 @@
-import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
+import { plus, Y } from "@airport/tarmaq-query";
 import { Reply } from "../ddl/Reply";
 import { SituationThread } from "../ddl/SituationThread";
 import {
@@ -15,7 +15,7 @@ export class ReplyDao
     extends BaseReplyDao {
 
     async findForSituationThread(
-        situationThread: SituationThread
+        situationThread: SituationThread | string
     ): Promise<Reply[]> {
         let r: QReply,
             a: QActor,

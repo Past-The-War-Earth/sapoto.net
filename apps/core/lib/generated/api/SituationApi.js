@@ -11,8 +11,8 @@ let SituationApi = class SituationApi {
     constructor() {
         DEPENDENCY_INJECTION.db().manualInject(this, SITUATION_API);
     }
-    async findById(uuId) {
-        return await this.situationApi.findById(uuId);
+    async findById(situation) {
+        return await this.situationApi.findById(situation);
     }
     async save(situation) {
         await this.situationApi.save(situation);

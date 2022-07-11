@@ -1,5 +1,5 @@
-import { Entity, ManyToOne, OneToMany, Table } from "@airport/air-traffic-control";
 import { AirEntity } from "@airport/holding-pattern";
+import { Entity, ManyToOne, OneToMany, Table } from "@airport/tarmaq-entity";
 import { Situation } from "./Situation";
 import { Theme } from "./Theme";
 

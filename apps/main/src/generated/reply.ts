@@ -33,8 +33,6 @@ export interface IReply extends IAirEntity {
 	isQuestion?: boolean;
 	numberOfDownRatings?: number;
 	numberOfUpRatings?: number;
-	numberOfExperiences?: number;
-	numberOfQuestions?: number;
 
 	// Non-Id Relations
 	situationThread?: ISituationThread;

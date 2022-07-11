@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { SituationGraph, SituationEOptionalId, SituationESelect, QSituationQRelation } from './qsituation';
 import { ISituationRating } from './situationrating';
@@ -42,10 +42,10 @@ export interface SituationRatingGraph extends SituationRatingEOptionalId, AirEnt
 export interface SituationRatingEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     IMPORTANCE_RATING?: number | IQNumberField;
     URGENCY_RATING?: number | IQNumberField;
     SITUATIONS_RID_1?: number | IQNumberField;
@@ -63,7 +63,7 @@ export interface SituationRatingECreateProperties extends Partial<SituationRatin
 export interface SituationRatingECreateColumns extends SituationRatingEId, SituationRatingEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QSituationRating extends QAirEntity {
     importanceRating: IQNumberField;

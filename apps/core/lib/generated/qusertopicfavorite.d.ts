@@ -1,4 +1,4 @@
-import { IQBooleanField, IQDateField, IQNumberField } from '@airport/air-traffic-control';
+import { IQBooleanField, IQDateField, IQNumberField } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { TopicGraph, TopicEOptionalId, TopicESelect, QTopicQRelation } from './qtopic';
 import { IUserTopicFavorite } from './usertopicfavorite';
@@ -39,10 +39,10 @@ export interface UserTopicFavoriteGraph extends UserTopicFavoriteEOptionalId, Ai
 export interface UserTopicFavoriteEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     FAVORITE?: boolean | IQBooleanField;
     TOPIC_RID_1?: number | IQNumberField;
     TOPIC_AID_1?: number | IQNumberField;
@@ -59,7 +59,7 @@ export interface UserTopicFavoriteECreateProperties extends Partial<UserTopicFav
 export interface UserTopicFavoriteECreateColumns extends UserTopicFavoriteEId, UserTopicFavoriteEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QUserTopicFavorite extends QAirEntity {
     favorite: IQBooleanField;

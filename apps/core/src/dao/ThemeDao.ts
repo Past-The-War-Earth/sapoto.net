@@ -1,5 +1,5 @@
-import { Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { Y } from "@airport/tarmaq-query";
 import { Theme } from "../ddl/Theme";
 import {
     BaseThemeDao,

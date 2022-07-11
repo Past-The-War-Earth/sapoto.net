@@ -5,11 +5,6 @@ import {
 	IEntityUpdateColumns,
 	IEntityUpdateProperties,
 	IEntitySelectProperties,
-	IEntityDatabaseFacade,
-	IEntityFind,
-	IEntityFindOne,
-	IEntitySearch,
-	IEntitySearchOne,
 	IQBooleanField,
 	IQDateField,
 	IQNumberField,
@@ -22,7 +17,7 @@ import {
 	IQAirEntityRelation,
 	RawDelete,
 	RawUpdate,
-} from '@airport/air-traffic-control';
+} from '@airport/tarmaq-query';
 import {
 	AirEntityGraph,
 	AirEntityEId,
@@ -102,7 +97,7 @@ export interface UserTopicFavoriteEUpdateProperties
 	// Non-Id Properties
 	favorite?: boolean | IQBooleanField;
 
-	// Non-Id Relations - ids only & no OneToMany's
+	// Non-Id Relations - _localIds only & no OneToMany's
 	topic?: TopicEOptionalId;
 
 }
@@ -130,10 +125,10 @@ export interface UserTopicFavoriteEUpdateColumns
 	// Non-Id Columns
 	AGE_SUITABILITY?: number | IQNumberField;
 	CREATED_AT?: Date | IQDateField;
-	SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+	SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
 	ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-	ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-	ORIGINAL_ACTOR_ID?: number | IQNumberField;
+	ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+	ORIGINAL_ACTOR_LID?: number | IQNumberField;
 	FAVORITE?: boolean | IQBooleanField;
 	TOPIC_RID_1?: number | IQNumberField;
 	TOPIC_AID_1?: number | IQNumberField;
@@ -163,7 +158,7 @@ extends UserTopicFavoriteEId, UserTopicFavoriteEUpdateColumns {
 ///////////////////////////////////////////////
 
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QUserTopicFavorite extends QAirEntity
 {

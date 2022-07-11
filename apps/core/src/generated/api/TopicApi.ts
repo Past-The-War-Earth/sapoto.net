@@ -33,10 +33,10 @@ export class TopicApi {
         return await this.topicApi.findAll()
     }
 
-    async  findByUuId(
-        topicUuId: string
+    async  findOne(
+        topicId: string | Topic
     ): Promise<Topic> {
-        return await this.topicApi.findByUuId(topicUuId)
+        return await this.topicApi.findOne(topicId)
     }
 
 }

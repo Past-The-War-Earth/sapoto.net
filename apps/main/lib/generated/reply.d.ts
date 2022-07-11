@@ -10,8 +10,6 @@ export interface IReply extends IAirEntity {
     isQuestion?: boolean;
     numberOfDownRatings?: number;
     numberOfUpRatings?: number;
-    numberOfExperiences?: number;
-    numberOfQuestions?: number;
     situationThread?: ISituationThread;
     parentReply?: IReply;
     situationIdea?: ISituationIdea;

@@ -1,42 +1,39 @@
 import { Injected } from "@airport/direction-indicator";
 import {
-    User,
-    QUser
-} from "@airport/travel-document-checkpoint";
-import {
     BaseSituationRatingDao,
     QSituation,
     QSituationRating,
     Q
 } from "../generated/generated";
-import { and } from "@airport/air-traffic-control";
 import { QActor } from "@airport/holding-pattern";
 import { SituationRating } from "../ddl/SituationRating";
-import { AirEntityUuId } from "@airport/aviation-communication";
+import { AirEntityId } from "@airport/aviation-communication";
+import { and } from "@airport/tarmaq-query";
+import { QUserAccount, UserAccount } from "@airport/travel-document-checkpoint";
 
 @Injected()
 export class SituationRatingDao
     extends BaseSituationRatingDao {
 
     async findForSituationAndUser(
-        situationUuId: string | AirEntityUuId,
-        user: User
+        situationUuId: string | AirEntityId,
+        user: UserAccount
     ): Promise<SituationRating> {
-        let sr: QSituationRating
-        let a: QActor
-        let u: QUser
-        let s: QSituation
+        let sr: QSituationRating,
+            a: QActor,
+            u: QUserAccount,
+            s: QSituation
         return await this._findUnique({
             select: {},
             from: [
                 sr = Q.SituationRating,
                 a = sr.actor.innerJoin(),
-                u = a.user.innerJoin(),
+                u = a.userAccount.innerJoin(),
                 s = sr.situation.innerJoin()
             ],
             where: and(
                 s.equals(situationUuId),
-                u.uuId.equals(user.uuId)
+                u.equals(user)
             )
         })
     }

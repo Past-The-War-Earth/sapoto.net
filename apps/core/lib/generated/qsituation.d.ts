@@ -1,4 +1,4 @@
-import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/air-traffic-control';
+import { IQDateField, IQNumberField, IQStringField, IQAirEntityOneToManyRelation } from '@airport/tarmaq-query';
 import { AirEntityGraph, AirEntityEId, AirEntityEUpdateColumns, AirEntityEUpdateProperties, AirEntityESelect, QAirEntityQId, QAirEntityQRelation, QAirEntity } from '@airport/holding-pattern';
 import { TopicGraph, TopicEOptionalId, TopicESelect, QTopicQRelation } from './qtopic';
 import { SituationRatingGraph, SituationRatingESelect, QSituationRating } from './qsituationrating';
@@ -55,10 +55,10 @@ export interface SituationGraph extends SituationEOptionalId, AirEntityGraph {
 export interface SituationEUpdateColumns extends AirEntityEUpdateColumns {
     AGE_SUITABILITY?: number | IQNumberField;
     CREATED_AT?: Date | IQDateField;
-    SYSTEM_WIDE_OPERATION_ID?: number | IQNumberField;
+    SYSTEM_WIDE_OPERATION_LID?: number | IQNumberField;
     ORIGINAL_ACTOR_RECORD_ID?: number | IQNumberField;
-    ORIGINAL_REPOSITORY_ID?: number | IQNumberField;
-    ORIGINAL_ACTOR_ID?: number | IQNumberField;
+    ORIGINAL_REPOSITORY_LID?: number | IQNumberField;
+    ORIGINAL_ACTOR_LID?: number | IQNumberField;
     TEXT?: string | IQStringField;
     URGENCY_TOTAL?: number | IQNumberField;
     NUMBER_OF_URGENCY_RATINGS?: number | IQNumberField;
@@ -79,7 +79,7 @@ export interface SituationECreateProperties extends Partial<SituationEId>, Situa
 export interface SituationECreateColumns extends SituationEId, SituationEUpdateColumns {
 }
 /**
- * Query Entity Query Definition (used for Q.EntityName).
+ * Query Entity Query Definition (used for Q.ApplicationEntity_Name).
  */
 export interface QSituation extends QAirEntity {
     text: IQStringField;

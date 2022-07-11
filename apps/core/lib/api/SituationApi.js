@@ -4,12 +4,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { NEW_RECORD_FIELDS } from '@airport/air-traffic-control';
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
 let SituationApi = class SituationApi {
     async findById(situation) {
-        return await this.situationDao.findByUuId(situation);
+        return await this.situationDao.findOne(situation);
     }
     async save(situation) {
         const situationRating = await this.doRateSituation(situation, situation.userRating, false);
@@ -40,12 +40,12 @@ let SituationApi = class SituationApi {
             foundSituation = situation;
         }
         else {
-            foundSituation = await this.situationDao.findByUuId(situation, true);
+            foundSituation = await this.situationDao.findOne(situation, true);
             if (!foundSituation) {
-                throw new Error(`Situation ${situation.uuId} does not exist`);
+                throw new Error(`Situation ${situation.id} does not exist`);
             }
             situationRating = await this.situationRatingDao
-                .findForSituationAndUser(situation, this.requestManager.getUser());
+                .findForSituationAndUser(situation, this.requestManager.userAccount);
         }
         let importanceDelta = {
             totalDelta: situationRating.importanceRating,
@@ -68,7 +68,7 @@ let SituationApi = class SituationApi {
         else {
             situationRating.repository = situation.repository,
                 situationRating.situation = situation;
-            situationRating.actor = this.requestManager.getActor();
+            situationRating.actor = this.requestManager.actor;
         }
         if (isNewSituation) {
             situation.importanceTotal = situationRating.importanceRating;

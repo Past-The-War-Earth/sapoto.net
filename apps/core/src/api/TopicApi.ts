@@ -15,10 +15,10 @@ export class TopicApi {
     }
 
     @Api()
-    async findByUuId(
-        topicUuId: string
+    async findOne(
+        topicId: string | Topic
     ): Promise<Topic> {
-        return await this.topicDao.findByUuId(topicUuId)
+        return await this.topicDao.findOne(topicId)
     }
 
 }

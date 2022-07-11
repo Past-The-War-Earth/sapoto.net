@@ -1,5 +1,5 @@
-import { plus } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { plus } from "@airport/tarmaq-query";
 import { Situation } from "../ddl/situation";
 import { ITotalDelta } from "../ddl/TotalDelta";
 import { BaseSituationDao } from "../generated/baseDaos";

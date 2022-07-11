@@ -1,6 +1,6 @@
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { SituationApi } from "@sapoto/core";
+import { SituationApi, Topic } from "@sapoto/core";
 import { SituationThreadDao } from "../dao/SituationThreadDao";
 import { SituationThread } from "../ddl/SituationThread";
 
@@ -36,8 +36,7 @@ export class SituationThreadApi {
 
         const topic = situation.topic
 
-        if (!topic || !topic.repository.uuId || !topic.actor.uuId
-            || !topic.actorRecordId) {
+        if (!topic || !topic.id) {
             throw new Error(`No topic provided - missing topic or an id`);
         }
 
@@ -50,17 +49,17 @@ export class SituationThreadApi {
 
     @Api()
     async findWithListingDetailsForATopic(
-        topicUuId: string
+        topicId: string | Topic
     ): Promise<SituationThread[]> {
-        return await this.situationThreadDao.findWithListingDetailsForATopic(topicUuId)
+        return await this.situationThreadDao.findWithListingDetailsForATopic(topicId)
     }
 
     @Api()
     async findById(
-        situationThreadUuId: string
+        situationThreadId: string | SituationThread
     ): Promise<SituationThread> {
         return await this.situationThreadDao
-            .findWithSituation(situationThreadUuId)
+            .findWithSituation(situationThreadId)
     }
 
 }

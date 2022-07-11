@@ -1,12 +1,19 @@
-import { AirRequest, IRequestManager } from "@airport/arrivals-n-departures"
+import {
+    AirRequest,
+    RequestManager
+} from "@airport/arrivals-n-departures"
 import { Api } from "@airport/check-in"
-import { Inject, Injected } from "@airport/direction-indicator"
+import {
+    Inject,
+    Injected
+} from "@airport/direction-indicator"
 import { SituationIdeaApi } from "@votecube/votecube"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"
 import { SituationThreadDao } from "../dao/SituationThreadDao"
 import { Reply } from "../ddl/Reply"
 import { ReplyRating } from "../ddl/ReplyRating"
+import { SituationThread } from "../ddl/SituationThread"
 
 @Injected()
 export class ReplyApi {
@@ -24,7 +31,7 @@ export class ReplyApi {
     airRequest: AirRequest
 
     @Inject()
-    requestManager: IRequestManager
+    requestManager: RequestManager
 
     @Inject()
     situationThreadDao: SituationThreadDao
@@ -34,13 +41,13 @@ export class ReplyApi {
         reply: Reply
     ): Promise<void> {
         const existingSituationThread = await this.situationThreadDao
-            .findByUuId(reply.situationThread, true)
+            .findOne(reply.situationThread, true)
         if (!existingSituationThread) {
             return
         }
         let existingParentReply
         if (reply.parentReply) {
-            existingParentReply = await this.replyDao.findByUuId(reply)
+            existingParentReply = await this.replyDao.findOne(reply)
             if (!existingParentReply) {
                 return
             }
@@ -56,9 +63,9 @@ export class ReplyApi {
 
     @Api()
     async getRepliesForSituationThread(
-        situationThreadUuId: string
+        situationThreadId: string | SituationThread
     ): Promise<Reply[]> {
-        return await this.replyDao.findForSituationThread(situationThreadUuId)
+        return await this.replyDao.findForSituationThread(situationThreadId)
     }
 
     @Api()
@@ -73,10 +80,10 @@ export class ReplyApi {
             replyRating.upOrDownRating = 0
         }
 
-        const reply = await this.replyDao.findByUuId(replyRating.reply.uuId, true)
+        const reply = await this.replyDao.findOne(replyRating.reply, true)
 
         const existingReplyRating: ReplyRating = await this.replyRatingDao.findForReplyAndUser(
-            replyRating.reply, (await this.requestManager.getRequest()).user)
+            replyRating.reply, this.requestManager.userAccount)
 
         let numberOfDownRatingsDelta = 0
         let numberOfUpRatingsDelta = 0
@@ -158,11 +165,11 @@ export class ReplyApi {
         type: 'experience' | 'idea' | 'question'
     ): Promise<void> {
         const existingSituationThread = await this.situationThreadDao
-            .findByUuId(reply.situationThread, true)
+            .findOne(reply.situationThread, true)
         if (!existingSituationThread) {
             return
         }
-        const existingReply = await this.replyDao.findByUuId(reply, true)
+        const existingReply = await this.replyDao.findOne(reply, true)
         if (!existingReply) {
             return
         }

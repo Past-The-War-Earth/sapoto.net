@@ -4,23 +4,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { plus, Y } from "@airport/air-traffic-control";
 import { Injected } from "@airport/direction-indicator";
+import { plus, Y } from "@airport/tarmaq-query";
 import { BaseSituationThreadDao, Q } from "../generated/generated";
 let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao {
     async add(situationThread) {
         await this.save(situationThread);
     }
-    async findWithListingDetailsForATopic(topicUuId) {
+    async findWithListingDetailsForATopic(topic) {
         let st, s, a, t;
         return await this._find({
             select: {
                 '*': Y,
-                actor: {
-                    user: {
-                        username: Y
-                    }
-                },
                 situation: {
                     '*': Y,
                     ratings: {}
@@ -30,20 +25,18 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
                 s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                a.user.leftJoin(),
                 t = s.topic.leftJoin()
             ],
-            where: t.equals(topicUuId)
+            where: t.equals(topic)
         });
     }
-    async findWithSituation(situationThreadId) {
+    async findWithSituation(situationThread) {
         let st, s, sR, a, u;
         return await this._findOne({
             select: {
                 '*': Y,
                 actor: {
-                    user: {
+                    userAccount: {
                         username: Y
                     }
                 },
@@ -55,11 +48,9 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
             from: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin(),
-                a = st.actor.leftJoin(),
-                u = a.user.leftJoin()
+                sR = s.ratings.leftJoin()
             ],
-            where: st.equals(situationThreadId)
+            where: st.equals(situationThread)
         });
     }
     async updateReplyTypeTotals(numberOfIdeasDelta, numberOfExperiencesDelta, numberOfQuestionsDelta, situationThread) {
