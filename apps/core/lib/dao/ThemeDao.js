@@ -18,7 +18,7 @@ let ThemeDao = class ThemeDao extends BaseThemeDao {
             },
             FROM: [
                 th = Q.Theme,
-                to = th.topics.leftJoin()
+                to = th.topics.LEFT_JOIN()
             ]
         });
     }

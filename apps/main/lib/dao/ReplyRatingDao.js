@@ -15,9 +15,9 @@ let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
             SELECT: {},
             FROM: [
                 rr = Q.ReplyRating,
-                a = rr.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                r = rr.reply.leftJoin()
+                a = rr.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                r = rr.reply.LEFT_JOIN()
             ],
             WHERE: AND(r.equals(reply), u.GUID.equals(user.GUID))
         });
@@ -28,10 +28,10 @@ let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
             SELECT: {},
             FROM: [
                 rr = Q.ReplyRating,
-                a = rr.actor.leftJoin(),
-                u = a.userAccount.leftJoin(),
-                r = rr.reply.leftJoin(),
-                st = r.situationThread.leftJoin(),
+                a = rr.actor.LEFT_JOIN(),
+                u = a.userAccount.LEFT_JOIN(),
+                r = rr.reply.LEFT_JOIN(),
+                st = r.situationThread.LEFT_JOIN(),
             ],
             WHERE: AND(st.equals(situationThread), u.GUID.equals(user.GUID))
         });

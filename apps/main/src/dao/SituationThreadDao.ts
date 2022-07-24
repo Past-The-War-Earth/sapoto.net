@@ -38,9 +38,9 @@ export class SituationThreadDao
             } as SituationThreadESelect,
             FROM: [
                 st = Q.SituationThread,
-                s = st.situation.innerJoin(),
-                s.ratings.leftJoin(),
-                t = s.topic.leftJoin()
+                s = st.situation.INNER_JOIN(),
+                s.ratings.LEFT_JOIN(),
+                t = s.topic.LEFT_JOIN()
             ],
             WHERE: t.equals(topic)
         })
@@ -69,8 +69,8 @@ export class SituationThreadDao
             },
             FROM: [
                 st = Q.SituationThread,
-                s = st.situation.innerJoin(),
-                sR = s.ratings.leftJoin()
+                s = st.situation.INNER_JOIN(),
+                sR = s.ratings.LEFT_JOIN()
             ],
             WHERE: st.equals(situationThread)
         })

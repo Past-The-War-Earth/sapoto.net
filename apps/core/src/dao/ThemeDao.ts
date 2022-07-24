@@ -22,7 +22,7 @@ export class ThemeDao
             },
             FROM: [
                 th = Q.Theme,
-                to = th.topics.leftJoin()
+                to = th.topics.LEFT_JOIN()
             ]
         })
     }

@@ -20,8 +20,8 @@ let ReplyDao = class ReplyDao extends BaseReplyDao {
             },
             FROM: [
                 r = Q.Reply,
-                r.situationIdea.leftJoin(),
-                st = r.situationThread.leftJoin()
+                r.situationIdea.LEFT_JOIN(),
+                st = r.situationThread.LEFT_JOIN()
             ],
             WHERE: st.equals(situationThread)
         });

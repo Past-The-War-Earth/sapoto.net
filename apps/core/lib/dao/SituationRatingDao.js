@@ -14,9 +14,9 @@ let SituationRatingDao = class SituationRatingDao extends BaseSituationRatingDao
             SELECT: {},
             FROM: [
                 sr = Q.SituationRating,
-                a = sr.actor.innerJoin(),
-                u = a.userAccount.innerJoin(),
-                s = sr.situation.innerJoin()
+                a = sr.actor.INNER_JOIN(),
+                u = a.userAccount.INNER_JOIN(),
+                s = sr.situation.INNER_JOIN()
             ],
             WHERE: AND(s.equals(situationUuId), u.equals(user))
         });
