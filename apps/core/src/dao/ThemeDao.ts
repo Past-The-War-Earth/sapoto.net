@@ -16,11 +16,11 @@ export class ThemeDao
         let th: QTheme
         let to: QTopic
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 topics: {}
             },
-            from: [
+            FROM: [
                 th = Q.Theme,
                 to = th.topics.leftJoin()
             ]

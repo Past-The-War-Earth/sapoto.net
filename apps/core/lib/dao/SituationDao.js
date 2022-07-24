@@ -5,21 +5,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injected } from "@airport/direction-indicator";
-import { plus } from "@airport/tarmaq-query";
+import { PLUS } from "@airport/tarmaq-query";
 import { BaseSituationDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let SituationDao = class SituationDao extends BaseSituationDao {
     async updateShareTotal(situation, importanceDelta, urgencyDelta) {
         const s = Q.Situation;
         await this.db.updateWhere({
-            update: s,
-            set: {
-                importanceTotal: plus(s.importanceTotal, importanceDelta.totalDelta),
-                numberOfImportanceRatings: plus(s.numberOfImportanceRatings, importanceDelta.numberDelta),
-                urgencyTotal: plus(s.urgencyTotal, urgencyDelta.totalDelta),
-                numberOfUrgencyRatings: plus(s.numberOfUrgencyRatings, urgencyDelta.numberDelta),
+            UPDATE: s,
+            SET: {
+                importanceTotal: PLUS(s.importanceTotal, importanceDelta.totalDelta),
+                numberOfImportanceRatings: PLUS(s.numberOfImportanceRatings, importanceDelta.numberDelta),
+                urgencyTotal: PLUS(s.urgencyTotal, urgencyDelta.totalDelta),
+                numberOfUrgencyRatings: PLUS(s.numberOfUrgencyRatings, urgencyDelta.numberDelta),
             },
-            where: s.equals(situation)
+            WHERE: s.equals(situation)
         });
     }
 };

@@ -1,6 +1,6 @@
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { and } from "@airport/tarmaq-query";
+import { AND } from "@airport/tarmaq-query";
 import {
     QUserAccount,
     UserAccount
@@ -27,14 +27,14 @@ export class ReplyRatingDao
             u: QUserAccount,
             r: QReply
         return await this._findUnique({
-            select: {},
-            from: [
+            SELECT: {},
+            FROM: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 r = rr.reply.leftJoin()
             ],
-            where: and(
+            WHERE: AND(
                 r.equals(reply),
                 u.GUID.equals(user.GUID)
             )
@@ -51,8 +51,8 @@ export class ReplyRatingDao
             r: QReply,
             st: QSituationThread
         return await this._find({
-            select: {},
-            from: [
+            SELECT: {},
+            FROM: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
@@ -60,7 +60,7 @@ export class ReplyRatingDao
                 st = r.situationThread.leftJoin(),
 
             ],
-            where: and(
+            WHERE: AND(
                 st.equals(situationThread),
                 u.GUID.equals(user.GUID)
             )

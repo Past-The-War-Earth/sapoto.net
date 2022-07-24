@@ -5,35 +5,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injected } from "@airport/direction-indicator";
-import { and } from "@airport/tarmaq-query";
+import { AND } from "@airport/tarmaq-query";
 import { BaseReplyRatingDao } from "../generated/baseDaos";
 import { Q } from "../generated/qApplication";
 let ReplyRatingDao = class ReplyRatingDao extends BaseReplyRatingDao {
     async findForReplyAndUser(reply, user) {
         let rr, a, u, r;
         return await this._findUnique({
-            select: {},
-            from: [
+            SELECT: {},
+            FROM: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 r = rr.reply.leftJoin()
             ],
-            where: and(r.equals(reply), u.GUID.equals(user.GUID))
+            WHERE: AND(r.equals(reply), u.GUID.equals(user.GUID))
         });
     }
     async findAllForSituationThreadAndUser(situationThread, user) {
         let rr, a, u, r, st;
         return await this._find({
-            select: {},
-            from: [
+            SELECT: {},
+            FROM: [
                 rr = Q.ReplyRating,
                 a = rr.actor.leftJoin(),
                 u = a.userAccount.leftJoin(),
                 r = rr.reply.leftJoin(),
                 st = r.situationThread.leftJoin(),
             ],
-            where: and(st.equals(situationThread), u.GUID.equals(user.GUID))
+            WHERE: AND(st.equals(situationThread), u.GUID.equals(user.GUID))
         });
     }
 };

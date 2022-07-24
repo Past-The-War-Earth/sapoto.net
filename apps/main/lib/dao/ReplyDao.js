@@ -5,48 +5,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injected } from "@airport/direction-indicator";
-import { plus, Y } from "@airport/tarmaq-query";
+import { PLUS, Y } from "@airport/tarmaq-query";
 import { BaseReplyDao, Q } from "../generated/generated";
 let ReplyDao = class ReplyDao extends BaseReplyDao {
     async findForSituationThread(situationThread) {
         let r, a, st;
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 situationIdea: {
                     agreementShareTotal: Y,
                     numberOfAgreements: Y
                 }
             },
-            from: [
+            FROM: [
                 r = Q.Reply,
                 r.situationIdea.leftJoin(),
                 st = r.situationThread.leftJoin()
             ],
-            where: st.equals(situationThread)
+            WHERE: st.equals(situationThread)
         });
     }
     async updateUpOrDownRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply) {
         const r = Q.Reply;
         await this.db.updateWhere({
-            update: r,
-            set: {
-                numberOfDownRatings: plus(r.numberOfDownRatings, numberOfDownRatingsDelta),
-                numberOfUpRatings: plus(r.numberOfUpRatings, numberOfUpRatingsDelta)
+            UPDATE: r,
+            SET: {
+                numberOfDownRatings: PLUS(r.numberOfDownRatings, numberOfDownRatingsDelta),
+                numberOfUpRatings: PLUS(r.numberOfUpRatings, numberOfUpRatingsDelta)
             },
-            where: r.equals(reply)
+            WHERE: r.equals(reply)
         });
     }
     async setReplyType(isIdea, isExperience, isQuestion, reply) {
         const r = Q.Reply;
         await this.db.updateWhere({
-            update: r,
-            set: {
+            UPDATE: r,
+            SET: {
                 isIdea,
                 isExperience,
                 isQuestion,
             },
-            where: r.equals(reply)
+            WHERE: r.equals(reply)
         });
     }
 };

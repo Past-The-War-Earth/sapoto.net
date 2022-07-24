@@ -1,5 +1,5 @@
 import { Injected } from "@airport/direction-indicator";
-import { plus } from "@airport/tarmaq-query";
+import { PLUS } from "@airport/tarmaq-query";
 import { Situation } from "../ddl/situation";
 import { ITotalDelta } from "../ddl/TotalDelta";
 import { BaseSituationDao } from "../generated/baseDaos";
@@ -16,16 +16,16 @@ export class SituationDao
     ): Promise<void> {
         const s = Q.Situation
         await this.db.updateWhere({
-            update: s,
-            set: {
-                importanceTotal: plus(s.importanceTotal, importanceDelta.totalDelta),
-                numberOfImportanceRatings: plus(s.numberOfImportanceRatings,
+            UPDATE: s,
+            SET: {
+                importanceTotal: PLUS(s.importanceTotal, importanceDelta.totalDelta),
+                numberOfImportanceRatings: PLUS(s.numberOfImportanceRatings,
                     importanceDelta.numberDelta),
-                urgencyTotal: plus(s.urgencyTotal, urgencyDelta.totalDelta),
-                numberOfUrgencyRatings: plus(s.numberOfUrgencyRatings,
+                urgencyTotal: PLUS(s.urgencyTotal, urgencyDelta.totalDelta),
+                numberOfUrgencyRatings: PLUS(s.numberOfUrgencyRatings,
                     urgencyDelta.numberDelta),
             },
-            where: s.equals(situation)
+            WHERE: s.equals(situation)
         })
     }
 

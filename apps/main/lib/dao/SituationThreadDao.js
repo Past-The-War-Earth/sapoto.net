@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Injected } from "@airport/direction-indicator";
-import { plus, Y } from "@airport/tarmaq-query";
+import { PLUS, Y } from "@airport/tarmaq-query";
 import { BaseSituationThreadDao, Q } from "../generated/generated";
 let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao {
     async add(situationThread) {
@@ -14,26 +14,26 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
     async findWithListingDetailsForATopic(topic) {
         let st, s, a, t;
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 situation: {
                     '*': Y,
                     ratings: {}
                 }
             },
-            from: [
+            FROM: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
                 s.ratings.leftJoin(),
                 t = s.topic.leftJoin()
             ],
-            where: t.equals(topic)
+            WHERE: t.equals(topic)
         });
     }
     async findWithSituation(situationThread) {
         let st, s, sR, a, u;
         return await this._findOne({
-            select: {
+            SELECT: {
                 '*': Y,
                 actor: {
                     userAccount: {
@@ -45,12 +45,12 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
                     ratings: {}
                 }
             },
-            from: [
+            FROM: [
                 st = Q.SituationThread,
                 s = st.situation.innerJoin(),
                 sR = s.ratings.leftJoin()
             ],
-            where: st.equals(situationThread)
+            WHERE: st.equals(situationThread)
         });
     }
     async updateReplyTypeTotals(numberOfIdeasDelta, numberOfExperiencesDelta, numberOfQuestionsDelta, situationThread) {
@@ -60,23 +60,23 @@ let SituationThreadDao = class SituationThreadDao extends BaseSituationThreadDao
         }
         const st = Q.SituationThread;
         await this.db.updateWhere({
-            update: st,
-            set: {
-                numberOfIdeas: plus(st.numberOfIdeas, numberOfIdeasDelta),
-                numberOfExperiences: plus(st.numberOfExperiences, numberOfExperiencesDelta),
-                numberOfQuestions: plus(st.numberOfQuestions, numberOfQuestionsDelta),
+            UPDATE: st,
+            SET: {
+                numberOfIdeas: PLUS(st.numberOfIdeas, numberOfIdeasDelta),
+                numberOfExperiences: PLUS(st.numberOfExperiences, numberOfExperiencesDelta),
+                numberOfQuestions: PLUS(st.numberOfQuestions, numberOfQuestionsDelta),
             },
-            where: st.equals(situationThread)
+            WHERE: st.equals(situationThread)
         });
     }
     async updateReplyTotal(numberOfRepliesDelta, situationThread) {
         const st = Q.SituationThread;
         await this.db.updateWhere({
-            update: st,
-            set: {
-                numberOfReplies: plus(st.numberOfReplies, numberOfRepliesDelta),
+            UPDATE: st,
+            SET: {
+                numberOfReplies: PLUS(st.numberOfReplies, numberOfRepliesDelta),
             },
-            where: st.equals(situationThread)
+            WHERE: st.equals(situationThread)
         });
     }
 };

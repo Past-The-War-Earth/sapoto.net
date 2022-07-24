@@ -12,11 +12,11 @@ let ThemeDao = class ThemeDao extends BaseThemeDao {
         let th;
         let to;
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 topics: {}
             },
-            from: [
+            FROM: [
                 th = Q.Theme,
                 to = th.topics.leftJoin()
             ]

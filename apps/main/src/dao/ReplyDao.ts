@@ -1,6 +1,6 @@
 import { Injected } from "@airport/direction-indicator";
 import { QActor } from "@airport/holding-pattern";
-import { plus, Y } from "@airport/tarmaq-query";
+import { PLUS, Y } from "@airport/tarmaq-query";
 import { Reply } from "../ddl/Reply";
 import { SituationThread } from "../ddl/SituationThread";
 import {
@@ -21,19 +21,19 @@ export class ReplyDao
             a: QActor,
             st: QSituationThread
         return await this._find({
-            select: {
+            SELECT: {
                 '*': Y,
                 situationIdea: {
                     agreementShareTotal: Y,
                     numberOfAgreements: Y
                 }
             },
-            from: [
+            FROM: [
                 r = Q.Reply,
                 r.situationIdea.leftJoin(),
                 st = r.situationThread.leftJoin()
             ],
-            where: st.equals(situationThread)
+            WHERE: st.equals(situationThread)
         })
     }
 
@@ -44,12 +44,12 @@ export class ReplyDao
     ): Promise<void> {
         const r = Q.Reply
         await this.db.updateWhere({
-            update: r,
-            set: {
-                numberOfDownRatings: plus(r.numberOfDownRatings, numberOfDownRatingsDelta),
-                numberOfUpRatings: plus(r.numberOfUpRatings, numberOfUpRatingsDelta)
+            UPDATE: r,
+            SET: {
+                numberOfDownRatings: PLUS(r.numberOfDownRatings, numberOfDownRatingsDelta),
+                numberOfUpRatings: PLUS(r.numberOfUpRatings, numberOfUpRatingsDelta)
             },
-            where: r.equals(reply)
+            WHERE: r.equals(reply)
         })
     }
 
@@ -61,13 +61,13 @@ export class ReplyDao
     ): Promise<void> {
         const r = Q.Reply
         await this.db.updateWhere({
-            update: r,
-            set: {
+            UPDATE: r,
+            SET: {
                 isIdea,
                 isExperience,
                 isQuestion,
             },
-            where: r.equals(reply)
+            WHERE: r.equals(reply)
         })
     }
 

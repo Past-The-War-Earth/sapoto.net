@@ -8,7 +8,7 @@ import {
 import { QActor } from "@airport/holding-pattern";
 import { SituationRating } from "../ddl/SituationRating";
 import { AirEntityId } from "@airport/aviation-communication";
-import { and } from "@airport/tarmaq-query";
+import { AND } from "@airport/tarmaq-query";
 import { QUserAccount, UserAccount } from "@airport/travel-document-checkpoint";
 
 @Injected()
@@ -24,14 +24,14 @@ export class SituationRatingDao
             u: QUserAccount,
             s: QSituation
         return await this._findUnique({
-            select: {},
-            from: [
+            SELECT: {},
+            FROM: [
                 sr = Q.SituationRating,
                 a = sr.actor.innerJoin(),
                 u = a.userAccount.innerJoin(),
                 s = sr.situation.innerJoin()
             ],
-            where: and(
+            WHERE: AND(
                 s.equals(situationUuId),
                 u.equals(user)
             )
