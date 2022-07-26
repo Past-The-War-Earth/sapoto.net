@@ -46,9 +46,6 @@ import {
 } from './situationrating';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -155,8 +152,6 @@ extends SituationRatingEId, SituationRatingEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -179,7 +174,6 @@ export interface QSituationRating extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QSituationRatingQId extends QAirEntityQId
 {
@@ -195,4 +189,3 @@ export interface QSituationRatingQId extends QAirEntityQId
 export interface QSituationRatingQRelation
 	extends QAirEntityQRelation<ISituationRating, QSituationRating>, QSituationRatingQId {
 }
-

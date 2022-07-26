@@ -59,9 +59,6 @@ import {
 } from './topic';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -170,8 +167,6 @@ extends TopicEId, TopicEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -195,7 +190,6 @@ export interface QTopic extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QTopicQId extends QAirEntityQId
 {
@@ -211,4 +205,3 @@ export interface QTopicQId extends QAirEntityQId
 export interface QTopicQRelation
 	extends QAirEntityQRelation<ITopic, QTopic>, QTopicQId {
 }
-

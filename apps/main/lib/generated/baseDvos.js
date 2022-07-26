@@ -1,12 +1,12 @@
-import { Duo, } from '@airport/tarmaq-dao';
+import { Dvo, } from '@airport/airbridge-validate';
 import { Q, duoDiSet, } from './qApplication';
-// Application Q object Dependency Injection readiness detection Duo
-export class SQDIDuo extends Duo {
+// Application Q object Dependency Injection readiness detection Dvo
+export class SQDIDvo extends Dvo {
     constructor(dbEntityId) {
         super(dbEntityId, Q);
     }
 }
-export class BaseReplyDuo extends SQDIDuo {
+export class BaseReplyDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(2);
     }
@@ -14,7 +14,7 @@ export class BaseReplyDuo extends SQDIDuo {
         super(2);
     }
 }
-export class BaseReplyRatingDuo extends SQDIDuo {
+export class BaseReplyRatingDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(0);
     }
@@ -22,7 +22,7 @@ export class BaseReplyRatingDuo extends SQDIDuo {
         super(0);
     }
 }
-export class BaseSituationThreadDuo extends SQDIDuo {
+export class BaseSituationThreadDvo extends SQDIDvo {
     static diSet() {
         return duoDiSet(1);
     }
@@ -30,4 +30,4 @@ export class BaseSituationThreadDuo extends SQDIDuo {
         super(1);
     }
 }
-//# sourceMappingURL=baseDuos.js.map
+//# sourceMappingURL=baseDvos.js.map

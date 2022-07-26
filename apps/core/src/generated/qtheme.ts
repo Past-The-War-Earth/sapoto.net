@@ -46,9 +46,6 @@ import {
 } from './theme';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -151,8 +148,6 @@ extends ThemeEId, ThemeEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -175,7 +170,6 @@ export interface QTheme extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QThemeQId extends QAirEntityQId
 {
@@ -191,4 +185,3 @@ export interface QThemeQId extends QAirEntityQId
 export interface QThemeQRelation
 	extends QAirEntityQRelation<ITheme, QTheme>, QThemeQId {
 }
-

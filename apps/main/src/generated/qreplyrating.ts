@@ -46,9 +46,6 @@ import {
 } from './replyrating';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -151,8 +148,6 @@ extends ReplyRatingEId, ReplyRatingEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -174,7 +169,6 @@ export interface QReplyRating extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QReplyRatingQId extends QAirEntityQId
 {
@@ -190,4 +184,3 @@ export interface QReplyRatingQId extends QAirEntityQId
 export interface QReplyRatingQRelation
 	extends QAirEntityQRelation<IReplyRating, QReplyRating>, QReplyRatingQId {
 }
-

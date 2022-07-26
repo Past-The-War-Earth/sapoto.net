@@ -57,9 +57,6 @@ import {
 } from './situationthread';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -176,8 +173,6 @@ extends SituationThreadEId, SituationThreadEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -203,7 +198,6 @@ export interface QSituationThread extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QSituationThreadQId extends QAirEntityQId
 {
@@ -219,4 +213,3 @@ export interface QSituationThreadQId extends QAirEntityQId
 export interface QSituationThreadQRelation
 	extends QAirEntityQRelation<ISituationThread, QSituationThread>, QSituationThreadQId {
 }
-

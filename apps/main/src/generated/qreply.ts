@@ -70,9 +70,6 @@ import {
 } from './reply';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -211,8 +208,6 @@ extends ReplyEId, ReplyEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -243,7 +238,6 @@ export interface QReply extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QReplyQId extends QAirEntityQId
 {
@@ -259,4 +253,3 @@ export interface QReplyQId extends QAirEntityQId
 export interface QReplyQRelation
 	extends QAirEntityQRelation<IReply, QReply>, QReplyQId {
 }
-

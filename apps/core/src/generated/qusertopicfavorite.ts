@@ -46,9 +46,6 @@ import {
 } from './usertopicfavorite';
 
 
-declare function require(moduleName: string): any;
-
-
 //////////////////////////////
 //  API SPECIFIC INTERFACES //
 //////////////////////////////
@@ -151,8 +148,6 @@ extends UserTopicFavoriteEId, UserTopicFavoriteEUpdateColumns {
 }
 
 
-
-
 ///////////////////////////////////////////////
 //  QUERY IMPLEMENTATION SPECIFIC INTERFACES //
 ///////////////////////////////////////////////
@@ -174,7 +169,6 @@ export interface QUserTopicFavorite extends QAirEntity
 
 }
 
-
 // Entity Id Interface
 export interface QUserTopicFavoriteQId extends QAirEntityQId
 {
@@ -190,4 +184,3 @@ export interface QUserTopicFavoriteQId extends QAirEntityQId
 export interface QUserTopicFavoriteQRelation
 	extends QAirEntityQRelation<IUserTopicFavorite, QUserTopicFavorite>, QUserTopicFavoriteQId {
 }
-
