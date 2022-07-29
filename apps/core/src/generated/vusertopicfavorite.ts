@@ -13,8 +13,8 @@ import {
 	TopicVDescriptor,
 } from './vtopic';
 import {
-	ITopic,
-} from './topic';
+	Topic,
+} from '../ddl/Topic';
 import {
 	IUserTopicFavorite,
 } from './usertopicfavorite';
@@ -25,8 +25,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface UserTopicFavoriteVDescriptor
-    extends AirEntityVDescriptor {
+export interface UserTopicFavoriteVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -35,7 +35,7 @@ export interface UserTopicFavoriteVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	topic?: TopicVDescriptor;
+	topic?: TopicVDescriptor<Topic>
 
 }
 

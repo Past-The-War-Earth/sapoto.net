@@ -13,33 +13,33 @@ import { ApplicationEntity_LocalId as DbEntityId } from '@airport/ground-control
 export declare class SQDIDvo<Entity, EntityVDescriptor> extends Dvo<Entity, EntityVDescriptor> {
     constructor(dbEntityId: DbEntityId);
 }
-export interface IBaseSituationDvo extends IDvo<Situation, SituationVDescriptor> {
+export interface IBaseSituationDvo extends IDvo<Situation, SituationVDescriptor<Situation>> {
 }
-export declare class BaseSituationDvo extends SQDIDvo<Situation, SituationVDescriptor> implements IBaseSituationDvo {
+export declare class BaseSituationDvo extends SQDIDvo<Situation, SituationVDescriptor<Situation>> implements IBaseSituationDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseSituationRatingDvo extends IDvo<SituationRating, SituationRatingVDescriptor> {
+export interface IBaseSituationRatingDvo extends IDvo<SituationRating, SituationRatingVDescriptor<SituationRating>> {
 }
-export declare class BaseSituationRatingDvo extends SQDIDvo<SituationRating, SituationRatingVDescriptor> implements IBaseSituationRatingDvo {
+export declare class BaseSituationRatingDvo extends SQDIDvo<SituationRating, SituationRatingVDescriptor<SituationRating>> implements IBaseSituationRatingDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseThemeDvo extends IDvo<Theme, ThemeVDescriptor> {
+export interface IBaseThemeDvo extends IDvo<Theme, ThemeVDescriptor<Theme>> {
 }
-export declare class BaseThemeDvo extends SQDIDvo<Theme, ThemeVDescriptor> implements IBaseThemeDvo {
+export declare class BaseThemeDvo extends SQDIDvo<Theme, ThemeVDescriptor<Theme>> implements IBaseThemeDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseTopicDvo extends IDvo<Topic, TopicVDescriptor> {
+export interface IBaseTopicDvo extends IDvo<Topic, TopicVDescriptor<Topic>> {
 }
-export declare class BaseTopicDvo extends SQDIDvo<Topic, TopicVDescriptor> implements IBaseTopicDvo {
+export declare class BaseTopicDvo extends SQDIDvo<Topic, TopicVDescriptor<Topic>> implements IBaseTopicDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseUserTopicFavoriteDvo extends IDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor> {
+export interface IBaseUserTopicFavoriteDvo extends IDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor<UserTopicFavorite>> {
 }
-export declare class BaseUserTopicFavoriteDvo extends SQDIDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor> implements IBaseUserTopicFavoriteDvo {
+export declare class BaseUserTopicFavoriteDvo extends SQDIDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor<UserTopicFavorite>> implements IBaseUserTopicFavoriteDvo {
     static diSet(): boolean;
     constructor();
 }

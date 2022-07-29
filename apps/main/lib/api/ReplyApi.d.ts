@@ -6,10 +6,14 @@ import { SituationThreadDao } from "../dao/SituationThreadDao";
 import { Reply } from "../ddl/Reply";
 import { ReplyRating } from "../ddl/ReplyRating";
 import { SituationThread } from "../ddl/SituationThread";
+import { ReplyDvo } from "../dvo/ReplyDvo";
+import { ReplyRatingDvo } from "../dvo/ReplyRatingDvo";
 export declare class ReplyApi {
     situationIdeaApi: SituationIdeaApi;
     replyDao: ReplyDao;
+    replyDvo: ReplyDvo;
     replyRatingDao: ReplyRatingDao;
+    replyRatingDvo: ReplyRatingDvo;
     airRequest: AirRequest;
     requestManager: RequestManager;
     situationThreadDao: SituationThreadDao;

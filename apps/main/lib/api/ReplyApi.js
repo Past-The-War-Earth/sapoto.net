@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { byId, exists, oneOfNumbers } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let ReplyApi = class ReplyApi {
@@ -29,16 +30,16 @@ let ReplyApi = class ReplyApi {
         return await this.replyDao.findForSituationThread(situationThreadId);
     }
     async rateReply(replyRating) {
-        if (replyRating.upOrDownRating > 0) {
-            replyRating.upOrDownRating = 1;
-        }
-        else if (replyRating.upOrDownRating < 0) {
-            replyRating.upOrDownRating = -1;
-        }
-        else {
-            replyRating.upOrDownRating = 0;
-        }
-        const reply = await this.replyDao.findOne(replyRating.reply, true);
+        // TODO: passed in but not validated properties throw errors
+        // passed in relations are ignored and are removed, this is OK
+        // since the object is copied at API passing time
+        // On the way back all changes are copied over to the original
+        // object that was passed into the API and the objects removed
+        // by validation are left intact (on the original, passed in object) 
+        await this.replyRatingDvo.validate(replyRating, {
+            reply: exists(byId()),
+            upOrDownRating: oneOfNumbers(-1, 0, 1)
+        });
         const existingReplyRating = await this.replyRatingDao.findForReplyAndUser(replyRating.reply, this.requestManager.userAccount);
         let numberOfDownRatingsDelta = 0;
         let numberOfUpRatingsDelta = 0;
@@ -87,7 +88,7 @@ let ReplyApi = class ReplyApi {
             replyRating = existingReplyRating;
         }
         await this.replyRatingDao.save(replyRating);
-        await this.replyDao.updateUpOrDownRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply);
+        await this.replyDao.updateUpOrDownRatingTotals(numberOfUpRatingsDelta, numberOfDownRatingsDelta, replyRating.reply);
     }
     // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded
     // Do this only in non-server environments since the counts can be widely off across
@@ -150,7 +151,13 @@ __decorate([
 ], ReplyApi.prototype, "replyDao", void 0);
 __decorate([
     Inject()
+], ReplyApi.prototype, "replyDvo", void 0);
+__decorate([
+    Inject()
 ], ReplyApi.prototype, "replyRatingDao", void 0);
+__decorate([
+    Inject()
+], ReplyApi.prototype, "replyRatingDvo", void 0);
 __decorate([
     Inject()
 ], ReplyApi.prototype, "airRequest", void 0);

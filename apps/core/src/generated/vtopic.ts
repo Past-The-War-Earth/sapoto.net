@@ -13,14 +13,14 @@ import {
 	ThemeVDescriptor,
 } from './vtheme';
 import {
-	ITheme,
-} from './theme';
+	Theme,
+} from '../ddl/Theme';
 import {
 	SituationVDescriptor,
 } from './vsituation';
 import {
-	ISituation,
-} from './situation';
+	Situation,
+} from '../ddl/Situation';
 import {
 	ITopic,
 } from './topic';
@@ -31,19 +31,19 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface TopicVDescriptor
-	extends AirEntityVDescriptor {
+export interface TopicVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
-
+	
 	// Non-Id Properties
 	name?: string | IVStringField;
 	imagePath?: string | IVStringField;
 
 	// Id Relations - full property interfaces
 
-	// Non-Id relations (including OneToMany's)
-	theme?: ThemeVDescriptor;
-	situations?: SituationVDescriptor;
+  // Non-Id relations (including OneToMany's)
+	theme?: ThemeVDescriptor<Theme>
+	situations?: SituationVDescriptor<Situation>
 
 }
 

@@ -55,11 +55,11 @@ export class SQDIDvo<Entity, EntityVDescriptor>
 
 
 export interface IBaseSituationDvo
-  extends IDvo<Situation, SituationVDescriptor> {
+  extends IDvo<Situation, SituationVDescriptor<Situation>> {
 }
 
 export class BaseSituationDvo
-  extends SQDIDvo<Situation, SituationVDescriptor>
+  extends SQDIDvo<Situation, SituationVDescriptor<Situation>>
 	implements IBaseSituationDvo {
 
 	static diSet(): boolean {
@@ -73,11 +73,11 @@ export class BaseSituationDvo
 
 
 export interface IBaseSituationRatingDvo
-  extends IDvo<SituationRating, SituationRatingVDescriptor> {
+  extends IDvo<SituationRating, SituationRatingVDescriptor<SituationRating>> {
 }
 
 export class BaseSituationRatingDvo
-  extends SQDIDvo<SituationRating, SituationRatingVDescriptor>
+  extends SQDIDvo<SituationRating, SituationRatingVDescriptor<SituationRating>>
 	implements IBaseSituationRatingDvo {
 
 	static diSet(): boolean {
@@ -91,11 +91,11 @@ export class BaseSituationRatingDvo
 
 
 export interface IBaseThemeDvo
-  extends IDvo<Theme, ThemeVDescriptor> {
+  extends IDvo<Theme, ThemeVDescriptor<Theme>> {
 }
 
 export class BaseThemeDvo
-  extends SQDIDvo<Theme, ThemeVDescriptor>
+  extends SQDIDvo<Theme, ThemeVDescriptor<Theme>>
 	implements IBaseThemeDvo {
 
 	static diSet(): boolean {
@@ -109,11 +109,11 @@ export class BaseThemeDvo
 
 
 export interface IBaseTopicDvo
-  extends IDvo<Topic, TopicVDescriptor> {
+  extends IDvo<Topic, TopicVDescriptor<Topic>> {
 }
 
 export class BaseTopicDvo
-  extends SQDIDvo<Topic, TopicVDescriptor>
+  extends SQDIDvo<Topic, TopicVDescriptor<Topic>>
 	implements IBaseTopicDvo {
 
 	static diSet(): boolean {
@@ -127,11 +127,11 @@ export class BaseTopicDvo
 
 
 export interface IBaseUserTopicFavoriteDvo
-  extends IDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor> {
+  extends IDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor<UserTopicFavorite>> {
 }
 
 export class BaseUserTopicFavoriteDvo
-  extends SQDIDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor>
+  extends SQDIDvo<UserTopicFavorite, UserTopicFavoriteVDescriptor<UserTopicFavorite>>
 	implements IBaseUserTopicFavoriteDvo {
 
 	static diSet(): boolean {

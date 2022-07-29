@@ -1,8 +1,10 @@
+import { between, byId, exists, isInteger, or } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { SituationApi, Topic } from "@sapoto/core";
 import { SituationThreadDao } from "../dao/SituationThreadDao";
 import { SituationThread } from "../ddl/SituationThread";
+import { SituationThreadDvo } from "../dvo/SituationThreadDvo";
 
 @Injected()
 export class SituationThreadApi {
@@ -13,16 +15,25 @@ export class SituationThreadApi {
     @Inject()
     situationThreadDao: SituationThreadDao
 
+    @Inject()
+    situationThreadDvo: SituationThreadDvo
+
     @Api()
     async addSituationThread(
         situationThread: SituationThread
     ): Promise<void> {
+        this.situationThreadDvo.validate(situationThread, {
+            // TODO: move Age Suitability validation to AIRport
+            ageSuitability: isInteger(between(0, 25)),
+            situation: or(
+                exists(),
+                // TODO: tie in situtation validation here
+                // { topic: exists() }
+            )
+        })
+
         const situation = situationThread.situation
 
-        // TODO: move Age Suitability validation to AIRport
-        if (situation.ageSuitability < 0 || situation.ageSuitability > 25) {
-            throw new Error(`Invalid Age Suitability, must be between 0 & 25`);
-        }
 
         let eMatrix = situation.eisenhowerMatrix
         if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {

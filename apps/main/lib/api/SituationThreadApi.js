@@ -4,15 +4,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { between, exists, isInteger, or } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 let SituationThreadApi = class SituationThreadApi {
     async addSituationThread(situationThread) {
+        this.situationThreadDvo.validate(situationThread, {
+            // TODO: move Age Suitability validation to AIRport
+            ageSuitability: isInteger(between(0, 25)),
+            situation: or(exists())
+        });
         const situation = situationThread.situation;
-        // TODO: move Age Suitability validation to AIRport
-        if (situation.ageSuitability < 0 || situation.ageSuitability > 25) {
-            throw new Error(`Invalid Age Suitability, must be between 0 & 25`);
-        }
         let eMatrix = situation.eisenhowerMatrix;
         if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {
             throw new Error(`Invalid importance, must be between 1 & 5`);
@@ -45,6 +47,9 @@ __decorate([
 __decorate([
     Inject()
 ], SituationThreadApi.prototype, "situationThreadDao", void 0);
+__decorate([
+    Inject()
+], SituationThreadApi.prototype, "situationThreadDvo", void 0);
 __decorate([
     Api()
 ], SituationThreadApi.prototype, "addSituationThread", null);

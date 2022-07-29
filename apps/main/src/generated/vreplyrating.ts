@@ -13,8 +13,8 @@ import {
 	ReplyVDescriptor,
 } from './vreply';
 import {
-	IReply,
-} from './reply';
+	Reply,
+} from '../ddl/Reply';
 import {
 	IReplyRating,
 } from './replyrating';
@@ -25,8 +25,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface ReplyRatingVDescriptor
-    extends AirEntityVDescriptor {
+export interface ReplyRatingVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -35,7 +35,7 @@ export interface ReplyRatingVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	reply?: ReplyVDescriptor;
+	reply?: ReplyVDescriptor<Reply>
 
 }
 

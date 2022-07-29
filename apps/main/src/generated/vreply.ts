@@ -13,18 +13,21 @@ import {
 	SituationThreadVDescriptor,
 } from './vsituationthread';
 import {
-	ISituationThread,
-} from './situationthread';
+	SituationThread,
+} from '../ddl/SituationThread';
+import {
+	Reply,
+} from '../ddl/Reply';
 import {
 	SituationIdeaVDescriptor,
-	ISituationIdea,
+	SituationIdea,
 } from '@votecube/votecube/lib/to_be_generated/runtime-index';
 import {
 	ReplyRatingVDescriptor,
 } from './vreplyrating';
 import {
-	IReplyRating,
-} from './replyrating';
+	ReplyRating,
+} from '../ddl/ReplyRating';
 import {
 	IReply,
 } from './reply';
@@ -35,8 +38,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface ReplyVDescriptor
-    extends AirEntityVDescriptor {
+export interface ReplyVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -50,11 +53,11 @@ export interface ReplyVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	situationThread?: SituationThreadVDescriptor;
-	parentReply?: ReplyVDescriptor;
-	situationIdea?: SituationIdeaVDescriptor;
-	childReplies?: ReplyVDescriptor;
-	replyRatings?: ReplyRatingVDescriptor;
+	situationThread?: SituationThreadVDescriptor<SituationThread>
+	parentReply?: ReplyVDescriptor<Reply>
+	situationIdea?: SituationIdeaVDescriptor<SituationIdea>
+	childReplies?: ReplyVDescriptor<Reply>
+	replyRatings?: ReplyRatingVDescriptor<ReplyRating>
 
 }
 

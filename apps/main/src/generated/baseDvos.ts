@@ -43,11 +43,11 @@ export class SQDIDvo<Entity, EntityVDescriptor>
 
 
 export interface IBaseReplyDvo
-  extends IDvo<Reply, ReplyVDescriptor> {
+  extends IDvo<Reply, ReplyVDescriptor<Reply>> {
 }
 
 export class BaseReplyDvo
-  extends SQDIDvo<Reply, ReplyVDescriptor>
+  extends SQDIDvo<Reply, ReplyVDescriptor<Reply>>
 	implements IBaseReplyDvo {
 
 	static diSet(): boolean {
@@ -61,11 +61,11 @@ export class BaseReplyDvo
 
 
 export interface IBaseReplyRatingDvo
-  extends IDvo<ReplyRating, ReplyRatingVDescriptor> {
+  extends IDvo<ReplyRating, ReplyRatingVDescriptor<ReplyRating>> {
 }
 
 export class BaseReplyRatingDvo
-  extends SQDIDvo<ReplyRating, ReplyRatingVDescriptor>
+  extends SQDIDvo<ReplyRating, ReplyRatingVDescriptor<ReplyRating>>
 	implements IBaseReplyRatingDvo {
 
 	static diSet(): boolean {
@@ -79,11 +79,11 @@ export class BaseReplyRatingDvo
 
 
 export interface IBaseSituationThreadDvo
-  extends IDvo<SituationThread, SituationThreadVDescriptor> {
+  extends IDvo<SituationThread, SituationThreadVDescriptor<SituationThread>> {
 }
 
 export class BaseSituationThreadDvo
-  extends SQDIDvo<SituationThread, SituationThreadVDescriptor>
+  extends SQDIDvo<SituationThread, SituationThreadVDescriptor<SituationThread>>
 	implements IBaseSituationThreadDvo {
 
 	static diSet(): boolean {

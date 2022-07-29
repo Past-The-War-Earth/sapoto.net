@@ -1,3 +1,4 @@
+import { byId, exists, oneOfNumbers } from "@airport/airbridge-validate"
 import {
     AirRequest,
     RequestManager
@@ -14,6 +15,8 @@ import { SituationThreadDao } from "../dao/SituationThreadDao"
 import { Reply } from "../ddl/Reply"
 import { ReplyRating } from "../ddl/ReplyRating"
 import { SituationThread } from "../ddl/SituationThread"
+import { ReplyDvo } from "../dvo/ReplyDvo"
+import { ReplyRatingDvo } from "../dvo/ReplyRatingDvo"
 
 @Injected()
 export class ReplyApi {
@@ -25,7 +28,13 @@ export class ReplyApi {
     replyDao: ReplyDao
 
     @Inject()
+    replyDvo: ReplyDvo
+
+    @Inject()
     replyRatingDao: ReplyRatingDao
+
+    @Inject()
+    replyRatingDvo: ReplyRatingDvo
 
     @Inject()
     airRequest: AirRequest
@@ -72,15 +81,16 @@ export class ReplyApi {
     async rateReply(
         replyRating: ReplyRating
     ): Promise<void> {
-        if (replyRating.upOrDownRating > 0) {
-            replyRating.upOrDownRating = 1
-        } else if (replyRating.upOrDownRating < 0) {
-            replyRating.upOrDownRating = -1
-        } else {
-            replyRating.upOrDownRating = 0
-        }
-
-        const reply = await this.replyDao.findOne(replyRating.reply, true)
+        // TODO: passed in but not validated properties throw errors
+        // passed in relations are ignored and are removed, this is OK
+        // since the object is copied at API passing time
+        // On the way back all changes are copied over to the original
+        // object that was passed into the API and the objects removed
+        // by validation are left intact (on the original, passed in object) 
+        await this.replyRatingDvo.validate(replyRating, {
+            reply: exists(byId()),
+            upOrDownRating: oneOfNumbers(-1, 0, 1)
+        })
 
         const existingReplyRating: ReplyRating = await this.replyRatingDao.findForReplyAndUser(
             replyRating.reply, this.requestManager.userAccount)
@@ -136,7 +146,7 @@ export class ReplyApi {
         await this.replyRatingDao.save(replyRating)
 
         await this.replyDao.updateUpOrDownRatingTotals(
-            numberOfUpRatingsDelta, numberOfDownRatingsDelta, reply)
+            numberOfUpRatingsDelta, numberOfDownRatingsDelta, replyRating.reply)
     }
 
     // FIXME: Recompute all ratings and urgencies for a SituationThread when it's loaded

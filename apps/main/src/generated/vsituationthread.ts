@@ -11,14 +11,14 @@ import {
 } from '@airport/holding-pattern/lib/to_be_generated/runtime-index';
 import {
 	SituationVDescriptor,
-	ISituation,
+	Situation,
 } from '@sapoto/core/lib/to_be_generated/runtime-index';
 import {
 	ReplyVDescriptor,
 } from './vreply';
 import {
-	IReply,
-} from './reply';
+	Reply,
+} from '../ddl/Reply';
 import {
 	ISituationThread,
 } from './situationthread';
@@ -29,8 +29,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface SituationThreadVDescriptor
-    extends AirEntityVDescriptor {
+export interface SituationThreadVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -42,8 +42,8 @@ export interface SituationThreadVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	situation?: SituationVDescriptor;
-	replies?: ReplyVDescriptor;
+	situation?: SituationVDescriptor<Situation>
+	replies?: ReplyVDescriptor<Reply>
 
 }
 

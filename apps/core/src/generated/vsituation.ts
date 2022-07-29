@@ -13,14 +13,14 @@ import {
 	TopicVDescriptor,
 } from './vtopic';
 import {
-	ITopic,
-} from './topic';
+	Topic,
+} from '../ddl/Topic';
 import {
 	SituationRatingVDescriptor,
 } from './vsituationrating';
 import {
-	ISituationRating,
-} from './situationrating';
+	SituationRating,
+} from '../ddl/SituationRating';
 import {
 	ISituation,
 } from './situation';
@@ -31,8 +31,8 @@ import {
 //  API INTERFACE //
 ////////////////////
 
-export interface SituationVDescriptor
-    extends AirEntityVDescriptor {
+export interface SituationVDescriptor<T>
+    extends AirEntityVDescriptor<T> {
 	// Id Properties
 	
 	// Non-Id Properties
@@ -45,8 +45,8 @@ export interface SituationVDescriptor
 	// Id Relations - full property interfaces
 
   // Non-Id relations (including OneToMany's)
-	topic?: TopicVDescriptor;
-	ratings?: SituationRatingVDescriptor;
+	topic?: TopicVDescriptor<Topic>
+	ratings?: SituationRatingVDescriptor<SituationRating>
 
 }
 

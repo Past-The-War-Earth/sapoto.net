@@ -9,21 +9,21 @@ import { ApplicationEntity_LocalId as DbEntityId } from '@airport/ground-control
 export declare class SQDIDvo<Entity, EntityVDescriptor> extends Dvo<Entity, EntityVDescriptor> {
     constructor(dbEntityId: DbEntityId);
 }
-export interface IBaseReplyDvo extends IDvo<Reply, ReplyVDescriptor> {
+export interface IBaseReplyDvo extends IDvo<Reply, ReplyVDescriptor<Reply>> {
 }
-export declare class BaseReplyDvo extends SQDIDvo<Reply, ReplyVDescriptor> implements IBaseReplyDvo {
+export declare class BaseReplyDvo extends SQDIDvo<Reply, ReplyVDescriptor<Reply>> implements IBaseReplyDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseReplyRatingDvo extends IDvo<ReplyRating, ReplyRatingVDescriptor> {
+export interface IBaseReplyRatingDvo extends IDvo<ReplyRating, ReplyRatingVDescriptor<ReplyRating>> {
 }
-export declare class BaseReplyRatingDvo extends SQDIDvo<ReplyRating, ReplyRatingVDescriptor> implements IBaseReplyRatingDvo {
+export declare class BaseReplyRatingDvo extends SQDIDvo<ReplyRating, ReplyRatingVDescriptor<ReplyRating>> implements IBaseReplyRatingDvo {
     static diSet(): boolean;
     constructor();
 }
-export interface IBaseSituationThreadDvo extends IDvo<SituationThread, SituationThreadVDescriptor> {
+export interface IBaseSituationThreadDvo extends IDvo<SituationThread, SituationThreadVDescriptor<SituationThread>> {
 }
-export declare class BaseSituationThreadDvo extends SQDIDvo<SituationThread, SituationThreadVDescriptor> implements IBaseSituationThreadDvo {
+export declare class BaseSituationThreadDvo extends SQDIDvo<SituationThread, SituationThreadVDescriptor<SituationThread>> implements IBaseSituationThreadDvo {
     static diSet(): boolean;
     constructor();
 }
