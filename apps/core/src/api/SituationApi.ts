@@ -10,6 +10,9 @@ import { Situation } from "../ddl/Situation";
 import { SituationRating } from '../ddl/SituationRating';
 import { ITotalDelta } from '../ddl/TotalDelta';
 import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
+import { SituationDvo } from "../dvo/SituationDvo";
+import { SituationRatingDvo } from "../dvo/SituationRatingDvo";
+import { between, exists, isInteger } from "@airport/airbridge-validate";
 
 @Injected()
 export class SituationApi {
@@ -21,7 +24,13 @@ export class SituationApi {
     situationDao: SituationDao
 
     @Inject()
+    situationDvo: SituationDvo
+
+    @Inject()
     situationRatingDao: SituationRatingDao
+
+    @Inject()
+    situationRatingDvo: SituationRatingDvo
 
     @Api()
     async findById(
@@ -60,29 +69,15 @@ export class SituationApi {
         situationRating: SituationRating,
         isNewSituation: boolean
     ): Promise<SituationRating> {
-        if (situationRating.importanceRating < 1) {
-            throw new Error(`Invalid Importance Rating`);
-        } else if (situationRating.importanceRating > 5) {
-            throw new Error(`Invalid Importance Rating`);
-        }
-        if (situationRating.urgencyRating < 1) {
-            throw new Error(`Invalid Urgency Rating`);
-        } else if (situationRating.urgencyRating > 5) {
-            throw new Error(`Invalid Urgency Rating`);
-        }
-        situationRating.importanceRating = Math.floor(situationRating.importanceRating) as 1 | 2 | 3 | 4 | 5
-        situationRating.urgencyRating = Math.floor(situationRating.urgencyRating) as 1 | 2 | 3 | 4 | 5
+        await this.situationRatingDvo.validate(situationRating, {
+            importanceRating: isInteger(between(1, 5)),
+            urgencyRating: isInteger(between(1, 5))
+        })
 
-        let foundSituation: Situation
         let foundSituationRating: SituationRating
-        if (isNewSituation) {
-            foundSituation = situation
-        } else {
-            foundSituation = await this.situationDao.findOne(situation, true)
-            if (!foundSituation) {
-                throw new Error(`Situation ${situation.id} does not exist`);
-            }
-            situationRating = await this.situationRatingDao
+        if (!isNewSituation) {
+            await this.situationDvo.validate(situation, exists())
+            foundSituationRating = await this.situationRatingDao
                 .findForSituationAndUser(situation, this.requestManager.userAccount)
         }
         let importanceDelta: ITotalDelta = {

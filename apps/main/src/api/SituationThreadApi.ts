@@ -1,4 +1,4 @@
-import { between, byId, exists, isInteger, or } from "@airport/airbridge-validate";
+import { between, exists, isInteger, or } from "@airport/airbridge-validate";
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
 import { SituationApi, Topic } from "@sapoto/core";
