@@ -4,7 +4,7 @@ import { ReplyRating } from '../ddl/replyrating';
 import { ReplyRatingVDescriptor } from './vreplyrating';
 import { SituationThread } from '../ddl/situationthread';
 import { SituationThreadVDescriptor } from './vsituationthread';
-import { IDvo, Dvo } from '@airport/airbridge-validate';
+import { IDvo, Dvo } from '@airbridge/validate';
 import { ApplicationEntity_LocalId as DbEntityId } from '@airport/ground-control';
 export declare class SQDIDvo<Entity, EntityVDescriptor> extends Dvo<Entity, EntityVDescriptor> {
     constructor(dbEntityId: DbEntityId);

@@ -6,10 +6,8 @@
     ]
   },
   "exclude": [
-    "client",
     "lib",
     "node_modules",
-    "runtime"
   ],
   "extends": "../../tsconfig.core.json"
 }

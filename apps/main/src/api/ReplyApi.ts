@@ -1,4 +1,4 @@
-import { byId, exists, oneOfNumbers } from "@airport/airbridge-validate"
+import { byId, exists, oneOfNumbers } from "@airbridge/validate"
 import {
     AirRequest,
     RequestManager

@@ -1,4 +1,4 @@
-import { IVBooleanField, IVNumberField, IVStringField } from '@airport/airbridge-validate';
+import { IVBooleanField, IVNumberField, IVStringField } from '@airbridge/validate';
 import { AirEntityVDescriptor } from '@airport/holding-pattern/lib/to_be_generated/runtime-index';
 import { SituationThreadVDescriptor } from './vsituationthread';
 import { SituationThread } from '../ddl/SituationThread';

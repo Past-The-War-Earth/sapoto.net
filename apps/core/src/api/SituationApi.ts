@@ -4,6 +4,7 @@ import {
     Injected
 } from "@airport/direction-indicator";
 import { RequestManager } from "@airport/arrivals-n-departures";
+import { between, exists, isInteger } from "@airbridge/validate";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
 import { Situation } from "../ddl/Situation";
@@ -12,7 +13,6 @@ import { ITotalDelta } from '../ddl/TotalDelta';
 import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
 import { SituationDvo } from "../dvo/SituationDvo";
 import { SituationRatingDvo } from "../dvo/SituationRatingDvo";
-import { between, exists, isInteger } from "@airport/airbridge-validate";
 
 @Injected()
 export class SituationApi {

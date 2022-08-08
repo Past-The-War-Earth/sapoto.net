@@ -8,7 +8,7 @@ import { Topic } from '../ddl/topic';
 import { TopicVDescriptor } from './vtopic';
 import { UserTopicFavorite } from '../ddl/usertopicfavorite';
 import { UserTopicFavoriteVDescriptor } from './vusertopicfavorite';
-import { IDvo, Dvo } from '@airport/airbridge-validate';
+import { IDvo, Dvo } from '@airbridge/validate';
 import { ApplicationEntity_LocalId as DbEntityId } from '@airport/ground-control';
 export declare class SQDIDvo<Entity, EntityVDescriptor> extends Dvo<Entity, EntityVDescriptor> {
     constructor(dbEntityId: DbEntityId);

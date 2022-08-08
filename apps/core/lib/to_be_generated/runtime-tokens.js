@@ -9,15 +9,27 @@ import { core, SITUATION_API, THEME_API, TOPIC_API } from './common-tokens';
 import { DemoDataLoader } from './DemoDataLoader';
 import { SituationDao, SituationRatingDao, ThemeDao, TopicDao } from '../dao/dao';
 import { REQUEST_MANAGER } from '@airport/arrivals-n-departures';
+import { SituationDvo } from '../dvo/SituationDvo';
+import { SituationRatingDvo } from '../dvo/SituationRatingDvo';
 export const SITUATION_DAO = core.token({
     class: SituationDao,
     interface: 'SituationDao',
     token: 'SITUATION_DAO'
 });
+export const SITUATION_DVO = core.token({
+    class: SituationDvo,
+    interface: 'SituationDvo',
+    token: 'SITUATION_DVO'
+});
 export const SITUATION_RATING_DAO = core.token({
     class: SituationRatingDao,
     interface: 'SituationRatingDao',
     token: 'SITUATION_RATING_DAO'
+});
+export const SITUATION_RATING_DVO = core.token({
+    class: SituationRatingDvo,
+    interface: 'SituationRatingDvo',
+    token: 'SITUATION_RATING_DVO'
 });
 export const THEME_DAO = core.token({
     class: ThemeDao,
@@ -33,7 +45,9 @@ SITUATION_API.setClass(SituationApi);
 SITUATION_API.setDependencies({
     requestManager: REQUEST_MANAGER,
     situationDao: SITUATION_DAO,
-    situationRatingDao: SITUATION_RATING_DAO
+    situationDvo: SITUATION_DVO,
+    situationRatingDao: SITUATION_RATING_DAO,
+    situationRatingDvo: SITUATION_RATING_DVO
 });
 THEME_API.setClass(ThemeApi);
 THEME_API.setDependencies({

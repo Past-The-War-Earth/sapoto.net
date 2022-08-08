@@ -1,4 +1,4 @@
-import { IVNumberField } from '@airport/airbridge-validate';
+import { IVNumberField } from '@airbridge/validate';
 import { AirEntityVDescriptor } from '@airport/holding-pattern/lib/to_be_generated/runtime-index';
 import { ReplyVDescriptor } from './vreply';
 import { Reply } from '../ddl/Reply';

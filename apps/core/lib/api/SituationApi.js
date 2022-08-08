@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { Api } from "@airport/check-in";
 import { Inject, Injected } from "@airport/direction-indicator";
+import { between, exists, isInteger } from "@airbridge/validate";
 import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
 let SituationApi = class SituationApi {
     async findById(situation) {
@@ -20,31 +21,14 @@ let SituationApi = class SituationApi {
         return await this.doRateSituation(situation, situationRating, false);
     }
     async doRateSituation(situation, situationRating, isNewSituation) {
-        if (situationRating.importanceRating < 1) {
-            throw new Error(`Invalid Importance Rating`);
-        }
-        else if (situationRating.importanceRating > 5) {
-            throw new Error(`Invalid Importance Rating`);
-        }
-        if (situationRating.urgencyRating < 1) {
-            throw new Error(`Invalid Urgency Rating`);
-        }
-        else if (situationRating.urgencyRating > 5) {
-            throw new Error(`Invalid Urgency Rating`);
-        }
-        situationRating.importanceRating = Math.floor(situationRating.importanceRating);
-        situationRating.urgencyRating = Math.floor(situationRating.urgencyRating);
-        let foundSituation;
+        await this.situationRatingDvo.validate(situationRating, {
+            importanceRating: isInteger(between(1, 5)),
+            urgencyRating: isInteger(between(1, 5))
+        });
         let foundSituationRating;
-        if (isNewSituation) {
-            foundSituation = situation;
-        }
-        else {
-            foundSituation = await this.situationDao.findOne(situation, true);
-            if (!foundSituation) {
-                throw new Error(`Situation ${situation.id} does not exist`);
-            }
-            situationRating = await this.situationRatingDao
+        if (!isNewSituation) {
+            await this.situationDvo.validate(situation, exists());
+            foundSituationRating = await this.situationRatingDao
                 .findForSituationAndUser(situation, this.requestManager.userAccount);
         }
         let importanceDelta = {
@@ -102,7 +86,13 @@ __decorate([
 ], SituationApi.prototype, "situationDao", void 0);
 __decorate([
     Inject()
+], SituationApi.prototype, "situationDvo", void 0);
+__decorate([
+    Inject()
 ], SituationApi.prototype, "situationRatingDao", void 0);
+__decorate([
+    Inject()
+], SituationApi.prototype, "situationRatingDvo", void 0);
 __decorate([
     Api()
 ], SituationApi.prototype, "findById", null);
