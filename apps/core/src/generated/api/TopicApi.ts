@@ -1,42 +1,45 @@
 import {
-	TOPIC_API,
-} from '../../to_be_generated/common-tokens';
+	Api,
+} from '@airport/air-traffic-control';
 import {
-	DEPENDENCY_INJECTION,
 	Inject,
 	Injected,
 } from '@airport/direction-indicator';
-import {
-	Api,
-} from '@airport/check-in';
 import {
 	TopicDao,
 } from '../../dao/TopicDao';
 import {
 	Topic,
 } from '../../ddl/Topic';
+import {
+	ApiProxy,
+} from '@airport/airgate';
+import {
+	application,
+} from '../../to_be_generated/app-declaration';
 
 
 
 // An API stub for other Applications and UIs to use
-@Injected()
-export class TopicApi {
+// @Injected() is implied but not specified to avoid @airport/direction-indicator
+// dependency in UI API stub (eventually, once it's @airport/autopilot is cleaned
+// up)
+// @Injected()
+export class TopicApi extends ApiProxy<TopicApi> {
 
     constructor() {
-        DEPENDENCY_INJECTION.db().manualInject(this, TOPIC_API)
+        super(application, [])
     }
         
-    @Inject()
-    topicApi: TopicApi
             
     async  findAll(): Promise<Topic[]> {
-        return await this.topicApi.findAll()
+        return await this.proxy.findAll()
     }
 
     async  findOne(
         topicId: string | Topic
     ): Promise<Topic> {
-        return await this.topicApi.findOne(topicId)
+        return await this.proxy.findOne(topicId)
     }
 
 }

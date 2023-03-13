@@ -1,36 +1,39 @@
 import {
-	THEME_API,
-} from '../../to_be_generated/common-tokens';
+	Api,
+} from '@airport/air-traffic-control';
 import {
-	DEPENDENCY_INJECTION,
 	Inject,
 	Injected,
 } from '@airport/direction-indicator';
-import {
-	Api,
-} from '@airport/check-in';
 import {
 	ThemeDao,
 } from '../../dao/ThemeDao';
 import {
 	Theme,
 } from '../../ddl/Theme';
+import {
+	ApiProxy,
+} from '@airport/airgate';
+import {
+	application,
+} from '../../to_be_generated/app-declaration';
 
 
 
 // An API stub for other Applications and UIs to use
-@Injected()
-export class ThemeApi {
+// @Injected() is implied but not specified to avoid @airport/direction-indicator
+// dependency in UI API stub (eventually, once it's @airport/autopilot is cleaned
+// up)
+// @Injected()
+export class ThemeApi extends ApiProxy<ThemeApi> {
 
     constructor() {
-        DEPENDENCY_INJECTION.db().manualInject(this, THEME_API)
+        super(application, [])
     }
         
-    @Inject()
-    themeApi: ThemeApi
             
     async  getAllWithTopics(): Promise<Theme[]> {
-        return await this.themeApi.getAllWithTopics()
+        return await this.proxy.getAllWithTopics()
     }
 
 }

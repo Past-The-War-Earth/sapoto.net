@@ -1,9 +1,7 @@
-import { Api } from "@airport/check-in";
 import {
     Inject,
     Injected
 } from "@airport/direction-indicator";
-import { RequestManager } from "@airport/arrivals-n-departures";
 import { between, exists, isInteger } from "@airbridge/validate";
 import { SituationDao } from "../dao/SituationDao";
 import { SituationRatingDao } from "../dao/SituationRatingDao";
@@ -13,6 +11,8 @@ import { ITotalDelta } from '../ddl/TotalDelta';
 import { NEW_RECORD_FIELDS } from "@airport/tarmaq-query";
 import { SituationDvo } from "../dvo/SituationDvo";
 import { SituationRatingDvo } from "../dvo/SituationRatingDvo";
+import { RequestManager } from "@airport/web-tower";
+import { Api } from "@airport/air-traffic-control";
 
 @Injected()
 export class SituationApi {
@@ -131,9 +131,11 @@ export class SituationApi {
             numberOfImportanceRatings: 0
         }
         const userRating: SituationRating = {
+            ...NEW_RECORD_FIELDS,
             importanceRating: 3,
-            urgencyRating: 3,
-            situation
+            repository: null,
+            situation,
+            urgencyRating: 3
         }
         situation.userRating = userRating
         situation.ratings = [userRating]

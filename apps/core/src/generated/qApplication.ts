@@ -1,16 +1,14 @@
 import {
-    airApi,
-    QApplication
-} from '@airport/aviation-communication'
+    QAppInternal
+} from '@airport/air-traffic-control'
 import {
-    DbApplication,
-    ApplicationEntity_LocalId,
-}                      from '@airport/ground-control';
-import { QSituation } from './qsituation';
-import { QSituationRating } from './qsituationrating';
-import { QTheme } from './qtheme';
-import { QTopic } from './qtopic';
-import { QUserTopicFavorite } from './qusertopicfavorite';
+    DbApplication
+} from '@airport/ground-control';
+import { QSituation } from './query/QSituation';
+import { QSituationRating } from './query/QSituationRating';
+import { QTheme } from './query/QTheme';
+import { QTopic } from './query/QTopic';
+import { QUserTopicFavorite } from './query/QUserTopicFavorite';
 import {
   Situation,
   SituationRating,
@@ -19,7 +17,7 @@ import {
   UserTopicFavorite
 } from '../ddl/ddl';
 
-export interface LocalQApplication extends QApplication {
+export interface localhost_colon_8100____at_sapoto_slash_core_LocalQApp extends QAppInternal {
 
     db: DbApplication;
 
@@ -32,30 +30,25 @@ export interface LocalQApplication extends QApplication {
 }
 
 const __constructors__ = {
-	Situation: Situation,
-	SituationRating: SituationRating,
-	Theme: Theme,
-	Topic: Topic,
-	UserTopicFavorite: UserTopicFavorite
+	Situation,
+	SituationRating,
+	Theme,
+	Topic,
+	UserTopicFavorite
 };
 
-export const Q_APPLICATION: LocalQApplication = <any>{
+export const Q_localhost_colon_8100____at_sapoto_slash_core: localhost_colon_8100____at_sapoto_slash_core_LocalQApp = <any>{
 	__constructors__,
   domain: 'localhost:8100',
   name: '@sapoto/core'
 };
-export const Q: LocalQApplication = Q_APPLICATION
+export default Q_localhost_colon_8100____at_sapoto_slash_core
 
-export function diSet(
-	dbEntityId: ApplicationEntity_LocalId
+export function localhost_colon_8100____at_sapoto_slash_core_diSet(
+	dbEntityId: number
 ): boolean {
-	return airApi.dS(Q.__dbApplication__, dbEntityId)
+	return globalThis.airApi.dS(Q_localhost_colon_8100____at_sapoto_slash_core.__dbApplication__, dbEntityId)
 }
-
-export function duoDiSet(
-	dbEntityId: ApplicationEntity_LocalId
-): boolean {
-	return airApi.ddS(Q.__dbApplication__, dbEntityId)
+if (globalThis.airApi) {
+  globalThis.airApi.setQApp(Q_localhost_colon_8100____at_sapoto_slash_core)
 }
-
-airApi.setQApplication(Q_APPLICATION)

@@ -1,10 +1,14 @@
 import { Injected } from "@airport/direction-indicator";
 import {
-    BaseSituationRatingDao,
+    BaseSituationRatingDao
+} from "../generated/baseDaos"
+import {
     QSituation,
-    QSituationRating,
-    Q
-} from "../generated/generated";
+    QSituationRating
+} from "../generated/qInterfaces"
+import {
+    Q_localhost_colon_8100____at_sapoto_slash_core as Q
+} from "../generated/qApplication";
 import { QActor } from "@airport/holding-pattern";
 import { SituationRating } from "../ddl/SituationRating";
 import { AirEntityId } from "@airport/aviation-communication";

@@ -1,6 +1,5 @@
 import { Inject, Injected } from "@airport/direction-indicator";
-import { ITheme } from "../generated/generated";
-import { ThemeDao } from "./runtime-index";
+import { Theme, ThemeDao } from "./sapoto-core.runtime-index";
 
 export interface IDemoDataLoader {
 
@@ -121,7 +120,7 @@ export class DemoDataLoader
             }]
         }
 
-        let themes: ITheme[] = [
+        let themes: Theme[] = [
             childrenTheme,
             siblingsTheme,
             parentsTheme,

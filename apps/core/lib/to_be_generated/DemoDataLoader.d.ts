@@ -1,4 +1,4 @@
-import { ThemeDao } from "./runtime-index";
+import { ThemeDao } from "./sapoto-core.runtime-index";
 export interface IDemoDataLoader {
     loadDemoData(): Promise<void>;
 }

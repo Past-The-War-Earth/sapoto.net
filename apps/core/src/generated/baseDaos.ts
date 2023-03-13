@@ -1,7 +1,7 @@
 /* eslint-disable */
 import {
 	Situation,
-} from '../ddl/situation';
+} from '../ddl/Situation';
 import {
 	SituationESelect,
 	SituationECreateColumns,
@@ -11,10 +11,10 @@ import {
 	SituationEId,
 	SituationGraph,
 	QSituation,
-} from './qsituation';
+} from './query/QSituation';
 import {
 	SituationRating,
-} from '../ddl/situationrating';
+} from '../ddl/SituationRating';
 import {
 	SituationRatingESelect,
 	SituationRatingECreateColumns,
@@ -24,10 +24,10 @@ import {
 	SituationRatingEId,
 	SituationRatingGraph,
 	QSituationRating,
-} from './qsituationrating';
+} from './query/QSituationRating';
 import {
 	Theme,
-} from '../ddl/theme';
+} from '../ddl/Theme';
 import {
 	ThemeESelect,
 	ThemeECreateColumns,
@@ -37,10 +37,10 @@ import {
 	ThemeEId,
 	ThemeGraph,
 	QTheme,
-} from './qtheme';
+} from './query/QTheme';
 import {
 	Topic,
-} from '../ddl/topic';
+} from '../ddl/Topic';
 import {
 	TopicESelect,
 	TopicECreateColumns,
@@ -50,10 +50,10 @@ import {
 	TopicEId,
 	TopicGraph,
 	QTopic,
-} from './qtopic';
+} from './query/QTopic';
 import {
 	UserTopicFavorite,
-} from '../ddl/usertopicfavorite';
+} from '../ddl/UserTopicFavorite';
 import {
 	UserTopicFavoriteESelect,
 	UserTopicFavoriteECreateColumns,
@@ -63,7 +63,7 @@ import {
 	UserTopicFavoriteEId,
 	UserTopicFavoriteGraph,
 	QUserTopicFavorite,
-} from './qusertopicfavorite';
+} from './query/QUserTopicFavorite';
 import {
 	IEntityCascadeGraph,
 	IEntityCreateProperties,
@@ -74,18 +74,18 @@ import {
 	IQEntity,
 } from '@airport/tarmaq-query';
 import {
-	IDao,
-	Dao,
-	DaoQueryDecorators,
-} from '@airport/tarmaq-dao';
-import {
-	ApplicationEntity_LocalId as DbEntityId,
+	DbEntity_LocalId as DbEntityId,
 } from '@airport/ground-control';
 import {
-	Q,
-	duoDiSet,
+	localhost_colon_8100____at_sapoto_slash_core_diSet,
 } from './qApplication';
+import {
+	DaoQueryDecorators,
+	IObservableDao,
+	ObservableDao,
+} from '@airport/tarmaq-dao';
 
+import Q from './qApplication'
 
 // Application Q object Dependency Injection readiness detection Dao
 export class SQDIDao<Entity,
@@ -93,15 +93,15 @@ export class SQDIDao<Entity,
 	EntityCreate extends IEntityCreateProperties,
 	EntityUpdateColumns extends IEntityUpdateColumns,
 	EntityUpdateProperties extends IEntityUpdateProperties,
-	ApplicationEntity_LocalId extends IEntityIdProperties,
+	DbEntity_LocalId extends IEntityIdProperties,
 	EntityCascadeGraph extends IEntityCascadeGraph,
 	IQE extends IQEntity>
-	extends Dao<Entity,
+	extends ObservableDao<Entity,
 		EntitySelect,
 		EntityCreate,
 		EntityUpdateColumns,
 		EntityUpdateProperties,
-		ApplicationEntity_LocalId,
+		DbEntity_LocalId,
 		EntityCascadeGraph,
 		IQE> {
 
@@ -114,7 +114,7 @@ export class SQDIDao<Entity,
 
 
 export interface IBaseSituationDao
-  extends IDao<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
+  extends IObservableDao<Situation, SituationESelect, SituationECreateProperties, SituationEUpdateColumns, SituationEUpdateProperties, SituationEId, SituationGraph, QSituation> {
 }
 
 export class BaseSituationDao
@@ -128,11 +128,11 @@ export class BaseSituationDao
 	static Save(
 		config: SituationGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<SituationGraph>(config);
+		return ObservableDao.BaseSave<SituationGraph>(config);
   }
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(3)
 	}
 	
 	constructor() {
@@ -142,7 +142,7 @@ export class BaseSituationDao
 
 
 export interface IBaseSituationRatingDao
-  extends IDao<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
+  extends IObservableDao<SituationRating, SituationRatingESelect, SituationRatingECreateProperties, SituationRatingEUpdateColumns, SituationRatingEUpdateProperties, SituationRatingEId, SituationRatingGraph, QSituationRating> {
 }
 
 export class BaseSituationRatingDao
@@ -156,11 +156,11 @@ export class BaseSituationRatingDao
 	static Save(
 		config: SituationRatingGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<SituationRatingGraph>(config);
+		return ObservableDao.BaseSave<SituationRatingGraph>(config);
   }
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(0)
 	}
 	
 	constructor() {
@@ -170,7 +170,7 @@ export class BaseSituationRatingDao
 
 
 export interface IBaseThemeDao
-  extends IDao<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
+  extends IObservableDao<Theme, ThemeESelect, ThemeECreateProperties, ThemeEUpdateColumns, ThemeEUpdateProperties, ThemeEId, ThemeGraph, QTheme> {
 }
 
 export class BaseThemeDao
@@ -184,11 +184,11 @@ export class BaseThemeDao
 	static Save(
 		config: ThemeGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<ThemeGraph>(config);
+		return ObservableDao.BaseSave<ThemeGraph>(config);
   }
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(1)
 	}
 	
 	constructor() {
@@ -198,7 +198,7 @@ export class BaseThemeDao
 
 
 export interface IBaseTopicDao
-  extends IDao<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
+  extends IObservableDao<Topic, TopicESelect, TopicECreateProperties, TopicEUpdateColumns, TopicEUpdateProperties, TopicEId, TopicGraph, QTopic> {
 }
 
 export class BaseTopicDao
@@ -212,11 +212,11 @@ export class BaseTopicDao
 	static Save(
 		config: TopicGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<TopicGraph>(config);
+		return ObservableDao.BaseSave<TopicGraph>(config);
   }
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(2)
 	}
 	
 	constructor() {
@@ -226,7 +226,7 @@ export class BaseTopicDao
 
 
 export interface IBaseUserTopicFavoriteDao
-  extends IDao<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
+  extends IObservableDao<UserTopicFavorite, UserTopicFavoriteESelect, UserTopicFavoriteECreateProperties, UserTopicFavoriteEUpdateColumns, UserTopicFavoriteEUpdateProperties, UserTopicFavoriteEId, UserTopicFavoriteGraph, QUserTopicFavorite> {
 }
 
 export class BaseUserTopicFavoriteDao
@@ -240,11 +240,11 @@ export class BaseUserTopicFavoriteDao
 	static Save(
 		config: UserTopicFavoriteGraph
 	): PropertyDecorator {
-		return Dao.BaseSave<UserTopicFavoriteGraph>(config);
+		return ObservableDao.BaseSave<UserTopicFavoriteGraph>(config);
   }
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(4)
 	}
 	
 	constructor() {

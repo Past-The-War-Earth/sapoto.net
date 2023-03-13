@@ -1,46 +1,46 @@
 /* eslint-disable */
 import {
 	Situation,
-} from '../ddl/situation';
+} from '../ddl/Situation';
 import {
 	SituationVDescriptor,
-} from './vsituation';
+} from './validation/VSituation';
 import {
 	SituationRating,
-} from '../ddl/situationrating';
+} from '../ddl/SituationRating';
 import {
 	SituationRatingVDescriptor,
-} from './vsituationrating';
+} from './validation/VSituationRating';
 import {
 	Theme,
-} from '../ddl/theme';
+} from '../ddl/Theme';
 import {
 	ThemeVDescriptor,
-} from './vtheme';
+} from './validation/VTheme';
 import {
 	Topic,
-} from '../ddl/topic';
+} from '../ddl/Topic';
 import {
 	TopicVDescriptor,
-} from './vtopic';
+} from './validation/VTopic';
 import {
 	UserTopicFavorite,
-} from '../ddl/usertopicfavorite';
+} from '../ddl/UserTopicFavorite';
 import {
 	UserTopicFavoriteVDescriptor,
-} from './vusertopicfavorite';
+} from './validation/VUserTopicFavorite';
 import {
-	IDvo,
 	Dvo,
+	IDvo,
 } from '@airbridge/validate';
 import {
-	ApplicationEntity_LocalId as DbEntityId,
+	DbEntity_LocalId as DbEntityId,
 } from '@airport/ground-control';
 import {
-	Q,
-	duoDiSet,
+	localhost_colon_8100____at_sapoto_slash_core_diSet,
 } from './qApplication';
 
+import Q from './qApplication'
 
 // Application Q object Dependency Injection readiness detection Dvo
 export class SQDIDvo<Entity, EntityVDescriptor>
@@ -63,7 +63,7 @@ export class BaseSituationDvo
 	implements IBaseSituationDvo {
 
 	static diSet(): boolean {
-		return duoDiSet(3)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(3)
 	}
 	
 	constructor() {
@@ -81,7 +81,7 @@ export class BaseSituationRatingDvo
 	implements IBaseSituationRatingDvo {
 
 	static diSet(): boolean {
-		return duoDiSet(0)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(0)
 	}
 	
 	constructor() {
@@ -99,7 +99,7 @@ export class BaseThemeDvo
 	implements IBaseThemeDvo {
 
 	static diSet(): boolean {
-		return duoDiSet(1)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(1)
 	}
 	
 	constructor() {
@@ -117,7 +117,7 @@ export class BaseTopicDvo
 	implements IBaseTopicDvo {
 
 	static diSet(): boolean {
-		return duoDiSet(2)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(2)
 	}
 	
 	constructor() {
@@ -135,7 +135,7 @@ export class BaseUserTopicFavoriteDvo
 	implements IBaseUserTopicFavoriteDvo {
 
 	static diSet(): boolean {
-		return duoDiSet(4)
+		return localhost_colon_8100____at_sapoto_slash_core_diSet(4)
 	}
 	
 	constructor() {

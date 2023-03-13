@@ -1,12 +1,9 @@
 import { Injected } from "@airport/direction-indicator";
 import { Y } from "@airport/tarmaq-query";
 import { Theme } from "../ddl/Theme";
-import {
-    BaseThemeDao,
-    Q,
-    QTheme,
-    QTopic
-} from "../generated/generated";
+import { BaseThemeDao } from "../generated/baseDaos";
+import { QTheme, QTopic } from "../generated/qInterfaces";
+import { Q_localhost_colon_8100____at_sapoto_slash_core as Q } from "../generated/qApplication";
 
 @Injected()
 export class ThemeDao

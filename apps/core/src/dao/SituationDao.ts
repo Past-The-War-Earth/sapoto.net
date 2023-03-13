@@ -3,7 +3,7 @@ import { PLUS } from "@airport/tarmaq-query";
 import { Situation } from "../ddl/situation";
 import { ITotalDelta } from "../ddl/TotalDelta";
 import { BaseSituationDao } from "../generated/baseDaos";
-import { Q } from "../generated/qApplication";
+import { Q_localhost_colon_8100____at_sapoto_slash_core as Q } from "../generated/qApplication";
 
 @Injected()
 export class SituationDao

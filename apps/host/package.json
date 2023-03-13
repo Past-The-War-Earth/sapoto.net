@@ -1,13 +1,10 @@
 {
   "dependencies": {
     "@airport/air-traffic-control": "0.0.1",
-    "@airport/check-in": "0.0.1",
     "@airport/direction-indicator": "0.0.1",
     "@airport/ground-control": "0.0.1",
     "@airport/holding-pattern": "0.0.1",
-    "@airport/landing": "0.0.1",
     "@airport/pressurization": "0.0.1",
-    "@airport/apron": "0.0.1",
     "@airport/takeoff": "0.0.1",
     "@airport/terminal-map": "0.0.1",
     "@airport/travel-document-checkpoint": "0.0.1",
@@ -15,7 +12,6 @@
     "@airport/web-tower": "0.0.1",
     "@sapoto/core": "0.0.1",
     "@sapoto/main": "0.0.1",
-    "@sapoto/dependency-injection": "0.0.1",
     "@votecube/votecube": "0.0.1"
   },
   "devDependencies": {

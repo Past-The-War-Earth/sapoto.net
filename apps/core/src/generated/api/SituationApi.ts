@@ -1,17 +1,7 @@
 import {
-	SITUATION_API,
-} from '../../to_be_generated/common-tokens';
-import {
-	DEPENDENCY_INJECTION,
 	Inject,
 	Injected,
 } from '@airport/direction-indicator';
-import {
-	Api,
-} from '@airport/check-in';
-import {
-	RequestManager,
-} from '@airport/arrivals-n-departures';
 import {
 	between,
 	exists,
@@ -41,44 +31,57 @@ import {
 import {
 	SituationRatingDvo,
 } from '../../dvo/SituationRatingDvo';
+import {
+	RequestManager,
+} from '@airport/web-tower';
+import {
+	Api,
+} from '@airport/air-traffic-control';
+import {
+	ApiProxy,
+} from '@airport/airgate';
+import {
+	application,
+} from '../../to_be_generated/app-declaration';
 
 
 
 // An API stub for other Applications and UIs to use
-@Injected()
-export class SituationApi {
+// @Injected() is implied but not specified to avoid @airport/direction-indicator
+// dependency in UI API stub (eventually, once it's @airport/autopilot is cleaned
+// up)
+// @Injected()
+export class SituationApi extends ApiProxy<SituationApi> {
 
     constructor() {
-        DEPENDENCY_INJECTION.db().manualInject(this, SITUATION_API)
+        super(application, [])
     }
         
-    @Inject()
-    situationApi: SituationApi
             
     async  findById(
         situation: Situation | string
     ): Promise<Situation> {
-        return await this.situationApi.findById(situation)
+        return await this.proxy.findById(situation)
     }
 
     async  save(
         situation: Situation
     ): Promise<void> {
-        await this.situationApi.save(situation)
+        await this.proxy.save(situation)
     }
 
     async  rateSituation(
         situation: Situation,
         situationRating: SituationRating
     ): Promise<SituationRating> {
-        return await this.situationApi.rateSituation(
+        return await this.proxy.rateSituation(
             situation,
             situationRating
         )
     }
 
     async  getNewSituation(): Promise<Situation> {
-        return await this.situationApi.getNewSituation()
+        return await this.proxy.getNewSituation()
     }
 
 }
