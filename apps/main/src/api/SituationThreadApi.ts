@@ -1,7 +1,7 @@
 import { between, exists, isInteger, or } from "@airbridge/validate";
 import { Api } from "@airport/air-traffic-control";
 import { Inject, Injected } from "@airport/direction-indicator";
-import { SituationApi, Topic } from "@sapoto/core";
+import { SituationApi, SituationRating, Topic } from "@sapoto/core";
 import { SituationThreadDao } from "../dao/SituationThreadDao";
 import { SituationThread } from "../ddl/SituationThread";
 import { SituationThreadDvo } from "../dvo/SituationThreadDvo";
@@ -20,7 +20,8 @@ export class SituationThreadApi {
 
     @Api()
     async addSituationThread(
-        situationThread: SituationThread
+        situationThread: SituationThread,
+        situationRating: SituationRating
     ): Promise<void> {
         this.situationThreadDvo.validate(situationThread, {
             // TODO: move Age Suitability validation to AIRport
@@ -34,15 +35,25 @@ export class SituationThreadApi {
 
         const situation = situationThread.situation
 
-        let eMatrix = situation.eisenhowerMatrix
-        if (eMatrix.user.importance < 1 || eMatrix.user.importance > 5) {
+        if (!situationRating) {
+            throw new Error(`Situation Rating must be provided`)
+        }
+
+        if (typeof situationRating.importanceRating !== 'number'
+            || situationRating.importanceRating < 1
+            || situationRating.importanceRating > 5) {
             throw new Error(`Invalid importance, must be between 1 & 5`);
         }
-        if (eMatrix.user.urgency < 1 || eMatrix.user.urgency > 5) {
+
+        if (typeof situationRating.urgencyRating !== 'number'
+            || situationRating.urgencyRating < 1
+            || situationRating.urgencyRating > 5) {
             throw new Error(`Invalid urgency, must be between 1 & 5`);
         }
-        eMatrix.user.importance = Math.floor(eMatrix.user.importance)
-        eMatrix.user.urgency = Math.floor(eMatrix.user.urgency)
+        situationRating.importanceRating =
+            Math.floor(situationRating.importanceRating) as any
+        situationRating.urgencyRating =
+            Math.floor(situationRating.urgencyRating) as any
 
         const topic = situation.topic
 

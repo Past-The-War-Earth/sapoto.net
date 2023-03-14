@@ -1,7 +1,7 @@
 import { AirRequest, RequestManager } from '@airport/web-tower';
 import { SituationIdea, SituationIdeaESelect, SituationIdeaEOptionalId, SituationIdeaGraph, QSituationIdeaQRelation, SituationIdeaVDescriptor, SituationIdeaApi } from '@votecube/votecube';
 import { AirEntity, AirEntityESelect, AirEntityEId, AirEntityEUpdateProperties, AirEntityGraph, AirEntityEUpdateColumns, QAirEntity, QAirEntityQId, QAirEntityQRelation, AirEntityVDescriptor } from '@airport/final-approach';
-import { Situation, SituationESelect, SituationEOptionalId, SituationGraph, QSituationQRelation, Topic, SituationVDescriptor, SituationApi } from '@sapoto/core';
+import { Situation, SituationESelect, SituationEOptionalId, SituationGraph, QSituationQRelation, Topic, SituationVDescriptor, SituationApi, SituationRating } from '@sapoto/core';
 import { IQNumberField, IQDateField, IQAirEntityOneToManyRelation, IQStringField, IQBooleanField, IEntitySelectProperties, IEntityCreateProperties, IEntityUpdateColumns, IEntityUpdateProperties, IEntityIdProperties, IEntityCascadeGraph, IQEntity } from '@airport/tarmaq-query';
 import { DbEntity_LocalId, DbApplication } from '@airport/ground-control';
 import { ObservableDao, IObservableDao, DaoQueryDecorators } from '@airport/tarmaq-dao';
@@ -432,7 +432,7 @@ declare class SituationThreadApi {
     situationApi: SituationApi;
     situationThreadDao: SituationThreadDao;
     situationThreadDvo: SituationThreadDvo;
-    addSituationThread(situationThread: SituationThread): Promise<void>;
+    addSituationThread(situationThread: SituationThread, situationRating: SituationRating): Promise<void>;
     findWithListingDetailsForATopic(topicId: string | Topic): Promise<SituationThread[]>;
     findById(situationThreadId: string | SituationThread): Promise<SituationThread>;
 }

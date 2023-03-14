@@ -5,7 +5,7 @@ import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
 import { Situation } from '@sapoto/core';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
-import { NEW_RECORD_FIELDS } from '../../../../../../apps/core/node_modules/@airport/air-traffic-control/lib';
+import { NEW_RECORD_FIELDS } from '../../../../../../apps/core/node_modules/@airport/tarmaq-query/dist/esm/tarmaq.query.index';
 
 @Component({
   selector: 'app-post-situation',
@@ -46,7 +46,10 @@ export class PostSituationComponent implements OnInit {
     await this.situationThreadService.addSituationThread({
       ...NEW_RECORD_FIELDS,
       ageSuitability: 0,
-      counts: null,
+      numberOfExperiences: 0,
+      numberOfIdeas: 0,
+      numberOfQuestions: 0,
+      numberOfReplies: 0,
       replies: [],
       repository: null,
       situation: this.situation
