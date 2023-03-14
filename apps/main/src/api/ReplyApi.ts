@@ -1,13 +1,10 @@
 import { byId, exists, oneOfNumbers } from "@airbridge/validate"
-import {
-    AirRequest,
-    RequestManager
-} from "@airport/arrivals-n-departures"
-import { Api } from "@airport/check-in"
+import { Api } from "@airport/air-traffic-control"
 import {
     Inject,
     Injected
 } from "@airport/direction-indicator"
+import { AirRequest, RequestManager } from "@airport/web-tower"
 import { SituationIdeaApi } from "@votecube/votecube"
 import { ReplyDao } from "../dao/ReplyDao"
 import { ReplyRatingDao } from "../dao/ReplyRatingDao"

@@ -9,10 +9,8 @@ import { Reply } from "../ddl/Reply";
 import { ReplyRating } from "../ddl/ReplyRating";
 import { SituationThread } from "../ddl/SituationThread";
 import { BaseReplyRatingDao } from "../generated/baseDaos";
-import { Q } from "../generated/qApplication";
-import { QReply } from "../generated/qreply";
-import { QReplyRating } from "../generated/qreplyrating";
-import { QSituationThread } from "../generated/qsituationthread";
+import { Q_localhost_colon_8080____at_sapoto_slash_main as Q } from "../generated/qApplication";
+import { QReply, QReplyRating, QSituationThread } from "../generated/qInterfaces";
 
 @Injected()
 export class ReplyRatingDao
@@ -36,7 +34,7 @@ export class ReplyRatingDao
             ],
             WHERE: AND(
                 r.equals(reply),
-                u.GUID.equals(user.GUID)
+                u.accountPublicSigningKey.equals(user.accountPublicSigningKey)
             )
         })
     }
@@ -62,7 +60,7 @@ export class ReplyRatingDao
             ],
             WHERE: AND(
                 st.equals(situationThread),
-                u.GUID.equals(user.GUID)
+                u.accountPublicSigningKey.equals(user.accountPublicSigningKey)
             )
         })
     }

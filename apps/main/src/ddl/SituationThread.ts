@@ -5,7 +5,7 @@ import {
     OneToMany,
     Table
 } from "@airport/tarmaq-entity";
-import { AirEntity } from "@airport/holding-pattern";
+import { AirEntity } from "@airport/final-approach";
 import { Situation } from "@sapoto/core";
 import { Reply } from "./Reply";
 

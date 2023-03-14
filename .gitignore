@@ -8,6 +8,11 @@ npm-debug.log
 # Ignore NPM package folders
 node_modules
 
+**/build
+**/dist
+ui/src/AIRport/apps
+**/generated/*
+
 # Ignore build files
 bundle.js
 bundle.css

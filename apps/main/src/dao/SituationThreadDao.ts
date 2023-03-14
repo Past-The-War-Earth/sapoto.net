@@ -5,11 +5,15 @@ import { QSituation, QSituationRating, QTopic, Topic } from "@sapoto/core";
 import { QUserAccount } from "@airport/travel-document-checkpoint";
 import { SituationThread } from "../ddl/SituationThread";
 import {
-    BaseSituationThreadDao,
-    Q,
+    BaseSituationThreadDao
+} from "../generated/baseDaos";
+import {
+    Q_localhost_colon_8080____at_sapoto_slash_main as Q
+} from "../generated/qApplication";
+import {
     QSituationThread,
     SituationThreadESelect
-} from "../generated/generated";
+} from "../generated/qInterfaces";
 
 @Injected()
 export class SituationThreadDao

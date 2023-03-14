@@ -1,7 +1,10 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import typescript from "rollup-plugin-typescript2";
+import dts from "rollup-plugin-dts";
 import { terser } from 'rollup-plugin-terser';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import copy from 'rollup-plugin-copy';
 
 // const production = !process.env.ROLLUP_WATCH;
 const production = false;
@@ -14,7 +17,7 @@ export default [
         output: {
             sourcemap: true,
             format: 'esm',
-            file: packageJson.app
+            file: '../../ui/src/AIRport/apps/@sapoto/main/bundle.mjs'
         },
         plugins: [
             peerDepsExternal(),
@@ -27,7 +30,15 @@ export default [
                 sourceMap: !production,
                 inlineSources: !production
             }),
-            production && terser()
+            production && terser(),
+            copy({
+                targets: [
+                    {
+                        src: 'node_modules/@airport/tower/dist/index.html',
+                        dest: '../../ui/src/AIRport/apps/@sapoto/main'
+                    },
+                ]
+            })
         ],
         watch: {
             clearScreen: false
@@ -104,11 +115,10 @@ export default [
         },
     },
     {
-        input: "dist/app/to_be_generated/sapoto-main.runtime-index.d.ts",
+        input: "../../ui/src/AIRport/apps/@sapoto/main/to_be_generated/sapoto-main.runtime-index.d.ts",
         output: [{
-            file: "dist/app/bundle.d.ts",
+            file: ".../../ui/src/AIRport/apps/@sapoto/main/bundle.d.ts",
             format: "esm",
-            sourcemap: true,
         }],
         plugins: [dts()],
     },

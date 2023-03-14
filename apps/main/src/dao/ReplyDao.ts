@@ -4,11 +4,15 @@ import { PLUS, Y } from "@airport/tarmaq-query";
 import { Reply } from "../ddl/Reply";
 import { SituationThread } from "../ddl/SituationThread";
 import {
-    BaseReplyDao,
-    Q,
+    BaseReplyDao
+} from "../generated/baseDaos";
+import {
+    Q_localhost_colon_8080____at_sapoto_slash_main as Q
+} from "../generated/qApplication";
+import {
     QReply,
     QSituationThread
-} from "../generated/generated";
+} from "../generated/qInterfaces";
 
 @Injected()
 export class ReplyDao

@@ -10,6 +10,8 @@ import { SituationThreadDvo } from '../dvo/SituationThreadDvo'
 import { app } from '@airport/direction-indicator'
 import { application } from './app-declaration'
 import { API_REGISTRY } from '@airport/air-traffic-control'
+import { SituationApi } from '@sapoto/core'
+import { SituationIdeaApi } from '@votecube/votecube'
 
 export const sapoto_main = app(application)
 
@@ -25,18 +27,18 @@ sapoto_main.register(
 )
 
 sapoto_main.setDependencies(SituationThreadApi, {
-    situationApi: SITUATION_API,
+    situationApi: SituationApi,
     situationThreadDao: SituationThreadDao,
     situationThreadDvo: SituationThreadDvo
 })
 
 sapoto_main.setDependencies(ReplyApi, {
-    situationIdeaApi: SITUATION_IDEA_API,
+    situationIdeaApi: SituationIdeaApi,
     replyDao: ReplyDao,
     replyDvo: ReplyDvo,
     replyRatingDao: ReplyRatingDao,
     replyRatingDvo: ReplyRatingDvo,
-    situationApi: SITUATION_API,
+    situationApi: SituationApi,
     situationThreadDao: SituationThreadDao,
 })
 
