@@ -21,22 +21,22 @@
   </table>
   <ion-row>
     <ion-col size="7" class="reply-ranking">
-      <app-idea-stats *ngIf="hasADesignation('idea', reply)" [idea]="reply">
+      <app-idea-stats *ngIf="reply.isIdea" [idea]="reply">
       </app-idea-stats>
-      <table *ngIf="!hasADesignation('idea', reply)" class="reply-up-down-ranking">
+      <table *ngIf="!reply.isIdea" class="reply-up-down-ranking">
         <tr>
           <td class="reply-rank-up">
-            <img *ngIf="reply.ratings.user === 1" (click)="unrankUp()" class="reply-rank"
+            <img *ngIf="reply.userReplyRating.upOrDownRating === 1" (click)="unrankUp()" class="reply-rank"
               src="assets/rank/ranked_up.png">
-            <img *ngIf="reply.ratings.user < 1" (click)="rankUp()" class="reply-rank" src="assets/rank/rank_up.png">
+            <img *ngIf="reply.userReplyRating.upOrDownRating < 1" (click)="rankUp()" class="reply-rank" src="assets/rank/rank_up.png">
           </td>
           <td class="reply-count-up">
-            {{getNumberAcronym(reply.ratings.up)}}
+            {{getNumberAcronym(reply.numberOfUpRatings)}}
           </td>
           <td class="reply-rank-down">
-            <img *ngIf="reply.ratings.user > -1" (click)="rankDown()" class="reply-rank"
+            <img *ngIf="reply.userReplyRating.upOrDownRating > -1" (click)="rankDown()" class="reply-rank"
               src="assets/rank/rank_down.png">
-            <img *ngIf="reply.ratings.user === -1" (click)="unrankDown()" class="reply-rank"
+            <img *ngIf="reply.userReplyRating.upOrDownRating === -1" (click)="unrankDown()" class="reply-rank"
               src="assets/rank/ranked_down.png">
           </td>
         </tr>
@@ -54,7 +54,7 @@
     </ion-col>
   </ion-row>
   <ion-list class="nested-replies" *ngIf="showReplies()">
-    <ion-item class="reply" *ngFor="let nestedReply of reply.replies; trackBy: trackByReplies">
+    <ion-item class="reply" *ngFor="let nestedReply of reply.childReplies; trackBy: trackByReplies">
       <app-reply-block (onActionsClick)="setDesignatedReply(reply)" [actionsTriggerElementId]="actionsTriggerElementId"
         [reply]="nestedReply" type="listing"></app-reply-block>
     </ion-item>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NumberUtilsService } from './number-utils.service';
+import { Reason } from '@votecube/votecube';
 
 @Injectable({
   providedIn: 'root'
@@ -11,41 +11,42 @@ export class ReasonService {
   constructor() {
   }
 
-  getNewReason() {
-    return {
-      id: ++this.reasonId,
-      counted: true,
-      enabled: true,
-      object: '',
-      score: 0,
-      text: ``,
-      verb: '',
-    }
+  getNewReason(): Reason {
+    const reason = new Reason()
+
+    return reason
   }
 
   getVerb(
-    reason
+    reason: Reason
   ) {
     if (reason.enabled) {
-      switch (reason.verb) {
-        case 'helps':
-          return 'helps'
-        case 'lets':
-          return 'lets'
-        case 'makes':
-          return 'makes'
+      let action = reason.position.action
+      if (this.actionHasSuffix(reason)) {
+        action += 's'
       }
+      return action
     } else {
-      switch (reason.verb) {
-        case 'helps':
-          return `doesn't help`
-        case 'lets':
-          return `doesn't let`
-        case 'makes':
-          return `doesn't make`
+      let prefix = "doesn't "
+      if (!this.actionHasSuffix(reason)) {
+        prefix += "don't "
       }
+
+      return prefix + reason.position.action
     }
     return 'unknown verb'
+  }
+
+  private actionHasSuffix(
+    reason: Reason
+  ): boolean {
+    if (reason.position.subject) {
+      return ['Everyone', 'Everything', 'He', 'It',
+        'No one', 'Nothing', 'She', 'Someone',
+        'Something', 'That', 'This']
+        .indexOf(reason.position.subject) > -1
+    }
+    return false
   }
 
   getTotalScoreAndUpdateReasonScores(

@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class TopicSearchService implements AutoCompleteService {
 
-  topicApiClient = new TopicApi()
+  topicApi = new TopicApi()
 
   labelAttribute = 'name';
 
@@ -22,9 +22,9 @@ export class TopicSearchService implements AutoCompleteService {
   constructor() { }
 
   async getById(
-    topicId: string
+    topicUuId: string
   ): Promise<Topic> {
-    return await this.topicApiClient.findByUuId(topicId);
+    return await this.topicApi.findOne(topicUuId);
   }
 
   async addTopic(
@@ -50,7 +50,7 @@ export class TopicSearchService implements AutoCompleteService {
       return of([])
     }
 
-    let topicsObservable = from(this.topicApiClient.findAll())
+    let topicsObservable = from(this.topicApi.findAll())
 
     return topicsObservable.pipe(
       map(

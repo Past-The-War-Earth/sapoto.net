@@ -1,75 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Reply, SituationThread } from '@sapoto/main';
+import { QuestionType, QuestionTypeApi, Reply, SituationThread } from '@sapoto/main';
 import { SituationIdea } from '@votecube/votecube';
 import { NumberUtilsService } from './number-utils.service';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReplyService {
 
+  questionTypeApi = new QuestionTypeApi()
+
   constructor(
-    private numberUtilsService: NumberUtilsService,
-    private userService: UserService
+    private numberUtilsService: NumberUtilsService
   ) {
   }
 
   getNewReply(
     situationThread: SituationThread
   ): Reply {
-    return {
-      actor: {
-        user: this.userService.getUser()
-      },
-      createdAt: new Date(),
-      ideaReplyUrgencies: [],
-      numberOfDownRatings: 0,
-      numberOfUpRatings: 0,
-      numberOfUrgencyRatings: 0,
-      replyTypes: [],
-      replyRatings: [],
-      situationThread,
-      text: '',
-      urgencyTotal: 0
-    }
+    const reply = new Reply()
+    reply.situationThread = situationThread
+
+    return reply
   }
 
-  getQuestionTypes(): string[] {
-    return [
-      'What',
-      'Which',
-      'Who',
-      'Where',
-      'Why',
-      'When',
-      'How',
-      'Whose'
-    ]
+  async getQuestionTypes(): Promise<QuestionType[]> {
+    return await this.questionTypeApi.findAll()
   }
 
   isComment(
     reply: Reply
   ): boolean {
-    return reply && !reply.replyTypes.length
-  }
-
-  isQuestion(
-    reply: Reply
-  ): boolean {
-    return this.hasADesignation('question', reply)
-  }
-
-  isIdea(
-    reply: Reply
-  ): boolean {
-    return this.hasADesignation('idea', reply)
-  }
-
-  isExperience(
-    reply: Reply
-  ): boolean {
-    return this.hasADesignation('experience', reply)
+    return reply && !reply.isIdea
+      && !reply.isExperience && !reply.isQuestion
   }
 
   getAccentPercentage(
@@ -98,8 +61,8 @@ export class ReplyService {
     replies: Reply[]
   ): void {
     replies.sort((
-      reply1,
-      reply2
+      reply1: Reply,
+      reply2: Reply
     ) => {
       let value1
       let value2
@@ -112,25 +75,24 @@ export class ReplyService {
         case 'time':
           return this.getValueSortComparison(reply2.createdAt.getTime(), reply1.createdAt.getTime())
         case 'userRanking':
-          return this.getValueSortComparison(reply2.actor.user.ranking, reply1.actor.user.ranking)
+          return this.getValueSortComparison(reply2.userRating.ranking, reply1.userRating.ranking)
       }
 
-      const reply1IsIdea = reply1.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
-      const reply2IsIdea = reply2.replyTypes.map(replyType => replyType.type).indexOf('idea') > -1
-
-      if (!reply1IsIdea && !reply2IsIdea) {
+      if (!reply1.isIdea && !reply2.isIdea) {
         return this.getValueSortComparison(value1, value2)
       }
-      if (reply1IsIdea && reply2IsIdea) {
-        let value1 = reply2.numberOfUrgencyRatings ? reply2.urgencyTotal / reply2.numberOfUrgencyRatings : 0
-        let value2 = reply1.numberOfUrgencyRatings ? reply1.urgencyTotal / reply1.numberOfUrgencyRatings : 0
+      if (reply1.isIdea && reply2.isIdea) {
+        const situationIdea1 = reply1.situationIdea
+        const situationIdea2 = reply2.situationIdea
+        let value1 = situationIdea2.numberOfUrgencyRatings ? situationIdea2.urgencyTotal / situationIdea2.numberOfUrgencyRatings : 0
+        let value2 = situationIdea1.numberOfUrgencyRatings ? situationIdea1.urgencyTotal / situationIdea1.numberOfUrgencyRatings : 0
         let result = this.getValueSortComparison(value1, value2)
         if (result == 0) {
-          return this.getValueSortComparison(reply2.numberOfUrgencyRatings, reply1.numberOfUrgencyRatings)
+          return this.getValueSortComparison(situationIdea2.numberOfUrgencyRatings, situationIdea1.numberOfUrgencyRatings)
         }
         return result
       }
-      if (reply1IsIdea) {
+      if (reply1.isIdea) {
         return -1
       }
       return 1
@@ -150,31 +112,6 @@ export class ReplyService {
     return 0;
   }
 
-  hasAnyOfDesignations(
-    designations: ('comment' | 'experience' | 'idea' | 'question')[],
-    reply: Reply
-  ): boolean {
-    for (let i = 0; i < designations.length; i++) {
-      if (this.hasADesignation(designations[i], reply)) {
-        return true
-      }
-    }
-    return false
-  }
-
-  hasADesignation(
-    designation: 'comment' | 'experience' | 'idea' | 'question',
-    reply: Reply
-  ): boolean {
-    if (!reply) {
-      return false
-    }
-    if (!reply.replyTypes.length) {
-      return false
-    }
-    return reply.replyTypes.map(replyType => replyType.type).indexOf(designation) > -1
-  }
-
   canHaveIdeas(
     parent: Reply
   ): boolean {
@@ -184,14 +121,15 @@ export class ReplyService {
   canHaveExperiences(
     parent: Reply
   ): boolean {
-    return !parent || this.hasADesignation('idea', parent)
+    return !parent || parent.isIdea
   }
 
   canHaveQuestions(
     parent: Reply
   ): boolean {
     return !parent
-      || this.hasAnyOfDesignations(['idea', 'experience'], parent)
+      || parent.isIdea
+      || parent.isExperience
   }
 
 

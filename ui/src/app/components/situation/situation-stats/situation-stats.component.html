@@ -2,21 +2,22 @@
   <tr>
     <td class="situation-stats-icon ideas-icon">
       <app-idea-stats-icon></app-idea-stats-icon>
+      {{getNumberAcronym(situationThread.numberOfIdeas)}}
     </td>
     <td class="situation-stats-count num-ideas">
-      {{getNumberAcronym(situationThread.counts.replies)}}
+      {{getNumberAcronym(situationThread.numberOfReplies)}}
     </td>
     <td class="situation-stats-icon">
       <img src="assets/situation/experiences.png">
     </td>
     <td class="situation-stats-count num-experiences">
-      {{getNumberAcronym(situationThread.counts.experiences)}}
+      {{getNumberAcronym(situationThread.numberOfExperiences)}}
     </td>
     <td class="situation-stats-icon">
       <img src="assets/situation/questions.png">
     </td>
     <td class="situation-stats-count num-questions">
-      {{getNumberAcronym(situationThread.counts.questions)}}
+      {{getNumberAcronym(situationThread.numberOfQuestions)}}
     </td>
   </tr>
 </table>

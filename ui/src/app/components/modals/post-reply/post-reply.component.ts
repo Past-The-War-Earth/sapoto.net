@@ -3,7 +3,7 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { ReplyService } from '../../../services/reply.service';
-import { Reply, ReplyType, SituationThread } from '@sapoto/main';
+import { Reply, Reply_Type, SituationThread } from '@sapoto/main';
 
 @Component({
   selector: 'app-post-reply',
@@ -12,7 +12,7 @@ import { Reply, ReplyType, SituationThread } from '@sapoto/main';
 })
 export class PostReplyComponent implements OnInit {
 
-  @Input() replyType: ReplyType
+  @Input() replyType: Reply_Type
   @Input() parent: Reply
   @Input() situationThread: SituationThread
 
@@ -32,8 +32,18 @@ export class PostReplyComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.replyType) {
-      this.reply.replyTypes.push(this.replyType)
+    switch (this.replyType) {
+      case 'comment':
+        break
+      case 'experience':
+        this.reply.isExperience = true
+        break
+      case 'idea':
+        this.reply.isIdea = true
+        break
+      case 'question':
+        this.reply.isQuestion = true
+        break
     }
   }
 

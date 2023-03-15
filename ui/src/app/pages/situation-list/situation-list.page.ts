@@ -16,7 +16,7 @@ import { SituationThread } from '@sapoto/main';
 })
 export class SituationListPage implements OnInit {
 
-  activeSituationThread
+  activeSituationThread: SituationThread
   myForm: FormGroup
   postingASituation = false
   situationAction
@@ -51,7 +51,7 @@ export class SituationListPage implements OnInit {
   }
 
   trackBySituations(
-    index,
+    _index,
     situationThread: SituationThread
   ) {
     return situationThread.id
@@ -65,9 +65,7 @@ export class SituationListPage implements OnInit {
     situationThread: SituationThread
   ) {
     if (!this.situationAction || !this.activeSituationThread
-      || this.activeSituationThread.repository.id !== situationThread.repository.id
-      || this.activeSituationThread.actor.id !== situationThread.actor.id
-      || this.activeSituationThread.actorRecordId !== situationThread.actorRecordId) {
+      || this.activeSituationThread.id !== situationThread.id) {
       return null
     }
     return this.situationAction

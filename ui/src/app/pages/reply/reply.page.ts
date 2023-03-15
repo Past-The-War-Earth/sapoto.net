@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Reply, ReplyType } from '@sapoto/main';
+import { Reply, Reply_Type } from '@sapoto/main';
 import 'quill-emoji/dist/quill-emoji.js'
 import { DateUtilsService } from '../../services/date-utils.service';
 
@@ -14,7 +14,7 @@ export class ReplyPage
   activeReply: Reply
   replyAction
   showReplyActions = false
-  postingReplyType: ReplyType
+  postingReplyType: Reply_Type
 
   reply: Reply;
 
@@ -69,7 +69,7 @@ export class ReplyPage
   }
 
   areDesignationsOpen() {
-    return this.activeReply && this.reply.uuId === this.activeReply.uuId
+    return this.activeReply && this.reply.id === this.activeReply.id
   }
 
   getActiveActionsReplyUuId(): string {
@@ -77,11 +77,11 @@ export class ReplyPage
       return null
     }
 
-    return this.activeReply.uuId
+    return this.activeReply.id
   }
 
   getReplyAction() {
-    if (!this.replyAction || this.getActiveActionsReplyUuId() !== this.reply.uuId) {
+    if (!this.replyAction || this.getActiveActionsReplyUuId() !== this.reply.id) {
       return null
     }
     return this.replyAction
@@ -95,8 +95,8 @@ export class ReplyPage
     return !!this.postingReplyType
   }
 
-  getPostingReplyType(): ReplyType {
-    if (this.postingReplyType.type === 'comment') {
+  getPostingReplyType(): Reply_Type {
+    if (this.postingReplyType === 'comment') {
       return null
     }
     return this.postingReplyType

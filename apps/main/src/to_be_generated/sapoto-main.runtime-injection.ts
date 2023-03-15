@@ -12,10 +12,14 @@ import { application } from './app-declaration'
 import { API_REGISTRY } from '@airport/air-traffic-control'
 import { SituationApi } from '@sapoto/core'
 import { SituationIdeaApi } from '@votecube/votecube'
+import { QuestionTypeDao } from '../dao/QuestionTypeDao'
+import { QuestionTypeApi } from '../api/QuestionTypeApi'
 
 export const sapoto_main = app(application)
 
 sapoto_main.register(
+    QuestionTypeApi,
+    QuestionTypeDao,
     ReplyApi,
     ReplyDao,
     ReplyDvo,
@@ -30,6 +34,10 @@ sapoto_main.setDependencies(SituationThreadApi, {
     situationApi: SituationApi,
     situationThreadDao: SituationThreadDao,
     situationThreadDvo: SituationThreadDvo
+})
+
+sapoto_main.setDependencies(QuestionTypeApi, {
+    questionTypeDao: QuestionTypeDao
 })
 
 sapoto_main.setDependencies(ReplyApi, {

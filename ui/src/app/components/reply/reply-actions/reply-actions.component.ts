@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Clicker } from '../../../utils/Clicker';
 import { ReplyService } from '../../../services/reply.service';
+import { Reply } from '@sapoto/main';
 
 @Component({
   selector: 'app-reply-actions',
@@ -9,7 +10,7 @@ import { ReplyService } from '../../../services/reply.service';
 })
 export class ReplyActionsComponent implements OnInit {
 
-  @Input() reply
+  @Input() reply: Reply
 
   @Output() onReply = new EventEmitter()
 
@@ -36,7 +37,7 @@ export class ReplyActionsComponent implements OnInit {
   }
 
   isIdea() {
-    return this.replyService.isIdea(this.reply)
+    return this.reply.isIdea
   }
 
   canDesignate() {

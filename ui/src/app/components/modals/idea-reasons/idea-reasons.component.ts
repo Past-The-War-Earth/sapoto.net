@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Clicker } from '../../../utils/Clicker';
 import { ReasonService } from '../../../services/reason.service';
+import { SituationIdea } from '@votecube/votecube';
 
 @Component({
   selector: 'app-idea-reasons',
@@ -9,7 +10,7 @@ import { ReasonService } from '../../../services/reason.service';
 })
 export class IdeaReasonsComponent implements OnInit {
 
-  @Input() idea
+  @Input() situationIdea: SituationIdea
   @Input() type
 
   @Output() onDone = new EventEmitter()
@@ -52,12 +53,14 @@ export class IdeaReasonsComponent implements OnInit {
   doReorder(ev) {
     console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
     // console.log('Before complete', JSON.stringify(this.idea.reasons));
-    this.idea.reasons = ev.detail.complete(this.idea.reasons);
+    this.situationIdea.situationIdeaReasons =
+      ev.detail.complete(this.situationIdea.situationIdeaReasons);
     // console.log('After complete', JSON.stringify(this.idea.reasons));
   }
 
   getScore() {
-    return this.reasonService.getTotalScoreAndUpdateReasonScores(this.idea.reasons)
+    return this.reasonService.getTotalScoreAndUpdateReasonScores(
+      this.situationIdea.situationIdeaReasons)
   }
 
   changeEnabled(

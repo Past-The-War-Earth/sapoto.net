@@ -58,11 +58,14 @@
         </ion-col>
       </ion-row>
       <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-        <ion-item class="row{{i}}" *ngFor="let reason of idea.reasons; let i = index; trackBy: trackByReasons">
-          <ion-toggle *ngIf="i < 3" [(ngModel)]="reason.enabled" slot="start"></ion-toggle>
+        <ion-item class="row{{i}}"
+          *ngFor="let situationIdeaReason of situationIdea.situationIdeaReasons; let i = index; trackBy: trackByReasons">
+          <ion-toggle *ngIf="i < 3" [(ngModel)]="situationIdeaReason.reason.enabled" slot="start"></ion-toggle>
           <div *ngIf="i >= 3" class="toggle-spacer" slot="start"></div>
           <div class="reason-contents">
-            This <u>{{getVerb(reason)}} {{reason.object}}</u> {{reason.text}}
+            <u>{{situationIdeaReason.reason.position.subject}} {{getVerb(situationIdeaReason.reason)}}
+              {{situationIdeaReason.reason.position.object}}</u>
+            {{situationIdeaReason.reason.position.text}}
           </div>
           <ion-reorder slot="end"></ion-reorder>
         </ion-item>

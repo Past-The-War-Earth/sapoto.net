@@ -3,12 +3,12 @@
 <app-reply-sort-order (onSelection)="sortBy($event)"></app-reply-sort-order>
 <ion-list>
   <ion-item class="reply" *ngFor="let reply of filteredReplies; trackBy: trackByReplies">
-    <app-reply-block (onActionsClick)="setDesignatedReply(reply)"
-      [actionsTriggerElementId]="actionsTriggerElementId" [reply]="reply" type="listing"></app-reply-block>
+    <app-reply-block (onActionsClick)="setDesignatedReply(reply)" [actionsTriggerElementId]="actionsTriggerElementId"
+      [reply]="reply" type="listing"></app-reply-block>
   </ion-item>
 </ion-list>
-<app-reply-types-modal *ngIf="showReplyTypes()" [action]="action" [parent]="activeReply.parent" [reply]="activeReply"
-  (onDone)="replyTypesDone()" type="listing">
+<app-reply-types-modal *ngIf="showReplyTypes()" [action]="action" [parent]="activeReply.parentReply"
+  [reply]="activeReply" (onDone)="replyTypesDone()" type="listing">
 </app-reply-types-modal>
-<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypesDone()" [idea]="activeReply" type="listing">
+<app-idea-reasons *ngIf="showIdeaReasons()" (onDone)="replyTypesDone()" [situationIdea]="activeReply.situationIdea" type="listing">
 </app-idea-reasons>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITheme, ITopic } from '@sapoto/core';
+import { Theme, Topic } from '@sapoto/core';
 import { ThemeService } from './services/theme.service';
 import { Clicker } from './utils/Clicker';
 
@@ -11,7 +11,7 @@ import { Clicker } from './utils/Clicker';
 })
 export class AppComponent {
 
-  public themes: ITheme[] = [];
+  public themes: Theme[] = [];
 
   sharedClicker = new Clicker()
   addTopic = false
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   goToTopicListing(
-    topic: ITopic
+    topic: Topic
   ) {
     this.router.navigate(['situation-list/topic', topic.id])
   }

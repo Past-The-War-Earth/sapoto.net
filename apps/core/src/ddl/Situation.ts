@@ -12,16 +12,16 @@ export class Situation
     text: string
 
     @Column({ name: 'URGENCY_TOTAL' })
-    urgencyTotal?: number
+    urgencyTotal?: number = 0
 
     @Column({ name: 'NUMBER_OF_URGENCY_RATINGS' })
-    numberOfUrgencyRatings?: number
+    numberOfUrgencyRatings?: number = 0
 
     @Column({ name: 'IMPORTANCE_TOTAL' })
-    importanceTotal?: number
+    importanceTotal?: number = 0
 
     @Column({ name: 'NUMBER_OF_IMPORTANCE_RATINGS' })
-    numberOfImportanceRatings?: number
+    numberOfImportanceRatings?: number = 0
 
     @ManyToOne()
     topic: Topic

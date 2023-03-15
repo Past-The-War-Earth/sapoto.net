@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SituationRating } from '@sapoto/core';
 import { SituationThread, SituationThreadApi } from '@sapoto/main'
 
 @Injectable({
@@ -13,10 +14,12 @@ export class SituationThreadService {
   constructor() { }
 
   async addSituationThread(
-    situationThread: SituationThread
+    situationThread: SituationThread,
+    situationRating: SituationRating
   ) {
     try {
-      await this.situationThreadApi.addSituationThread(situationThread)
+      await this.situationThreadApi.addSituationThread(
+        situationThread, situationRating)
     } catch (e) {
       console.error(e)
     } finally {

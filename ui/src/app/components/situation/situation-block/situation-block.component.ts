@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
-import { CountsService } from 'src/app/services/counts.service';
 import { Router } from '@angular/router';
 import { SituationThread } from '@sapoto/main';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
@@ -11,7 +10,7 @@ import { SituationThreadService } from 'src/app/services/situation-thread.servic
   templateUrl: './situation-block.component.html',
   styleUrls: ['./situation-block.component.scss'],
 })
-export class SituationBlockComponent implements OnInit {
+export class SituationBlockComponent {
 
   @Input() action
   @Input() actionsTriggerElementId
@@ -24,27 +23,11 @@ export class SituationBlockComponent implements OnInit {
   sharedClicker = new Clicker()
 
   constructor(
-    private countsService: CountsService,
     private dateUtilsService: DateUtilsService,
     private numberUtilsService: NumberUtilsService,
     private router: Router,
     private situationThreadService: SituationThreadService
   ) { }
-
-  ngOnInit() { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    // const situation = changes.situation.currentValue
-    if (this.situationThread) {
-      this.setSituationTransientState()
-    }
-  }
-
-  private setSituationTransientState() {
-    this.countsService.ensureSituationThreadCounts(
-      this.situationThread
-    )
-  }
 
   showSituationMatrix() {
     return this.action === 'size'

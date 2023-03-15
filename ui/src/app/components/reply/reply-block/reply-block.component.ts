@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Clicker } from '../../../utils/Clicker';
 import { DateUtilsService } from '../../../services/date-utils.service';
 import { NumberUtilsService } from '../../../services/number-utils.service';
-import { ReplyService } from '../../../services/reply.service';
 import { Reply } from '@sapoto/main';
 
 @Component({
@@ -24,7 +23,6 @@ export class ReplyBlockComponent implements OnInit {
   constructor(
     private dateUtils: DateUtilsService,
     private numberUtils: NumberUtilsService,
-    private replyService: ReplyService,
   ) { }
 
   ngOnInit() { }
@@ -36,7 +34,7 @@ export class ReplyBlockComponent implements OnInit {
   }
 
   showReplies(): boolean {
-    return this.reply.replies && this.reply.replies.length
+    return this.reply.childReplies && !!this.reply.childReplies.length
   }
 
   trackByReplies(index, reply) {
@@ -50,20 +48,6 @@ export class ReplyBlockComponent implements OnInit {
     this.onActionsClick.emit(reply)
   }
 
-  hasAnyOfDesignations(
-    designations,
-    reply
-  ) {
-    return this.replyService.hasAnyOfDesignations(designations, reply)
-  }
-
-  hasADesignation(
-    designations,
-    reply
-  ) {
-    return this.replyService.hasADesignation(designations, reply)
-  }
-
   addAnswer(question) {
     console.log('Adding an Answer...')
   }
@@ -73,49 +57,57 @@ export class ReplyBlockComponent implements OnInit {
   }
 
   rankUp() {
-    if (this.reply.ratings.user >= 1) {
+    if (this.reply.userReplyRating.upOrDownRating >= 1) {
       return;
     }
-    if (this.reply.ratings.user === -1) {
-      this.reply.ratings.user++
-      this.reply.ratings.down--
+    if (this.reply.userReplyRating.upOrDownRating === -1) {
+      this.reply.userReplyRating.upOrDownRating = 0
+      this.reply.numberOfDownRatings--
+      this.reply.numberRatings--
+    } else {
+      this.reply.userReplyRating.upOrDownRating = 1
+      this.reply.numberOfUpRatings++
+      this.reply.numberRatings++
     }
-    this.reply.ratings.up++
-    this.reply.ratings.user++
   }
 
   unrankUp() {
-    if (this.reply.ratings.user !== 1) {
+    if (this.reply.userReplyRating.upOrDownRating !== 1) {
       return;
     }
-    this.reply.ratings.up--
-    this.reply.ratings.user--
+    this.reply.userReplyRating.upOrDownRating = 0
+    this.reply.numberOfUpRatings--
+    this.reply.numberRatings--
   }
 
   rankDown() {
-    if (this.reply.ratings.user <= -1) {
+    if (this.reply.userReplyRating.upOrDownRating <= -1) {
       return;
     }
-    if (this.reply.ratings.user === 1) {
-      this.reply.ratings.user--
-      this.reply.ratings.up--
+    if (this.reply.userReplyRating.upOrDownRating === 1) {
+      this.reply.userReplyRating.upOrDownRating = 0
+      this.reply.numberOfUpRatings--
+      this.reply.numberRatings--
+    } else {
+      this.reply.userReplyRating.upOrDownRating = -1
+      this.reply.numberOfDownRatings++
+      this.reply.numberRatings++
     }
-    this.reply.ratings.down++
-    this.reply.ratings.user--
   }
 
   unrankDown() {
-    if (this.reply.ratings.user !== -1) {
+    if (this.reply.userReplyRating.upOrDownRating !== -1) {
       return;
     }
-    this.reply.ratings.down--
-    this.reply.ratings.user++
+    this.reply.userReplyRating.upOrDownRating = 0
+    this.reply.numberOfDownRatings--
+    this.reply.numberRatings--
   }
 
   ageOf(
-    createdAt: number
+    createdAt: Date
   ) {
-    return this.dateUtils.ageOf(createdAt)
+    return this.dateUtils.ageOf(createdAt.getTime())
   }
 
   getNumberAcronym(

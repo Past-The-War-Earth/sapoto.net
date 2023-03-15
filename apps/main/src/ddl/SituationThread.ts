@@ -15,21 +15,21 @@ export class SituationThread
     extends AirEntity {
 
     @Column({ name: 'NUMBER_OF_EXPERIENCES' })
-    numberOfExperiences: number
+    numberOfExperiences: number = 0
 
     @Column({ name: 'NUMBER_OF_IDEAS' })
-    numberOfIdeas: number
+    numberOfIdeas: number = 0
 
     @Column({ name: 'NUMBER_OF_QUESTIONS' })
-    numberOfQuestions: number
+    numberOfQuestions: number = 0
 
     @Column({ name: 'NUMBER_OF_REPLIES' })
-    numberOfReplies: number
+    numberOfReplies: number = 0
 
     @ManyToOne()
     situation: Situation
 
     @OneToMany({ mappedBy: 'situationThread' })
-    replies: Reply[]
+    replies: Reply[] = []
 
 }

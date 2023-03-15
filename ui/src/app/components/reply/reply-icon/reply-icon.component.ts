@@ -59,19 +59,19 @@ export class ReplyIconComponent implements OnInit {
   }
 
   isQuestion() {
-    return this.replyService.isQuestion(this.reply)
+    return this.reply.isQuestion
   }
 
   isIdea() {
-    return this.replyService.isIdea(this.reply)
+    return this.reply.isIdea
   }
 
   isExperience() {
-    return this.replyService.isExperience(this.reply)
+    return this.reply.isExperience
   }
 
   isAQuestion() {
-    return this.replyService.hasADesignation('question', this.reply)
+    return this.reply.isQuestion
   }
 
   isVeryLowUrgency() {

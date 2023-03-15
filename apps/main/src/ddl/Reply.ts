@@ -8,47 +8,60 @@ import {
     Transient
 } from "@airport/tarmaq-entity";
 import { SituationIdea } from "@votecube/votecube";
+import { ReplyQuestionType } from "./ReplyQuestionType";
 import { ReplyRating } from "./ReplyRating";
 import { SituationThread } from "./SituationThread";
+import { UserRating } from "./UserRating";
+
+export type Reply_Type = 'comment' | 'experience' | 'idea' | 'question'
 
 @Entity()
 @Table({ name: 'REPLIES' })
 export class Reply
     extends AirEntity {
 
-    text: string
+    text: string = ''
 
     @Column({ name: 'IS_IDEA' })
-    isIdea: boolean
+    isIdea: boolean = false
 
     @Column({ name: 'IS_EXPERIENCE' })
-    isExperience: boolean
+    isExperience: boolean = false
 
     @Column({ name: 'IS_QUESTION' })
-    isQuestion: boolean
+    isQuestion: boolean = false
 
     @Column({ name: 'NUMBER_OF_DOWN_RATINGS' })
-    numberOfDownRatings: number
+    numberOfDownRatings: number = 0
 
     @Column({ name: 'NUMBER_OF_UP_RATINGS' })
-    numberOfUpRatings: number
+    numberOfUpRatings: number = 0
+
+    @Column({ name: 'NUMBER_OF_RATINGS' })
+    numberRatings: number = 0
 
     @ManyToOne()
     situationThread: SituationThread
 
     @ManyToOne({ optional: true })
-    parentReply?: Reply
+    parentReply?: Reply = null
 
     @ManyToOne({ optional: true })
-    situationIdea?: SituationIdea
+    situationIdea?: SituationIdea = null
+
+    @ManyToOne()
+    userRating: UserRating = null
 
     @OneToMany({ mappedBy: 'parentReply' })
-    childReplies?: Reply[]
+    childReplies?: Reply[] = []
 
     @OneToMany({ mappedBy: 'reply' })
-    replyRatings?: ReplyRating[]
+    replyRatings?: ReplyRating[] = []
+
+    @OneToMany({ mappedBy: 'reply' })
+    replyQuestionTypes: ReplyQuestionType[]
 
     @Transient()
-    userRelyRating?: ReplyRating
+    userReplyRating?: ReplyRating = null
 
 }

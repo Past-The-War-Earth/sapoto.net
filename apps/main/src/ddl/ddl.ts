@@ -1,3 +1,6 @@
+export * from './QuestionType'
 export * from './Reply'
+export * from './ReplyQuestionType'
 export * from './ReplyRating'
 export * from './SituationThread'
+export * from './UserRating'

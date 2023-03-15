@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Reply, Reply_Type } from '@sapoto/main';
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ReplyService } from '../../../services/reply.service';
 })
 export class ReplyTypeLabelsComponent implements OnInit {
 
-  @Input() parent
+  @Input() parent: Reply
 
   @Input() type
 
@@ -37,7 +38,7 @@ export class ReplyTypeLabelsComponent implements OnInit {
     // changeDetectorRef.detectChanges();
   }
 
-  @Output() onSelection = new EventEmitter()
+  @Output() onSelection = new EventEmitter<Reply_Type[]>()
 
   constructor(
     // private injector: Injector
@@ -62,7 +63,7 @@ export class ReplyTypeLabelsComponent implements OnInit {
   }
 
   private emitSelections() {
-    const selections = []
+    const selections: Reply_Type[] = []
     if (this.selected.question) {
       selections.push('question')
     }

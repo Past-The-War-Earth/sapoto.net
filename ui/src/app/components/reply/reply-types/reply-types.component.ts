@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Reply } from '@sapoto/main';
+import { Component, Input, OnInit } from '@angular/core';
+import { QuestionType, Reply, ReplyQuestionType, Reply_Type } from '@sapoto/main';
 import { ReplyService } from 'src/app/services/reply.service';
 
 @Component({
@@ -22,47 +22,65 @@ export class ReplyTypesComponent implements OnInit {
   ngOnInit() {
   }
 
-  getQuestionTypes() {
-    return this.replyService.getQuestionTypes()
+  async getQuestionTypes(): Promise<QuestionType[]> {
+    return await this.replyService.getQuestionTypes()
   }
 
-  setDesignations(designations) {
-    this.reply.designations = designations
+  setDesignations(designations: Reply_Type[]) {
+    this.reply.isExperience = false
+    this.reply.isIdea = false
+    this.reply.isQuestion = false
+    for (const designation of designations) {
+      switch (designation) {
+        case 'experience':
+          this.reply.isExperience = true
+          break
+        case 'idea':
+          this.reply.isIdea = true
+          break
+        case 'question':
+          this.reply.isQuestion = true
+          break
+      }
+    }
   }
 
   isComment() {
     return this.replyService.isComment(this.reply)
   }
 
-  isQuestion() {
-    return this.replyService.isQuestion(this.reply)
+  isQuestion(): boolean {
+    return this.reply.isQuestion
   }
 
-  isIdea() {
-    return this.replyService.isIdea(this.reply)
+  isIdea(): boolean {
+    return this.reply.isIdea
   }
 
-  isExperience() {
-    return this.replyService.isExperience(this.reply)
+  isExperience(): boolean {
+    return this.reply.isExperience
   }
 
   hasQuestionType(
-    questionType
+    questionType: QuestionType
   ) {
-    return this.reply.questionTypes.filter(
-      assignedQuestionType => assignedQuestionType === questionType
+    return this.reply.replyQuestionTypes.filter(
+      assignedQuestionType => assignedQuestionType.questionType.id === questionType.id
     ).length === 1
   }
 
   onQuestionTypeClick(
-    questionType
+    questionType: QuestionType
   ) {
     if (this.hasQuestionType(questionType)) {
-      this.reply.questionTypes = this.reply.questionTypes.filter(
-        assignedQuestionType => assignedQuestionType !== questionType
+      this.reply.replyQuestionTypes = this.reply.replyQuestionTypes.filter(
+        assignedQuestionType => assignedQuestionType.questionType.id !== questionType.id
       )
     } else {
-      this.reply.questionTypes.push(questionType)
+      const replyQuestionType = new ReplyQuestionType()
+      replyQuestionType.reply = this.reply
+      replyQuestionType.questionType = questionType
+      this.reply.replyQuestionTypes.push(replyQuestionType)
     }
   }
 

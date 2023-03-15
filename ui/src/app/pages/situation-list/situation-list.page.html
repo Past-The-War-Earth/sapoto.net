@@ -2,7 +2,7 @@
 </app-page-header>
 <app-popover (onDismiss)="onActionsClose()" [isOpen]="showSituationActions" triggerElementId="reply-actions-button">
   <app-situation-actions *ngIf="showSituationActions" (onSelection)="onSituationAction($event)"
-    [situation]="activeSituationThread.situation">
+    [situationThread]="activeSituationThread">
   </app-situation-actions>
 </app-popover>
 <ion-content>

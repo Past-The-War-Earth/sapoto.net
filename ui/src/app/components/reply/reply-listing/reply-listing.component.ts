@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Reply, ReplyType } from '@sapoto/main';
+import { Reply, Reply_Type } from '@sapoto/main';
 import { ReplyService } from '../../../services/reply.service';
 
 @Component({
@@ -28,14 +28,25 @@ export class ReplyListingComponent implements OnInit {
   }
 
   setReplyTypeFilters(
-    replyTypes: ('comment' | 'experience' | 'idea' | 'question')[]
+    replyTypes: Reply_Type[]
   ): void {
     if (!replyTypes.length) {
       this.filteredReplies = this.replies
     } else {
       this.filteredReplies = this.replies.filter(reply => {
-        return !!reply.replyTypes.filter(replyType => {
-          return replyTypes.indexOf(replyType.type) > -1
+        return replyTypes.filter(replyType => {
+          switch (replyType) {
+            case 'comment':
+              return !reply.isExperience
+                && !reply.isIdea
+                && !reply.isQuestion
+            case 'experience':
+              return reply.isExperience
+            case 'idea':
+              return reply.isIdea
+            case 'question':
+              return reply.isQuestion
+          }
         }).length
       })
     }
@@ -90,7 +101,7 @@ export class ReplyListingComponent implements OnInit {
   }
 
   showIdeaReasons() {
-    return this.activeReply && this.replyService.hasADesignation('idea', this.activeReply)
+    return this.activeReply && this.activeReply.isIdea
       && this.action === 'reasonAbout'
   }
 

@@ -3,9 +3,9 @@ import 'quill-emoji/dist/quill-emoji.js'
 import { Clicker } from '../../../utils/Clicker';
 import { QuillService } from '../../../services/quill.service';
 import { SituationService } from '../../../services/situation.service';
-import { Situation } from '@sapoto/core';
+import { Situation, SituationRating } from '@sapoto/core';
 import { SituationThreadService } from 'src/app/services/situation-thread.service';
-import { NEW_RECORD_FIELDS } from '../../../../../../apps/core/node_modules/@airport/tarmaq-query/dist/esm/tarmaq.query.index';
+import { SituationThread } from '@sapoto/main';
 
 @Component({
   selector: 'app-post-situation',
@@ -43,17 +43,14 @@ export class PostSituationComponent implements OnInit {
   }
 
   async createSituation(): Promise<void> {
-    await this.situationThreadService.addSituationThread({
-      ...NEW_RECORD_FIELDS,
-      ageSuitability: 0,
-      numberOfExperiences: 0,
-      numberOfIdeas: 0,
-      numberOfQuestions: 0,
-      numberOfReplies: 0,
-      replies: [],
-      repository: null,
-      situation: this.situation
-    })
+    const situationThread = new SituationThread()
+    situationThread.situation = this.situation
+    const situationRating = new SituationRating()
+    situationRating.situation = this.situation
+    await this.situationThreadService.addSituationThread(
+      situationThread,
+      situationRating
+    )
   }
 
   cancel() {

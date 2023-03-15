@@ -9,14 +9,14 @@
     <td class="controls">
       <div class="idea-controls" *ngIf="isIdea()">
         <div>Urgency</div>
-        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.urgency" min="1" max="5" step="1" name="urgency"
-          snaps="true">
+        <ion-range [(ngModel)]="reply.situationIdea.userIdeaRating.urgencyRating" min="1" max="5" step="1"
+          name="urgency" snaps="true">
           <ion-label slot="start">Low</ion-label>
           <ion-label slot="end">High</ion-label>
         </ion-range>
         <div>Priority</div>
-        <ion-range [(ngModel)]="reply.eisenhowerMatrix.user.priority" min="1" max="5" step="1" name="priority"
-          snaps="true">
+        <ion-range [(ngModel)]="reply.situationIdea.userIdeaRating.priorityRating" min="1" max="5" step="1"
+          name="priority" snaps="true">
           <ion-label slot="start">Low</ion-label>
           <ion-label slot="end">High</ion-label>
         </ion-range>
@@ -38,7 +38,7 @@
         </ion-row>
       </div>
       <div class="question-controls" *ngIf="isQuestion()">
-        <ion-chip *ngFor="let questionType of getQuestionTypes()"
+        <ion-chip *ngFor="let questionType of getQuestionTypes() | async"
           [ngClass]="{'selected': hasQuestionType(questionType)}" (click)="onQuestionTypeClick(questionType)"
           [outline]="!hasQuestionType(questionType)">
           <div>{{questionType}}?</div>

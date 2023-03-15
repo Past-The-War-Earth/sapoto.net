@@ -1,4 +1,4 @@
-import { User } from '@airport/travel-document-checkpoint';
+import { UserAccount } from '@airport/travel-document-checkpoint';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,8 +8,9 @@ export class UserService {
 
   constructor() { }
 
-  loggedInUser: User = {
-    email: 'bogus@bogus.com',
+  loggedInUser: UserAccount = {
+    _localId: 0,
+    accountPublicSigningKey: 'bogus@bogus.com',
     username: 'bogusUser123'
   }
 
